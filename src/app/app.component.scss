@@ -1,9 +1,8 @@
 .demo-header {
     width: 100%;
     text-align: center;
-    background: #0073c6;
+    color: #0073c6;
     float: left;
-    color: #fff;
     box-sizing: border-box;
     h1 {
         margin: 80px 0;
@@ -18,8 +17,26 @@
     width: 100%;
     box-sizing: border-box;
     float: left;
-    padding: 0 24px;
-    h2 {
+    padding: 6px 24px;
+    background: #fff;
+    margin-bottom: 12px;
+    /deep/ h2 {
         font-weight: 500;
+        color: #0073c6;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px dotted rgba(#0073c6, 0.33);   
+    }
+    /deep/ h4 {
+        font-weight: 300;
+        margin-bottom: 12px;
+    }
+    /deep/ .vertical-separator {
+        margin: 0 3px;
+        display: inline-block;
+    }
+    /deep/ .horizontal-separator {
+        padding: 6px 0;
+        display: block;
     }
 }

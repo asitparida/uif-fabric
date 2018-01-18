@@ -1,0 +1,44 @@
+.ms-Button {
+    &.has-icon {
+        .ms-Button-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    }
+    &.ms-Button--primary{
+        &:not([disabled]) {
+            background: #0078d7;
+        &:focus,
+        &:hover,
+        &:active {
+            background: darken(#0078d7, 10);
+        }
+        &.has-icon {
+            .ms-Button-icon {
+                color: #fff;
+            }
+        }
+        }
+    }
+    &.ms-Button--compound {
+        display: inline-block;
+        &.ms-Button--compoundPrimary {
+            &:not([disabled]){
+                background: #0078d7;
+            span {
+                &.ms-Button-label,
+                &.ms-Button-icon,
+                &.ms-Button-description {
+                    color: #fff;
+                }
+            }
+            &:focus,
+            &:hover,
+            &:active {
+                background: darken(#0078d7, 10);
+            }
+            }
+        }
+    }
+}
