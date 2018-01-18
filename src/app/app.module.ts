@@ -1,19 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { UiFabricModule } from './uif-fabric/uif-fabric.module';
+import { DemoModule } from './demo/demo.module';
 
 import { AppComponent } from './app.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    UiFabricModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		DemoModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,30 @@
+<h2>uif-button</h2>
+<div style="display: block; padding: 0 0 24px 0;">
+    <h4>Default Button</h4>
+    <uif-button (click)="showAlert($event)">This is a sample button!</uif-button>
+    <div class="vertical-separator"></div>
+    <uif-button (click)="showAlert($event)" disabled="true">This is a sample button!</uif-button>
+    <div class="vertical-separator"></div>
+    <uif-button (click)="showAlert($event)" [icon]="'Mail'">This is a sample button!</uif-button>
+    <div class="horizontal-separator"></div>
+    <h4>Hero Button</h4>
+    <uif-hero-button (click)="showAlert($event)" [icon]="'Mail'">This is a sample button!</uif-hero-button>
+    <div class="vertical-separator"></div>
+    <div class="vertical-separator"></div>
+    <div class="vertical-separator"></div>
+    <uif-hero-button (click)="showAlert($event)" [icon]="'Mail'" disabled="true">This is a sample button!</uif-hero-button>
+    <div class="vertical-separator"></div>
+    <h4>Default Button with Primary</h4>
+    <uif-button (click)="showAlert($event)" [primary]="true">This is a sample button!</uif-button>
+    <div class="vertical-separator"></div>
+    <uif-button (click)="showAlert($event)" [primary]="true" disabled="true">This is a sample button!</uif-button>
+    <div class="vertical-separator"></div>
+    <uif-button (click)="showAlert($event)" [primary]="true" [icon]="'Mail'">This is a sample button!</uif-button>
+    <div class="horizontal-separator"></div>
+    <h4>Compound Button </h4>
+    <uif-compound-button (click)="showAlert($event)" [description]="description">Button</uif-compound-button>
+    <div class="vertical-separator"></div>
+    <uif-compound-button (click)="showAlert($event)" [description]="description" disabled="true">Button</uif-compound-button>
+    <div class="vertical-separator"></div>
+    <uif-compound-button (click)="showAlert($event)" [description]="description" [primary]="true">Button</uif-compound-button>
+</div>

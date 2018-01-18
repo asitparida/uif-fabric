@@ -1,14 +1,19 @@
 <div class="ms-Breadcrumb" [class.is-overflow]="showOverflow">
-        <div class="ms-Breadcrumb-overflow">
-            <div class="ms-Breadcrumb-overflowButton ms-Icon ms-Icon--More" tabindex="1"></div>
-            <div class="ms-Breadcrumb-overflowMenu">
-                <ul class="ms-ContextualMenu is-open"></ul>
-            </div>
+    <div class="ms-Breadcrumb-overflow">
+        <div class="ms-Breadcrumb-overflowButton ms-Icon ms-Icon--More" (click)="showOverflowContextMenu = !showOverflowContextMenu"
+            tabindex="1"></div>
+        <div class="ms-Breadcrumb-overflowMenu" [class.is-open]="showOverflowContextMenu">
+            <ul class="ms-ContextualMenu" [class.is-open]="showOverflowContextMenu">
+                <li class="ms-ContextualMenu-item" *ngFor="let item of breadcrumbItemsOverflowed">
+                    <a class="ms-ContextualMenu-link" [attr.target]="item.openInNewTab ? '_blank': ''" [attr.href]="item.href" tabindex="2">{{item.text}}</a>
+                </li>
+            </ul>
         </div>
-        <ul class="ms-Breadcrumb-list">
-            <li class="ms-Breadcrumb-listItem" *ngFor="let item of breadcrumbItems">
-                <a class="ms-Breadcrumb-itemLink" tabindex="0">{{item.text}}</a>
-                <i class="ms-Breadcrumb-chevron ms-Icon ms-Icon--ChevronRight"></i>
-            </li>
-        </ul>
     </div>
+    <ul class="ms-Breadcrumb-list">
+        <li class="ms-Breadcrumb-listItem" *ngFor="let item of breadcrumbItems">
+            <a class="ms-Breadcrumb-itemLink" [attr.target]="item.openInNewTab ? '_blank': ''" [attr.href]="item.href" tabindex="0">{{item.text}}</a>
+            <i class="ms-Breadcrumb-chevron ms-Icon ms-Icon--ChevronRight"></i>
+        </li>
+    </ul>
+</div>

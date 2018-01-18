@@ -1,0 +1,13 @@
+.ms-Callout-button {
+    display: inline-block;
+}
+.ms-callout-container {
+    display: inline-table;
+    position: relative;
+}
+.ms-ContextualHost {
+    opacity: 0;
+    .ms-ContextualHost-beak{
+        margin-top: 12px;
+    }
+}
