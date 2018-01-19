@@ -1,14 +1,21 @@
 <h2>uif-callout</h2>
 <div style="display: block; padding: 0 0 24px 0;">
-    <h4>Default Callout</h4>
-    <uif-callout showClose="true">
-        <uif-callout-header>All of your favorite people</uif-callout-header>
-        <uif-callout-content>Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.</uif-callout-content>
-        <uif-callout-actions>
-            <a class="ms-Link">Learn more</a>
-        </uif-callout-actions>
-        <uif-open-callout>
-            <uif-button>Show default callout</uif-button>
-        </uif-open-callout>
-    </uif-callout>
+    <h4>Set Direction Hint</h4>
+    <form>
+        <select name="directionHint" [(ngModel)]="directionHint">
+            <option *ngFor="let hint of hints" [value]="hint.key">{{hint.text}}</option>
+        </select>
+    </form>
+    <div style="display:block; margin: 30px auto;text-align:center">
+        <uif-callout showClose="true" [showArrow]="showArrow" [directionalHint]="directionHint">
+            <uif-callout-header>All of your favorite people</uif-callout-header>
+            <uif-callout-content>Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.</uif-callout-content>
+            <uif-callout-actions>
+                <a class="ms-Link">Learn more</a>
+            </uif-callout-actions>
+            <uif-open-callout>
+                <uif-button>Show Default Callout</uif-button>
+            </uif-open-callout>
+        </uif-callout>
+    </div>
 </div>

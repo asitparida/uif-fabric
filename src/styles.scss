@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    margin: 0;
+    margin: 0 auto;
     font-family: 'Segoe UI', sans-serif;
     padding: 12px;
+    width: 80%;
+    max-width: 1200px;
 }
 body, html {
     background-color: lighten(#0073c6, 50);

@@ -7,6 +7,11 @@
 }
 .ms-ContextualHost {
     opacity: 0;
+    text-align: left;
+    transition:  opacity 0.367s ease-in 0s;
+    .ms-ContextualHost-main {
+        display: block;
+    }
     .ms-ContextualHost-beak{
         margin-top: 12px;
     }
