@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'uif-open-callout',
+	styles: [
+		':host {display: inline-block; }'
+	],
 	template: '<ng-content></ng-content>'
 })
 export class UifOpenCalloutComponent {
