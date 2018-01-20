@@ -1,0 +1,17 @@
+.ms-contextual-menu-container {
+    display: inline-block;
+    /deep/ [menuTrigger] {
+        display: inline-block;
+    }
+    .ms-ContextualMenu {
+        position: absolute;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
+        z-index: 1;
+        &.top {
+            bottom: 0;
+        }
+    }
+    .ms-contextual-menu-holder {
+        position: relative;
+    }
+}

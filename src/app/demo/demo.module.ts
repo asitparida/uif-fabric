@@ -5,12 +5,14 @@ import { UiFabricModule } from '../uif-fabric/uif-fabric.module';
 import { BreadcrumbDemoComponent } from './app-breadcrumb-demo/app-breadcrumb-demo.component';
 import { ButtonDemoComponent } from './app-button-demo/app-button-demo.component';
 import { CalloutDemoComponent } from './app-callout-demo/app-callout-demo.component';
+import {  ContextualMenuDemoComponent } from './app-contextualmenu-demo/app-contextualmenu-demo.component';
 
 @NgModule({
 	declarations: [
 		BreadcrumbDemoComponent,
 		ButtonDemoComponent,
-		CalloutDemoComponent
+		CalloutDemoComponent,
+		ContextualMenuDemoComponent
 	],
 	imports: [
 		CommonModule,
@@ -20,7 +22,8 @@ import { CalloutDemoComponent } from './app-callout-demo/app-callout-demo.compon
 	exports: [
 		BreadcrumbDemoComponent,
 		ButtonDemoComponent,
-		CalloutDemoComponent
+		CalloutDemoComponent,
+		ContextualMenuDemoComponent
 	],
 	providers: []
 })

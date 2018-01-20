@@ -8,33 +8,38 @@ import { UifCalloutComponent } from './uif-callout/uif-callout.component';
 import {
 	UifOpenCalloutComponent, UifCalloutContentComponent, UifCalloutHeaderComponent, UifCalloutActionComponent
 } from './uif-callout/uif-callout-subcomponents.component';
+import { UifContextualMenuComponent } from './uif-contextual-menu/uif-contextual-menu.component';
+import {
+	UifContextualMenuItemComponent,
+	UifContextualMenuTriggerDirective,
+	UifContextualMenuItemDividerComponent,
+	UifContextualMenuItemHeaderComponent,
+	UifContextMenuService
+} from './uif-contextual-menu/uif-contextual-menu-subcomponents.component';
+
+const COMPONENTS = [
+	UifBreadcrumbComponent,
+	UifButtonComponent,
+	UifCompoundButtonComponent,
+	UifHeroButtonComponent,
+	UifCalloutComponent,
+	UifOpenCalloutComponent,
+	UifCalloutContentComponent,
+	UifCalloutHeaderComponent,
+	UifCalloutActionComponent,
+	UifContextualMenuComponent,
+	UifContextualMenuItemComponent,
+	UifContextualMenuItemDividerComponent,
+	UifContextualMenuItemHeaderComponent,
+	UifContextualMenuTriggerDirective
+];
 
 @NgModule({
-	declarations: [
-		UifBreadcrumbComponent,
-		UifButtonComponent,
-		UifCompoundButtonComponent,
-		UifHeroButtonComponent,
-		UifCalloutComponent,
-		UifOpenCalloutComponent,
-		UifCalloutContentComponent,
-		UifCalloutHeaderComponent,
-		UifCalloutActionComponent
-	],
+	declarations: COMPONENTS,
 	imports: [
 		CommonModule
 	],
-	exports: [
-		UifBreadcrumbComponent,
-		UifButtonComponent,
-		UifCompoundButtonComponent,
-		UifHeroButtonComponent,
-		UifCalloutComponent,
-		UifOpenCalloutComponent,
-		UifCalloutContentComponent,
-		UifCalloutHeaderComponent,
-		UifCalloutActionComponent
-	],
+	exports: COMPONENTS,
 	providers: []
 })
 export class UiFabricModule { }
