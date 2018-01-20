@@ -14,3 +14,9 @@ export enum UifCalloutDirectionalHint {
 	RightCenter = 11,
 	RightBottomEdge = 12
 }
+
+export enum UifCalloutTriggerHint {
+	ClickInClickOut = 1,
+	FocusInBlurOut = 2,
+	HoverInBlurOut  = 3,
+}
