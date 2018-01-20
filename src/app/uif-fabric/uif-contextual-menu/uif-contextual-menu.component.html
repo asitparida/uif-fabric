@@ -1,0 +1,9 @@
+<div class="ms-contextual-menu-container">
+    <div class="ms-contextual-menu-holder">
+        <ng-content select="[menuTrigger]"></ng-content>
+        <ng-content select="[contextualMenu]" ></ng-content>
+        <ul class="ms-ContextualMenu" [class.is-hidden]="!isOpen" [class.ms-ContextualMenu--multiselect]="isMultiSelect">
+            <ng-content></ng-content>
+        </ul>
+    </div>
+</div>

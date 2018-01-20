@@ -1,0 +1,26 @@
+<h2>uif-contextual-menu</h2>
+<div style="display: block; padding: 0 0 24px 0;">
+    <h4>Default Contextual Menu</h4>
+    <uif-contextualmenu [(isOpen)]="openMenu1">
+        <uif-button menuTrigger (click)="openMenu1 = !openMenu1"><span [hidden]="openMenu1">Open</span><span [hidden]="!openMenu1">Close</span> Contextual Menu</uif-button>
+        <div menuItem> Animals</div>
+        <div menuItem *ngFor="let item of menuItems">{{item.text}}</div>
+    </uif-contextualmenu>
+    <div class="horizontal-separator"></div>
+    <h4>Contextual Menu With Header & Divider</h4>
+    <uif-contextualmenu [(isOpen)]="openMenu2" [directionHint]="DirectionHints.Top">
+        <uif-button menuTrigger (click)="openMenu2 = !openMenu2"><span [hidden]="openMenu2">Open</span><span [hidden]="!openMenu2">Close</span> Contextual Menu</uif-button>
+        <div menuItemHeader> Animals</div>
+        <div menuItem *ngFor="let item of menuItems">{{item.text}}</div>
+        <div menuItemDivider> Animals</div>
+        <div menuItemHeader> Spices</div>
+        <div menuItem *ngFor="let item of menuItems2">{{item.text}}</div>
+    </uif-contextualmenu>
+    <div class="horizontal-separator"></div>
+    <h4>Multiselect Contextual Menu</h4>
+    <uif-contextualmenu [(isOpen)]="openMenu3" [isMultiSelect]="isMultiSelect" [directionHint]="DirectionHints.Top">
+        <uif-button menuTrigger (click)="openMenu3 = !openMenu3"><span [hidden]="openMenu3">Open</span><span [hidden]="!openMenu3">Close</span> Contextual Menu</uif-button>
+        <div menuItemHeader> Animals</div>
+        <menu-item *ngFor="let item of menuItems3; let i = index" [selected]="item.selected" [disabled]="i == 4">{{item.text}}</menu-item>
+    </uif-contextualmenu>
+</div>
