@@ -25,6 +25,7 @@ export class UifContextualMenuComponent implements OnChanges, AfterContentInit, 
 	@Input() isMultiSelect: boolean | Boolean = false;
 	@Input() directionHint: UifContextualMenuDirectionHint = UifContextualMenuDirectionHint.Bottom;
 	@ContentChildren(UifContextualMenuItemComponent) menuItems: QueryList<UifContextualMenuItemComponent>;
+	isSubMenu = false;
 	nativeMenuTrigger;
 	nativeMenu;
 	constructor(

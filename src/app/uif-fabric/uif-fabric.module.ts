@@ -16,6 +16,7 @@ import {
 	UifContextualMenuItemHeaderComponent,
 	UifContextMenuService
 } from './uif-contextual-menu/uif-contextual-menu-subcomponents.component';
+import { UifDatepickerComponent } from './uif-datepicker/uif-datepicker.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -31,7 +32,8 @@ const COMPONENTS = [
 	UifContextualMenuItemComponent,
 	UifContextualMenuItemDividerComponent,
 	UifContextualMenuItemHeaderComponent,
-	UifContextualMenuTriggerDirective
+	UifContextualMenuTriggerDirective,
+	UifDatepickerComponent
 ];
 
 @NgModule({

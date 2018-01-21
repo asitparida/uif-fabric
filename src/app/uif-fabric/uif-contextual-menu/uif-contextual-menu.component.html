@@ -2,7 +2,7 @@
     <div class="ms-contextual-menu-holder">
         <ng-content select="[menuTrigger]"></ng-content>
         <ng-content select="[contextualMenu]" ></ng-content>
-        <ul class="ms-ContextualMenu" [class.is-hidden]="!isOpen" [class.ms-ContextualMenu--multiselect]="isMultiSelect">
+        <ul class="ms-ContextualMenu" [class.is-hidden]="!isOpen" [class.ms-ContextualMenu--multiselect]="isMultiSelect" [class.is-sub-menu]="isSubMenu">
             <ng-content></ng-content>
         </ul>
     </div>
