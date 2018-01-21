@@ -1,11 +1,11 @@
 export enum WeekDay {
-	Sunday,
-	Monday,
-	Tuesday,
-	Wednesday,
-	Thursday,
-	Friday,
-	Saturday
+	Sunday = 0,
+	Monday = 1,
+	Tuesday = 2,
+	Wednesday = 3,
+	Thursday = 4,
+	Friday = 5,
+	Saturday = 6
 }
 
 export enum MonthFullname {
@@ -57,7 +57,17 @@ export class DateModel {
 	date: Date;
 	weekDay: WeekDay;
 	monthInYear: Month;
+	monthName: String;
 	dateNum: number;
 	monthNum: number;
 	yearNum: number;
+	isInFocus: Boolean | boolean = false;
+	isHighlighted: Boolean | boolean = false;
+}
+
+export class WeekDayData {
+	weekDay: WeekDay;
+	char: String;
+	fullName: String;
+	index: Number;
 }

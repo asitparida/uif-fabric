@@ -1,231 +1,71 @@
-<div class="ms-DatePicker-picker ms-DatePicker-picker--focused" id="P242246400_root" aria-hidden="false" [class.ms-DatePicker-picker--opened]="isOpen">
-    <div class="ms-DatePicker-holder">
-        <div class="ms-DatePicker-frame">
-            <div class="ms-DatePicker-wrap">
-                <div class="ms-DatePicker-dayPicker">
-                    <div class="ms-DatePicker-header">
-                        <div class="ms-DatePicker-month">January</div>
-                        <div class="ms-DatePicker-year">2001</div>
-                        <div class="picker__nav--prev" data-nav="-1" role="button" aria-components="P242246400_table"
-                            title="Previous month"> </div>
-                        <div class="picker__nav--next" data-nav="1" role="button" aria-components="P242246400_table"
-                            title="Next month"> </div>
+<div class="ms-DatePicker" [class.is-pickingYears]="isPickingYears">
+    <ng-content select="uif-open-datepicker, [uifOpenDatepicker]"></ng-content>
+    <div class="ms-DatePicker-picker ms-DatePicker-picker--focused" id="P242246400_root" aria-hidden="false" [class.ms-DatePicker-picker--opened]="isOpen">
+        <div class="ms-DatePicker-holder" *ngIf="isOpen">
+            <div class="ms-DatePicker-frame">
+                <div class="ms-DatePicker-wrap">
+                    <div class="ms-DatePicker-dayPicker">
+                        <div class="ms-DatePicker-header">
+                            <div class="ms-DatePicker-month">{{currentDayData.monthName}}</div>
+                            <div class="ms-DatePicker-year">{{currentDayData.yearNum}}</div>
+                            <div class="picker__nav--prev" role="button" aria-components="P242246400_table" title="Previous month"> </div>
+                            <div class="picker__nav--next" role="button" aria-components="P242246400_table" title="Next month"> </div>
+                        </div>
+                        <table class="ms-DatePicker-table" id="P242246400_table" role="grid" aria-components="P242246400" aria-readonly="true">
+                            <thead>
+                                <tr>
+                                    <th class="ms-DatePicker-weekday" *ngFor="let day of weekDays" scope="col" [attr.title]="day.fullName">{{day.char}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let week of weekCollection">
+                                    <td role="presentation" *ngFor="let day of week">
+                                        <div class="ms-DatePicker-day" [class.ms-DatePicker-day--infocus]="day.isInFocus" [class.ms-DatePicker-day--outfocus]="!day.isInFocus"
+                                            [class.ms-DatePicker-day--highlighted]="day.isHighlighted" role="gridcell" (click)="selectDate(day.date)">{{day.dateNum}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <table class="ms-DatePicker-table" id="P242246400_table" role="grid" aria-components="P242246400" aria-readonly="true">
-                        <thead>
-                            <tr>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Sunday">S</th>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Monday">M</th>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Tuesday">T</th>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Wednesday">W</th>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Thursday">T</th>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Friday">F</th>
-                                <th class="ms-DatePicker-weekday" scope="col" title="Saturday">S</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="978220800000" role="gridcell">31</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978307200000" role="gridcell">1</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978393600000" role="gridcell">2</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978480000000" role="gridcell">3</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978566400000" role="gridcell">4</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978652800000" role="gridcell">5</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978739200000" role="gridcell">6</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978825600000" role="gridcell">7</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978912000000" role="gridcell">8</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="978998400000" role="gridcell">9</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979084800000" role="gridcell">10</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979171200000" role="gridcell">11</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979257600000" role="gridcell">12</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979344000000" role="gridcell">13</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979430400000" role="gridcell">14</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979516800000" role="gridcell">15</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979603200000" role="gridcell">16</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979689600000" role="gridcell">17</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979776000000" role="gridcell">18</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979862400000" role="gridcell">19</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="979948800000" role="gridcell">20</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus ms-DatePicker-day--highlighted"
-                                        data-pick="980035200000" role="gridcell" aria-activedescendant="true">21</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980121600000" role="gridcell">22</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980208000000" role="gridcell">23</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980294400000" role="gridcell">24</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980380800000" role="gridcell">25</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980467200000" role="gridcell">26</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980553600000" role="gridcell">27</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980640000000" role="gridcell">28</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980726400000" role="gridcell">29</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980812800000" role="gridcell">30</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--infocus" data-pick="980899200000" role="gridcell">31</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="980985600000" role="gridcell">1</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981072000000" role="gridcell">2</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981158400000" role="gridcell">3</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981244800000" role="gridcell">4</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981331200000" role="gridcell">5</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981417600000" role="gridcell">6</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981504000000" role="gridcell">7</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981590400000" role="gridcell">8</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981676800000" role="gridcell">9</div>
-                                </td>
-                                <td role="presentation">
-                                    <div class="ms-DatePicker-day ms-DatePicker-day--outfocus" data-pick="981763200000" role="gridcell">10</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="ms-DatePicker-monthComponents">
-                    <span class="ms-DatePicker-nextMonth js-nextMonth">
-                        <i class="ms-Icon ms-Icon--ChevronRight"></i>
-                    </span>
-                    <span class="ms-DatePicker-prevMonth js-prevMonth">
-                        <i class="ms-Icon ms-Icon--ChevronLeft"></i>
-                    </span>
-                    <div class="ms-DatePicker-headerToggleView js-showMonthPicker"></div>
-                </div>
-                <span class="ms-DatePicker-goToday js-goToday">Go to today</span>
-                <div class="ms-DatePicker-monthPicker">
-                    <div class="ms-DatePicker-header">
-                        <div class="ms-DatePicker-yearComponents">
-                            <span class="ms-DatePicker-nextYear js-nextYear">
+                    <div class="ms-DatePicker-monthComponents">
+                        <span class="ms-DatePicker-nextMonth" (click)="loadMonthByIncrement(1)">
+                            <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                        </span>
+                        <span class="ms-DatePicker-prevMonth" (click)="loadMonthByIncrement(-1)">
+                            <i class="ms-Icon ms-Icon--ChevronLeft"></i>
+                        </span>
+                        <div class="ms-DatePicker-headerToggleView" (click)="switchOnMonthPicking()"></div>
+                    </div>
+                    <span class="ms-DatePicker-goToday" (click)="goToToday()">Go to today</span>
+                    <div class="ms-DatePicker-monthPicker">
+                        <div class="ms-DatePicker-header">
+                            <div class="ms-DatePicker-yearComponents">
+                                <span class="ms-DatePicker-nextYear " (click)="loadYearInSearch(1)">
+                                    <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                                </span>
+                                <span class="ms-DatePicker-prevYear " (click)="loadYearInSearch(-1)">
+                                    <i class="ms-Icon ms-Icon--ChevronLeft"></i>
+                                </span>
+                            </div>
+                            <div class="ms-DatePicker-currentYear" (click)="switchOnYearPicking()">{{searchContext.year}}</div>
+                        </div>
+                        <div class="ms-DatePicker-optionGrid">
+                            <span class="ms-DatePicker-monthOption" [class.is-highlighted]="i === searchContext.month" *ngFor="let month of searchContext.months; let i = index;" (click)="loadMonth(i)">{{month}}</span>
+                        </div>
+                    </div>
+                    <div class="ms-DatePicker-yearPicker">
+                        <div class="ms-DatePicker-decadeComponents">
+                            <span class="ms-DatePicker-nextDecade " (click)="loadDecadeInSearch(1)">
                                 <i class="ms-Icon ms-Icon--ChevronRight"></i>
                             </span>
-                            <span class="ms-DatePicker-prevYear js-prevYear">
+                            <span class="ms-DatePicker-prevDecade " (click)="loadDecadeInSearch(-1)">
                                 <i class="ms-Icon ms-Icon--ChevronLeft"></i>
                             </span>
                         </div>
-                        <div class="ms-DatePicker-currentYear js-showYearPicker">2001</div>
-                    </div>
-                    <div class="ms-DatePicker-optionGrid">
-                        <span class="ms-DatePicker-monthOption js-changeDate is-highlighted" data-month="0">Jan</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="1">Feb</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="2">Mar</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="3">Apr</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="4">May</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="5">Jun</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="6">Jul</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="7">Aug</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="8">Sep</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="9">Oct</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="10">Nov</span>
-                        <span class="ms-DatePicker-monthOption js-changeDate" data-month="11">Dec</span>
-                    </div>
-                </div>
-                <div class="ms-DatePicker-yearPicker">
-                    <div class="ms-DatePicker-decadeComponents">
-                        <span class="ms-DatePicker-nextDecade js-nextDecade">
-                            <i class="ms-Icon ms-Icon--ChevronRight"></i>
-                        </span>
-                        <span class="ms-DatePicker-prevDecade js-prevDecade">
-                            <i class="ms-Icon ms-Icon--ChevronLeft"></i>
-                        </span>
-                    </div>
-                    <div class="ms-DatePicker-currentDecade">1990 - 2001</div>
-                    <div class="ms-DatePicker-optionGrid">
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1990">1990</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1991">1991</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1992">1992</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1993">1993</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1994">1994</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1995">1995</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1996">1996</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1997">1997</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1998">1998</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="1999">1999</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate" data-year="2000">2000</span>
-                        <span class="ms-DatePicker-yearOption js-changeDate is-highlighted" data-year="2001">2001</span>
+                        <div class="ms-DatePicker-currentDecade">{{searchContext.decadeStart}} - {{searchContext.decadeEnd}}</div>
+                        <div class="ms-DatePicker-optionGrid">
+                            <span class="ms-DatePicker-yearOption" [class.is-highlighted]="year === searchContext.year" *ngFor="let year of searchContext.years; let i = index;" (click)="loadYear(year)">{{year}}</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,2 +1,10 @@
 <h2>uif-datepicker</h2>
-<uif-datepicker [(isOpen)]="datePickerOpened" [date]="dt"></uif-datepicker>
+<form>
+    <h4>Current Date : {{dt}}</h4>
+<uif-datepicker [(isOpen)]="datePickerOpened" [(date)]="dt" >
+    <uif-open-datepicker>
+        <input name="dt" type="date" style="display: inline-block; vertical-align: middle; line-height: 24px; min-width: 300px;" [(ngModel)]="dt" />
+        <uif-button (click)="datePickerOpened = !datePickerOpened"><span [hidden]="!datePickerOpened">Close</span><span [hidden]="datePickerOpened">Open</span> Datepicker</uif-button>
+    </uif-open-datepicker>
+</uif-datepicker>
+</form>
