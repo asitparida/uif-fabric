@@ -1,0 +1,74 @@
+<div class="ms-DatePicker" [class.is-pickingYears]="isPickingYears">
+    <ng-content select="uif-open-datepicker, [uifOpenDatepicker]"></ng-content>
+    <div class="ms-DatePicker-picker ms-DatePicker-picker--focused" id="P242246400_root" aria-hidden="false" [class.ms-DatePicker-picker--opened]="isOpen">
+        <div class="ms-DatePicker-holder" *ngIf="isOpen">
+            <div class="ms-DatePicker-frame">
+                <div class="ms-DatePicker-wrap">
+                    <div class="ms-DatePicker-dayPicker">
+                        <div class="ms-DatePicker-header">
+                            <div class="ms-DatePicker-month">{{currentDayData.monthName}}</div>
+                            <div class="ms-DatePicker-year">{{currentDayData.yearNum}}</div>
+                            <div class="picker__nav--prev" role="button" aria-components="P242246400_table" title="Previous month"> </div>
+                            <div class="picker__nav--next" role="button" aria-components="P242246400_table" title="Next month"> </div>
+                        </div>
+                        <table class="ms-DatePicker-table" id="P242246400_table" role="grid" aria-components="P242246400" aria-readonly="true">
+                            <thead>
+                                <tr>
+                                    <th class="ms-DatePicker-weekday" *ngFor="let day of weekDays" scope="col" [attr.title]="day.fullName">{{day.char}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let week of weekCollection">
+                                    <td role="presentation" *ngFor="let day of week">
+                                        <div class="ms-DatePicker-day" [class.ms-DatePicker-day--infocus]="day.isInFocus" [class.ms-DatePicker-day--outfocus]="!day.isInFocus"
+                                            [class.ms-DatePicker-day--highlighted]="day.isHighlighted" role="gridcell" (click)="selectDate(day.date)">{{day.dateNum}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ms-DatePicker-monthComponents">
+                        <span class="ms-DatePicker-nextMonth" (click)="loadMonthByIncrement(1)">
+                            <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                        </span>
+                        <span class="ms-DatePicker-prevMonth" (click)="loadMonthByIncrement(-1)">
+                            <i class="ms-Icon ms-Icon--ChevronLeft"></i>
+                        </span>
+                        <div class="ms-DatePicker-headerToggleView" (click)="switchOnMonthPicking()"></div>
+                    </div>
+                    <span class="ms-DatePicker-goToday" (click)="goToToday()">Go to today</span>
+                    <div class="ms-DatePicker-monthPicker">
+                        <div class="ms-DatePicker-header">
+                            <div class="ms-DatePicker-yearComponents">
+                                <span class="ms-DatePicker-nextYear " (click)="loadYearInSearch(1)">
+                                    <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                                </span>
+                                <span class="ms-DatePicker-prevYear " (click)="loadYearInSearch(-1)">
+                                    <i class="ms-Icon ms-Icon--ChevronLeft"></i>
+                                </span>
+                            </div>
+                            <div class="ms-DatePicker-currentYear" (click)="switchOnYearPicking()">{{searchContext.year}}</div>
+                        </div>
+                        <div class="ms-DatePicker-optionGrid">
+                            <span class="ms-DatePicker-monthOption" [class.is-highlighted]="i === searchContext.month" *ngFor="let month of searchContext.months; let i = index;" (click)="loadMonth(i)">{{month}}</span>
+                        </div>
+                    </div>
+                    <div class="ms-DatePicker-yearPicker">
+                        <div class="ms-DatePicker-decadeComponents">
+                            <span class="ms-DatePicker-nextDecade " (click)="loadDecadeInSearch(1)">
+                                <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                            </span>
+                            <span class="ms-DatePicker-prevDecade " (click)="loadDecadeInSearch(-1)">
+                                <i class="ms-Icon ms-Icon--ChevronLeft"></i>
+                            </span>
+                        </div>
+                        <div class="ms-DatePicker-currentDecade">{{searchContext.decadeStart}} - {{searchContext.decadeEnd}}</div>
+                        <div class="ms-DatePicker-optionGrid">
+                            <span class="ms-DatePicker-yearOption" [class.is-highlighted]="year === searchContext.year" *ngFor="let year of searchContext.years; let i = index;" (click)="loadYear(year)">{{year}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

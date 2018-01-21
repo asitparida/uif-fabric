@@ -9,9 +9,22 @@
         z-index: 1;
         &.top {
             bottom: 0;
+            &.is-sub-menu {
+                margin-bottom: -50%;
+            }
+        }
+        &:not(.top).is-sub-menu {
+            margin-top: -50%;
         }
     }
     .ms-contextual-menu-holder {
         position: relative;
+    }
+    /deep/ .ms-ContextualMenu-item {
+        &.ms-ContextualMenu-item--hasMenu {
+           /deep/ .ms-contextual-menu-container {
+                display: inline;
+            }
+        }
     }
 }

@@ -9,6 +9,8 @@ export class ContextualMenuDemoComponent {
 	openMenu1 = false;
 	openMenu2 = false;
 	openMenu3 = false;
+	openMenu4 = false;
+	openSubMenu4 = true;
 	dirHintMenu2  = UifContextualMenuDirectionHint.Top;
 	DirectionHints = UifContextualMenuDirectionHint;
 	menuItems = [
