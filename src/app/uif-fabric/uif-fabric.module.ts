@@ -24,6 +24,7 @@ import {
 	UifDialogFooterComponent,
 	UifDialogHeaderComponent
 } from './uif-dialog/uif-dialog-subcomponents.component';
+import { UifDropdownComponent } from './uif-dropdown/uif-dropdown.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -49,7 +50,9 @@ const COMPONENTS = [
 	UifDialogComponent,
 	UifDialogContentComponent,
 	UifDialogFooterComponent,
-	UifDialogHeaderComponent
+	UifDialogHeaderComponent,
+
+	UifDropdownComponent
 ];
 
 @NgModule({

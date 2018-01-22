@@ -10,4 +10,11 @@
             background: rgba(0,0,0,0.40);
         }
     }
+    .ms-Dialog {
+        &.ms-Dialog--lgHeader {
+            .ms-Dialog-buttonClose .ms-Icon.ms-Icon--Cancel {
+                color: #fff;
+            }
+        }
+    }
 }

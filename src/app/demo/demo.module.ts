@@ -8,6 +8,7 @@ import { CalloutDemoComponent } from './app-callout-demo/app-callout-demo.compon
 import { ContextualMenuDemoComponent } from './app-contextualmenu-demo/app-contextualmenu-demo.component';
 import { DatepickerComponent } from './app-datepicker-demo/app-datepicker-demo.component';
 import { DialogDemoComponent } from './app-dialog-demo/app-dialog-demo.component';
+import { DropdownDemoComponent } from './app-dropdown-demo/app-dropdown-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -15,7 +16,8 @@ const COMPONENTS = [
 	CalloutDemoComponent,
 	ContextualMenuDemoComponent,
 	DatepickerComponent,
-	DialogDemoComponent
+	DialogDemoComponent,
+	DropdownDemoComponent
 ];
 
 @NgModule({
