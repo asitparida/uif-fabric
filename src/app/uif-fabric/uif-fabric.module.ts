@@ -18,24 +18,41 @@ import {
 } from './uif-contextual-menu/uif-contextual-menu-subcomponents.component';
 import { UifDatepickerComponent } from './uif-datepicker/uif-datepicker.component';
 import { UifOpenDatepickerComponent } from './uif-datepicker/uif-datepicker-subcomponents.component';
+import { UifDialogComponent } from './uif-dialog/uif-dialog.component';
+import {
+	UifDialogContentComponent,
+	UifDialogFooterComponent,
+	UifDialogHeaderComponent
+} from './uif-dialog/uif-dialog-subcomponents.component';
+import { UifDropdownComponent } from './uif-dropdown/uif-dropdown.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
 	UifButtonComponent,
 	UifCompoundButtonComponent,
 	UifHeroButtonComponent,
+
 	UifCalloutComponent,
 	UifOpenCalloutComponent,
 	UifCalloutContentComponent,
 	UifCalloutHeaderComponent,
 	UifCalloutActionComponent,
+
 	UifContextualMenuComponent,
 	UifContextualMenuItemComponent,
 	UifContextualMenuItemDividerComponent,
 	UifContextualMenuItemHeaderComponent,
 	UifContextualMenuTriggerDirective,
+
 	UifDatepickerComponent,
-	UifOpenDatepickerComponent
+	UifOpenDatepickerComponent,
+
+	UifDialogComponent,
+	UifDialogContentComponent,
+	UifDialogFooterComponent,
+	UifDialogHeaderComponent,
+
+	UifDropdownComponent
 ];
 
 @NgModule({

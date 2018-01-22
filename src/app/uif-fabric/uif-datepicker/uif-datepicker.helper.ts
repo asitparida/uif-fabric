@@ -1,6 +1,11 @@
 import { DateModel, Month, MonthFullname, MonthShortname, WeekDay, WeekDayData } from './uif-datepicker.models';
 
-export function GetDatesInMonth(dt: Date, selectedDt: Date, firstDayOfWeek: WeekDay = WeekDay.Sunday): Array<Array<DateModel>> {
+export function GetDatesInMonth(
+	dt: Date,
+	selectedDt: Date,
+	firstDayOfWeek: WeekDay = WeekDay.Sunday,
+	minDate = new Date(-8640000000000000),
+	maxDate = new Date(8640000000000000)): Array<Array<DateModel>> {
 	const weeks = [];
 	const firstDayOfWeekIndex = Number(firstDayOfWeek);
 	const originalDt = new Date(dt);
@@ -30,6 +35,7 @@ export function GetDatesInMonth(dt: Date, selectedDt: Date, firstDayOfWeek: Week
 			dayModel.isHighlighted = newDate.getDate() === selectedDt.getDate()
 				&& newDate.getMonth() === selectedDt.getMonth()
 				&& newDate.getFullYear() === selectedDt.getFullYear();
+			dayModel.disabled = dayModel.date < minDate || dayModel.date > maxDate;
 			week.push(dayModel);
 		}
 		weeks.push(week);

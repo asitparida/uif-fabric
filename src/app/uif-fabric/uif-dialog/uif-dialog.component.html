@@ -1,0 +1,18 @@
+<div class="ms-Dialog-Container" [hidden]="!isOpen">
+    <div class="ms-Dialog-overlay" [class.is-blocking]="isBlocking">
+        <div class="ms-Dialog" [class.is-open]="isOpen" [class.ms-Dialog--lgHeader]="isLargeHeader" [class.ms-Dialog--close]="isCloseable">
+            <button class="ms-Dialog-button ms-Dialog-buttonClose" (click)="closeDialog()" [hidden]="!isCloseable">
+                <i class="ms-Icon ms-Icon--Cancel"></i>
+            </button>
+            <div class="ms-Dialog-title">
+                <ng-content select="uif-dialog-header, [uifDialogHeader]"></ng-content>
+            </div>
+            <div class="ms-Dialog-content">
+                <ng-content select="uif-dialog-content, [uifDialogContent]"></ng-content>
+            </div>
+            <div class="ms-Dialog-actions">
+                <ng-content select="uif-dialog-footer, [uifDialogFooter]"></ng-content>
+            </div>
+        </div>
+    </div>
+</div>
