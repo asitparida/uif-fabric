@@ -20,8 +20,11 @@
                             <tbody>
                                 <tr *ngFor="let week of weekCollection">
                                     <td role="presentation" *ngFor="let day of week">
-                                        <div class="ms-DatePicker-day" [class.ms-DatePicker-day--infocus]="day.isInFocus" [class.ms-DatePicker-day--outfocus]="!day.isInFocus"
-                                            [class.ms-DatePicker-day--highlighted]="day.isHighlighted" role="gridcell" (click)="selectDate(day.date)">{{day.dateNum}}</div>
+                                        <div class="ms-DatePicker-day"
+                                        [class.ms-DatePicker-day--infocus]="day.isInFocus"
+                                        [class.ms-DatePicker-day--outfocus]="!day.isInFocus"
+                                        [class.ms-DatePicker-day--disabled]="day.disabled"
+                                            [class.ms-DatePicker-day--highlighted]="day.isHighlighted" role="gridcell" (click)="selectDate(day.date, day.disabled)">{{day.dateNum}}</div>
                                     </td>
                                 </tr>
                             </tbody>

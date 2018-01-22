@@ -1,10 +1,36 @@
 <h2>uif-datepicker</h2>
-<form>
-    <h4>Current Date : {{dt}}</h4>
-<uif-datepicker [(isOpen)]="datePickerOpened" [(date)]="dt" >
-    <uif-open-datepicker>
-        <input name="dt" type="date" style="display: inline-block; vertical-align: middle; line-height: 24px; min-width: 300px;" [(ngModel)]="dt" />
-        <uif-button (click)="datePickerOpened = !datePickerOpened"><span [hidden]="!datePickerOpened">Close</span><span [hidden]="datePickerOpened">Open</span> Datepicker</uif-button>
-    </uif-open-datepicker>
-</uif-datepicker>
-</form>
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>First day of week hint</h4>
+            <select name="selectedWeekDay" [(ngModel)]="selectedWeekDay">
+                <option *ngFor="let hint of weekDayHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <h4>Current Date : {{dt}}</h4>
+        <uif-datepicker [(isOpen)]="datePickerOpened1" [(date)]="dt" [firstDayOfWeek]="selectedWeekDay">
+            <uif-open-datepicker>
+                <input name="dt" type="date" style="display: inline-block; vertical-align: middle; line-height: 24px; min-width: 300px;"
+                    [(ngModel)]="dt" />
+                <uif-button (click)="datePickerOpened1 = !datePickerOpened1">
+                    <span [hidden]="!datePickerOpened1">Close</span>
+                    <span [hidden]="datePickerOpened1">Open</span> Datepicker</uif-button>
+            </uif-open-datepicker>
+        </uif-datepicker>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <h4>Datepicker with minDate : {{minDate}}, maxDate : {{maxDate}} 
+        </h4>
+        <uif-datepicker [(isOpen)]="datePickerOpened2" [(date)]="dt" [firstDayOfWeek]="selectedWeekDay" [minDate]="minDate" [maxDate]="maxDate">
+            <uif-open-datepicker>
+                <input name="dt" type="date" style="display: inline-block; vertical-align: middle; line-height: 24px; min-width: 300px;"
+                    [(ngModel)]="dt" />
+                <uif-button (click)="datePickerOpened2 = !datePickerOpened2">
+                    <span [hidden]="!datePickerOpened2">Close</span>
+                    <span [hidden]="datePickerOpened2">Open</span> Datepicker</uif-button>
+            </uif-open-datepicker>
+        </uif-datepicker>
+    </form>
+</div>

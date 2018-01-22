@@ -13,6 +13,8 @@ export class UifDatepickerComponent implements OnChanges {
 	@Input() date: Date;
 	@Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
 	@Input() firstDayOfWeek: Models.WeekDay = Models.WeekDay.Monday;
+	@Input() minDate: Date = new Date(-8640000000000000);
+	@Input() maxDate: Date = new Date(8640000000000000);
 	weekDayMap: WeekDayData[] = [];
 	weekDays: WeekDayData[] = [];
 	weekCollection: Array<Array<DateModel>> = [];
@@ -38,7 +40,7 @@ export class UifDatepickerComponent implements OnChanges {
 		this.currentDayData = GetCurrentDayData(this.currentDtContext);
 		this.currentDtContextData = GetCurrentDayData(this.currentDtContext);
 		this.weekDays = GetWeeksDayMap(this.firstDayOfWeek);
-		this.weekCollection = GetDatesInMonth(this.currentDtContext, new Date(this.date), this.firstDayOfWeek);
+		this.weekCollection = GetDatesInMonth(this.currentDtContext, new Date(this.date), this.firstDayOfWeek, this.minDate, this.maxDate);
 	}
 	processSearchContext(dt: Date) {
 		this.searchContext = {
@@ -105,8 +107,10 @@ export class UifDatepickerComponent implements OnChanges {
 		this.currentDtContext = dt;
 		this.processForDt();
 	}
-	selectDate(dt: Date) {
-		this.date = dt;
-		this.dateChange.emit(this.date);
+	selectDate(dt: Date, disabled) {
+		if (!disabled) {
+			this.date = dt;
+			this.dateChange.emit(this.date);
+		}
 	}
 }
