@@ -19,10 +19,10 @@
                     <span [hidden]="datePickerOpened1">Open</span> Datepicker</uif-button>
             </uif-open-datepicker>
         </uif-datepicker>
+        <h4>Datepicker with minDate and maxDate</h4>
+        <h5 style="margin: 5px 0; font-weight: 100;">minDate: {{minDate}}</h5>
+        <h5 style="margin: 5px 0; font-weight: 100;">maxDate: {{maxDate}}</h5>
         <div class="vertical-separator"></div>
-        <div class="vertical-separator"></div>
-        <h4>Datepicker with minDate : {{minDate}}, maxDate : {{maxDate}} 
-        </h4>
         <uif-datepicker [(isOpen)]="datePickerOpened2" [(date)]="dt" [firstDayOfWeek]="selectedWeekDay" [minDate]="minDate" [maxDate]="maxDate">
             <uif-open-datepicker>
                 <input name="dt" type="date" style="display: inline-block; vertical-align: middle; line-height: 24px; min-width: 300px;"

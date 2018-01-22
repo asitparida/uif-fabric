@@ -1,1 +1,16 @@
 <h2>uif-dropdown</h2>
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>Is MultiSelectable</h4>
+            <select name="isMultiSelectableHints" [(ngModel)]="isMultiSelectable">
+                <option *ngFor="let hint of isMultiSelectableHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+<h4>Current Items:</h4>
+<p style="font-weight: 100; font-size: small;">{{getJSON(options)}}</p>
+<div class="horizontal-separator"></div>
+    <uif-dropdown [isMultiSelectable]="getBoolean(isMultiSelectable)" [(options)]="options"></uif-dropdown>
+</div>
