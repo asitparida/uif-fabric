@@ -1,5 +1,5 @@
-export class UifDropdownItem {
-    key: any;
-    text: string;
-    selected: boolean | Boolean = false;
+export interface IUifDropdownItem {
+	key: any;
+	text: string;
+	selected?: boolean | Boolean;
 }
