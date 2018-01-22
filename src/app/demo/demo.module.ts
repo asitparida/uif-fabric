@@ -7,27 +7,25 @@ import { ButtonDemoComponent } from './app-button-demo/app-button-demo.component
 import { CalloutDemoComponent } from './app-callout-demo/app-callout-demo.component';
 import { ContextualMenuDemoComponent } from './app-contextualmenu-demo/app-contextualmenu-demo.component';
 import { DatepickerComponent } from './app-datepicker-demo/app-datepicker-demo.component';
+import { DialogDemoComponent } from './app-dialog-demo/app-dialog-demo.component';
+
+const COMPONENTS = [
+	BreadcrumbDemoComponent,
+	ButtonDemoComponent,
+	CalloutDemoComponent,
+	ContextualMenuDemoComponent,
+	DatepickerComponent,
+	DialogDemoComponent
+];
 
 @NgModule({
-	declarations: [
-		BreadcrumbDemoComponent,
-		ButtonDemoComponent,
-		CalloutDemoComponent,
-		ContextualMenuDemoComponent,
-		DatepickerComponent
-	],
+	declarations: COMPONENTS,
 	imports: [
 		CommonModule,
 		FormsModule,
 		UiFabricModule
 	],
-	exports: [
-		BreadcrumbDemoComponent,
-		ButtonDemoComponent,
-		CalloutDemoComponent,
-		ContextualMenuDemoComponent,
-		DatepickerComponent
-	],
+	exports: COMPONENTS,
 	providers: []
 })
 export class DemoModule { }

@@ -1,0 +1,81 @@
+<h2>uif-dialog</h2>
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>Is Closeable</h4>
+            <select name="isCloseable" [(ngModel)]="isCloseable">
+                <option *ngFor="let hint of closeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Is Blocking</h4>
+            <select name="isBlocking" [(ngModel)]="isBlocking">
+                <option *ngFor="let hint of closeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Is Large Header</h4>
+            <select name="isLargeHeader" [(ngModel)]="isLargeHeader">
+                <option *ngFor="let hint of closeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <!-- <div style="display:inline-block;">
+            <h4>Trigger Hint</h4>
+            <select name="triggerHint" [(ngModel)]="triggerHint">
+                <option *ngFor="let hint of triggerHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Show Arrow</h4>
+            <select name="showArrow" [(ngModel)]="showArrow">
+                <option *ngFor="let item of arrowOptions" [value]="item.key">{{item.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Gap</h4>
+            <input name="gap" [(ngModel)]="gap" type="number" max="30" min="0" step="1">
+        </div> -->
+    </form>
+    <div style="display:block; margin: 30px auto;text-align:center">
+        <button class="ms-Button" (click)="isDialogOpened = !isDialogOpened">
+            <span class="ms-Button-label">
+                <span [hidden]="isDialogOpened">Open</span>
+                <span [hidden]="!isDialogOpened">Close</span> Dialog</span>
+        </button>
+        <br />
+    </div>
+    <uif-dialog [(isOpen)]="isDialogOpened" [isBlocking]="getBoolean(isBlocking)" [isCloseable]="getBoolean(isCloseable)" [isLargeHeader]="getBoolean(isLargeHeader)">
+        <div uifDialogHeader>All emails together</div>
+        <uif-dialog-content>
+            <p class="ms-Dialog-subText">Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.</p>
+            <div class="ms-CheckBox">
+                <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
+                    <span class="ms-Label">Option1</span>
+                </label>
+            </div>
+            <div class="ms-CheckBox">
+                <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+                <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
+                    <span class="ms-Label">Option2</span>
+                </label>
+            </div>
+        </uif-dialog-content>
+        <uif-dialog-footer>
+            <button class="ms-Button ms-Dialog-action ms-Button--primary" (click)="isDialogOpened = false">
+                <span class="ms-Button-label">Save</span>
+            </button>
+            <button class="ms-Button ms-Dialog-action" (click)="isDialogOpened = false">
+                <span class="ms-Button-label">Cancel</span>
+            </button>
+        </uif-dialog-footer>
+    </uif-dialog>
+</div>
