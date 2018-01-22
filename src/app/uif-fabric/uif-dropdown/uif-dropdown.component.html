@@ -1,0 +1,19 @@
+<div class="ms-Dropdown" tabindex="0" [class.is-open]="isOpen">
+    <label class="ms-Label">{{title}}</label>
+    <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
+    <span class="ms-Dropdown-title" (click)="isOpen = !isOpen">{{getCurrentSelected()}}</span>
+    <ul class="ms-Dropdown-items">
+        <li class="ms-Dropdown-item" *ngFor="let item of options; let i = index;">
+            <button [attr.checked]="item.selected" [attr.id]="'checkbox_' + i" role="checkbox" type="button" class="ms-Checkbox is-checked is-enabled" [attr.aria-checked]="item.selected"
+                tabindex="0" (click)="toggleItemSelection(item)">
+                <label class="ms-Checkbox-label">
+                    <div class="ms-Checkbox-checkbox" [class.is-selected]="item.selected" aria-hidden="true" [class.visibility-hidden]="!isMultiSelectable" > 
+                        <i class="ms-Icon ms-Icon--CheckMark" aria-hidden="true" [hidden]="!item.selected"></i>
+                    </div>
+                    <span class="ms-Checkbox-text">{{item.text}}</span>
+                </label>
+            </button>
+        </li>
+    </ul>
+    <span class="ms-Dropdown-truncator ms-Dropdown-title">Choose a option</span>
+</div>
