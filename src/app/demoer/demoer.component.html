@@ -1,0 +1,22 @@
+<div class="demo-container">
+    <h2>
+        <span>{{title}}</span>
+        <button class="ms-Button" style="float:right;" (click)="showCodes = !showCodes"><span [hidden]="showCodes">Show</span><span [hidden]="!showCodes">Hide</span> Source</button>
+    </h2>
+    <div class="demo-content" *ngIf="!showCodes">
+        <ng-content></ng-content>
+    </div>
+    <div class="demo-content tabs" *ngIf="showCodes">
+        <ul class="demo-tab">
+            <li [class.active]="showingTs" (click)="showingTs = true;">{{tsTokenizedInfo.file}}</li>
+            <li [class.active]="!showingTs"(click)="showingTs = false;">{{markupTokenizedInfo.file}}</li>
+        </ul>
+        <pre [hidden]="!showingTs">
+            <code class="language-typescript" [innerHtml]="tsTokenizedInfo.tokens"></code>
+        </pre>
+        <pre [hidden]="showingTs">
+            <code class="language-markup" [innerHtml]="markupTokenizedInfo.tokens"></code>
+        </pre>
+    </div>
+
+</div>
