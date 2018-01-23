@@ -36,4 +36,11 @@ export class DemoerComponent implements OnInit {
 			this.markupTokenizedInfo = jsonData;
 		});
 	}
+	onKeyUp(event: KeyboardEvent, value) {
+		if (event.keyCode === 13  || event.keyCode === 32) {
+			this.showingTs = value;
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	}
 }

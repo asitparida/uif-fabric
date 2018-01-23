@@ -43,13 +43,13 @@
     }
     .demo-content {
         &.tabs {
-            background: #f6f6f6;
         }
     }
     .demo-tab {
         list-style: none;
         padding: 0;
         display: block;
+        margin-bottom: 0;
         background: #fff;
         li {
             display: inline-block;
@@ -58,14 +58,16 @@
             border-bottom: 3px solid transparent;
             padding: 0 30px;
             cursor: pointer;
+            outline: none;
             &.active {
-                border-bottom-color: #0073c6;
-                background: rgba(0,0,0,0.05);   
+                border-bottom-color: rgba(69, 142, 209, 0.80);
+                background: rgba(69, 142, 209, 0.05);   
             }
             &:hover,
             &:focus,
             &:active {
-                background: rgba(0,0,0,0.08);   
+                background: rgba(69, 142, 209, 0.10);
+                outline: 1px dashed #0073c6;
             }
         }
     }

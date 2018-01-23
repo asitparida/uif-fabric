@@ -8,13 +8,13 @@
     </div>
     <div class="demo-content tabs" *ngIf="showCodes">
         <ul class="demo-tab">
-            <li [class.active]="showingTs" (click)="showingTs = true;">{{tsTokenizedInfo.file}}</li>
-            <li [class.active]="!showingTs"(click)="showingTs = false;">{{markupTokenizedInfo.file}}</li>
+            <li role="button" [attr.tabindex]="showingTs ? -1 : 0" [class.active]="showingTs" (keyup)="onKeyUp($event, true)" (click)="showingTs = true;">{{tsTokenizedInfo.file}}</li>
+            <li role="button" [attr.tabindex]="showingTs ? 0 : -1" [class.active]="!showingTs"(keyup)="onKeyUp($event, false)" (click)="showingTs = false;">{{markupTokenizedInfo.file}}</li>
         </ul>
-        <pre [hidden]="!showingTs">
+        <pre [hidden]="!showingTs" class="language-typescript">
             <code class="language-typescript" [innerHtml]="tsTokenizedInfo.tokens"></code>
         </pre>
-        <pre [hidden]="showingTs">
+        <pre [hidden]="showingTs" class="language-markup"> 
             <code class="language-markup" [innerHtml]="markupTokenizedInfo.tokens"></code>
         </pre>
     </div>
