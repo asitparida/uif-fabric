@@ -10,9 +10,11 @@
         font-size: 60px;
     }
 }
+
 .clearfix:after {
     clear: both;
 }
+
 .demo-container {
     width: 100%;
     box-sizing: border-box;
@@ -25,7 +27,7 @@
         color: #0073c6;
         margin-bottom: 24px;
         padding-bottom: 12px;
-        border-bottom: 1px dotted rgba(#0073c6, 0.33);   
+        border-bottom: 1px dotted rgba(#0073c6, 0.33);
     }
     /deep/ h4 {
         font-weight: 300;
@@ -38,5 +40,38 @@
     /deep/ .horizontal-separator {
         padding: 6px 0;
         display: block;
+    }
+    .demo-content {
+        &.tabs {
+        }
+    }
+    .demo-tab {
+        list-style: none;
+        padding: 0;
+        display: block;
+        margin-bottom: 0;
+        background: #fff;
+        li {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 48px;
+            border-bottom: 3px solid transparent;
+            padding: 0 30px;
+            cursor: pointer;
+            outline: none;
+            &.active {
+                border-bottom-color: rgba(69, 142, 209, 0.80);
+                background: rgba(69, 142, 209, 0.05);   
+            }
+            &:hover,
+            &:focus,
+            &:active {
+                background: rgba(69, 142, 209, 0.10);
+                outline: 1px dashed #0073c6;
+            }
+        }
+    }
+    pre {
+        padding: 0 15px;
     }
 }
