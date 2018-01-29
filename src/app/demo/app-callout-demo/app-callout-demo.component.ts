@@ -8,6 +8,7 @@ import { UifCalloutContentComponent } from '../../uif-fabric/uif-callout/uif-cal
 })
 export class CalloutDemoComponent implements OnInit {
 	showArrow = true;
+	isCalloutOpen = false;
 	UifCalloutDirectionalHints = UifCalloutDirectionalHint;
 	UifCalloutTriggerHints = UifCalloutTriggerHint;
 	directionHints = [];
@@ -43,8 +44,5 @@ export class CalloutDemoComponent implements OnInit {
 	}
 	onHintSelected(data) {
 		console.log('onHintSelected', data);
-	}
-	showCallout() {
-		console.log('showCallout');
 	}
 }

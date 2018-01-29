@@ -29,16 +29,17 @@
             <input name="gap" [(ngModel)]="gap" type="number" max="30" min="0" step="1"  >
         </div>
     </form>
-    <div style="display:block; margin: 30px auto;text-align:center">
-        <uif-callout showClose="true" [showArrow]="showArrow" [directionalHint]="directionHint" [gap]="gap" [triggerHint]="triggerHint">
+    <div style="display:block; margin: 30px auto;">
+        <uif-callout showClose="true" [showArrow]="showArrow" [directionalHint]="directionHint" [gap]="gap" [triggerHint]="triggerHint" [(isOpen)]="isCalloutOpen"> 
             <uif-callout-header>All of your favorite people</uif-callout-header>
             <uif-callout-content>Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.</uif-callout-content>
             <uif-callout-actions>
                 <a class="ms-Link">Learn more</a>
             </uif-callout-actions>
             <uif-open-callout>
-                <uif-button>Show Default Callout</uif-button>
+                <uif-button><span [hidden]="isCalloutOpen">Show</span><span [hidden]="!isCalloutOpen">Close</span> Callout with uifOpenCallout</uif-button>
             </uif-open-callout>
         </uif-callout>
+        <uif-button (click)="isCalloutOpen = !isCalloutOpen"><span [hidden]="isCalloutOpen">Open</span><span [hidden]="!isCalloutOpen">Close</span> Callout from outside component</uif-button>
     </div>
 </div>
