@@ -1,23 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { UifCalloutDirectionalHint } from '../../uif-fabric/uif-callout/uif-callout.models';
+import { Component } from '@angular/core';
+import { UifCalloutDirectionalHint } from '../../uif-fabric/index';
 import { PersonaCard } from '../../uif-fabric/uif-persona-card/uif-persona-card.models';
 import { UifPersonaAvailabilityType } from '../../uif-fabric/uif-persona/uif-persona.models';
-import { UifFacepileCard } from '../../uif-fabric/uif-facepile/uif-facepile.models';
 
 @Component({
-	selector: 'app-facepile-demo',
-	templateUrl: './app-facepile-demo.component.html'
+	selector: 'app-personacard-demo',
+	templateUrl: './app-personacard-demo.component.html'
 })
-export class FacepileDemoComponent implements OnInit {
-	facepileCards: UifFacepileCard[] = [];
-	ngOnInit () {
-		for (let i = 0; i < 4; i++) {
-			const card = new UifFacepileCard();
-			card.personaCard = GetSampleFacePileItem();
-			this.facepileCards.push(card);
-		}
-		this.facepileCards[this.facepileCards.length - 1].personaCard.personalDetails.imgSrc = null;
-	}
+export class PersonaCardDemoComponent {
+	personaCard = GetSampleFacePileItem();
 }
 
 function GetSampleFacePileItem(): PersonaCard {

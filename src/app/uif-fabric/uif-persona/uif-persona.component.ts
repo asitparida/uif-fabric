@@ -9,6 +9,5 @@ import { PersonaItem, UifPersonaAvailabilityType, UifPersonaViewType } from './u
 export class UifPersonaComponent {
 	@Input() persona: PersonaItem;
 	@Input() viewType: UifPersonaViewType = UifPersonaViewType.Default;
-	@Input() availability: UifPersonaAvailabilityType = UifPersonaAvailabilityType.Available;
 	PersonaAvailabilityTypes = UifPersonaAvailabilityType;
 }

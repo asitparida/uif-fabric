@@ -11,6 +11,7 @@ import { DialogDemoComponent } from './app-dialog-demo/app-dialog-demo.component
 import { DropdownDemoComponent } from './app-dropdown-demo/app-dropdown-demo.component';
 import { FacepileDemoComponent } from './app-facepile-demo/app-facepile-demo.component';
 import { PersonaDemoComponent } from './app-persona-demo/app-persona-demo.component';
+import { PersonaCardDemoComponent } from './app-personacard-demo/app-personacard-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -21,7 +22,8 @@ const COMPONENTS = [
 	DialogDemoComponent,
 	DropdownDemoComponent,
 	FacepileDemoComponent,
-	PersonaDemoComponent
+	PersonaDemoComponent,
+	PersonaCardDemoComponent
 ];
 
 @NgModule({

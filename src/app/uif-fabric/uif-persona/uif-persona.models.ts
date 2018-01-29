@@ -22,5 +22,5 @@ export class PersonaItem {
 	secondary?: String;
 	tertiary?: String;
 	optional?: String;
-	showPresence?: boolean | Boolean = false;
+	availability?: UifPersonaAvailabilityType = UifPersonaAvailabilityType.Offline;
 }

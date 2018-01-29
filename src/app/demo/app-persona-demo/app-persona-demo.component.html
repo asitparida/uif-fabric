@@ -10,17 +10,17 @@
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
             <h4>Availibiity</h4>
-            <select name="availability" [(ngModel)]="availability">
+            <select name="availability" [(ngModel)]="availability" (change)="onAvailibilityChanged($event)">
                 <option *ngFor="let hint of availibityHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
     </form>
     <div style="display:block; margin: 60px auto 30px auto;">
-        <div style="display: inline-block; margin-right: 45px;">
-            <uif-persona [persona]="persona" [availability]="availability" [viewType]="viewType"></uif-persona>
+        <div style="display: inline-block; width: 49%">
+            <uif-persona [persona]="persona" [viewType]="viewType"></uif-persona>
         </div>
-        <div style="display: inline-block;">
-            <uif-persona [persona]="persona2" [availability]="availability" [viewType]="viewType"></uif-persona>
+        <div style="display: inline-block; width: 49%">
+            <uif-persona [persona]="persona2" [viewType]="viewType"></uif-persona>
         </div>
     </div>
 </div>

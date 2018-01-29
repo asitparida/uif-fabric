@@ -1,0 +1,68 @@
+<div class="ms-PersonaCard">
+    <div class="ms-PersonaCard-persona">
+        <uif-persona [persona]="personaCard.personalDetails" [viewType]="viewType"></uif-persona>
+    </div>
+    <ul class="ms-PersonaCard-actions">
+        <li data-action-id="chat" class="ms-PersonaCard-action" tabindex="1" [class.is-active]="personaCard.isChatPaneActive" (click)="personaCard.activateChatPane()">
+            <i class="ms-Icon ms-Icon--Chat"></i>
+        </li>
+        <li data-action-id="phone" class="ms-PersonaCard-action" tabindex="2" [class.is-active]="personaCard.isPhonePaneActive" (click)="personaCard.activatePhonePane()">
+            <i class="ms-Icon ms-Icon--Phone"></i>
+        </li>
+        <li data-action-id="video" class="ms-PersonaCard-action" tabindex="3" [class.is-active]="personaCard.isVideoPaneActive" (click)="personaCard.activateVideoPane()">
+            <i class="ms-Icon ms-Icon--Video"></i>
+        </li>
+        <li data-action-id="mail" class="ms-PersonaCard-action" tabindex="4" [class.is-active]="personaCard.isMailPaneActive" (click)="personaCard.activatMailPane()">
+            <i class="ms-Icon ms-Icon--Mail"></i>
+        </li>
+        <li class="ms-PersonaCard-overflow" alt="View profile in Delve" title="View profile in Delve">View Profile</li>
+        <li data-action-id="org" class="ms-PersonaCard-action ms-PersonaCard-orgChart" tabindex="5" [class.is-active]="personaCard.isOrgPaneActive"
+            (click)="personaCard.activateOrgPane()">
+            <i class="ms-Icon ms-Icon--Org"></i>
+        </li>
+    </ul>
+    <div class="ms-PersonaCard-actionDetailBox">
+        <div data-detail-id="mail" class="ms-PersonaCard-details" [class.is-active]="personaCard.isMailPaneActive">
+            <div class="ms-PersonaCard-detailLine" *ngFor="let mail of personaCard.mailDetails">
+                <span class="ms-PersonaCard-detailLabel" [hidden]="!mail.meta">{{mail.meta}}:</span>
+                <a class="ms-Link" [attr.href]="mail.href">{{mail.email}}</a>
+            </div>
+        </div>
+        <div data-detail-id="chat" class="ms-PersonaCard-details" [class.is-active]="personaCard.isChatPaneActive">
+            <div class="ms-PersonaCard-detailLine">
+                <span class="ms-PersonaCard-detailLabel" [hidden]="!personaCard.chatDetail.meta">{{personaCard.chatDetail.meta}}:</span>
+                <a class="ms-Link" [attr.href]="personaCard.chatDetail.href">{{personaCard.chatDetail.label}}</a>
+            </div>
+        </div>
+        <div data-detail-id="phone" class="ms-PersonaCard-details" [class.is-active]="personaCard.isPhonePaneActive" [class.is-collapsed]="personaCard.isPhonePaneCollapsed">
+            <div class="ms-PersonaCard-detailExpander" (click)="personaCard.isPhonePaneCollapsed = !personaCard.isPhonePaneCollapsed"></div>
+            <div class="ms-PersonaCard-detailLine">
+                <span class="ms-PersonaCard-detailLabel">Details</span>
+            </div>
+            <div class="ms-PersonaCard-detailLine" *ngFor="let phone of personaCard.phoneDetails">
+                <span class="ms-PersonaCard-detailLabel" [hidden]="!phone.meta">{{phone.meta}}:</span>
+                <a class="ms-Link" [attr.href]="phone.href">{{phone.label}}</a>
+            </div>
+        </div>
+        <div data-detail-id="video" class="ms-PersonaCard-details" [class.is-active]="personaCard.isVideoPaneActive">
+            <div class="ms-PersonaCard-detailLine">
+                <span class="ms-PersonaCard-detailLabel" [hidden]="!personaCard.videoDetail.meta">{{personaCard.videoDetail.meta}}:</span>
+                <a class="ms-Link" [attr.href]="personaCard.videoDetail.href">{{personaCard.videoDetail.label}}</a>
+            </div>
+        </div>
+        <div data-detail-id="org" class="ms-PersonaCard-details" [class.is-active]="personaCard.isOrgPaneActive">
+            <div class="ms-OrgChart">
+                <div class="ms-OrgChart-group" *ngFor="let group of personaCard.orgChartGroups">
+                    <div class="ms-OrgChart-groupTitle" [hidden]="!group.title">{{group.title}}</div>
+                    <ul class="ms-OrgChart-list">
+                        <li class="ms-OrgChart-listItem" *ngFor="let orgItem of group.orgItems">
+                            <button class="ms-OrgChart-listItemBtn" tabindex="1">
+                                <uif-persona [persona]="orgItem" [viewType]="orgViewType"></uif-persona>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
