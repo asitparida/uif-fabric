@@ -17,6 +17,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 	nativeBeak;
 	calloutTriggerHandler;
 	elementIntialized = false;
+	@Input() showHeader = true;
+	@Input() showActions = true;
+	@Input() headerClasses = '';
+	@Input() contentClasses = '';
+	@Input() calloutClasses = '';
 	@Input() position = 'left';
 	@Input() gap = 10;
 	@Input() showArrow: Boolean = true;

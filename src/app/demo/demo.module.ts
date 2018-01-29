@@ -9,6 +9,7 @@ import { ContextualMenuDemoComponent } from './app-contextualmenu-demo/app-conte
 import { DatepickerComponent } from './app-datepicker-demo/app-datepicker-demo.component';
 import { DialogDemoComponent } from './app-dialog-demo/app-dialog-demo.component';
 import { DropdownDemoComponent } from './app-dropdown-demo/app-dropdown-demo.component';
+import { FacepileDemoComponent } from './app-facepile-demo/app-facepile-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -17,7 +18,8 @@ const COMPONENTS = [
 	ContextualMenuDemoComponent,
 	DatepickerComponent,
 	DialogDemoComponent,
-	DropdownDemoComponent
+	DropdownDemoComponent,
+	FacepileDemoComponent
 ];
 
 @NgModule({

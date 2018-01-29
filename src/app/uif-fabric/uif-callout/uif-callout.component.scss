@@ -1,5 +1,6 @@
 .ms-Callout-button {
     display: inline-block;
+    outline: none;
 }
 .ms-callout-container {
     display: inline-table;
@@ -9,6 +10,9 @@
     opacity: 0;
     text-align: left;
     transition:  opacity 0.367s ease-in 0s;
+    &.is-open {
+        display: inline-block !important;
+    }
     .ms-ContextualHost-main {
         display: block;
     }

@@ -1,0 +1,69 @@
+/deep/ .facepile-content {
+    padding: 0;
+}
+/deep/ .facepile-callout {
+    width: 360px;
+}
+.ms-Persona {
+    &.ms-Persona--facePile {
+        margin-right: 4px;
+        .ms-PersonaCard-persona {
+            .ms-Persona-imageArea {
+                position: absolute;
+            }
+        }
+        .ms-Persona-details {
+            &.is-shown {
+                display: table-cell;
+            }
+        }
+        .ms-Persona-presence {
+            &.is-shown {
+                display: inline-block;
+            }
+        }
+    }
+    .ms-Persona.ms-Persona--lg {
+        .ms-Persona-tertiaryText {
+            padding-top: 5px;
+            display:block;
+        }
+        .ms-Persona-primaryText {
+            font-size: 17px;
+        }
+        .ms-Persona-secondaryText {
+            display: block;
+        }
+    }
+    .ms-Persona.ms-Persona--xl {
+        .ms-Persona-tertiaryText {
+            padding-top: 5px;
+            display:block;
+        }
+        .ms-Persona-primaryText {
+            font-size: 17px;
+        }
+        .ms-Persona-secondaryText {
+            display: block;
+        }
+        .ms-Persona-optionalText {
+            display: block;
+        }
+    }
+    .ms-Persona-details.show-details {
+        display: table-cell;
+        vertical-align: top;
+        .ms-Persona-primaryText {
+            display: block;
+        }
+        .ms-Persona-secondaryText {
+            display: block;
+            padding-top: 0;
+        }
+    }
+    .ms-PersonaCard-actionDetailBox {
+        transition-property: height;
+        transition-duration: 0.25s;
+        transition-delay: 0s;
+    }
+}

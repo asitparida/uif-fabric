@@ -1,23 +1,23 @@
 <div class="ms-callout-container">
-    <div class="ms-ContextualHost is-positioned">
+    <div class="ms-ContextualHost is-positioned" [class.is-open]="isOpen">
         <div class="ms-ContextualHost-main">
             <button class="ms-Callout-close" [hidden]="!showClose" (click)="closeCallout()">
                 <i class="ms-Icon ms-Icon--Clear"></i>
             </button>
-            <div class="ms-Callout">
+            <div class="ms-Callout" [ngClass]="calloutClasses">
                 <div class="ms-Callout-main">
-                    <div class="ms-Callout-header">
+                    <div class="ms-Callout-header" *ngIf="showHeader" [ngClass]="headerClasses">
                         <p class="ms-Callout-title">
                             <ng-content select="uif-callout-header"></ng-content>
                         </p>
                     </div>
-                    <div class="ms-Callout-inner">
+                    <div class="ms-Callout-inner" [ngClass]="contentClasses">
                         <div class="ms-Callout-content">
                             <p class="ms-Callout-subText">
                                 <ng-content select="uif-callout-content"></ng-content>
                             </p>
                         </div>
-                        <div class="ms-Callout-actions">
+                        <div class="ms-Callout-actions" *ngIf="showActions">
                             <ng-content select="uif-callout-actions"></ng-content>
                         </div>
                     </div>
