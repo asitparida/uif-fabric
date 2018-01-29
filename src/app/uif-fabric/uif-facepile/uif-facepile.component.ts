@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UifCalloutDirectionalHint } from '../uif-callout/uif-callout.models';
-import { UifFacepileCard, GetSampleFacePileItem } from './uif-facepile.models';
+import { UifFacepileCard } from './uif-facepile.models';
 
 @Component({
 	selector: 'uif-facepile',

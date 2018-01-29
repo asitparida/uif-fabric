@@ -1,0 +1,17 @@
+<div class="ms-Persona" [ngClass]="viewType + ' ' + availability">
+	<div class="ms-Persona-imageArea">
+		<div class="ms-Persona-initials ms-Persona-initials--blue">{{persona.initials}}</div>
+		<img class="ms-Persona-image" [hidden]="!persona.imgSrc" [attr.src]="persona.imgSrc">
+	</div>
+	<div class="ms-Persona-presence">
+		<i class="ms-Persona-presenceIcon ms-Icon ms-Icon--SkypeCheck" [hidden]="availability !== PersonaAvailabilityTypes.Available"></i>
+		<i class="ms-Persona-presenceIcon ms-Icon ms-Icon--SkypeClock" [hidden]="availability !== PersonaAvailabilityTypes.Away"></i>
+		<i class="ms-Persona-presenceIcon ms-Icon ms-Icon--SkypeMinus" [hidden]="availability !== PersonaAvailabilityTypes.DND"></i>
+	</div>
+	<div class="ms-Persona-details">
+		<div class="ms-Persona-primaryText">{{persona.primary}}</div>
+		<div class="ms-Persona-secondaryText">{{persona.secondary}}</div>
+		<div class="ms-Persona-tertiaryText">{{persona.tertiary}}</div>
+		<div class="ms-Persona-optionalText">{{persona.optional}}</div>
+	</div>
+</div>

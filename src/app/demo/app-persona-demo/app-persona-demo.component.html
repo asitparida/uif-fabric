@@ -1,0 +1,26 @@
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>View Type</h4>
+            <select name="viewType" [(ngModel)]="viewType">
+                <option *ngFor="let hint of viewTypeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Availibiity</h4>
+            <select name="availability" [(ngModel)]="availability">
+                <option *ngFor="let hint of availibityHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div style="display:block; margin: 60px auto 30px auto;">
+        <div style="display: inline-block; margin-right: 45px;">
+            <uif-persona [persona]="persona" [availability]="availability" [viewType]="viewType"></uif-persona>
+        </div>
+        <div style="display: inline-block;">
+            <uif-persona [persona]="persona2" [availability]="availability" [viewType]="viewType"></uif-persona>
+        </div>
+    </div>
+</div>

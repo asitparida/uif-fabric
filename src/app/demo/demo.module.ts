@@ -10,6 +10,7 @@ import { DatepickerComponent } from './app-datepicker-demo/app-datepicker-demo.c
 import { DialogDemoComponent } from './app-dialog-demo/app-dialog-demo.component';
 import { DropdownDemoComponent } from './app-dropdown-demo/app-dropdown-demo.component';
 import { FacepileDemoComponent } from './app-facepile-demo/app-facepile-demo.component';
+import { PersonaDemoComponent } from './app-persona-demo/app-persona-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -19,7 +20,8 @@ const COMPONENTS = [
 	DatepickerComponent,
 	DialogDemoComponent,
 	DropdownDemoComponent,
-	FacepileDemoComponent
+	FacepileDemoComponent,
+	PersonaDemoComponent
 ];
 
 @NgModule({

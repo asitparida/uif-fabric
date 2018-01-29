@@ -27,6 +27,7 @@ import {
 import { UifDropdownComponent } from './uif-dropdown/uif-dropdown.component';
 import { UifDropdownOptionComponent } from './uif-dropdown/uif-dropdown-subcomponents.component';
 import { UifFacepileComponent } from './uif-facepile/uif-facepile.component';
+import { UifPersonaComponent } from './uif-persona/uif-persona.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -57,7 +58,9 @@ const COMPONENTS = [
 	UifDropdownComponent,
 	UifDropdownOptionComponent,
 
-	UifFacepileComponent
+	UifFacepileComponent,
+
+	UifPersonaComponent
 ];
 
 @NgModule({
