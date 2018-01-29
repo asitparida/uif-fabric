@@ -4,16 +4,22 @@
 /deep/ .facepile-callout {
     width: 360px;
 }
-// 
+.facepile-holder {
+    display: inline-block;
+}
 .facepile-item {
     width: 32px;
     height: 32px;
-    display: inline-block;
     margin-right: 4px;
+    float: left;
 }
 .ms-Persona.ms-Persona--facePile {
     width: 32px;
     height: 32px;
     display: inline-block;
     margin-right: 4px;
+}
+.clearfix:after {
+    content: ' ';
+    clear: both;
 }

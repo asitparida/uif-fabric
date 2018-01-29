@@ -11,12 +11,18 @@ import { UifFacepileCard } from '../../uif-fabric/uif-facepile/uif-facepile.mode
 export class FacepileDemoComponent implements OnInit {
 	facepileCards: UifFacepileCard[] = [];
 	ngOnInit () {
-		for (let i = 0; i < 4; i++) {
+		for (let i = 0; i < 8; i++) {
 			const card = new UifFacepileCard();
 			card.personaCard = GetSampleFacePileItem();
 			this.facepileCards.push(card);
 		}
 		this.facepileCards[this.facepileCards.length - 1].personaCard.personalDetails.imgSrc = null;
+	}
+	onFacepileAddClick() {
+		alert('facepile add clicked');
+	}
+	onFacepileOverflowClick() {
+		alert('facepile overflow clicked');
 	}
 }
 
