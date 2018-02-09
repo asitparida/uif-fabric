@@ -30,6 +30,7 @@ import { UifFacepileComponent } from './uif-facepile/uif-facepile.component';
 import { UifPersonaComponent } from './uif-persona/uif-persona.component';
 import { UifPersonaCardComponent } from './uif-persona-card/uif-persona-card.component';
 import { UifOrgChartComponent } from './uif-org-chart/uif-org-chart.component';
+import { UifOverlayComponent } from './uif-overlay/uif-overlay.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -65,7 +66,9 @@ const COMPONENTS = [
 	UifPersonaComponent,
 	UifPersonaCardComponent,
 
-	UifOrgChartComponent
+	UifOrgChartComponent,
+
+	UifOverlayComponent
 ];
 
 @NgModule({

@@ -1,0 +1,22 @@
+<div style="display: block; padding: 0 0 24px 0;">
+	<form>
+		<div style="display:inline-block;">
+			<h4>Is Overlay Dark</h4>
+			<select name="isOverlayDarkHints" [(ngModel)]="isOverlayDark">
+				<option *ngFor="let hint of isOverlayDarkHints" [value]="hint.key">{{hint.text}}</option>
+			</select>
+		</div>
+	</form>
+	<div style="display:block; margin: 30px auto;text-align:center">
+		<uif-button (click)="isOverlayOpen = !isOverlayOpen;">
+			<span [hidden]="isOverlayOpen">Open</span>
+			<span [hidden]="!isOverlayOpen">Close</span> Overlay</uif-button>
+		<br />
+	</div>
+	<uif-overlay [isOpen]="isOverlayOpen" [isDark]="getBoolean(isOverlayDark)">
+		<div style="width: 50vh; background: #fff; padding: 48px; text-align: center; display: block;">
+			<h1 style="font-weight: 100; padding-bottom: 24px;">Sample content inside overlay</h1>
+			<uif-button (click)="isOverlayOpen = false;" [primary]="true">Close Overlay</uif-button>
+		</div>
+	</uif-overlay>
+</div>

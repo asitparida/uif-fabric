@@ -13,6 +13,7 @@ import { FacepileDemoComponent } from './app-facepile-demo/app-facepile-demo.com
 import { PersonaDemoComponent } from './app-persona-demo/app-persona-demo.component';
 import { PersonaCardDemoComponent } from './app-personacard-demo/app-personacard-demo.component';
 import { OrgChartDemoComponent } from './app-orgchart-demo/app-orgchart-demo.component';
+import { OverlayDemoComponent } from './app-overlay-demo/app-overlay-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -25,7 +26,8 @@ const COMPONENTS = [
 	FacepileDemoComponent,
 	PersonaDemoComponent,
 	PersonaCardDemoComponent,
-	OrgChartDemoComponent
+	OrgChartDemoComponent,
+	OverlayDemoComponent
 ];
 
 @NgModule({
