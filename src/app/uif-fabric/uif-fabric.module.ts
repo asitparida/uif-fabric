@@ -31,6 +31,7 @@ import { UifPersonaComponent } from './uif-persona/uif-persona.component';
 import { UifPersonaCardComponent } from './uif-persona-card/uif-persona-card.component';
 import { UifOrgChartComponent } from './uif-org-chart/uif-org-chart.component';
 import { UifOverlayComponent } from './uif-overlay/uif-overlay.component';
+import { UifPanelComponent } from './uif-panel/uif-panel.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -67,8 +68,8 @@ const COMPONENTS = [
 	UifPersonaCardComponent,
 
 	UifOrgChartComponent,
-
-	UifOverlayComponent
+	UifOverlayComponent,
+	UifPanelComponent
 ];
 
 @NgModule({
