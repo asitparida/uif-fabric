@@ -15,6 +15,8 @@ import { PersonaCardDemoComponent } from './app-personacard-demo/app-personacard
 import { OrgChartDemoComponent } from './app-orgchart-demo/app-orgchart-demo.component';
 import { OverlayDemoComponent } from './app-overlay-demo/app-overlay-demo.component';
 import { PanelDemoComponent } from './app-panel-demo/app-panel-demo.component';
+import { MessageBarDemoComponent } from './app-messagebar-demo/app-messagebar-demo.component';
+import { MessageBannerDemoComponent } from './app-messagebanner-demo/app-messagebanner-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -29,7 +31,9 @@ const COMPONENTS = [
 	PersonaCardDemoComponent,
 	OrgChartDemoComponent,
 	OverlayDemoComponent,
-	PanelDemoComponent
+	PanelDemoComponent,
+	MessageBarDemoComponent,
+	MessageBannerDemoComponent
 ];
 
 @NgModule({
