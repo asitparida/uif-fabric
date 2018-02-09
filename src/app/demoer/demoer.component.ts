@@ -1,17 +1,17 @@
 import { Component, Input, OnInit, Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient  } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DemoerService {
-	constructor(private http: Http) {}
+	constructor(private http: HttpClient) {}
 	getTsFile(id) {
 		const file = 'assets/definitions/' +  id  + '.component.ts.json';
-		return this.http.get(file).map((res: any) => res.json());
+		return this.http.get(file);
 	}
 	getMarkupFile(id) {
 		const file = 'assets/definitions/' +  id  + '.component.html.json';
-		return this.http.get(file).map((res: any) => res.json());
+		return this.http.get(file);
 	}
 }
 
