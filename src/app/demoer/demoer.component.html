@@ -1,21 +1,21 @@
 <div class="demo-container">
     <h2>
-        <span>{{title}}</span>
-        <button class="ms-Button" style="float:right;" (click)="showCodes = !showCodes"><span [hidden]="showCodes">Show</span><span [hidden]="!showCodes">Hide</span> Source</button>
+        <span>{{moduleTitle}}</span>
+        <button class="ms-Button" style="float:right;" (click)="showCodesContent()"><span [hidden]="showCodes">Show</span><span [hidden]="!showCodes">Hide</span> Source</button>
     </h2>
     <div class="demo-content" *ngIf="!showCodes">
         <ng-content></ng-content>
     </div>
     <div class="demo-content tabs" *ngIf="showCodes">
         <ul class="demo-tab">
-            <li role="button" [attr.tabindex]="showingTs ? -1 : 0" [class.active]="showingTs" (keyup)="onKeyUp($event, true)" (click)="showingTs = true;" [hidden]="!tsTokenizedInfo">{{tsTokenizedInfo.file}}</li>
-            <li role="button" [attr.tabindex]="showingTs ? 0 : -1" [class.active]="!showingTs"(keyup)="onKeyUp($event, false)" (click)="showingTs = false;" [hidden]="!markupTokenizedInfo">{{markupTokenizedInfo.file}}</li>
+            <li role="button" [attr.tabindex]="showingTs ? -1 : 0" [class.active]="showingTs" (keyup)="onKeyUp($event, true)" (click)="showingTs = true;" [hidden]="!tsTokenizedInfo">{{tsTokenizedInfo?.file}}</li>
+            <li role="button" [attr.tabindex]="showingTs ? 0 : -1" [class.active]="!showingTs"(keyup)="onKeyUp($event, false)" (click)="showingTs = false;" [hidden]="!markupTokenizedInfo">{{markupTokenizedInfo?.file}}</li>
         </ul>
         <pre [hidden]="!showingTs" class="language-typescript">
-            <code class="language-typescript" [innerHtml]="tsTokenizedInfo.tokens"></code>
+            <code class="language-typescript" [innerHtml]="tsTokenizedInfo?.tokens"></code>
         </pre>
         <pre [hidden]="showingTs" class="language-markup"> 
-            <code class="language-markup" [innerHtml]="markupTokenizedInfo.tokens"></code>
+            <code class="language-markup" [innerHtml]="markupTokenizedInfo?.tokens"></code>
         </pre>
     </div>
 </div>

@@ -22,25 +22,32 @@ export class DemoerService {
 })
 export class DemoerComponent implements OnInit {
 	@Input() id: string;
-	@Input() title: string;
+	@Input() moduleTitle: string;
 	tsTokenizedInfo;
 	markupTokenizedInfo;
 	showCodes = false;
 	showingTs = true;
+	codesFetched = false;
 	constructor(private demoerService: DemoerService) {}
 	ngOnInit() {
-		this.demoerService.getTsFile(this.id).subscribe((jsonData) => {
-			this.tsTokenizedInfo = jsonData;
-		});
-		this.demoerService.getMarkupFile(this.id).subscribe((jsonData) => {
-			this.markupTokenizedInfo = jsonData;
-		});
 	}
 	onKeyUp(event: KeyboardEvent, value) {
 		if (event.keyCode === 13  || event.keyCode === 32) {
 			this.showingTs = value;
 			event.preventDefault();
 			event.stopPropagation();
+		}
+	}
+	showCodesContent() {
+		this.showCodes = !this.showCodes;
+		if (!this.codesFetched) {
+			this.demoerService.getTsFile(this.id).subscribe((jsonData) => {
+				this.tsTokenizedInfo = jsonData;
+			});
+			this.demoerService.getMarkupFile(this.id).subscribe((jsonData) => {
+				this.markupTokenizedInfo = jsonData;
+			});
+			this.codesFetched = true;
 		}
 	}
 }
