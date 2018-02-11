@@ -1,0 +1,20 @@
+<div class="ms-Persona" [ngClass]="viewType + ' ' + persona.availability + ' ' + classes">
+	<div class="ms-Persona-imageArea">
+		<div class="ms-Persona-initials ms-Persona-initials--blue" [hidden]="persona.imgSrc">{{persona.initials}}</div>
+		<img class="ms-Persona-image" [hidden]="!persona.imgSrc" [attr.src]="persona.imgSrc">
+	</div>
+	<div class="ms-Persona-presence" [hidden]="!persona.availability">
+		<i class="ms-Persona-presenceIcon ms-Icon ms-Icon--SkypeCheck" [hidden]="persona.availability !== PersonaAvailabilityTypes.Available"></i>
+		<i class="ms-Persona-presenceIcon ms-Icon ms-Icon--SkypeClock" [hidden]="persona.availability !== PersonaAvailabilityTypes.Away"></i>
+		<i class="ms-Persona-presenceIcon ms-Icon ms-Icon--SkypeMinus" [hidden]="persona.availability !== PersonaAvailabilityTypes.DND"></i>
+	</div>
+	<div class="ms-Persona-details">
+		<div class="ms-Persona-primaryText">{{persona.primary}}</div>
+		<div class="ms-Persona-secondaryText">{{persona.secondary}}</div>
+		<div class="ms-Persona-tertiaryText">{{persona.tertiary}}</div>
+		<div class="ms-Persona-optionalText">{{persona.optional}}</div>
+	</div>
+	<div class="ms-Persona-actionIcon" [hidden]="!showCancelAction" (click)="onCancel($event)">
+		<i class="ms-Icon ms-Icon--Cancel"></i>
+	</div>
+</div>

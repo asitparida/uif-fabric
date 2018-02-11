@@ -1,0 +1,37 @@
+<div class="ms-PeoplePicker">
+    <uif-context-host [(isOpen)]="isResultPaneOpen">
+        <uif-context-host-header>
+            <div class="ms-PeoplePicker-searchBox" [class.is-active]="isResultPaneOpen">
+                    <ng-container *ngFor="let persona of selectedPeople; let itemIndex = index;">
+                        <uif-persona classes="ms-Persona--token ms-PeoplePicker-persona" [viewType]="viewTypeInSelection" [showCancelAction]="showCancelAction" (cancelInvoked)="deselectPersona(persona)" [persona]="persona"></uif-persona>
+                    </ng-container>
+                <div class="ms-TextField ms-TextField--textFieldUnderlined">
+                    <input class="ms-TextField-field" (keyup)="onInputKeyUp($event)" (focus)="onInputFocussed($event)" type="text" [(ngModel)]="searchToken" placeholder="Select or enter an option" (input)="onSearchTokenChanged($event)">
+                </div>
+            </div>
+        </uif-context-host-header>
+        <uif-context-host-content>
+            <div class="ms-PeoplePicker-results">
+                <div class="ms-PeoplePicker-resultGroup" *ngFor="let group of pickerGroups; let groupIndex = index;">
+                    <div class="ms-PeoplePicker-resultGroupTitle">
+                        {{group.title}}
+                    </div>
+                    <div class="ms-PeoplePicker-result" tabindex="1" *ngFor="let persona of group.poeplePickerItems; let itemIndex = index;">
+                        <uif-persona (click)="selectPersona(groupIndex, itemIndex)" [persona]="persona" [viewType]="viewTypeInList"></uif-persona>
+                        <button class="ms-PeoplePicker-resultAction" (click)="removePesona(groupIndex, itemIndex)" [hidden]="!allowRemovalOfPersona">
+                            <i class="ms-Icon ms-Icon--Clear"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="ms-PeoplePicker-searchMore">
+                    <div class="ms-PeoplePicker-searchMoreIcon">
+                        <i class="ms-Icon ms-Icon--Search"></i>
+                    </div>
+                    <div class="ms-PeoplePicker-searchMoreText">
+                        Search my groups
+                    </div>
+                </button>
+            </div>
+        </uif-context-host-content>
+    </uif-context-host>
+</div>

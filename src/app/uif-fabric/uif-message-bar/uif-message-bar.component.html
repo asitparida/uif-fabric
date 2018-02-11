@@ -1,0 +1,15 @@
+<div class="ms-MessageBar" [ngClass]="type">
+    <div class="ms-MessageBar-content">
+        <div class="ms-MessageBar-icon">
+            <i class="ms-Icon ms-Icon--Info" *ngIf="type === UifMessageTypes.Default"></i>
+            <i class="ms-Icon ms-Icon--Completed" *ngIf="type === UifMessageTypes.Success"></i>
+            <i class="ms-Icon ms-Icon--ErrorBadge" *ngIf="type === UifMessageTypes.Error"></i>
+            <i class="ms-Icon ms-Icon--Blocked" *ngIf="type === UifMessageTypes.Blocked"></i>
+            <i class="ms-Icon ms-Icon--Info" *ngIf="type === UifMessageTypes.Warning"></i>
+            <i class="ms-Icon ms-Icon--Warning" *ngIf="type === UifMessageTypes.SevereWarning"></i>
+        </div>
+        <div class="ms-MessageBar-text">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

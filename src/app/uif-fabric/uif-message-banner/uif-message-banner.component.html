@@ -1,0 +1,13 @@
+<div class="ms-PanelHost" [hidden]="!isOpen">
+    <uif-overlay [isOpen]="hasOverlay"></uif-overlay>
+    <div class="ms-MessageBanner">
+        <div class="ms-MessageBanner-content">
+            <div class="ms-MessageBanner-text">
+                <ng-content></ng-content>
+            </div>
+        </div>
+        <button class="ms-MessageBanner-close" [hidden]="!isClosable" (click)="closePane()">
+            <i class="ms-Icon ms-Icon--Clear"></i>
+        </button>
+    </div>
+</div>

@@ -9,6 +9,15 @@ import { ContextualMenuDemoComponent } from './app-contextualmenu-demo/app-conte
 import { DatepickerComponent } from './app-datepicker-demo/app-datepicker-demo.component';
 import { DialogDemoComponent } from './app-dialog-demo/app-dialog-demo.component';
 import { DropdownDemoComponent } from './app-dropdown-demo/app-dropdown-demo.component';
+import { FacepileDemoComponent } from './app-facepile-demo/app-facepile-demo.component';
+import { PersonaDemoComponent } from './app-persona-demo/app-persona-demo.component';
+import { PersonaCardDemoComponent } from './app-personacard-demo/app-personacard-demo.component';
+import { OrgChartDemoComponent } from './app-orgchart-demo/app-orgchart-demo.component';
+import { OverlayDemoComponent } from './app-overlay-demo/app-overlay-demo.component';
+import { PanelDemoComponent } from './app-panel-demo/app-panel-demo.component';
+import { MessageBarDemoComponent } from './app-messagebar-demo/app-messagebar-demo.component';
+import { MessageBannerDemoComponent } from './app-messagebanner-demo/app-messagebanner-demo.component';
+import { PeoplePickerDemoComponent } from './app-peoplepicker-demo/app-peoplepicker-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -17,7 +26,16 @@ const COMPONENTS = [
 	ContextualMenuDemoComponent,
 	DatepickerComponent,
 	DialogDemoComponent,
-	DropdownDemoComponent
+	DropdownDemoComponent,
+	FacepileDemoComponent,
+	PersonaDemoComponent,
+	PersonaCardDemoComponent,
+	OrgChartDemoComponent,
+	OverlayDemoComponent,
+	PanelDemoComponent,
+	MessageBarDemoComponent,
+	MessageBannerDemoComponent,
+	PeoplePickerDemoComponent
 ];
 
 @NgModule({

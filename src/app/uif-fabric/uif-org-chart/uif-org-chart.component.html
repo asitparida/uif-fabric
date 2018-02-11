@@ -1,0 +1,12 @@
+<div class="ms-OrgChart">
+    <div class="ms-OrgChart-group" *ngFor="let group of orgChartGroups">
+        <div class="ms-OrgChart-groupTitle" [hidden]="!group.title">{{group.title}}</div>
+        <ul class="ms-OrgChart-list">
+            <li class="ms-OrgChart-listItem" *ngFor="let orgItem of group.orgItems">
+                <button class="ms-OrgChart-listItemBtn" tabindex="1">
+                    <uif-persona [persona]="orgItem" [viewType]="orgViewType"></uif-persona>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

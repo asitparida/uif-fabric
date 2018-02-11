@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node prepForDemo.js & ng build --prod",
+    "build": "node build-defn.js & ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

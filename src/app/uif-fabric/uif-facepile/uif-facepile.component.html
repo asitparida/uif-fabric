@@ -1,0 +1,25 @@
+<div class="facepile-holder">
+	<button class="ms-FacePile-addButton ms-FacePile-addButton--addPerson" [hidden]="!showFacePileAddButton" (click)="onFacepileAddClick($event)">
+		<i class="ms-FacePile-addPersonIcon ms-Icon ms-Icon--AddFriend"></i>
+	</button>
+	<ng-container *ngFor="let card of facepileCards; let i = index;">
+		<div class="facepile-item" *ngIf="i < overflowLimit">
+			<uif-callout showClose="false" [showArrow]="showArrow" [showHeader]="showHeader" [showActions]="showActions" [calloutClasses]="calloutClasses"
+			 [contentClasses]="contentClasses" [showArrow]="false" [(isOpen)]="card.isOpen" [directionalHint]="card.directionalHint">
+				<uif-open-callout (click)="toggleFacePiles(card)">
+					<span class="ms-Persona ms-Persona--facePile">
+						<uif-persona [persona]="card.personaCard.personalDetails"></uif-persona>
+					</span>
+				</uif-open-callout>
+				<uif-callout-content>
+					<uif-persona-card [personaCard]="card.personaCard"></uif-persona-card>
+				</uif-callout-content>
+			</uif-callout>
+		</div>
+	</ng-container>
+	<button class="ms-FacePile-addButton ms-FacePile-addButton--overflow" [class.is-active]="facepileCards.length > overflowLimit" (click)="onFacepileOverflowClick($event)">
+		<span class="ms-FacePile-overflowText">+{{facepileCards.length - overflowLimit}}</span>
+	</button>
+	<div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

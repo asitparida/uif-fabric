@@ -1,0 +1,27 @@
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>Has Overlay</h4>
+            <select name="hasOverlayHints" [(ngModel)]="hasOverlay">
+                <option *ngFor="let hint of hasOverlayHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Is Banner Closable</h4>
+            <select name="hasOverlayHints" [(ngModel)]="isBannerClosable">
+                <option *ngFor="let hint of hasOverlayHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div style="display:block; margin: 30px auto;text-align:center">
+        <uif-button (click)="isMessagBannerOpen = !isMessagBannerOpen;">
+            <span [hidden]="isMessagBannerOpen">Open</span>
+            <span [hidden]="!isMessagBannerOpen">Close</span> Message Banner</uif-button>
+        <br />
+    </div>
+    <uif-message-banner [(isOpen)]="isMessagBannerOpen" [hasOverlay]="getBoolean(hasOverlay)" [isClosable]="getBoolean(isBannerClosable)">
+        You have reached your total storage on OneDrive. Please upgrade your storage plan if you need more storage. <uif-button style="margin-left: 12px;" (click)="isMessagBannerOpen = false;" [primary]="true">Get More Storage</uif-button>
+    </uif-message-banner>
+</div>
