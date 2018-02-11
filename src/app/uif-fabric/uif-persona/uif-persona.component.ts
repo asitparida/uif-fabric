@@ -13,7 +13,7 @@ export class UifPersonaComponent {
 	@Input() showCancelAction = false;
 	@Output() cancelInvoked = new EventEmitter<{}>();
 	PersonaAvailabilityTypes = UifPersonaAvailabilityType;
-	onCancel() {
+	onCancel($event) {
 		this.cancelInvoked.emit();
 	}
 }

@@ -31,7 +31,7 @@ export class UifPeoplePickerComponent implements OnChanges {
 			}
 		}
 	}
-	onInputFocussed() {
+	onInputFocussed($event) {
 		this.isResultPaneOpen = true;
 	}
 	onInputKeyUp($event: KeyboardEvent) {
