@@ -16,6 +16,7 @@ export enum UifPersonaAvailabilityType {
 	Facepile = 'ms-Persona--facepile'
 }
 export class PersonaItem {
+	id?: String;
 	imgSrc?: String;
 	initials?: String;
 	primary?: String;
@@ -23,4 +24,7 @@ export class PersonaItem {
 	tertiary?: String;
 	optional?: String;
 	availability?: UifPersonaAvailabilityType = UifPersonaAvailabilityType.Offline;
+	constructor() {
+		this.id =  Math.floor(Math.random() * 10000) + '_' + Math.floor(Math.random() * 10000);
+	}
 }

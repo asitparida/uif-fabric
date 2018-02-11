@@ -17,6 +17,7 @@ import { OverlayDemoComponent } from './app-overlay-demo/app-overlay-demo.compon
 import { PanelDemoComponent } from './app-panel-demo/app-panel-demo.component';
 import { MessageBarDemoComponent } from './app-messagebar-demo/app-messagebar-demo.component';
 import { MessageBannerDemoComponent } from './app-messagebanner-demo/app-messagebanner-demo.component';
+import { PeoplePickerDemoComponent } from './app-peoplepicker-demo/app-peoplepicker-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -33,7 +34,8 @@ const COMPONENTS = [
 	OverlayDemoComponent,
 	PanelDemoComponent,
 	MessageBarDemoComponent,
-	MessageBannerDemoComponent
+	MessageBannerDemoComponent,
+	PeoplePickerDemoComponent
 ];
 
 @NgModule({

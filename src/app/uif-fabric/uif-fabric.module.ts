@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { UifBreadcrumbComponent } from './uif-breadcrumb/uif-breadcrumb.component';
 import { UifButtonComponent } from './uif-button/uif-button.component';
 import { UifHeroButtonComponent } from './uif-button/uif-hero-button.component';
@@ -34,6 +35,12 @@ import { UifOverlayComponent } from './uif-overlay/uif-overlay.component';
 import { UifPanelComponent } from './uif-panel/uif-panel.component';
 import { UifMessageBarComponent } from './uif-message-bar/uif-message-bar.component';
 import { UifMessageBannerComponent } from './uif-message-banner/uif-message-banner.component';
+import { UifPeoplePickerComponent } from './uif-people-picker/uif-people-picker.component';
+import {
+	UifContextHostComponent,
+	UifContextHostContentComponent,
+	UifContextHostHeaderComponent
+} from './uif-context-host/uif-context-host.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -74,13 +81,20 @@ const COMPONENTS = [
 	UifPanelComponent,
 
 	UifMessageBarComponent,
-	UifMessageBannerComponent
+	UifMessageBannerComponent,
+
+	UifPeoplePickerComponent,
+
+	UifContextHostComponent,
+	UifContextHostContentComponent,
+	UifContextHostHeaderComponent
 ];
 
 @NgModule({
 	declarations: COMPONENTS,
 	imports: [
-		CommonModule
+		CommonModule,
+		FormsModule
 	],
 	exports: COMPONENTS,
 	providers: []

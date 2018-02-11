@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PersonaItem, UifPersonaAvailabilityType, UifPersonaViewType } from './uif-persona.models';
 
 @Component({
@@ -9,5 +9,11 @@ import { PersonaItem, UifPersonaAvailabilityType, UifPersonaViewType } from './u
 export class UifPersonaComponent {
 	@Input() persona: PersonaItem;
 	@Input() viewType: UifPersonaViewType = UifPersonaViewType.Default;
+	@Input() classes = '';
+	@Input() showCancelAction = false;
+	@Output() cancelInvoked = new EventEmitter<{}>();
 	PersonaAvailabilityTypes = UifPersonaAvailabilityType;
+	onCancel() {
+		this.cancelInvoked.emit();
+	}
 }
