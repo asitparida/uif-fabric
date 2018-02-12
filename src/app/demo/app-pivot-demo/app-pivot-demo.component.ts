@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UifPivotType } from '../../uif-fabric/uif-pivot/uif-pivot.models';
+import { UifPivotType, UifPivotSize } from '../../uif-fabric/uif-pivot/uif-pivot.models';
 
 @Component({
 	selector: 'app-pivot-demo',
@@ -11,10 +11,15 @@ export class PivotDemoComponent {
 		{ id: 'tab-2', title: 'Recent', active: true, icon: 'ms-Icon--Cat'},
 		{ id: 'tab-3', title: 'Shared with me', active: false}
 	];
-	pivotType = UifPivotType.Tabs;
+	pivotType = UifPivotType.Regular;
 	pivotTypeHints = [
 		{ key: UifPivotType.Regular, text: 'Regular'},
 		{ key: UifPivotType.Tabs, text: 'Tabs'}
+	];
+	pivotSize = UifPivotSize.Large;
+	pivotSizeHints = [
+		{ key: UifPivotSize.Default, text: 'Default'},
+		{ key: UifPivotSize.Large, text: 'Large'}
 	];
 	getPivotJson() {
 		return this.tabs.map((option: any) => {

@@ -1,7 +1,7 @@
 import { Component, Input, ContentChildren, QueryList, AfterViewInit } from '@angular/core';
 import { UifPivotItemComponent } from './uif-pivot-item.component';
 import { UifPivotService } from './uif-pivot.service';
-import { UifPivotType } from './uif-pivot.models';
+import { UifPivotType, UifPivotSize } from './uif-pivot.models';
 
 @Component({
 	selector: 'uif-pivot',
@@ -11,6 +11,7 @@ import { UifPivotType } from './uif-pivot.models';
 })
 export class UifPivotComponent implements AfterViewInit {
 	@Input() type: UifPivotType = UifPivotType.Regular;
+	@Input() size: UifPivotSize = UifPivotSize.Default;
 	@Input() showEllipsis = false;
 	@ContentChildren(UifPivotItemComponent) pivots: QueryList<UifPivotItemComponent> = null;
 	constructor(

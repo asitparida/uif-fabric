@@ -1,4 +1,4 @@
-<div class="ms-Pivot" [ngClass]="type">
+<div class="ms-Pivot" [ngClass]="[type, size]">
     <ul class="ms-Pivot-links">
         <li class="ms-Pivot-link" tabindex="1" *ngFor="let pivot of pivots; let pivotIndex = index;" [class.is-selected]="pivot.active" (click)="activatePivot(pivotIndex)">
             <span [innerHTML]="pivot.getTitle()"></span>

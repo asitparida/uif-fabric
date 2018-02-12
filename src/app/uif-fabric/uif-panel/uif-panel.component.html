@@ -1,6 +1,6 @@
 <div class="ms-PanelHost" [hidden]="!isOpen">
     <uif-overlay [isOpen]="hasOverlay"></uif-overlay>
-    <div class="ms-Panel" [class.is-open]="isOpen" [ngClass]="directionalHint + ' ' + size">
+    <div class="ms-Panel" [class.is-open]="isOpen" [ngClass]="[directionalHint, size]">
         <button class="ms-Panel-closeButton ms-PanelAction-close" (click)="closePane()" [hidden]="!isClosable">
             <i class="ms-Panel-closeIcon ms-Icon ms-Icon--Cancel"></i>
         </button>
