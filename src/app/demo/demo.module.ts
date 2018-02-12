@@ -18,6 +18,7 @@ import { PanelDemoComponent } from './app-panel-demo/app-panel-demo.component';
 import { MessageBarDemoComponent } from './app-messagebar-demo/app-messagebar-demo.component';
 import { MessageBannerDemoComponent } from './app-messagebanner-demo/app-messagebanner-demo.component';
 import { PeoplePickerDemoComponent } from './app-peoplepicker-demo/app-peoplepicker-demo.component';
+import { PivotDemoComponent } from './app-pivot-demo/app-pivot-demo.component';
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -35,7 +36,8 @@ const COMPONENTS = [
 	PanelDemoComponent,
 	MessageBarDemoComponent,
 	MessageBannerDemoComponent,
-	PeoplePickerDemoComponent
+	PeoplePickerDemoComponent,
+	PivotDemoComponent
 ];
 
 @NgModule({

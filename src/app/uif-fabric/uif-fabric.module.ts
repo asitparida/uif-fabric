@@ -41,6 +41,12 @@ import {
 	UifContextHostContentComponent,
 	UifContextHostHeaderComponent
 } from './uif-context-host/uif-context-host.component';
+import { UifPivotComponent } from './uif-pivot/uif-pivot.component';
+import {
+	UifPivotItemComponent,
+	UifPivotContentComponent,
+	UifPivotTitleComponent
+} from './uif-pivot/uif-pivot-item.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -87,7 +93,12 @@ const COMPONENTS = [
 
 	UifContextHostComponent,
 	UifContextHostContentComponent,
-	UifContextHostHeaderComponent
+	UifContextHostHeaderComponent,
+
+	UifPivotComponent,
+	UifPivotItemComponent,
+	UifPivotContentComponent,
+	UifPivotTitleComponent
 ];
 
 @NgModule({
