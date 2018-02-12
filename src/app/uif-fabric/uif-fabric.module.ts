@@ -47,6 +47,7 @@ import {
 	UifPivotContentComponent,
 	UifPivotTitleComponent
 } from './uif-pivot/uif-pivot-item.component';
+import { UifProgressIndicatorComponent } from './uif-progress-indicator/uif-progress-indicator.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -98,7 +99,9 @@ const COMPONENTS = [
 	UifPivotComponent,
 	UifPivotItemComponent,
 	UifPivotContentComponent,
-	UifPivotTitleComponent
+	UifPivotTitleComponent,
+
+	UifProgressIndicatorComponent
 ];
 
 @NgModule({

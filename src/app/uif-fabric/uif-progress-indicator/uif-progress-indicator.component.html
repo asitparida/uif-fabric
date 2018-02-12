@@ -1,0 +1,8 @@
+<div class="ms-ProgressIndicator">
+    <div class="ms-ProgressIndicator-itemName" [hidden]="!name">{{name}}</div>
+    <div class="ms-ProgressIndicator-itemProgress" [style.width]="progressBarWidth" [class.indeterminate]="indeterminate">
+        <div class="ms-ProgressIndicator-progressTrack"></div>
+        <div class="ms-ProgressIndicator-progressBar" [class.indeterminate]="indeterminate" [attr.progress]="progress"></div>
+    </div>
+    <div class="ms-ProgressIndicator-itemDescription" [hidden]="!description">{{description}}</div>
+</div>
