@@ -1,0 +1,60 @@
+<div style="padding: 0 0 24px 0;">
+    <form>
+        <div style="display: inline-block;">
+            <h4> Search icons by</h4>
+            <input class="form-control" [(ngModel)]="searchToken" name="searchToken" type="input" />
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display: inline-block;">
+            <h4> Filter icons by</h4>
+            <label *ngFor="let filter of filters; let i = index;" [attr.for]="'cb_' + i" class="demo-cb-filter">
+                <input (change)="applyFilters()" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active" [attr.id]="'cb_' + i" /> {{filter.key}}
+            </label>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Color</h4>
+            <select name="colorHints" [(ngModel)]="color">
+                <option *ngFor="let hint of colorHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Size</h4>
+            <select name="sizeHints" [(ngModel)]="size">
+                <option *ngFor="let hint of sizeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+        <div style="display: inline-block" [hidden]="!showIconsSizerBtn">
+            <uif-button (click)="toggleSize()">
+                <span [hidden]="noOfIconsToShow === 100">Show top 100 icons</span>
+                <span [hidden]="noOfIconsToShow !== 100">Show all icons</span>
+            </uif-button>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <ng-container *ngFor="let icon of (icons | search: searchToken); let iconIndex = index;">
+        <div class="demo-icon" *ngIf="iconIndex <= noOfIconsToShow ">
+            <uif-icon [name]="icon?.name" [color]="color" [size]="size"></uif-icon>
+            <label>{{icon.name}}</label>
+        </div>
+    </ng-container>
+    <div class="clearfix"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div style="display:block; clear: both; padding-top: 30px;" [hidden]="!showIconsSizerBtn">
+        <uif-button (click)="toggleSize()">
+            <span [hidden]="noOfIconsToShow === 100">Show top 100 icons</span>
+            <span [hidden]="noOfIconsToShow !== 100">Show all icons</span>
+        </uif-button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

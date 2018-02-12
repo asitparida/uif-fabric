@@ -21,6 +21,8 @@ import { PeoplePickerDemoComponent } from './app-peoplepicker-demo/app-peoplepic
 import { PivotDemoComponent } from './app-pivot-demo/app-pivot-demo.component';
 import { ProgressIndicatorDemoComponent } from './app-progressindicator-demo/app-progressindicator-demo.component';
 import { ToggleDemoComponent } from './app-toggle-demo/app-toggle-demo.component';
+import { IconDemoComponent, SearchPipe } from './app-icon-demo/app-icon-demo.component';
+
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -41,7 +43,9 @@ const COMPONENTS = [
 	PeoplePickerDemoComponent,
 	PivotDemoComponent,
 	ProgressIndicatorDemoComponent,
-	ToggleDemoComponent
+	ToggleDemoComponent,
+	IconDemoComponent,
+	SearchPipe
 ];
 
 @NgModule({

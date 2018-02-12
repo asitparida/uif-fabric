@@ -3,7 +3,8 @@ import { IBreadcrumbItem } from './uif-breadcrumb.models';
 
 @Component({
 	selector: 'uif-breadcrumb',
-	templateUrl: './uif-breadcrumb.component.html'
+	templateUrl: './uif-breadcrumb.component.html',
+	styleUrls: [ './uif-breadcrumb.component.scss' ]
 })
 export class UifBreadcrumbComponent implements OnChanges {
 	@Input() maxDisplayedItems = Number.MAX_SAFE_INTEGER;
