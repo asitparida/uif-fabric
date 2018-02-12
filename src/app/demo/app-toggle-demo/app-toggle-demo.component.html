@@ -1,0 +1,25 @@
+<div style="padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block">
+            <h4>On Label</h4>
+            <input class="form-control" name="onLabel" [(ngModel)]="onLabel" />
+        </div>
+        <div style="display:inline-block">
+            <h4>Off Label</h4>
+            <input class="form-control" name="offLabel" [(ngModel)]="offLabel" />
+        </div>
+        <div style="display:inline-block">
+            <h4>Description</h4>
+            <input class="form-control" name="description" [(ngModel)]="description" />
+        </div>
+    </form>
+    <h4>Current Value:
+        <b>
+            <small>{{enabled}}</small>
+        </b>
+    </h4>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <uif-toggle [description]="description" [onLabel]="onLabel" [offLabel]="offLabel" [(value)]="enabled"></uif-toggle>
+</div>
