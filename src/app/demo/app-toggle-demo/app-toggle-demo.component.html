@@ -1,41 +1,43 @@
 <div style="padding: 0 0 24px 0;">
     <form #sampleForm="ngForm">
         <div style="display:inline-block">
-            <h4>On Label</h4>
+            <h5>On Label</h5>
             <input class="form-control" name="onLabel" [(ngModel)]="onLabel" />
         </div>
         <div style="display:inline-block">
-            <h4>Off Label</h4>
+            <h5>Off Label</h5>
             <input class="form-control" name="offLabel" [(ngModel)]="offLabel" />
         </div>
         <div style="display:inline-block">
-            <h4>Description</h4>
+            <h5>Description</h5>
             <input class="form-control" name="description" [(ngModel)]="description" />
         </div>
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Disabled</h4>
+            <h5>Disabled</h5>
             <select name="booleanHints" [(ngModel)]="disabled">
                 <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
     </form>
-        <h4>Current Value:
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+        <h5>Current Value:
             <b>
                 <small>{{enabled}}</small>
             </b>
-        </h4>
-        <h4>Form Dirty:
+        </h5>
+        <h5>Form Dirty:
             <b>
                 <small>{{toggleForm.dirty}}</small>
             </b>
-        </h4>
-        <h4>Form Value:
+        </h5>
+        <h5>Form Value:
             <b>
                 <small>{{toggleForm.value | json}}</small>
             </b>
-        </h4>
+        </h5>
         <div class="horizontal-separator"></div>
         <div class="horizontal-separator"></div>
         <div class="horizontal-separator"></div>

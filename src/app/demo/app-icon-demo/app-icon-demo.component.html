@@ -1,21 +1,21 @@
 <div style="padding: 0 0 24px 0;">
     <form>
         <div style="display: inline-block;">
-            <h4> Search icons by</h4>
+            <h5> Search icons by</h5>
             <input class="form-control" [(ngModel)]="searchToken" name="searchToken" type="input" />
         </div>
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display: inline-block;">
-            <h4> Filter icons by</h4>
+            <h5> Filter icons by</h5>
             <label *ngFor="let filter of filters; let i = index;" [attr.for]="'cb_' + i" class="demo-cb-filter">
                 <uif-checkbox (change)="applyFilters()" [label]="filter.key" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active" [attr.id]="'cb_' + i"></uif-checkbox>
             </label>
         </div>
         <div class="horizontal-separator"></div>
-        <div class="vertical-separator"></div>
+        <div class="horizontal-separator"></div>
         <div style="display:inline-block;">
-            <h4>Color</h4>
+            <h5>Color</h5>
             <select name="colorHints" [(ngModel)]="color">
                 <option *ngFor="let hint of colorHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -23,7 +23,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Size</h4>
+            <h5>Size</h5>
             <select name="sizeHints" [(ngModel)]="size">
                 <option *ngFor="let hint of sizeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -31,7 +31,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Flip</h4>
+            <h5>Flip</h5>
             <select name="flipHints" [(ngModel)]="flip">
                 <option *ngFor="let hint of flipHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -39,7 +39,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Badge</h4>
+            <h5>Badge</h5>
             <select name="badgeHints" [(ngModel)]="badge">
                 <option *ngFor="let hint of badgeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -47,11 +47,12 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Dir</h4>
+            <h5>Dir</h5>
             <select name="dirHints" [(ngModel)]="dir">
                 <option *ngFor="let hint of dirHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
+        <div class="horizontal-separator"></div>
         <div class="horizontal-separator"></div>
         <div class="horizontal-separator"></div>
         <div style="display: inline-block" [hidden]="!showIconsSizerBtn">

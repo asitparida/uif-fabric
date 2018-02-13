@@ -23,6 +23,7 @@ import { ProgressIndicatorDemoComponent } from './app-progressindicator-demo/app
 import { ToggleDemoComponent } from './app-toggle-demo/app-toggle-demo.component';
 import { IconDemoComponent, SearchPipe } from './app-icon-demo/app-icon-demo.component';
 import { CheckboxDemoComponent } from './app-checkbox-demo/app-checkbox-demo.component';
+import { ChoicefieldDemoComponent } from './app-choicefield-demo/app-choicefield-demo.component';
 
 
 const COMPONENTS = [
@@ -47,6 +48,7 @@ const COMPONENTS = [
 	ToggleDemoComponent,
 	IconDemoComponent,
 	CheckboxDemoComponent,
+	ChoicefieldDemoComponent,
 	SearchPipe
 ];
 

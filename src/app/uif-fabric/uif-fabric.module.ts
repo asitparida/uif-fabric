@@ -51,6 +51,8 @@ import { UifProgressIndicatorComponent } from './uif-progress-indicator/uif-prog
 import { UifToggleComponent } from './uif-toggle/uif-toggle.component';
 import { UifIconComponent } from './uif-icon/uif-icon.component';
 import { UifCheckboxComponent } from './uif-checkbox/uif-checkbox.component';
+import { UifChoicefieldComponent } from './uif-choicefield/uif-choicefield.component';
+import { UifChoicefieldItemComponent } from './uif-choicefield/uif-choicefield-item.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -108,7 +110,10 @@ const COMPONENTS = [
 	UifToggleComponent,
 	UifIconComponent,
 
-	UifCheckboxComponent
+	UifCheckboxComponent,
+
+	UifChoicefieldComponent,
+	UifChoicefieldItemComponent
 ];
 
 @NgModule({

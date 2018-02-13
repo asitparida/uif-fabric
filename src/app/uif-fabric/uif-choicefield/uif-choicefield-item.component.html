@@ -1,0 +1,10 @@
+<li class="ms-RadioButton">
+    <input tabindex="-1" type="checkbox" class="ms-CheckBox-input" [attr.id]="id" (change)="onValueChange()" [disabled]="disabled"
+        [(ngModel)]="checked">
+    <label role="radio" class="ms-RadioButton-field" [attr.tabindex]="disabled ? -1 : 0" [attr.aria-checked]="checked" [attr.for]="id"
+        [class.is-checked]="checked" [class.is-disabled]="disabled" (keyup)="onKeyUp($event)">
+        <span class="ms-Label">
+            <ng-content></ng-content>
+        </span>
+    </label>
+</li>

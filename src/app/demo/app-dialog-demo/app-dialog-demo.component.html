@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>Is Closeable</h4>
+            <h5>Is Closeable</h5>
             <select name="isCloseable" [(ngModel)]="isCloseable">
                 <option *ngFor="let hint of closeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,7 +9,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Is Blocking</h4>
+            <h5>Is Blocking</h5>
             <select name="isBlocking" [(ngModel)]="isBlocking">
                 <option *ngFor="let hint of closeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -17,7 +17,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Is Large Header</h4>
+            <h5>Is Large Header</h5>
             <select name="isLargeHeader" [(ngModel)]="isLargeHeader">
                 <option *ngFor="let hint of closeHints" [value]="hint.key">{{hint.text}}</option>
             </select>

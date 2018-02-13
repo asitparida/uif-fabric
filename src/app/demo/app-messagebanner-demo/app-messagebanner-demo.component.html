@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>Has Overlay</h4>
+            <h5>Has Overlay</h5>
             <select name="hasOverlayHints" [(ngModel)]="hasOverlay">
                 <option *ngFor="let hint of hasOverlayHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,12 +9,14 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Is Banner Closable</h4>
+            <h5>Is Banner Closable</h5>
             <select name="hasOverlayHints" [(ngModel)]="isBannerClosable">
                 <option *ngFor="let hint of hasOverlayHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
     </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
     <div style="display:block; margin: 30px auto;text-align:center">
         <uif-button (click)="isMessagBannerOpen = !isMessagBannerOpen;">
             <span [hidden]="isMessagBannerOpen">Open</span>
