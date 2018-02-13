@@ -24,6 +24,7 @@ import { ToggleDemoComponent } from './app-toggle-demo/app-toggle-demo.component
 import { IconDemoComponent, SearchPipe } from './app-icon-demo/app-icon-demo.component';
 import { CheckboxDemoComponent } from './app-checkbox-demo/app-checkbox-demo.component';
 import { ChoicefieldDemoComponent } from './app-choicefield-demo/app-choicefield-demo.component';
+import { TableDemoComponent } from './app-table-demo/app-table-demo.component';
 
 
 const COMPONENTS = [
@@ -49,6 +50,7 @@ const COMPONENTS = [
 	IconDemoComponent,
 	CheckboxDemoComponent,
 	ChoicefieldDemoComponent,
+	TableDemoComponent,
 	SearchPipe
 ];
 
