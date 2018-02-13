@@ -1,9 +1,77 @@
 i.ms-Icon {
+    &:not(.flip-horizontal):not(.flip-vertical) {
+        &.has-alert-badge,
+        &.has-success-badge,
+        &.has-warning-badge  {
+            &:not(.dir-down):not(.dir-left):not(.dir-right):after {
+                top: -5px;
+                right: -5px;
+            }
+            &.dir-down:after {
+                left: -5px;
+                right: auto;
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-left:after {
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-right:after {
+                left: -5px;
+                right: auto;
+            }
+        }
+    }
     &.flip-horizontal {
         transform: scaleX(-1);
+        &.has-alert-badge,
+        &.has-success-badge,
+        &.has-warning-badge  {
+            &:not(.dir-down):not(.dir-left):not(.dir-right):after {
+                left: -5px;
+                right: auto;
+            }
+            &.dir-down:after {
+                left: -5px;
+                right: auto;
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-left:after {
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-right:after {
+                left: -5px;
+                right: auto;
+            }
+        }
     }
     &.flip-vertical {
         transform: scaleY(-1);
+        &.has-alert-badge,
+        &.has-success-badge,
+        &.has-warning-badge  {
+            &:not(.dir-down):not(.dir-left):not(.dir-right):after {
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-down:after {
+                left: -5px;
+                right: auto;
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-left:after {
+                bottom: -5px;
+                top: auto;
+            }
+            &.dir-right:after {
+                left: -5px;
+                right: auto;
+            }
+        }
     }
     &.has-alert-badge {
         position: relative;

@@ -1,7 +1,7 @@
 <div class="demo-container">
     <h2>
         <span>{{moduleTitle}}</span>
-        <button class="ms-Button" style="float:right;" (click)="showCodesContent()"><span [hidden]="showCodes">Show</span><span [hidden]="!showCodes">Hide</span> Source</button>
+        <button class="ms-Button" style="float:right;" (click)="showCodesContent()"><span [hidden]="showCodes">Show Source</span><span [hidden]="!showCodes">Show Demo</span></button>
     </h2>
     <div class="demo-content" *ngIf="!showCodes">
         <ng-content></ng-content>

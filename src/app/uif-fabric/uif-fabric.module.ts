@@ -53,6 +53,10 @@ import { UifIconComponent } from './uif-icon/uif-icon.component';
 import { UifCheckboxComponent } from './uif-checkbox/uif-checkbox.component';
 import { UifChoicefieldComponent } from './uif-choicefield/uif-choicefield.component';
 import { UifChoicefieldItemComponent } from './uif-choicefield/uif-choicefield-item.component';
+import { UifTableComponent } from './uif-table/uif-table.component';
+import { UifTableTrComponent } from './uif-table/uif-table-tr.component';
+import { UifTableTbodyComponent } from './uif-table/uif-table-tbody.component';
+import { UifTableTheadComponent } from './uif-table/uif-table-thead.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -113,7 +117,12 @@ const COMPONENTS = [
 	UifCheckboxComponent,
 
 	UifChoicefieldComponent,
-	UifChoicefieldItemComponent
+	UifChoicefieldItemComponent,
+
+	UifTableComponent,
+	UifTableTrComponent,
+	UifTableTbodyComponent,
+	UifTableTheadComponent
 ];
 
 @NgModule({
