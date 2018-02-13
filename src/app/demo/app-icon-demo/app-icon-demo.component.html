@@ -9,7 +9,7 @@
         <div style="display: inline-block;">
             <h4> Filter icons by</h4>
             <label *ngFor="let filter of filters; let i = index;" [attr.for]="'cb_' + i" class="demo-cb-filter">
-                <input (change)="applyFilters()" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active" [attr.id]="'cb_' + i" /> {{filter.key}}
+                <uif-checkbox (change)="applyFilters()" [label]="filter.key" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active" [attr.id]="'cb_' + i"></uif-checkbox>
             </label>
         </div>
         <div class="horizontal-separator"></div>

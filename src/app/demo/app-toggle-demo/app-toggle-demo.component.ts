@@ -6,7 +6,6 @@ import { NgForm } from '@angular/forms';
 	templateUrl: './app-toggle-demo.component.html'
 })
 export class ToggleDemoComponent {
-	@ViewChild('toggleForm') form: NgForm;
 	description = 'Let apps use my location';
 	onLabel = 'On';
 	offLabel = 'Off';

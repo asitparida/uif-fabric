@@ -1,0 +1,29 @@
+<div style="padding: 0 0 24px 0;">
+    <form #sampleForm="ngForm">
+        <div style="display:inline-block">
+            <h4>Label</h4>
+            <input class="form-control" name="label" [(ngModel)]="label" />
+        </div>
+    </form>
+        <h4>Current Value:
+            <b>
+                <small>{{enabled}}</small>
+            </b>
+        </h4>
+        <h4>Form Dirty:
+            <b>
+                <small>{{cbForm.dirty}}</small>
+            </b>
+        </h4>
+        <h4>Form Value:
+            <b>
+                <small>{{cbForm.value | json}}</small>
+            </b>
+        </h4>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+        <form #cbForm="ngForm">
+            <uif-checkbox name="cb" [label]="label" [(ngModel)]="enabled"></uif-checkbox>
+        </form>
+</div>

@@ -50,6 +50,7 @@ import {
 import { UifProgressIndicatorComponent } from './uif-progress-indicator/uif-progress-indicator.component';
 import { UifToggleComponent } from './uif-toggle/uif-toggle.component';
 import { UifIconComponent } from './uif-icon/uif-icon.component';
+import { UifCheckboxComponent } from './uif-checkbox/uif-checkbox.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -105,7 +106,9 @@ const COMPONENTS = [
 
 	UifProgressIndicatorComponent,
 	UifToggleComponent,
-	UifIconComponent
+	UifIconComponent,
+
+	UifCheckboxComponent
 ];
 
 @NgModule({
