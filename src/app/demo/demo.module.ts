@@ -18,6 +18,11 @@ import { PanelDemoComponent } from './app-panel-demo/app-panel-demo.component';
 import { MessageBarDemoComponent } from './app-messagebar-demo/app-messagebar-demo.component';
 import { MessageBannerDemoComponent } from './app-messagebanner-demo/app-messagebanner-demo.component';
 import { PeoplePickerDemoComponent } from './app-peoplepicker-demo/app-peoplepicker-demo.component';
+import { PivotDemoComponent } from './app-pivot-demo/app-pivot-demo.component';
+import { ProgressIndicatorDemoComponent } from './app-progressindicator-demo/app-progressindicator-demo.component';
+import { ToggleDemoComponent } from './app-toggle-demo/app-toggle-demo.component';
+import { IconDemoComponent, SearchPipe } from './app-icon-demo/app-icon-demo.component';
+
 
 const COMPONENTS = [
 	BreadcrumbDemoComponent,
@@ -35,7 +40,12 @@ const COMPONENTS = [
 	PanelDemoComponent,
 	MessageBarDemoComponent,
 	MessageBannerDemoComponent,
-	PeoplePickerDemoComponent
+	PeoplePickerDemoComponent,
+	PivotDemoComponent,
+	ProgressIndicatorDemoComponent,
+	ToggleDemoComponent,
+	IconDemoComponent,
+	SearchPipe
 ];
 
 @NgModule({

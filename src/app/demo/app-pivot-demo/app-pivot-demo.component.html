@@ -1,0 +1,34 @@
+<div style="padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>Pivot Type</h4>
+            <select name="pivotTypeHints" [(ngModel)]="pivotType">
+                <option *ngFor="let hint of pivotTypeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Size</h4>
+            <select name="pivotSizeHints" [(ngModel)]="pivotSize">
+                <option *ngFor="let hint of pivotSizeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+        <h4>Current Pivot Data:</h4>
+        <pre style="font-weight: 100; font-size: small;">{{getPivotJson()}}</pre>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+    </form>
+    <uif-pivot [type]="pivotType" [size]="pivotSize">
+        <uif-pivot-item *ngFor="let tab of tabs" [(active)]="tab.active">
+            <span pivotTitle>
+                <i class="ms-Icon" [ngClass]="tab.icon" aria-hidden="true" [hidden]="!tab.icon"></i> {{tab.title}}
+            </span>
+            <div pivotContent>
+                <div> Sample content for tab - {{tab.title}}</div>
+            </div>
+        </uif-pivot-item>
+    </uif-pivot>
+</div>

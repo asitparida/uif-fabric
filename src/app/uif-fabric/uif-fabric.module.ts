@@ -41,6 +41,15 @@ import {
 	UifContextHostContentComponent,
 	UifContextHostHeaderComponent
 } from './uif-context-host/uif-context-host.component';
+import { UifPivotComponent } from './uif-pivot/uif-pivot.component';
+import {
+	UifPivotItemComponent,
+	UifPivotContentComponent,
+	UifPivotTitleComponent
+} from './uif-pivot/uif-pivot-item.component';
+import { UifProgressIndicatorComponent } from './uif-progress-indicator/uif-progress-indicator.component';
+import { UifToggleComponent } from './uif-toggle/uif-toggle.component';
+import { UifIconComponent } from './uif-icon/uif-icon.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -87,7 +96,16 @@ const COMPONENTS = [
 
 	UifContextHostComponent,
 	UifContextHostContentComponent,
-	UifContextHostHeaderComponent
+	UifContextHostHeaderComponent,
+
+	UifPivotComponent,
+	UifPivotItemComponent,
+	UifPivotContentComponent,
+	UifPivotTitleComponent,
+
+	UifProgressIndicatorComponent,
+	UifToggleComponent,
+	UifIconComponent
 ];
 
 @NgModule({

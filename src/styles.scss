@@ -13,3 +13,7 @@ body, html {
 [hidden]{
     display: none !important;
 }
+.clearfix:after {
+    content: ' ';
+    clear: both;
+}

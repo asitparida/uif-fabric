@@ -1,0 +1,26 @@
+<div style="padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h4>Progress for Determinate Indicator </h4>
+            <select name="progressHints" [(ngModel)]="progress">
+                <option *ngFor="let hint of progressHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Indicator Width</h4>
+            <select name="widthHints" [(ngModel)]="width">
+                <option *ngFor="let hint of widthHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <h4> Determinate Progress Indicator</h4>
+    <uif-progress-indicator [progressBarWidth]="width" name="Sample Indicator name" description="Sample Indicator Description" [progress]="progress"></uif-progress-indicator>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <h4> Indeterminate Progress Indicator</h4>
+    <uif-progress-indicator [indeterminate]="isIndeterminate" [progressBarWidth]="width"></uif-progress-indicator>
+</div>
