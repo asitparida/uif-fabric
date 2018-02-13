@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>Has Overlay</h4>
+            <h5>Has Overlay</h5>
             <select name="hasOverlayHints" [(ngModel)]="hasOverlay">
                 <option *ngFor="let hint of hasOverlayHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,7 +9,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Is Panel Closable</h4>
+            <h5>Is Panel Closable</h5>
             <select name="hasOverlayHints" [(ngModel)]="isPanelClosable">
                 <option *ngFor="let hint of hasOverlayHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -17,7 +17,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Direction Hint</h4>
+            <h5>Direction Hint</h5>
             <select name="directionalHints" [(ngModel)]="panelDirectionalHint">
                 <option *ngFor="let hint of directionalHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -25,12 +25,14 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Size</h4>
+            <h5>Size</h5>
             <select name="sizeHints" [(ngModel)]="panelSize">
                 <option *ngFor="let hint of sizeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
     </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
     <div style="display:block; margin: 30px auto;text-align:center">
         <uif-button (click)="isPanelOpen = !isPanelOpen;">
             <span [hidden]="isPanelOpen">Open</span>

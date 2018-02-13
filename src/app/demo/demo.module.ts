@@ -22,6 +22,8 @@ import { PivotDemoComponent } from './app-pivot-demo/app-pivot-demo.component';
 import { ProgressIndicatorDemoComponent } from './app-progressindicator-demo/app-progressindicator-demo.component';
 import { ToggleDemoComponent } from './app-toggle-demo/app-toggle-demo.component';
 import { IconDemoComponent, SearchPipe } from './app-icon-demo/app-icon-demo.component';
+import { CheckboxDemoComponent } from './app-checkbox-demo/app-checkbox-demo.component';
+import { ChoicefieldDemoComponent } from './app-choicefield-demo/app-choicefield-demo.component';
 
 
 const COMPONENTS = [
@@ -45,6 +47,8 @@ const COMPONENTS = [
 	ProgressIndicatorDemoComponent,
 	ToggleDemoComponent,
 	IconDemoComponent,
+	CheckboxDemoComponent,
+	ChoicefieldDemoComponent,
 	SearchPipe
 ];
 

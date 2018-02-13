@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { UifBreadcrumbComponent } from './uif-breadcrumb/uif-breadcrumb.component';
 import { UifButtonComponent } from './uif-button/uif-button.component';
 import { UifHeroButtonComponent } from './uif-button/uif-hero-button.component';
@@ -50,6 +50,9 @@ import {
 import { UifProgressIndicatorComponent } from './uif-progress-indicator/uif-progress-indicator.component';
 import { UifToggleComponent } from './uif-toggle/uif-toggle.component';
 import { UifIconComponent } from './uif-icon/uif-icon.component';
+import { UifCheckboxComponent } from './uif-checkbox/uif-checkbox.component';
+import { UifChoicefieldComponent } from './uif-choicefield/uif-choicefield.component';
+import { UifChoicefieldItemComponent } from './uif-choicefield/uif-choicefield-item.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -105,14 +108,20 @@ const COMPONENTS = [
 
 	UifProgressIndicatorComponent,
 	UifToggleComponent,
-	UifIconComponent
+	UifIconComponent,
+
+	UifCheckboxComponent,
+
+	UifChoicefieldComponent,
+	UifChoicefieldItemComponent
 ];
 
 @NgModule({
 	declarations: COMPONENTS,
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule
 	],
 	exports: COMPONENTS,
 	providers: []

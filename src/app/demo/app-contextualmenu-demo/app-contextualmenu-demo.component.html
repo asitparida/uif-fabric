@@ -1,5 +1,5 @@
 <div style="display: block; padding: 0 0 24px 0;">
-    <h4>Default Contextual Menu</h4>
+    <h5>Default Contextual Menu</h5>
     <uif-contextualmenu [(isOpen)]="openMenu1">
         <uif-button menuTrigger (click)="openMenu1 = !openMenu1">
             <span [hidden]="openMenu1">Open</span>
@@ -8,7 +8,8 @@
         <div menuItem *ngFor="let item of menuItems">{{item.text}}</div>
     </uif-contextualmenu>
     <div class="horizontal-separator"></div>
-    <h4>Contextual Menu With Header & Divider</h4>
+    <div class="horizontal-separator"></div>
+    <h5>Contextual Menu With Header & Divider</h5>
     <uif-contextualmenu [(isOpen)]="openMenu2" [directionHint]="DirectionHints.Top">
         <uif-button menuTrigger (click)="openMenu2 = !openMenu2">
             <span [hidden]="openMenu2">Open</span>
@@ -20,7 +21,8 @@
         <div menuItem *ngFor="let item of menuItems2">{{item.text}}</div>
     </uif-contextualmenu>
     <div class="horizontal-separator"></div>
-    <h4>Multiselect Contextual Menu</h4>
+    <div class="horizontal-separator"></div>
+    <h5>Multiselect Contextual Menu</h5>
     <uif-contextualmenu [(isOpen)]="openMenu3" [isMultiSelect]="isMultiSelect" [directionHint]="DirectionHints.Top">
         <uif-button menuTrigger (click)="openMenu3 = !openMenu3">
             <span [hidden]="openMenu3">Open</span>
@@ -29,7 +31,8 @@
         <menu-item *ngFor="let item of menuItems3; let i = index" [selected]="item.selected" [disabled]="i == 4">{{item.text}}</menu-item>
     </uif-contextualmenu>
     <div class="horizontal-separator"></div>
-    <h4> Contextual Menu with another nested Contextual Menu</h4>
+    <div class="horizontal-separator"></div>
+    <h5> Contextual Menu with another nested Contextual Menu</h5>
     <uif-contextualmenu [(isOpen)]="openMenu4" [isMultiSelect]="isMultiSelect" [directionHint]="DirectionHints.Top">
         <uif-button menuTrigger (click)="openMenu4 = !openMenu4">
             <span [hidden]="openMenu4">Open</span>

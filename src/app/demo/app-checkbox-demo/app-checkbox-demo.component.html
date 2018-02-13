@@ -1,0 +1,39 @@
+<div style="padding: 0 0 24px 0;">
+    <form #sampleForm="ngForm">
+        <div style="display:inline-block">
+            <h5>Label</h5>
+            <input class="form-control" name="label" [(ngModel)]="label" />
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Disabled</h5>
+            <select name="booleanHints" [(ngModel)]="disabled">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <h5>Current Value:
+        <b>
+            <small>{{enabled}}</small>
+        </b>
+    </h5>
+    <h5>Form Dirty:
+        <b>
+            <small>{{cbForm.dirty}}</small>
+        </b>
+    </h5>
+    <h5>Form Value:
+        <b>
+            <small>{{cbForm.value | json}}</small>
+        </b>
+    </h5>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <form #cbForm="ngForm">
+        <uif-checkbox name="cb" [label]="label" [(ngModel)]="enabled" [disabled]="getBoolean(disabled)"></uif-checkbox>
+    </form>
+</div>

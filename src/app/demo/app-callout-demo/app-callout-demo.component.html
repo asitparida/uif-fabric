@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>Direction Hint</h4>
+            <h5>Direction Hint</h5>
             <select name="directionHint" [(ngModel)]="directionHint">
                 <option *ngFor="let hint of directionHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,7 +9,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-                <h4>Trigger Hint</h4>
+                <h5>Trigger Hint</h5>
                 <select name="triggerHint" [(ngModel)]="triggerHint">
                     <option *ngFor="let hint of triggerHints" [value]="hint.key">{{hint.text}}</option>
                 </select>
@@ -17,7 +17,7 @@
             <div class="vertical-separator"></div>
             <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Show Arrow</h4>
+            <h5>Show Arrow</h5>
             <select name="showArrow" [(ngModel)]="showArrow">
                 <option *ngFor="let item of arrowOptions" [value]="item.key">{{item.text}}</option>
             </select>
@@ -25,7 +25,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Gap</h4>
+            <h5>Gap</h5>
             <input name="gap" [(ngModel)]="gap" type="number" max="30" min="0" step="1"  >
         </div>
     </form>

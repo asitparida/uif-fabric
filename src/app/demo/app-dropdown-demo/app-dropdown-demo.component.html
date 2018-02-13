@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>Is MultiSelectable</h4>
+            <h5>Is MultiSelectable</h5>
             <select name="isMultiSelectableHints" [(ngModel)]="isMultiSelectable">
                 <option *ngFor="let hint of isMultiSelectableHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,20 +9,23 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Disabled</h4>
+            <h5>Disabled</h5>
             <select name="disableDropdown" [(ngModel)]="disableDropdown">
                 <option *ngFor="let hint of isMultiSelectableHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
     </form>
     <div class="horizontal-separator"></div>
-    <h4>Current Items:</h4>
+    <div class="horizontal-separator"></div>
+    <h5>Current Items:</h5>
     <pre style="font-weight: 100; font-size: small;">{{getOptionsJson()}}</pre>
     <div class="horizontal-separator"></div>
-    <h4>Default Dropdown</h4>
+    <div class="horizontal-separator"></div>
+    <h5>Default Dropdown</h5>
     <uif-dropdown [showSelectedText]="getBoolean(showSelectedText)" [isMultiSelectable]="getBoolean(isMultiSelectable)" [(options)]="options" [isDisabled]="getBoolean(disableDropdown)" ></uif-dropdown>
     <div class="horizontal-separator"></div>
-    <h4>Dropdown with custom option template</h4>
+    <div class="horizontal-separator"></div>
+    <h5>Dropdown with custom option template</h5>
     <uif-dropdown [isMultiSelectable]="getBoolean(isMultiSelectable)" [isDisabled]="getBoolean(disableDropdown)">
         <uif-dropdown-option *ngFor="let option of options" [(selected)]="option.selected" [text]="option.text">
             <span style="display: block; padding: 0 10px;">{{option.selected}} | {{option.text}} <span [hidden]="!option.selected"> | {{option.extra}}</span></span>

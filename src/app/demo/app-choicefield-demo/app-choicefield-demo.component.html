@@ -1,0 +1,41 @@
+<div style="padding: 0 0 24px 0;">
+    <form #sampleForm="ngForm">
+        <div style="display:inline-block">
+            <h5>Label</h5>
+            <input class="form-control" name="label" [(ngModel)]="label" />
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Disable Choice 3</h4>
+            <select name="booleanHints" [(ngModel)]="disabled">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <h5>Current Value:
+        <b>
+            <small>{{value}}</small>
+        </b>
+    </h5>
+    <h5>Form Dirty:
+        <b>
+            <small>{{choiceForm.dirty}}</small>
+        </b>
+    </h5>
+    <h5>Form Value:
+        <b>
+            <small>{{choiceForm.value | json}}</small>
+        </b>
+    </h5>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <form #choiceForm="ngForm">
+        <uif-choicefield name="choice" [label]="label" [(ngModel)]="value">
+            <uif-choicefield-item  *ngFor="let item of options; let i = index;" [disabled]="i == 2 && getBoolean(disabled)" [value]="item.key">{{item.text}}</uif-choicefield-item>
+        </uif-choicefield>
+    </form>
+</div>

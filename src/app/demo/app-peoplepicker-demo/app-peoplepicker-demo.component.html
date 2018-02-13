@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>View Type In List</h4>
+            <h5>View Type In List</h5>
             <select name="viewType" [(ngModel)]="viewTypeInList">
                 <option *ngFor="let hint of viewTypeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,14 +9,16 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Close On Selection</h4>
+            <h5>Close On Selection</h5>
             <select name="hasOverlayHints" [(ngModel)]="closeOnSelection">
                 <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
     </form>
-    <h4>Search Token : <b><small>{{token}}</small></b></h4>
-    <h4>Selected People:</h4>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <h5>Search Token : <b><small>{{token}}</small></b></h5>
+    <h5>Selected People:</h5>
     <pre style="font-weight: 100; font-size: small;">{{getSelectedJson()}}</pre>
     <div class="horizontal-separator"></div>
     <div class="horizontal-separator"></div>

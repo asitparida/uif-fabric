@@ -1,7 +1,7 @@
 <div style="display: block; padding: 0 0 24px 0;">
     <form>
         <div style="display:inline-block;">
-            <h4>View Type</h4>
+            <h5>View Type</h5>
             <select name="viewType" [(ngModel)]="viewType">
                 <option *ngFor="let hint of viewTypeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
@@ -9,7 +9,7 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-            <h4>Availibiity</h4>
+            <h5>Availibiity</h5>
             <select name="availability" [(ngModel)]="availability" (change)="onAvailibilityChanged($event)">
                 <option *ngFor="let hint of availibityHints" [value]="hint.key">{{hint.text}}</option>
             </select>

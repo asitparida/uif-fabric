@@ -1,7 +1,7 @@
 <div class="ms-Toggle" [class.is-disabled]="disabled">
     <span class="ms-Toggle-description" [hidden]="!description">{{description}}</span>
-    <input type="checkbox" [attr.id]="id" class="ms-Toggle-input" [disabled]="disabled" />
-    <label [attr.for]="id" class="ms-Toggle-field" [attr.tabindex]="disabled ? -1 : 0" (click)="toggle()" [class.is-selected]="value" (keyup)="onKeyUp($event)">
+    <input type="checkbox" [attr.id]="id" class="ms-Toggle-input" (change)="onValueChange()" [disabled]="disabled" [(ngModel)]="value" />
+    <label [attr.for]="id" class="ms-Toggle-field" [attr.tabindex]="disabled ? -1 : 0" [class.is-selected]="value"  [class.is-disabled]="disabled" (keyup)="onKeyUp($event)">
         <span class="ms-Label ms-Label--off">{{offLabel}}</span>
         <span class="ms-Label ms-Label--on">{{onLabel}}</span>
     </label>

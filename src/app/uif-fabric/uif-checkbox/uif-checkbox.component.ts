@@ -2,22 +2,20 @@ import { Component, Input, Output, EventEmitter, forwardRef, OnChanges } from '@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-	selector: 'uif-toggle',
-	templateUrl: './uif-toggle.component.html',
-	styleUrls: ['./uif-toggle.component.scss'],
+	selector: 'uif-checkbox',
+	templateUrl: './uif-checkbox.component.html',
+	styleUrls: ['./uif-checkbox.component.scss'],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => UifToggleComponent),
+			useExisting: forwardRef(() => UifCheckboxComponent),
 			multi: true,
 		}]
 })
-export class UifToggleComponent implements OnChanges, ControlValueAccessor {
-	id = 'toggle-' + this.getRandomInt();
+export class UifCheckboxComponent implements OnChanges, ControlValueAccessor {
+	id = 'cb-' + this.getRandomInt();
 	@Input() name;
-	@Input() description;
-	@Input() onLabel = 'On';
-	@Input() offLabel = 'Off';
+	@Input() label = 'On';
 	@Input() _value: boolean | Boolean = false;
 	@Input() disabled = false;
 	get value() {
