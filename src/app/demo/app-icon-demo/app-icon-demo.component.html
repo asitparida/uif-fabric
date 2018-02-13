@@ -12,7 +12,7 @@
                 <input (change)="applyFilters()" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active" [attr.id]="'cb_' + i" /> {{filter.key}}
             </label>
         </div>
-        <div class="vertical-separator"></div>
+        <div class="horizontal-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
             <h4>Color</h4>
@@ -26,6 +26,22 @@
             <h4>Size</h4>
             <select name="sizeHints" [(ngModel)]="size">
                 <option *ngFor="let hint of sizeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Flip</h4>
+            <select name="flipHints" [(ngModel)]="flip">
+                <option *ngFor="let hint of flipHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Badge</h4>
+            <select name="badgeHints" [(ngModel)]="badge">
+                <option *ngFor="let hint of badgeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
         <div class="horizontal-separator"></div>
@@ -42,7 +58,7 @@
     <div class="horizontal-separator"></div>
     <ng-container *ngFor="let icon of (icons | search: searchToken); let iconIndex = index;">
         <div class="demo-icon" *ngIf="iconIndex <= noOfIconsToShow ">
-            <uif-icon [name]="icon?.name" [color]="color" [size]="size"></uif-icon>
+            <uif-icon [name]="icon?.name" [color]="color" [size]="size" [flip]="flip" [badge]="badge"></uif-icon>
             <label>{{icon.name}}</label>
         </div>
     </ng-container>

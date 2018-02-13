@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import * as Icons from '../../../../node_modules/office-ui-fabric-core/src/data/icons.json';
+import { UifIconFlip, UifIconBadge } from '../../uif-fabric/uif-icon/uif-icon.models';
 
 @Pipe({ name: 'search' })
 export class SearchPipe implements PipeTransform {
@@ -28,18 +29,18 @@ export class IconDemoComponent implements OnInit {
 	showIconsSizerBtn = true;
 	color = '#000000';
 	colorHints = [
-		{ key: '#000000', text: 'black' },
-		{ key: '#333333', text: 'neutralPrimary' },
-		{ key: '#005a9e', text: 'themeDark' },
-		{ key: '#0078d7', text: 'themePrimary' },
-		{ key: '#ffb900', text: 'yellow' },
-		{ key: '#ff8c00', text: 'orange' },
-		{ key: '#e81123', text: 'red' },
-		{ key: '#5c2d91', text: 'purple' },
-		{ key: '#0078d7', text: 'blue' },
-		{ key: '#b4009e', text: 'magenta' },
-		{ key: '#008272', text: 'teal' },
-		{ key: '#107c10', text: 'green' },
+		{ key: '#000000', text: 'Black' },
+		{ key: '#333333', text: 'Neutral Primary' },
+		{ key: '#005a9e', text: 'Theme Dark' },
+		{ key: '#0078d7', text: 'Theme Primary' },
+		{ key: '#ffb900', text: 'Yellow' },
+		{ key: '#ff8c00', text: 'Orange' },
+		{ key: '#e81123', text: 'Red' },
+		{ key: '#5c2d91', text: 'Purple' },
+		{ key: '#0078d7', text: 'Blue' },
+		{ key: '#b4009e', text: 'Magenta' },
+		{ key: '#008272', text: 'Teal' },
+		{ key: '#107c10', text: 'Green' },
 	];
 	size = 32;
 	sizeHints = [
@@ -47,6 +48,19 @@ export class IconDemoComponent implements OnInit {
 		{ key: 24, text: '24' },
 		{ key: 32, text: '32' },
 		{ key: 48, text: '48' },
+	];
+	flip = UifIconFlip.None;
+	flipHints = [
+		{ key: UifIconFlip.None, text: 'None' },
+		{ key: UifIconFlip.Horizontal, text: 'Horizontal' },
+		{ key: UifIconFlip.Vertical, text: 'Vertical' }
+	];
+	badge = UifIconBadge.None;
+	badgeHints = [
+		{ key: UifIconBadge.None, text: 'None' },
+		{ key: UifIconBadge.AlertBadge, text: 'Alert Badge' },
+		{ key: UifIconBadge.SuccessBadge, text: 'Success Badge' },
+		{ key: UifIconBadge.WarningBadge, text: 'Warning Badge' }
 	];
 	applyFilters() {
 		let icons = [].concat(this._ORIGINAL_ICONS);
