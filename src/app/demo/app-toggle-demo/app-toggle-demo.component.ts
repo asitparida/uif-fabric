@@ -10,4 +10,16 @@ export class ToggleDemoComponent {
 	onLabel = 'On';
 	offLabel = 'Off';
 	enabled = false;
+	booleanHints = [
+		{ key: true, text: 'Yes'},
+		{ key: false, text: 'No'}
+	];
+	disabled = false;
+	getBoolean(val): boolean {
+		if (typeof val === 'boolean') {
+			return val;
+		} else {
+			return val === 'false' ? false : true;
+		}
+	}
 }

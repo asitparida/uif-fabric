@@ -4,6 +4,14 @@
             <h4>Label</h4>
             <input class="form-control" name="label" [(ngModel)]="label" />
         </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Disabled</h4>
+            <select name="booleanHints" [(ngModel)]="disabled">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
     </form>
         <h4>Current Value:
             <b>
@@ -24,6 +32,6 @@
         <div class="horizontal-separator"></div>
         <div class="horizontal-separator"></div>
         <form #cbForm="ngForm">
-            <uif-checkbox name="cb" [label]="label" [(ngModel)]="enabled"></uif-checkbox>
+            <uif-checkbox name="cb" [label]="label" [(ngModel)]="enabled" [disabled]="getBoolean(disabled)"></uif-checkbox>
         </form>
 </div>
