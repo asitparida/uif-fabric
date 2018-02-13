@@ -1,25 +1,56 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnChanges } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'uif-toggle',
 	templateUrl: './uif-toggle.component.html',
-	styleUrls: [ './uif-toggle.component.scss' ]
+	styleUrls: ['./uif-toggle.component.scss'],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => UifToggleComponent),
+			multi: true,
+		}
 })
-export class UifToggleComponent {
+export class UifToggleComponent implements OnChanges, ControlValueAccessor {
 	id = 'toggle-' + this.getRandomInt();
+	@Input() name;
 	@Input() description;
 	@Input() onLabel = 'On';
 	@Input() offLabel = 'Off';
-	@Input() value: boolean | Boolean = false;
+	@Input() _value: boolean | Boolean = false;
 	@Input() disabled = false;
 	@Output() valueChange = new EventEmitter<boolean | Boolean>();
-	toggle() {
-		this.value = !this.value;
-		this.valueChange.emit(this.value);
+	get value() {
+		return this._value;
+	}
+	set value(val) {
+		this._value = val;
+		this.propagateChange(val);
+	}
+	private propagateChange = (_: any) => { };
+	public writeValue(obj: any) {
+		if (obj) {
+			this._value = obj;
+		}
+	}
+	public registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+	public registerOnTouched() {}
+	ngOnChanges() {
+		if (!this.name) {
+			this.name = this.id;
+		}
+		this.onValueChange();
+	}
+	onValueChange() {
+		this.propagateChange(this._value);
 	}
 	onKeyUp($event: KeyboardEvent) {
 		if ($event.keyCode === 13 || $event.keyCode === 32) {
-			this.toggle();
+			this._value = !this._value;
+			this.onValueChange();
 		}
 	}
 	getRandomInt() {

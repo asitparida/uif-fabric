@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { UifBreadcrumbComponent } from './uif-breadcrumb/uif-breadcrumb.component';
 import { UifButtonComponent } from './uif-button/uif-button.component';
 import { UifHeroButtonComponent } from './uif-button/uif-hero-button.component';
@@ -112,7 +112,8 @@ const COMPONENTS = [
 	declarations: COMPONENTS,
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule
 	],
 	exports: COMPONENTS,
 	providers: []
