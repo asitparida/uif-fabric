@@ -47,4 +47,13 @@ i.ms-Icon {
             border: 3px solid #fff;
         }
     }
+    &.dir-down {
+        transform: rotate(180deg);
+    }
+    &.dir-right {
+        transform: rotate(90deg);
+    }
+    &.dir-left {
+        transform: rotate(-90deg);
+    }
 }

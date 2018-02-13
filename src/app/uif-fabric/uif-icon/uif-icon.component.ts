@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UifIconFlip, UifIconBadge } from './uif-icon.models';
+import { UifIconFlip, UifIconBadge, UifIconDir } from './uif-icon.models';
 
 @Component({
 	selector: 'uif-icon',
@@ -12,4 +12,5 @@ export class UifIconComponent {
 	@Input() color = '#000000';
 	@Input() flip: UifIconFlip = UifIconFlip.None;
 	@Input() badge: UifIconBadge = UifIconBadge.None;
+	@Input() dir: UifIconDir = UifIconDir.Up;
 }

@@ -44,6 +44,14 @@
                 <option *ngFor="let hint of badgeHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h4>Dir</h4>
+            <select name="dirHints" [(ngModel)]="dir">
+                <option *ngFor="let hint of dirHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
         <div class="horizontal-separator"></div>
         <div class="horizontal-separator"></div>
         <div style="display: inline-block" [hidden]="!showIconsSizerBtn">
@@ -58,7 +66,7 @@
     <div class="horizontal-separator"></div>
     <ng-container *ngFor="let icon of (icons | search: searchToken); let iconIndex = index;">
         <div class="demo-icon" *ngIf="iconIndex <= noOfIconsToShow ">
-            <uif-icon [name]="icon?.name" [color]="color" [size]="size" [flip]="flip" [badge]="badge"></uif-icon>
+            <uif-icon [name]="icon?.name" [color]="color" [size]="size" [flip]="flip" [badge]="badge" [dir]="dir"></uif-icon>
             <label>{{icon.name}}</label>
         </div>
     </ng-container>

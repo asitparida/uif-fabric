@@ -10,3 +10,10 @@ export enum UifIconBadge {
 	SuccessBadge = 'has-success-badge',
 	WarningBadge = 'has-warning-badge'
 }
+
+export enum UifIconDir {
+	Up,
+	Down = 'dir-down',
+	Left = 'dir-left',
+	Right = 'dir-right'
+}

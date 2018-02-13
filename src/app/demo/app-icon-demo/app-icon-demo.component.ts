@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import * as Icons from '../../../../node_modules/office-ui-fabric-core/src/data/icons.json';
-import { UifIconFlip, UifIconBadge } from '../../uif-fabric/uif-icon/uif-icon.models';
+import { UifIconFlip, UifIconBadge, UifIconDir } from '../../uif-fabric/uif-icon/uif-icon.models';
 
 @Pipe({ name: 'search' })
 export class SearchPipe implements PipeTransform {
@@ -61,6 +61,13 @@ export class IconDemoComponent implements OnInit {
 		{ key: UifIconBadge.AlertBadge, text: 'Alert Badge' },
 		{ key: UifIconBadge.SuccessBadge, text: 'Success Badge' },
 		{ key: UifIconBadge.WarningBadge, text: 'Warning Badge' }
+	];
+	dir = UifIconDir.Up;
+	dirHints = [
+		{ key: UifIconDir.Up, text: 'Up' },
+		{ key: UifIconDir.Right, text: 'Right' },
+		{ key: UifIconDir.Down, text: 'Down' },
+		{ key: UifIconDir.Left, text: 'Left' }
 	];
 	applyFilters() {
 		let icons = [].concat(this._ORIGINAL_ICONS);
