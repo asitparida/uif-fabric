@@ -1,0 +1,24 @@
+:host {
+    width: 100%;
+    display: block;
+}
+td.uif-td-innercell {
+    padding: 0;
+}
+td.uif-td-toggler {
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    padding: 0 5px;
+}
+td.uif-td-toggler.active {
+    cursor: pointer;
+}
+td.uif-td-toggler.active:hover {
+    background: rgba(0, 0, 0, 0.05)
+}
+td.extraPadLeft /deep/ tbody tr td:first-child .padder {
+    width: 20px;
+    height: 1px;
+    display: inline-block;
+}

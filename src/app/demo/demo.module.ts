@@ -25,6 +25,7 @@ import { IconDemoComponent, SearchPipe } from './app-icon-demo/app-icon-demo.com
 import { CheckboxDemoComponent } from './app-checkbox-demo/app-checkbox-demo.component';
 import { ChoicefieldDemoComponent } from './app-choicefield-demo/app-choicefield-demo.component';
 import { TableDemoComponent } from './app-table-demo/app-table-demo.component';
+import { TreeTableDemoComponent } from './app-treetable-demo/app-treetable-demo.component';
 
 
 const COMPONENTS = [
@@ -51,6 +52,7 @@ const COMPONENTS = [
 	CheckboxDemoComponent,
 	ChoicefieldDemoComponent,
 	TableDemoComponent,
+	TreeTableDemoComponent,
 	SearchPipe
 ];
 

@@ -55,8 +55,8 @@ import { UifChoicefieldComponent } from './uif-choicefield/uif-choicefield.compo
 import { UifChoicefieldItemComponent } from './uif-choicefield/uif-choicefield-item.component';
 import { UifTableComponent } from './uif-table/uif-table.component';
 import { UifTableTrComponent } from './uif-table/uif-table-tr.component';
-import { UifTableTbodyComponent } from './uif-table/uif-table-tbody.component';
-import { UifTableTheadComponent } from './uif-table/uif-table-thead.component';
+import { UifTreeTableComponent } from './uif-tree-table/uif-tree-table.component';
+import { UifTreeTableColumnComponent, UifTreeTableContentComponent } from './uif-tree-table/uif-tree-table-content.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -121,8 +121,10 @@ const COMPONENTS = [
 
 	UifTableComponent,
 	UifTableTrComponent,
-	UifTableTbodyComponent,
-	UifTableTheadComponent
+
+	UifTreeTableComponent,
+	UifTreeTableColumnComponent,
+	UifTreeTableContentComponent
 ];
 
 @NgModule({

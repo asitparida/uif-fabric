@@ -3,8 +3,6 @@ import {
 } from '@angular/core';
 import { UifTableService } from './uif-table.service';
 import { GetRandomInt } from '../helpers';
-import { UifTableTbodyComponent } from './uif-table-tbody.component';
-import { UifTableTheadComponent } from './uif-table-thead.component';
 import { UifTableTrComponent } from './uif-table-tr.component';
 
 @Component({
@@ -14,8 +12,7 @@ import { UifTableTrComponent } from './uif-table-tr.component';
 })
 export class UifTableComponent implements AfterViewInit, OnChanges {
 	@Input() selectable = false;
-	@ContentChildren(UifTableTheadComponent) theads: QueryList<UifTableTheadComponent>;
-	@ContentChildren(UifTableTbodyComponent) tbodies: QueryList<UifTableTbodyComponent>;
+	@ContentChildren(UifTableTrComponent) tRows: QueryList<UifTableTrComponent>;
 	constructor(
 		private tableService: UifTableService
 	) {}
@@ -23,41 +20,19 @@ export class UifTableComponent implements AfterViewInit, OnChanges {
 		this.init();
 	}
 	ngAfterViewInit() {
-		this.theads.changes.subscribe((theads: UifTableTbodyComponent) => {
-			this.initHeads();
-		});
-		this.tbodies.changes.subscribe((tbodies: UifTableTbodyComponent) => {
-			this.initBodies();
+		this.tRows.changes.subscribe((tRows: UifTableTrComponent) => {
+			this.init();
 		});
 		setTimeout(() => {
 			this.init();
 		});
 	}
 	init() {
-		this.initHeads();
-		this.initBodies();
-	}
-	initHeads() {
-		if (this.theads && this.theads.length > 0) {
-			this.theads.forEach((thead: UifTableTheadComponent) => {
-				if (thead.theadRows.length > 0) {
-					thead.theadRows.forEach((row: UifTableTrComponent) => {
-						row.selectable = this.selectable;
-						row.rowClasslistChange();
-					});
-				}
-			});
-		}
-	}
-	initBodies() {
-		if (this.tbodies && this.tbodies.length > 0) {
-			this.tbodies.forEach((tbody: UifTableTbodyComponent) => {
-				if (tbody.tbodyRows.length > 0) {
-					tbody.tbodyRows.forEach((row: UifTableTrComponent) => {
-						row.selectable = this.selectable;
-						row.rowClasslistChange();
-					});
-				}
+		if (this.tRows && this.tRows.length > 0) {
+			this.tableService.tRows = this.tRows;
+			this.tRows.forEach((row: UifTableTrComponent) => {
+				row.selectable = this.selectable;
+				row.rowClasslistChange();
 			});
 		}
 	}

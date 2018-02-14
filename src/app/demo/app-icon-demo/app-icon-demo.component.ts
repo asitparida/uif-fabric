@@ -49,6 +49,7 @@ export class IconDemoComponent implements OnInit {
 		{ key: 32, text: '32' },
 		{ key: 48, text: '48' },
 	];
+	UifIconFlips = UifIconFlip;
 	flip = UifIconFlip.None;
 	flipHints = [
 		{ key: UifIconFlip.None, text: 'None' },
@@ -62,6 +63,7 @@ export class IconDemoComponent implements OnInit {
 		{ key: UifIconBadge.SuccessBadge, text: 'Success Badge' },
 		{ key: UifIconBadge.WarningBadge, text: 'Warning Badge' }
 	];
+	UifIconDirs = UifIconDir;
 	dir = UifIconDir.Up;
 	dirHints = [
 		{ key: UifIconDir.Up, text: 'Up' },
