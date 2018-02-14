@@ -25,8 +25,7 @@
         "../node_modules/office-ui-fabric-js/dist/css/fabric.components.min.css"
       ],
       "scripts": [
-        "prism.js",
-        "../node_modules/office-ui-fabric-js/dist/js/fabric.min.js"
+        "prism.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -69,6 +69,12 @@ export class IconDemoComponent implements OnInit {
 		{ key: UifIconDir.Down, text: 'Down' },
 		{ key: UifIconDir.Left, text: 'Left' }
 	];
+	constructor() {
+		const icons = [].concat(this._ORIGINAL_ICONS);
+		icons.forEach((icon: any) => {
+			icon.code = `&#x${icon.unicode};`;
+		});
+	}
 	applyFilters() {
 		let icons = [].concat(this._ORIGINAL_ICONS);
 		const filterApplied = this.filters.reduce((prev, curr) => prev || curr.active, false);

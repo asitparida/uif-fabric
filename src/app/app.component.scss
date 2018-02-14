@@ -115,6 +115,18 @@ h4 {
         text-align: center;
     }
 }
+/deep/ .demo-icon-holder {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    span.demo-icon-code {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        font-family: FabricMDL2Icons;
+    }
+}
 /deep/ .demo-cb-filter {
     font-weight: 100;
     font-size: small;
