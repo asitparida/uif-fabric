@@ -1,4 +1,4 @@
-<div class="demo-header">
+<!-- <div class="demo-header">
     <h1>uif-fabric</h1>
     <div class="beta-marker">
         <span>BETA</span>
@@ -82,4 +82,15 @@
 </app-demoer>
 <h4 style="text-align:right">
     <a target="_blank" href="http://www.asitparida.com/">http://www.asitparida.com</a>
-</h4>
+</h4> -->
+<div class="fabric-demo">
+    <div class="fabric-demo-sidebar">
+        <ul>
+            <li tabindex="0" [class.active]="component?.id === activeComponent?.id" (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
+        </ul>
+    </div>
+    <div class="fabric-demo-content">
+        <app-summary *ngIf="isSummaryActive"></app-summary>
+        <app-demoer *ngIf="!isSummaryActive" [component]="activeComponent"></app-demoer>
+    </div>
+</div>

@@ -1,12 +1,14 @@
 <div class="demo-container">
     <h2>
-        <span>{{moduleTitle}}</span>
-        <button class="ms-Button" style="float:right;" (click)="showCodesContent()"><span [hidden]="showCodes">Show Source</span><span [hidden]="!showCodes">Show Demo</span></button>
+        <span>{{component.dir}}</span>
+        <uif-button [primary]="true" style="float:right;" (click)="showCodesContent()"><span [hidden]="showCodes">Show Source</span><span [hidden]="!showCodes">Show Demo</span></uif-button>
     </h2>
-    <div class="demo-content" *ngIf="!showCodes">
-        <ng-content></ng-content>
+    <div class="demo-content flexed" [hidden]="showCodes">
+        <div style="padding: 30px; height: 100%; width: 100%; box-sizing: border-box;">
+            <template #componentHost></template>
+        </div>
     </div>
-    <div class="demo-content tabs" *ngIf="showCodes">
+    <div class="demo-content tabs" [hidden]="!showCodes">
         <ul class="demo-tab">
             <li role="button" [attr.tabindex]="showingTs ? -1 : 0" [class.active]="showingTs" (keyup)="onKeyUp($event, true)" (click)="showingTs = true;" [hidden]="!tsTokenizedInfo">{{tsTokenizedInfo?.file}}</li>
             <li role="button" [attr.tabindex]="showingTs ? 0 : -1" [class.active]="!showingTs"(keyup)="onKeyUp($event, false)" (click)="showingTs = false;" [hidden]="!markupTokenizedInfo">{{markupTokenizedInfo?.file}}</li>
