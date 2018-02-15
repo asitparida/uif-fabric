@@ -23,6 +23,7 @@ import { CheckboxDemoComponent } from './demo/app-checkbox-demo/app-checkbox-dem
 import { ChoicefieldDemoComponent } from './demo/app-choicefield-demo/app-choicefield-demo.component';
 import { TableDemoComponent } from './demo/app-table-demo/app-table-demo.component';
 import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-demo.component';
+import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
 
 // tslint:disable max-line-length
 
@@ -55,14 +56,19 @@ export class AppComponent {
 		{ componentId: CheckboxDemoComponent, active: false, id: 'app-checkbox-demo', title: 'Checkbox', dir: 'uif-checkbox' },
 		{ componentId: ChoicefieldDemoComponent, active: false, id: 'app-choicefield-demo', title: 'Choicefield', dir: 'uif-choicefield' },
 		{ componentId: TableDemoComponent, active: false, id: 'app-table-demo', title: 'Table', dir: 'uif-table' },
-		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table' },
+		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table', isCustom: true, isNew: true },
 		{ componentId: IconDemoComponent, active: false, id: 'app-icon-demo', title: 'Icons', dir: 'uif-icon' },
+		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;
 	constructor() {
 		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 		this.isSummaryActive = true;
+
+		// this.activeComponent = this.components[this.components.length - 1];
+		// this.isSummaryActive = false;
+		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}
 	activateComponent(component: any) {
 		if (component.id !== 'app-summary') {

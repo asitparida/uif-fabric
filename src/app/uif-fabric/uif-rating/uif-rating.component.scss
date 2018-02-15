@@ -1,0 +1,63 @@
+.ms-Rating-labelText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin-top: -1px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    margin-left: -1px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    overflow: hidden;
+}
+.ms-RatingStar-front {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+}
+.ms-RatingStar-back {
+    color: rgb(166, 166, 166);
+    width: 100%
+}
+.ms-RatingStar-container {
+    display: inline-block;
+    position: relative;
+    .unmarked {
+        color: rgb(166, 166, 166);
+        width: 100%;
+    }
+}
+.ms-Rating-button {
+    position: relative;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    cursor: pointer;
+    outline: transparent;
+    background: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    &[disabled] {
+        cursor: default;
+    }
+}
+:host {
+    display: inline-block;
+}

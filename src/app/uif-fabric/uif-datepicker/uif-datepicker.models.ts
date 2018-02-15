@@ -63,6 +63,7 @@ export class DateModel {
 	yearNum: number;
 	isInFocus: Boolean | boolean = false;
 	isHighlighted: Boolean | boolean = false;
+	isToday: Boolean | boolean = false;
 	disabled: Boolean | boolean = false;
 }
 

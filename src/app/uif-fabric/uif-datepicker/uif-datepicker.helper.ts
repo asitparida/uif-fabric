@@ -17,6 +17,7 @@ export function GetDatesInMonth(
 		year: currDt.getFullYear(),
 		index: currDt.getDay()
 	};
+	const today = new Date();
 	const datesToAdjust = currentDate.index >= firstDayOfWeekIndex ?
 		firstDayOfWeekIndex - currentDate.index : -7 + (firstDayOfWeekIndex - currentDate.index);
 	const startDate = new Date(currentDate.year, currentDate.month, currentDate.dt + datesToAdjust);
@@ -32,6 +33,9 @@ export function GetDatesInMonth(
 			dayModel.monthNum = newDate.getMonth();
 			dayModel.yearNum = newDate.getFullYear();
 			dayModel.isInFocus = newDate.getMonth() === originalDt.getMonth() ? newDate.getFullYear() === originalDt.getFullYear() : false;
+			dayModel.isToday = newDate.getDate() === today.getDate()
+				&& newDate.getMonth() === today.getMonth()
+				&& newDate.getFullYear() === today.getFullYear();
 			dayModel.isHighlighted = newDate.getDate() === selectedDt.getDate()
 				&& newDate.getMonth() === selectedDt.getMonth()
 				&& newDate.getFullYear() === selectedDt.getFullYear();
