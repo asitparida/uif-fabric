@@ -252,6 +252,7 @@ h4 {
                 -ms-overflow-style: -ms-autohiding-scrollbar;
                 -webkit-overflow-scrolling: touch;
                 box-sizing: border-box;
+                border: 1px solid lighten(#0073c6, 50);
                 li {
                     padding: 0 30px;
                     font-weight: 400;
@@ -290,6 +291,7 @@ h4 {
                         }
                         a {
                             text-transform: uppercase;
+                            display: inline;
                         }
                     }
                 }
