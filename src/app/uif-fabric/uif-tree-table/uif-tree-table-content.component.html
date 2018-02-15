@@ -1,8 +1,8 @@
-<table class="ms-Table">
+<table class="ms-Table" [ngClass]="level === 1 ? classes : ''">
     <thead *ngIf="level === 1">
         <tr>
-            <td></td>
-            <td *ngFor="let col of columns">{{col.columnTitle}}</td>
+            <th></th>
+            <th *ngFor="let col of columns">{{col.columnTitle}}</th>
         </tr>
     </thead>
     <tbody>

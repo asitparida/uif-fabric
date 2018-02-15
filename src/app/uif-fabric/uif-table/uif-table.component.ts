@@ -12,6 +12,7 @@ import { UifTableTrComponent } from './uif-table-tr.component';
 })
 export class UifTableComponent implements AfterViewInit, OnChanges {
 	@Input() selectable = false;
+	@Input() classes;
 	@ContentChildren(UifTableTrComponent) tRows: QueryList<UifTableTrComponent>;
 	constructor(
 		private tableService: UifTableService

@@ -1,11 +1,11 @@
 <div style="padding: 0 0 24px 0;">
-    <uif-tree-table [rows]="rows">
+    <uif-tree-table [rows]="rows" classes="demo-tablestyles">
         <uif-tree-table-column column="album" columnTitle="Album">
             <ng-template let-item>
                 <a target="_blank" [attr.href]="'http://www.google.com/search?q=' + item.album">{{item.album}}</a>
             </ng-template>
         </uif-tree-table-column>
         <uif-tree-table-column column="year" columnTitle="Year" classes="width-fixed"></uif-tree-table-column>
-        <uif-tree-table-column column="US_peak_chart_post" columnTitle="US Peak Chart" classes="width-fixed"></uif-tree-table-column>
+        <uif-tree-table-column column="US_peak_chart_post" columnTitle="US Chart Peak" classes="width-fixed"></uif-tree-table-column>
     </uif-tree-table>
 </div>

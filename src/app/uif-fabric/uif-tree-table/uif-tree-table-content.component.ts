@@ -25,6 +25,7 @@ export class UifTreeTableColumnComponent {
 export class UifTreeTableContentComponent  {
 	@Input() rows: any[];
 	@Input() columns;
+	@Input() classes;
 	@Input() level = 0;
 	UifIconDirs = UifIconDir;
 	get hasChildren() {

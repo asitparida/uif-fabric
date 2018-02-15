@@ -14,3 +14,10 @@ body, html {
     content: ' ';
     clear: both;
 }
+.demo-tablestyles thead tr th,
+.demo-tablestyles tbody tr td {
+    font-size: medium;
+}
+.width-fixed {
+    width: 120px;
+}

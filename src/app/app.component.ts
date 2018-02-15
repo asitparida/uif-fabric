@@ -40,7 +40,7 @@ export class AppComponent {
 		{ componentId: DatepickerComponent, active: false, id: 'app-datepicker-demo', title: 'Datepicker', dir: 'uif-datepicker' },
 		{ componentId: DialogDemoComponent, active: false, id: 'app-dialog-demo', title: 'Dialog', dir: 'uif-dialog' },
 		{ componentId: DropdownDemoComponent, active: false, id: 'app-dropdown-demo', title: 'Dropdown', dir: 'uif-dropdown' },
-		{ componentId: FacepileDemoComponent, active: false, id: 'app-facepile-demo', title: 'Facepile', dir: 'uif-facepile' },
+		{ componentId: FacepileDemoComponent, active: false, id: 'app-facepile-demo', title: 'Facepile', dir: 'uif-facepile', isFlexed: true },
 		{ componentId: PersonaDemoComponent, active: false, id: 'app-persona-demo', title: 'Persona', dir: 'uif-persona' },
 		{ componentId: PersonaCardDemoComponent, active: false, id: 'app-personacard-demo', title: 'Persona Card', dir: 'uif-persona-card' },
 		{ componentId: OrgChartDemoComponent, active: false, id: 'app-orgchart-demo', title: 'Org Chart', dir: 'uif-orgchart' },
