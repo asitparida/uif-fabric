@@ -49,12 +49,14 @@ export class IconDemoComponent implements OnInit {
 		{ key: 32, text: '32' },
 		{ key: 48, text: '48' },
 	];
+	UifIconFlips = UifIconFlip;
 	flip = UifIconFlip.None;
 	flipHints = [
 		{ key: UifIconFlip.None, text: 'None' },
 		{ key: UifIconFlip.Horizontal, text: 'Horizontal' },
 		{ key: UifIconFlip.Vertical, text: 'Vertical' }
 	];
+	UifIconBadges = UifIconBadge;
 	badge = UifIconBadge.None;
 	badgeHints = [
 		{ key: UifIconBadge.None, text: 'None' },
@@ -62,6 +64,7 @@ export class IconDemoComponent implements OnInit {
 		{ key: UifIconBadge.SuccessBadge, text: 'Success Badge' },
 		{ key: UifIconBadge.WarningBadge, text: 'Warning Badge' }
 	];
+	UifIconDirs = UifIconDir;
 	dir = UifIconDir.Up;
 	dirHints = [
 		{ key: UifIconDir.Up, text: 'Up' },
@@ -69,6 +72,12 @@ export class IconDemoComponent implements OnInit {
 		{ key: UifIconDir.Down, text: 'Down' },
 		{ key: UifIconDir.Left, text: 'Left' }
 	];
+	constructor() {
+		const icons = [].concat(this._ORIGINAL_ICONS);
+		icons.forEach((icon: any) => {
+			icon.code = `&#x${icon.unicode};`;
+		});
+	}
 	applyFilters() {
 		let icons = [].concat(this._ORIGINAL_ICONS);
 		const filterApplied = this.filters.reduce((prev, curr) => prev || curr.active, false);

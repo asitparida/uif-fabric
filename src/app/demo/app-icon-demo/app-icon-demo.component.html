@@ -9,7 +9,8 @@
         <div style="display: inline-block;">
             <h5> Filter icons by</h5>
             <label *ngFor="let filter of filters; let i = index;" [attr.for]="'cb_' + i" class="demo-cb-filter">
-                <uif-checkbox (change)="applyFilters()" [label]="filter.key" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active" [attr.id]="'cb_' + i"></uif-checkbox>
+                <uif-checkbox (change)="applyFilters()" [label]="filter.key" [name]="'_cb_' + i" type="checkbox" [(ngModel)]="filter.active"
+                    [attr.id]="'cb_' + i"></uif-checkbox>
             </label>
         </div>
         <div class="horizontal-separator"></div>
@@ -67,7 +68,10 @@
     <div class="horizontal-separator"></div>
     <ng-container *ngFor="let icon of (icons | search: searchToken); let iconIndex = index;">
         <div class="demo-icon" *ngIf="iconIndex <= noOfIconsToShow ">
-            <uif-icon [name]="icon?.name" [color]="color" [size]="size" [flip]="flip" [badge]="badge" [dir]="dir"></uif-icon>
+            <div class="demo-icon-holder" [style.width]="size + 'px'" [style.height]="size + 'px'">
+                <span *ngIf="flip === UifIconFlips.None && dir == UifIconDirs.Up && badge == UifIconBadges.None" class="demo-icon-code" [style.color]="color" [style.fontSize]="size + 'px'" [innerHTML]="icon.code"></span>
+                <uif-icon [name]="icon?.name" [color]="color" [size]="size" [flip]="flip" [badge]="badge" [dir]="dir"></uif-icon>
+            </div>
             <label>{{icon.name}}</label>
         </div>
     </ng-container>

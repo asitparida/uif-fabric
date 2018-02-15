@@ -1,0 +1,33 @@
+<table class="ms-Table">
+    <thead *ngIf="level === 1">
+        <tr>
+            <td></td>
+            <td *ngFor="let col of columns">{{col.columnTitle}}</td>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let row of rows">
+            <tr>
+                <td class="uif-td-toggler" [class.active]="row.children && row.children.length > 0" *ngIf="hasChildren" (click)="row.opened = !row.opened">
+                    <uif-icon *ngIf="row.children && row.children.length > 0" size="12" color="#909090" [name]="!row.opened ? 'ChevronRight' : 'ChevronDown'"></uif-icon>
+                </td>
+                <td *ngFor="let col of columns" [ngClass]="col.classes">
+                    <span class="padder"></span>
+                    <ng-container *ngIf="col.rowTemplate">
+                        <ng-container *ngTemplateOutlet="col.rowTemplate; context: {$implicit: row}"></ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="!col.rowTemplate">
+                        <span>{{row[col.column]}}</span>
+                    </ng-container>
+                </td>
+            </tr>
+            <tr *ngIf="row.children && row.children.length > 0 && row.opened">
+                <td class="uif-td-toggler" *ngIf="hasChildren"></td>
+                <td class="uif-td-innercell extraPadLeft" [attr.colspan]="columns.length">
+                    <uif-tree-table-content [rows]="row.children" [columns]="columns">
+                    </uif-tree-table-content>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

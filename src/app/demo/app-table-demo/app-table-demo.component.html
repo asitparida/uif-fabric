@@ -16,14 +16,14 @@
     <div class="horizontal-separator"></div>
     <uif-table [selectable]="getBoolean(selectable)">
         <thead>
-            <tr [(selected)]="allSelected">
+            <tr [(selected)]="allSelected" uifTableRow>
                 <th>Album</th>
-                <th>Year</th>
-                <th>US Peak Chart Post</th>
+                <th class="width-fixed">Year</th>
+                <th class="width-fixed">US Peak Chart Post</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let row of rows" [(selected)]="row.selected">
+            <tr *ngFor="let row of rows" [(selected)]="row.selected" uifTableRow>
                 <td>{{row.album}}</td>
                 <td>{{row.year}}</td>
                 <td>{{row.US_peak_chart_post}}</td>

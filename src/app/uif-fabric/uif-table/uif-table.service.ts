@@ -8,25 +8,30 @@ export class UifTableService {
 	allSelectedAsObservable = this.allSelected.asObservable();
 	setAllSelectedAsFalse = new Subject<Boolean | boolean>();
 	setAllSelectedAsFalseObservable = this.setAllSelectedAsFalse.asObservable();
-	theadRows: QueryList<UifTableTrComponent>;
-	tbodyRows: QueryList<UifTableTrComponent>;
+	tRows: QueryList<UifTableTrComponent>;
 	headerRowSelectionChange(id: string) {
-		const headerRow = this.theadRows.find( row => row.id === id);
+		const headerRow = this.tRows.find( row => row.id === id);
 		if (headerRow) {
-			this.tbodyRows.forEach((row: UifTableTrComponent) => {
-				row.selected = headerRow.selected;
-				row.onSelectionChange();
+			this.tRows.forEach((row: UifTableTrComponent) => {
+				if (!row.isHeader) {
+					row.selected = headerRow.selected;
+					row.onSelectionChange();
+				}
 			});
 		}
 	}
 	bodyRowSelectionChange(id: string) {
 		let result = true;
-		this.tbodyRows.forEach((row: UifTableTrComponent) => {
-			result = result && row.selected;
+		this.tRows.forEach((row: UifTableTrComponent) => {
+			if (!row.isHeader) {
+				result = result && row.selected;
+			}
 		});
-		this.theadRows.forEach((row: UifTableTrComponent) => {
-			row.selected = result;
-			row.onSelectionChange();
+		this.tRows.forEach((row: UifTableTrComponent) => {
+			if (row.isHeader) {
+				row.selected = result;
+				row.onSelectionChange();
+			}
 		});
 	}
 }

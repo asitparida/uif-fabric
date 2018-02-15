@@ -1,16 +1,18 @@
-import { Component, Input, OnInit, Injectable } from '@angular/core';
-import { HttpClient  } from '@angular/common/http';
+import { Component, Input, OnInit,
+	Injectable, ViewChild, ComponentFactoryResolver, AfterViewInit, ViewContainerRef, ComponentRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Injectable()
 export class DemoerService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 	getTsFile(id) {
-		const file = 'assets/definitions/' +  id  + '.component.ts.json';
+		const file = 'assets/definitions/' + id + '.component.ts.json';
 		return this.http.get(file);
 	}
 	getMarkupFile(id) {
-		const file = 'assets/definitions/' +  id  + '.component.html.json';
+		const file = 'assets/definitions/' + id + '.component.html.json';
 		return this.http.get(file);
 	}
 }
@@ -20,19 +22,42 @@ export class DemoerService {
 	templateUrl: './demoer.component.html',
 	styleUrls: ['../app.component.scss']
 })
-export class DemoerComponent implements OnInit {
-	@Input() id: string;
-	@Input() moduleTitle: string;
+export class DemoerComponent implements OnInit, AfterViewInit, OnChanges {
+	@Input() component: any;
 	tsTokenizedInfo;
 	markupTokenizedInfo;
 	showCodes = false;
 	showingTs = true;
 	codesFetched = false;
-	constructor(private demoerService: DemoerService) {}
+	@ViewChild('componentHost', { read: ViewContainerRef }) componentHost;
+	componentRef: ComponentRef<any>;
+	constructor(
+		private demoerService: DemoerService,
+		private componentFactoryResolver: ComponentFactoryResolver) { }
 	ngOnInit() {
 	}
+	ngOnChanges() {
+		if (this.component && this.component.componentId) {
+			setTimeout(() => {
+				this.loadComponent();
+			});
+		}
+	}
+	ngAfterViewInit() {
+		setTimeout(() => {
+			this.loadComponent();
+		});
+	}
+	loadComponent() {
+		if (this.component && this.component.componentId) {
+			this.componentHost.clear();
+			const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component.componentId);
+			this.componentRef = this.componentHost.createComponent(componentFactory);
+		}
+		this.fetchCodes();
+	}
 	onKeyUp(event: KeyboardEvent, value) {
-		if (event.keyCode === 13  || event.keyCode === 32) {
+		if (event.keyCode === 13 || event.keyCode === 32) {
 			this.showingTs = value;
 			event.preventDefault();
 			event.stopPropagation();
@@ -40,14 +65,14 @@ export class DemoerComponent implements OnInit {
 	}
 	showCodesContent() {
 		this.showCodes = !this.showCodes;
-		if (!this.codesFetched) {
-			this.demoerService.getTsFile(this.id).subscribe((jsonData) => {
-				this.tsTokenizedInfo = jsonData;
-			});
-			this.demoerService.getMarkupFile(this.id).subscribe((jsonData) => {
-				this.markupTokenizedInfo = jsonData;
-			});
-			this.codesFetched = true;
-		}
+		this.fetchCodes();
+	}
+	fetchCodes() {
+		this.demoerService.getTsFile(this.component.id).subscribe((jsonData) => {
+			this.tsTokenizedInfo = jsonData;
+		});
+		this.demoerService.getMarkupFile(this.component.id).subscribe((jsonData) => {
+			this.markupTokenizedInfo = jsonData;
+		});
 	}
 }
