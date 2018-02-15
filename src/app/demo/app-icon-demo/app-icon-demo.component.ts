@@ -56,6 +56,7 @@ export class IconDemoComponent implements OnInit {
 		{ key: UifIconFlip.Horizontal, text: 'Horizontal' },
 		{ key: UifIconFlip.Vertical, text: 'Vertical' }
 	];
+	UifIconBadges = UifIconBadge;
 	badge = UifIconBadge.None;
 	badgeHints = [
 		{ key: UifIconBadge.None, text: 'None' },

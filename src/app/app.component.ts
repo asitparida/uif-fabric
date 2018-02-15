@@ -62,13 +62,6 @@ export class AppComponent {
 	activeComponent = null;
 	constructor() {
 		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
-		this.components.unshift({
-			componentId: '',
-			active: false,
-			id: 'app-summary',
-			title: 'Summary'
-		});
-		this.components[0].active = true;
 		this.isSummaryActive = true;
 	}
 	activateComponent(component: any) {
@@ -79,6 +72,10 @@ export class AppComponent {
 			this.isSummaryActive = true;
 			this.activeComponent = null;
 		}
+	}
+	activateSummary() {
+		this.isSummaryActive = true;
+		this.activeComponent = null;
 	}
 }
 

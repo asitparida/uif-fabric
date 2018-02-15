@@ -68,8 +68,8 @@
     <div class="horizontal-separator"></div>
     <ng-container *ngFor="let icon of (icons | search: searchToken); let iconIndex = index;">
         <div class="demo-icon" *ngIf="iconIndex <= noOfIconsToShow ">
-            <div class="demo-icon-holder" [style.width]="size + 'px'">
-                <span *ngIf="flip === UifIconFlips.None && dir == UifIconDirs.Up" class="demo-icon-code" [style.color]="color" [style.fontSize]="size + 'px'" [innerHTML]="icon.code"></span>
+            <div class="demo-icon-holder" [style.width]="size + 'px'" [style.height]="size + 'px'">
+                <span *ngIf="flip === UifIconFlips.None && dir == UifIconDirs.Up && badge == UifIconBadges.None" class="demo-icon-code" [style.color]="color" [style.fontSize]="size + 'px'" [innerHTML]="icon.code"></span>
                 <uif-icon [name]="icon?.name" [color]="color" [size]="size" [flip]="flip" [badge]="badge" [dir]="dir"></uif-icon>
             </div>
             <label>{{icon.name}}</label>

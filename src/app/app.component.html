@@ -1,93 +1,46 @@
-<!-- <div class="demo-header">
-    <h1>uif-fabric</h1>
-    <div class="beta-marker">
-        <span>BETA</span>
-    </div>
-    <h4>Angular 2/4 components library under development for
-        <a target="_blank" href="https://developer.microsoft.com/en-us/fabric">Office UI Fabric</a>
-    </h4>
-</div>
-<div class="clearfix"></div>
-<app-demoer id="app-breadcrumb-demo" moduleTitle="uif-breadcrumb">
-    <app-breadcrumb-demo></app-breadcrumb-demo>
-</app-demoer>
-<app-demoer id="app-button-demo" moduleTitle="uif-button">
-    <app-button-demo></app-button-demo>
-</app-demoer>
-<app-demoer id="app-callout-demo" moduleTitle="uif-callout">
-    <app-callout-demo></app-callout-demo>
-</app-demoer>
-<app-demoer id="app-contextualmenu-demo" moduleTitle="uif-contextualmenu">
-    <app-contextualmenu-demo></app-contextualmenu-demo>
-</app-demoer>
-<app-demoer id="app-datepicker-demo" moduleTitle="uif-datepicker">
-    <app-datepicker-demo></app-datepicker-demo>
-</app-demoer>
-<app-demoer id="app-dialog-demo" moduleTitle="uif-dialog">
-    <app-dialog-demo></app-dialog-demo>
-</app-demoer>
-<app-demoer id="app-dropdown-demo" moduleTitle="uif-dropdown">
-    <app-dropdown-demo></app-dropdown-demo>
-</app-demoer>
-<app-demoer id="app-facepile-demo" moduleTitle="uif-facepile">
-    <app-facepile-demo></app-facepile-demo>
-</app-demoer>
-<app-demoer id="app-persona-demo" moduleTitle="uif-persona">
-    <app-persona-demo></app-persona-demo>
-</app-demoer>
-<app-demoer id="app-personacard-demo" moduleTitle="uif-persona-card">
-    <app-personacard-demo></app-personacard-demo>
-</app-demoer>
-<app-demoer id="app-orgchart-demo" moduleTitle="uif-org-chart">
-    <app-orgchart-demo></app-orgchart-demo>
-</app-demoer>
-<app-demoer id="app-overlay-demo" moduleTitle="uif-overlay">
-    <app-overlay-demo></app-overlay-demo>
-</app-demoer>
-<app-demoer id="app-panel-demo" moduleTitle="uif-panel">
-    <app-panel-demo></app-panel-demo>
-</app-demoer>
-<app-demoer id="app-messagebar-demo" moduleTitle="uif-message-bar">
-    <app-messagebar-demo></app-messagebar-demo>
-</app-demoer>
-<app-demoer id="app-messagebanner-demo" moduleTitle="uif-message-banner">
-    <app-messagebanner-demo></app-messagebanner-demo>
-</app-demoer>
-<app-demoer id="app-peoplepicker-demo" moduleTitle="uif-people-picker">
-    <app-peoplepicker-demo></app-peoplepicker-demo>
-</app-demoer>
-<app-demoer id="app-pivot-demo" moduleTitle="uif-pivot">
-    <app-pivot-demo></app-pivot-demo>
-</app-demoer>
-<app-demoer id="app-progressindicator-demo" moduleTitle="uif-progress-indicator">
-    <app-progressindicator-demo></app-progressindicator-demo>
-</app-demoer>
-<app-demoer id="app-toggle-demo" moduleTitle="uif-toggle">
-    <app-toggle-demo></app-toggle-demo>
-</app-demoer>
-<app-demoer id="app-checkbox-demo" moduleTitle="uif-checkbox">
-    <app-checkbox-demo></app-checkbox-demo>
-</app-demoer>
-<app-demoer id="app-choicefield-demo" moduleTitle="uif-choicefield">
-    <app-choicefield-demo></app-choicefield-demo>
-</app-demoer>
-<app-demoer id="app-table-demo" moduleTitle="uif-table">
-    <app-table-demo></app-table-demo>
-</app-demoer>
-<app-demoer id="app-treetable-demo" moduleTitle="uif-tree-table">
-    <app-treetable-demo></app-treetable-demo>
-</app-demoer>
-<app-demoer id="app-icon-demo" moduleTitle="uif-icon">
-    <app-icon-demo></app-icon-demo>
-</app-demoer>
-<h4 style="text-align:right">
-    <a target="_blank" href="http://www.asitparida.com/">http://www.asitparida.com</a>
-</h4> -->
 <div class="fabric-demo">
     <div class="fabric-demo-sidebar">
-        <ul>
-            <li tabindex="0" [class.active]="component?.id === activeComponent?.id" (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
-        </ul>
+        <div class="components-list">
+            <label>
+                <uif-icon name="FabricDocLibrary" size="18" color="#0073c6"></uif-icon>
+                <span>Components</span>
+            </label>
+            <ul>
+                <li tabindex="0" [class.active]="component?.id === activeComponent?.id" (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
+            </ul>
+        </div>
+        <div class="home-list" style="margin: 15px 0 0 0;">
+            <ul>
+                <li (click)="activateSummary()">
+                    <uif-icon size="18" name="Home" color="#0073c6"></uif-icon>
+                    <span>Home</span>
+                </li>
+                <li>
+                    <a href="https://github.com/asitparida/uif-fabric" target="_blank">
+                        <uif-icon size="18" name="Code" color="#0073c6"></uif-icon>
+                        <span>GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://dev.office.com/fabric-js" target="_blank">
+                        <span class="marginLeft33">Fabric JS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://ngofficeuifabric.com/" target="_blank">
+                        <span class="marginLeft33">Fabric Angular 1.x</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://developer.microsoft.com/en-us/fabric" target="_blank">
+                        <span class="marginLeft33">Fabric React</span>
+                    </a>
+                </li>
+                <li class="copyright">
+                        &#169; <a href="http://www.asitparida.com/" target="_blank"><span class="marginLeft33">Asit Kumar Parida</span></a>, 2018
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="fabric-demo-content">
         <app-summary *ngIf="isSummaryActive"></app-summary>
