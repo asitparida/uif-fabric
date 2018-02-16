@@ -1,0 +1,123 @@
+.ms-ColorPicker {
+    position: relative;
+    max-width: 300px;
+    .ms-ColorPicker-panel {
+        padding: 16px;
+        .ms-ColorPicker-colorRect {
+            position: relative;
+            margin-bottom: 10px;
+            .ms-ColorPicker-light {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: -webkit-gradient(linear, left top, right top, from(white), to(transparent));
+                background: linear-gradient(to right, white 0%, transparent 100%);
+            }
+            .ms-ColorPicker-dark {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), to(#000));
+                background: linear-gradient(to bottom, transparent 0, #000 100%);
+            }
+            .ms-ColorPicker-thumb {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background: white;
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                -webkit-box-shadow: 0 0 15px -5px black;
+                box-shadow: 0 0 15px -5px black;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                user-select: none;
+            }
+        }
+        .ms-ColorPicker-slider {
+            position: relative;
+            height: 20px;
+            margin-bottom: 5px;
+            border: 1px solid #eaeaea;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            &.is-hue {
+                background: linear-gradient(to left, red 0, #f09 10%, #cd00ff 20%, #3200ff 30%, #06f 40%, #00fffd 50%, #0f6 60%, #35ff00 70%, #cdff00 80%, #f90 90%, red 100%);
+            }
+            &.is-alpha {
+                background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJUlEQVQYV2N89erVfwY0ICYmxoguxjgUFKI7GsTH5m4M3w1ChQC1/Ca8i2n1WgAAAABJRU5ErkJggg==);
+            }
+            .ms-ColorPicker-sliderOverlay {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+            .ms-ColorPicker-thumb {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background: white;
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                -webkit-box-shadow: 0 0 15px -5px black;
+                box-shadow: 0 0 15px -5px black;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                user-select: none;
+                &.is-slider {
+                    top: 50%;
+                }
+            }
+        }
+        .ms-ColorPicker-table {
+            table-layout: fixed;
+            width: 100%;
+            thead tr {
+                font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                font-size: 12px;
+                font-weight: 400;
+                td:first-child {
+                    width: 25%;
+                }
+            }
+            tbody tr {
+                td:not(:first-child) {
+                    width: 18%;
+                }
+                td {
+                    .ms-TextField-wrapper {
+                        padding-right: 2px;
+                    }
+                    .ms-TextField {
+                        width: 100%;
+                        border: none;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        height: 30px;
+                        -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                        -webkit-box-shadow: none;
+                        box-shadow: none;
+                        margin: 0;
+                        padding: 0;
+                        position: relative;
+                    }
+                    input.ms-TextField-field {
+                        min-width: auto;
+                        min-width: auto;
+                        padding: 0 0 0 5px;
+                        text-overflow: clip;
+                    }
+                }
+            }
+        }
+    }
+}

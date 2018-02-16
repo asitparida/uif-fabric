@@ -34,6 +34,7 @@ import { ChoicefieldDemoComponent } from './demo/app-choicefield-demo/app-choice
 import { TableDemoComponent } from './demo/app-table-demo/app-table-demo.component';
 import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-demo.component';
 import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
+import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
 
 const COMPONENTS = [
 	AppComponent,
@@ -63,7 +64,8 @@ const COMPONENTS = [
 	ChoicefieldDemoComponent,
 	TableDemoComponent,
 	TreeTableDemoComponent,
-	RatingDemoComponent
+	RatingDemoComponent,
+	ColorPickerDemoComponent
 ];
 // import { DemoModule } from './demo/demo.module';
 

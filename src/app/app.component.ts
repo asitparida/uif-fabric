@@ -24,6 +24,7 @@ import { ChoicefieldDemoComponent } from './demo/app-choicefield-demo/app-choice
 import { TableDemoComponent } from './demo/app-table-demo/app-table-demo.component';
 import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-demo.component';
 import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
+import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
 
 // tslint:disable max-line-length
 
@@ -56,9 +57,10 @@ export class AppComponent {
 		{ componentId: CheckboxDemoComponent, active: false, id: 'app-checkbox-demo', title: 'Checkbox', dir: 'uif-checkbox' },
 		{ componentId: ChoicefieldDemoComponent, active: false, id: 'app-choicefield-demo', title: 'Choicefield', dir: 'uif-choicefield' },
 		{ componentId: TableDemoComponent, active: false, id: 'app-table-demo', title: 'Table', dir: 'uif-table' },
-		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table', isCustom: true, isNew: true },
+		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table', isCustom: false, isNew: true },
 		{ componentId: IconDemoComponent, active: false, id: 'app-icon-demo', title: 'Icons', dir: 'uif-icon' },
 		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: true },
+		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;
