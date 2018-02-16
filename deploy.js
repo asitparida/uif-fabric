@@ -16,7 +16,7 @@ function GetToken(val, token) {
     return null;
 }
 
-var host, user, password;
+var host = null, user = null, password = null;
 process.argv.forEach(function (val, index, array) {
     if (GetToken(val, '--host=') !== null) {
         host = GetToken(val, '--host=')
@@ -29,8 +29,18 @@ process.argv.forEach(function (val, index, array) {
     }
 });
 
+if (!host) {
+    host = process.env.AZURE_WA_SITE;
+}
+if (!user) {
+    user = process.env.AZURE_WA_USERNAME;
+}
+if (!password) {
+    password = process.env.AZURE_WA_PASSWORD;
+}
+
+
 const jsftp = require("jsftp");
-const jsftprmrf = require('jsftp-rmr')(jsftp);
 
 const ftp = new jsftp({
     host: host,

@@ -11,8 +11,10 @@ before_script:
   - npm install
 
 script:
+  - npm install ftp-deploy
+  - npm install jsftp
   - npm run build
-  - node deploy.js --host="$AZURE_WA_SITE" --user="$AZURE_WA_USERNAME"  --password="$AZURE_WA_PASSWORD"
+  - npm run publish
 
 notifications:
   email:
