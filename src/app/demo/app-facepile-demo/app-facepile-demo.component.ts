@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UifCalloutDirectionalHint } from '../../uif-fabric/uif-callout/uif-callout.models';
-import { PersonaCard } from '../../uif-fabric/uif-persona-card/uif-persona-card.models';
-import { UifPersonaAvailabilityType } from '../../uif-fabric/uif-persona/uif-persona.models';
-import { UifFacepileCard } from '../../uif-fabric/uif-facepile/uif-facepile.models';
+import { UifFacepileCard, PersonaCard, UifPersonaAvailabilityType, UifCalloutDirectionalHint } from '../../uif-fabric/index';
 
 @Component({
 	selector: 'app-facepile-demo',

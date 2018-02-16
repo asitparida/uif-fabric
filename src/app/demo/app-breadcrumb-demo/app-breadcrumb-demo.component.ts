@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IBreadcrumbItem } from '../../uif-fabric/index';
 
 @Component({
 	selector: 'app-breadcrumb-demo',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class BreadcrumbDemoComponent {
 	maxDisplayedItems = null;
-	breadcrumbItems = [
+	breadcrumbItems: IBreadcrumbItem[] = [
 		{ text: 'Files', 'key': 'Files' },
 		{ text: 'Folder 1', 'key': 'f1' },
 		{ text: 'Folder 2', 'key': 'f2' },
