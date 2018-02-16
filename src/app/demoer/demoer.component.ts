@@ -31,16 +31,19 @@ export class DemoerComponent implements OnInit, AfterViewInit, OnChanges {
 	codesFetched = false;
 	@ViewChild('componentHost', { read: ViewContainerRef }) componentHost;
 	componentRef: ComponentRef<any>;
+	_initialized = false;
 	constructor(
 		private demoerService: DemoerService,
 		private componentFactoryResolver: ComponentFactoryResolver) { }
 	ngOnInit() {
 	}
 	ngOnChanges() {
-		if (this.component && this.component.componentId) {
-			setTimeout(() => {
-				this.loadComponent();
-			});
+		if (this._initialized) {
+			if (this.component && this.component.componentId) {
+				setTimeout(() => {
+					this.loadComponent();
+				});
+			}
 		}
 	}
 	ngAfterViewInit() {
@@ -55,6 +58,7 @@ export class DemoerComponent implements OnInit, AfterViewInit, OnChanges {
 			this.componentRef = this.componentHost.createComponent(componentFactory);
 		}
 		this.fetchCodes();
+		this._initialized = true;
 	}
 	onKeyUp(event: KeyboardEvent, value) {
 		if (event.keyCode === 13 || event.keyCode === 32) {

@@ -23,6 +23,8 @@ import { CheckboxDemoComponent } from './demo/app-checkbox-demo/app-checkbox-dem
 import { ChoicefieldDemoComponent } from './demo/app-choicefield-demo/app-choicefield-demo.component';
 import { TableDemoComponent } from './demo/app-table-demo/app-table-demo.component';
 import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-demo.component';
+import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
+import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
 
 // tslint:disable max-line-length
 
@@ -40,7 +42,7 @@ export class AppComponent {
 		{ componentId: DatepickerComponent, active: false, id: 'app-datepicker-demo', title: 'Datepicker', dir: 'uif-datepicker' },
 		{ componentId: DialogDemoComponent, active: false, id: 'app-dialog-demo', title: 'Dialog', dir: 'uif-dialog' },
 		{ componentId: DropdownDemoComponent, active: false, id: 'app-dropdown-demo', title: 'Dropdown', dir: 'uif-dropdown' },
-		{ componentId: FacepileDemoComponent, active: false, id: 'app-facepile-demo', title: 'Facepile', dir: 'uif-facepile' },
+		{ componentId: FacepileDemoComponent, active: false, id: 'app-facepile-demo', title: 'Facepile', dir: 'uif-facepile', isFlexed: true },
 		{ componentId: PersonaDemoComponent, active: false, id: 'app-persona-demo', title: 'Persona', dir: 'uif-persona' },
 		{ componentId: PersonaCardDemoComponent, active: false, id: 'app-personacard-demo', title: 'Persona Card', dir: 'uif-persona-card' },
 		{ componentId: OrgChartDemoComponent, active: false, id: 'app-orgchart-demo', title: 'Org Chart', dir: 'uif-orgchart' },
@@ -55,14 +57,20 @@ export class AppComponent {
 		{ componentId: CheckboxDemoComponent, active: false, id: 'app-checkbox-demo', title: 'Checkbox', dir: 'uif-checkbox' },
 		{ componentId: ChoicefieldDemoComponent, active: false, id: 'app-choicefield-demo', title: 'Choicefield', dir: 'uif-choicefield' },
 		{ componentId: TableDemoComponent, active: false, id: 'app-table-demo', title: 'Table', dir: 'uif-table' },
-		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table' },
+		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table', isCustom: false, isNew: true },
 		{ componentId: IconDemoComponent, active: false, id: 'app-icon-demo', title: 'Icons', dir: 'uif-icon' },
+		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: true },
+		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;
 	constructor() {
 		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 		this.isSummaryActive = true;
+
+		// this.activeComponent = this.components[this.components.length - 1];
+		// this.isSummaryActive = false;
+		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}
 	activateComponent(component: any) {
 		if (component.id !== 'app-summary') {

@@ -14,12 +14,12 @@
     </h5>
     <pre>{{getRowJson()}}</pre>
     <div class="horizontal-separator"></div>
-    <uif-table [selectable]="getBoolean(selectable)">
+    <uif-table [selectable]="getBoolean(selectable)" classes="demo-tablestyles">
         <thead>
             <tr [(selected)]="allSelected" uifTableRow>
                 <th>Album</th>
                 <th class="width-fixed">Year</th>
-                <th class="width-fixed">US Peak Chart Post</th>
+                <th class="width-fixed">US Chart Peak</th>
             </tr>
         </thead>
         <tbody>

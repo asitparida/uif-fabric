@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UifMessageType } from '../../uif-fabric/uif-message-bar/uif-message-bar.models';
+import { UifMessageType } from '../../uif-fabric/index';
 
 @Component({
 	selector: 'app-messagebar-demo',

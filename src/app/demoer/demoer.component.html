@@ -7,7 +7,7 @@
                 <span [hidden]="!showCodes">Show Demo</span>
             </uif-button>
         </h2>
-        <div class="demo-content" [hidden]="showCodes">
+        <div class="demo-content" [hidden]="showCodes" [class.flexed]="component?.isFlexed">
             <div style="padding: 0; box-sizing: border-box;">
                 <template #componentHost></template>
             </div>

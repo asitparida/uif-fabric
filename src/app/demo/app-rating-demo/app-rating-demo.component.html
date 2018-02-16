@@ -1,0 +1,58 @@
+<div style="padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h5>Disabled</h5>
+            <select name="disabled" [(ngModel)]="disabled" class="form-control">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Active Color</h5>
+            <select name="colorHints" [(ngModel)]="color" class="form-control">
+                <option *ngFor="let hint of colorHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Max Rating</h5>
+            <select name="maxRatingHints" [(ngModel)]="maxRating" class="form-control">
+                <option *ngFor="let hint of maxRatingHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Rating</h5>
+            <select name="ratingHints" [(ngModel)]="rating" class="form-control">
+                <option *ngFor="let hint of ratingHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="horizontal-separator"></div>
+        <div class="horizontal-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Size</h5>
+            <select name="sizeHints" [(ngModel)]="size" class="form-control">
+                <option *ngFor="let hint of sizeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Icon</h5>
+            <select name="iconHints" [(ngModel)]="icon" class="form-control">
+                <option *ngFor="let hint of iconHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator">
+    </div>
+    <div class="horizontal-separator">
+    </div>
+    <div class="horizontal-separator">
+    </div>
+    <uif-rating [disabled]="getBoolean(disabled)" [activeColor]="color" [maxRating]="maxRating" [(rating)]="rating" [icon]="icon" [size]="size"></uif-rating>
+</div>

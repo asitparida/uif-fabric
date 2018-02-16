@@ -1,0 +1,82 @@
+<div class="ms-ColorPicker">
+    <div class="ms-ColorPicker-panel">
+        <div class="ms-ColorPicker-colorRect"
+            #colorRect
+            [style.backgroundColor]="COLOR_RECT"
+            style="min-width: 220px; min-height: 220px;">
+            <div class="ms-ColorPicker-light"></div>
+            <div class="ms-ColorPicker-dark"></div>
+            <div class="ms-ColorPicker-thumb"
+            #colorRectThumb
+            style="left:0%; top: 0%; background-color: rgb(172, 54, 54);"></div>
+        </div>
+        <div class="ms-ColorPicker-slider is-hue" #colorHueSlide>
+            <div class="ms-ColorPicker-sliderOverlay"></div>
+            <div class="ms-ColorPicker-thumb is-slider" #colorHueSlideThumb style="left: 0%;"></div>
+        </div>
+        <div class="ms-ColorPicker-slider is-alpha" #colorAlphaSlide>
+            <div class="ms-ColorPicker-sliderOverlay" #colorAlphaSlideOverlay style="background: linear-gradient(to right, transparent 0px, rgb(172, 54, 54) 100%);"></div>
+            <div class="ms-ColorPicker-thumb is-slider" #colorAlphaSlideThumb style="left: 100%;"></div>
+        </div>
+        <table class="ms-ColorPicker-table" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr class="">
+                    <td class="">Hex</td>
+                    <td>Red</td>
+                    <td>Green</td>
+                    <td>Blue</td>
+                    <td>Alpha</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="ms-TextField ms-ColorPicker-input">
+                            <div class="ms-TextField-wrapper">
+                                <div class="ms-TextField-fieldGroup">
+                                    <input [(ngModel)]="color.hex" (input)="onHexInputChange()" type="text" id="TextField259" class="ms-TextField-field" spellcheck="false" >
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width:18%;">
+                        <div class="ms-TextField ms-ColorPicker-input">
+                            <div class="ms-TextField-wrapper">
+                                <div class="ms-TextField-fieldGroup">
+                                    <input [(ngModel)]="color.r" (input)="onRGBAInputChange()" type="number" id="TextField261" class="ms-TextField-field" min="0" max="255" step="1" >
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ms-TextField ms-ColorPicker-input">
+                            <div class="ms-TextField-wrapper">
+                                <div class="ms-TextField-fieldGroup">
+                                    <input [(ngModel)]="color.g" (input)="onRGBAInputChange()" type="number" id="TextField263" class="ms-TextField-field" min="0" max="255" step="1" >
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ms-TextField ms-ColorPicker-input">
+                            <div class="ms-TextField-wrapper">
+                                <div class="ms-TextField-fieldGroup">
+                                    <input [(ngModel)]="color.b" (input)="onRGBAInputChange()" type="number" id="TextField265" class="ms-TextField-field" min="0" max="255" step="1" >
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ms-TextField ms-ColorPicker-input">
+                            <div class="ms-TextField-wrapper">
+                                <div class="ms-TextField-fieldGroup">
+                                    <input [(ngModel)]="color.a" (input)="onRGBAInputChange()" type="number" id="TextField267" class="ms-TextField-field" min="0" max="100" step="1" >
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

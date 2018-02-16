@@ -1,0 +1,10 @@
+<div class="ms-Rating-star" [attr.aria-label]="'Rating value is' + rating + ' of ' + maxRating" id="Rating15">
+    <div role="presentation" tabindex="0">
+        <button class="ms-Rating-button" [disabled]="disabled" role="presentation" *ngFor="let star of stars; let i = index;" (click)="changeRating(i + 1)">
+            <span class="ms-Rating-labelText labelText-51">{{i + 1}} of {{maxRating}} stars selected</span>
+            <div class="ms-RatingStar-container">
+                <i [class.unmarked]="!star.marked" [ngClass]="'ms-Icon--' + icon" class="ms-Icon ms-RatingStar-back" [style.fontSize]="star.size" [style.color]="star.color"></i>
+            </div>
+        </button>
+    </div>
+</div>

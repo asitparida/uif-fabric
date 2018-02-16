@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UifContextualMenuDirectionHint } from '../../uif-fabric/uif-contextual-menu/uif-contextual-menu.models';
+import { UifContextualMenuDirectionHint } from '../../uif-fabric/index';
 
 @Component({
 	selector: 'app-contextualmenu-demo',

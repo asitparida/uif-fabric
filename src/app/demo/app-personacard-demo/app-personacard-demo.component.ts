@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { UifCalloutDirectionalHint } from '../../uif-fabric/index';
-import { PersonaCard } from '../../uif-fabric/uif-persona-card/uif-persona-card.models';
-import { UifPersonaAvailabilityType } from '../../uif-fabric/uif-persona/uif-persona.models';
+import { PersonaCard, UifPersonaAvailabilityType, UifCalloutDirectionalHint } from '../../uif-fabric/index';
 
 @Component({
 	selector: 'app-personacard-demo',

@@ -57,6 +57,8 @@ import { UifTableComponent } from './uif-table/uif-table.component';
 import { UifTableTrComponent } from './uif-table/uif-table-tr.component';
 import { UifTreeTableComponent } from './uif-tree-table/uif-tree-table.component';
 import { UifTreeTableColumnComponent, UifTreeTableContentComponent } from './uif-tree-table/uif-tree-table-content.component';
+import { UifRatingComponent } from './uif-rating/uif-rating.component';
+import { UifColorPickerComponent } from './uif-color-picker/uif-color-picker.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -124,7 +126,10 @@ const COMPONENTS = [
 
 	UifTreeTableComponent,
 	UifTreeTableColumnComponent,
-	UifTreeTableContentComponent
+	UifTreeTableContentComponent,
+
+	UifRatingComponent,
+	UifColorPickerComponent
 ];
 
 @NgModule({

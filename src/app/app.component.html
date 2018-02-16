@@ -6,7 +6,7 @@
                 <span>Components</span>
             </label>
             <ul>
-                <li tabindex="0" [class.active]="component?.id === activeComponent?.id" (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
+                <li tabindex="0" [class.is-new]="component?.isNew" [class.is-custom]="component?.isCustom" [class.active]="component?.id === activeComponent?.id" (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
             </ul>
         </div>
         <div class="home-list" style="margin: 15px 0 0 0;">

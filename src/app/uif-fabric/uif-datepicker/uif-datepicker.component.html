@@ -8,10 +8,10 @@
                         <div class="ms-DatePicker-header">
                             <div class="ms-DatePicker-month">{{currentDayData.monthName}}</div>
                             <div class="ms-DatePicker-year">{{currentDayData.yearNum}}</div>
-                            <div class="picker__nav--prev" role="button" aria-components="P242246400_table" title="Previous month"> </div>
-                            <div class="picker__nav--next" role="button" aria-components="P242246400_table" title="Next month"> </div>
+                            <div class="picker__nav--prev" role="button" title="Previous month"> </div>
+                            <div class="picker__nav--next" role="button" title="Next month"> </div>
                         </div>
-                        <table class="ms-DatePicker-table" id="P242246400_table" role="grid" aria-components="P242246400" aria-readonly="true">
+                        <table class="ms-DatePicker-table" role="grid" aria-components="P242246400" aria-readonly="true">
                             <thead>
                                 <tr>
                                     <th class="ms-DatePicker-weekday" *ngFor="let day of weekDays" scope="col" [attr.title]="day.fullName">{{day.char}}</th>
@@ -24,7 +24,8 @@
                                         [class.ms-DatePicker-day--infocus]="day.isInFocus"
                                         [class.ms-DatePicker-day--outfocus]="!day.isInFocus"
                                         [class.ms-DatePicker-day--disabled]="day.disabled"
-                                            [class.ms-DatePicker-day--highlighted]="day.isHighlighted" role="gridcell" (click)="selectDate(day.date, day.disabled)">{{day.dateNum}}</div>
+                                        [class.ms-DatePicker-day--isToday]="day.isToday"
+                                        [class.ms-DatePicker-day--highlighted]="day.isHighlighted" role="gridcell" (click)="selectDate(day.date, day.disabled)">{{day.dateNum}}</div>
                                     </td>
                                 </tr>
                             </tbody>
