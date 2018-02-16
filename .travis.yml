@@ -11,10 +11,7 @@ before_script:
   - npm install
 
 script:
-  - npm install ftp-deploy
-  - npm install jsftp
   - npm run build
-  - npm run publish
 
 notifications:
   email:
