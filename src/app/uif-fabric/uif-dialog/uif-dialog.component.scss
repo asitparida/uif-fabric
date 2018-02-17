@@ -17,5 +17,49 @@
                 color: #fff;
             }
         }
+        &.ms-Modal-custom {
+            padding: 0;
+            min-width: 60vw;
+            max-height: 60vh;
+            display: flex;
+            flex-flow: column;
+            min-width: 33vw;
+            min-height: 33vh;
+            &.ms-Modal-custom-md {
+                min-width: 50vw;
+                max-height: 50vh;
+            }
+            &.ms-Modal-custom-default,
+            &.ms-Modal-custom-large {
+                min-width: 75vw;
+                max-height: 75vh;
+            }
+            &.ms-Modal-custom-xl {
+                min-width: calc(100vw - 48px);
+                max-height: calc(100vh - 48px);
+            }
+            .ms-Modal-title-custom {
+                height: 60px;
+                flex: initial;
+                order: 1;
+                margin: 0;
+                padding: 24px;
+            }
+            .ms-Modal-content-custom {
+                flex: 1;
+                order: 2;
+                overflow-y: auto;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                -webkit-overflow-scrolling: touch;
+                margin: 0;
+                padding: 0 24px;
+            }
+            .ms-Modal-actions-custom {
+                flex: initial;
+                order: 3;
+                margin: 0;
+                padding: 24px;
+            }
+        }
     }
 }

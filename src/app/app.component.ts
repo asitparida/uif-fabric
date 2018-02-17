@@ -25,6 +25,7 @@ import { TableDemoComponent } from './demo/app-table-demo/app-table-demo.compone
 import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-demo.component';
 import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
 import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
+import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
 
 // tslint:disable max-line-length
 
@@ -61,6 +62,7 @@ export class AppComponent {
 		{ componentId: IconDemoComponent, active: false, id: 'app-icon-demo', title: 'Icons', dir: 'uif-icon' },
 		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: true },
 		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true },
+		{ componentId: ModalDemoComponent, active: false, id: 'app-modal-demo', title: 'Modal', dir: 'uif-modal', isNew: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;

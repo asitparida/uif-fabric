@@ -1,4 +1,6 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, ContentChild } from '@angular/core';
+import { UifModalSize } from '../uif-modal/index';
+import { UifDialogContentComponent, UifDialogFooterComponent, UifDialogHeaderComponent } from './uif-dialog-subcomponents.component';
 
 @Component({
 	selector: 'uif-dialog',
@@ -6,11 +8,16 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
 	styleUrls: ['./uif-dialog.component.scss']
 })
 export class UifDialogComponent implements OnChanges {
+	@Input() isModal: boolean | Boolean = false;
+	@Input() modalSize: UifModalSize = UifModalSize.Default;
 	@Input() isOpen: boolean | Boolean = false;
 	@Output() isOpenChange: EventEmitter<boolean | Boolean> = new EventEmitter<boolean | Boolean>();
 	@Input() isBlocking: boolean | Boolean = false;
 	@Input() isLargeHeader: boolean | Boolean =  false;
 	@Input() isCloseable: boolean | Boolean = false;
+	@ContentChild(UifDialogHeaderComponent) uifDialogHeader;
+	@ContentChild(UifDialogContentComponent) uifDialogContent;
+	@ContentChild(UifDialogFooterComponent) uifDialogFooter;
 	originalOveflowStyle = null;
 	originalOveflowStyleAvailable = false;
 	ngOnChanges() {

@@ -1,0 +1,11 @@
+<uif-dialog [isOpen]="isOpen" (isOpenChange)="onOpenChange($event)" [isBlocking]="isBlocking" [isCloseable]="isCloseable" [isModal]="isModal" [modalSize]="size" [isLargeHeader]="isLargeHeader">
+    <uif-dialog-header *ngIf="uifModalHeader">
+        <ng-content select="uif-modal-header, [uifModalHeader]"></ng-content>
+    </uif-dialog-header>
+    <uif-dialog-content *ngIf="uifModalContent">
+        <ng-content select="uif-modal-content, [uifModalContent]"></ng-content>
+    </uif-dialog-content>
+    <uif-dialog-footer *ngIf="uifModalFooter">
+        <ng-content select="uif-modal-footer, [uifModalFooter]"></ng-content>
+    </uif-dialog-footer>
+</uif-dialog>
