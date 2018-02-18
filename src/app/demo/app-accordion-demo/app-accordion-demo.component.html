@@ -1,0 +1,27 @@
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h5>Only one item open at a time</h5>
+            <select name="oneItemOpenOnly" [(ngModel)]="oneItemOpenOnly">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <!-- <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Currently active accordion</h5>
+            <select name="activeAccordion" [(ngModel)]="activeAccordion" (change)="onActiveAccordionChange()">
+                <option *ngFor="let hint of accordions" [value]="hint.id">{{hint.id}}</option>
+            </select>
+        </div> -->
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <uif-accordion [oneItemOpenOnly]="getBoolean(oneItemOpenOnly)">
+        <uif-accordion-item *ngFor="let accordion of accordions" [(isOpen)]="accordion.active">
+            <uif-accordion-item-title>{{accordion.title}}</uif-accordion-item-title>
+            <p style="margin: 0; padding: 30px 0; font-weight: 400;">{{accordion.content}}</p>
+        </uif-accordion-item>
+    </uif-accordion>
+</div>

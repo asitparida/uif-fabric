@@ -26,6 +26,7 @@ import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-
 import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
 import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
 import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
+import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
 
 // tslint:disable max-line-length
 
@@ -63,16 +64,17 @@ export class AppComponent {
 		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: true },
 		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true },
 		{ componentId: ModalDemoComponent, active: false, id: 'app-modal-demo', title: 'Modal', dir: 'uif-modal', isNew: true },
+		{ componentId: AccordionDemoComponent, active: false, id: 'app-accordion-demo', title: 'Accordion', dir: 'uif-accordion', isNew: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;
 	constructor() {
-		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
-		this.isSummaryActive = true;
-
-		// this.activeComponent = this.components[this.components.length - 1];
-		// this.isSummaryActive = false;
 		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
+		// this.isSummaryActive = true;
+
+		this.activeComponent = this.components[this.components.length - 1];
+		this.isSummaryActive = false;
+		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}
 	activateComponent(component: any) {
 		if (component.id !== 'app-summary') {

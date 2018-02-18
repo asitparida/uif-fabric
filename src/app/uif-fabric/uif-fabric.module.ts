@@ -61,6 +61,9 @@ import { UifRatingComponent } from './uif-rating/uif-rating.component';
 import { UifColorPickerComponent } from './uif-color-picker/uif-color-picker.component';
 import { UifModalComponent } from './uif-modal/uif-modal.component';
 import { UifModalHeaderComponent, UifModalContentComponent, UifModalFooterComponent } from './uif-modal/uif-modal-subcomponents.component';
+import { UifAccordionComponent } from './uif-accordion/uif-accordion.component';
+import { UifAccordionItemTitleComponent } from './uif-accordion/uif-accordion-subcomponents.component';
+import { UifAccordionItemComponent } from './uif-accordion/uif-accordion-item.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -136,7 +139,11 @@ const COMPONENTS = [
 	UifModalComponent,
 	UifModalHeaderComponent,
 	UifModalContentComponent,
-	UifModalFooterComponent
+	UifModalFooterComponent,
+
+	UifAccordionComponent,
+	UifAccordionItemComponent,
+	UifAccordionItemTitleComponent
 ];
 
 @NgModule({

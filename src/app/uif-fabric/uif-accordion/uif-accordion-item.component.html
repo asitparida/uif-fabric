@@ -1,0 +1,13 @@
+<div class="ms-Accordion-Item-Custom" [class.is-opened]="isOpen">
+    <div class="ms-Accordion-Item-Header-Custom" (click)="toggleItemOpen()">
+        <div class="ms-Accodion-Caret">
+            <i class="ms-Icon ms-Icon--ChevronRight"></i>
+        </div>
+        <div class="ms-Accordion-Title">
+            <ng-content select="uif-accordion-item-title, [uifAccordionItemTitle]"></ng-content>
+        </div>
+    </div>
+    <div class="ms-Accordion-Item-Content-Custom" [hidden]="!isOpen">
+        <ng-content></ng-content>
+    </div>
+</div>
