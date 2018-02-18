@@ -69,12 +69,12 @@ export class AppComponent {
 	isSummaryActive = false;
 	activeComponent = null;
 	constructor() {
-		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
-		this.isSummaryActive = true;
-
-		// this.activeComponent = this.components[this.components.length - 1];
-		// this.isSummaryActive = false;
 		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
+		// this.isSummaryActive = true;
+
+		this.activeComponent = this.components[this.components.length - 1];
+		this.isSummaryActive = false;
+		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}
 	activateComponent(component: any) {
 		if (component.id !== 'app-summary') {

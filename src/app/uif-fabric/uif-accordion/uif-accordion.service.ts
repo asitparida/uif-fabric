@@ -15,18 +15,22 @@ export class UifAccordionService {
 		const activeItem = this.accordionItems.find(x => x.isOpen as boolean);
 		this.accordionItems.forEach((item: UifAccordionItemComponent, index) => {
 			if (this.oneItemOpenOnly) {
-				item.isOpen = item.getId() === activeItem.getId();
+				if (!item.disabled) {
+					item.isOpen = item.getId() === activeItem.getId();
+				}
 			}
 			item.emitOpenChange();
 		});
 	}
 	openItem(id: string) {
 		this.accordionItems.forEach((item: UifAccordionItemComponent, index) => {
-			if (item.getId() === id) {
-				item.isOpen = true;
-			} else {
-				if (this.oneItemOpenOnly) {
-					item.isOpen = false;
+			if (!item.disabled) {
+				if (item.getId() === id) {
+					item.isOpen = true;
+				} else {
+					if (this.oneItemOpenOnly) {
+						item.isOpen = false;
+					}
 				}
 			}
 			item.emitOpenChange();
