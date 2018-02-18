@@ -39,7 +39,6 @@ if (!password) {
     password = process.env.AZURE_WA_PASSWORD;
 }
 
-
 const jsftp = require("jsftp");
 
 const ftp = new jsftp({
@@ -65,9 +64,9 @@ ftp.auth(
     function (err, data) {
         if (err) {
             console.log("Error is: ", err);
+            process.exit();
             return;
         }
-
         removeAllFilesInPublicFolder(ftp);
     }
 );
