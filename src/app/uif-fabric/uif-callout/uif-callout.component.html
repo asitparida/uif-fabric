@@ -1,10 +1,10 @@
 <div class="ms-callout-container">
-    <div class="ms-ContextualHost is-positioned" [class.is-open]="isOpen">
+    <div class="ms-ContextualHost is-positioned" [class.is-open]="isOpen" [class.is-append-to-body]="appendToBody">
         <div class="ms-ContextualHost-main">
             <button class="ms-Callout-close" [hidden]="!showClose" (click)="closeCallout()">
                 <i class="ms-Icon ms-Icon--Clear"></i>
             </button>
-            <div class="ms-Callout" [ngClass]="calloutClasses">
+            <div class="ms-Callout" [ngClass]="calloutClasses" [class.is-tooltip]="isTooltip">
                 <div class="ms-Callout-main">
                     <div class="ms-Callout-header" *ngIf="showHeader" [ngClass]="headerClasses">
                         <p class="ms-Callout-title">

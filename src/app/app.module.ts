@@ -37,6 +37,7 @@ import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.comp
 import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
 import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
 import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
+import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
 
 const COMPONENTS = [
 	AppComponent,
@@ -69,7 +70,8 @@ const COMPONENTS = [
 	RatingDemoComponent,
 	ColorPickerDemoComponent,
 	ModalDemoComponent,
-	AccordionDemoComponent
+	AccordionDemoComponent,
+	TooltipDemoComponent
 ];
 // import { DemoModule } from './demo/demo.module';
 

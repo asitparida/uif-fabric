@@ -1,5 +1,6 @@
-import { Component, Input, ElementRef, AfterContentInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ElementRef, AfterContentInit, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from './uif-callout.models';
+import { GetScrollParent } from '../helpers';
 
 @Component({
 	selector: 'uif-callout',
@@ -17,6 +18,8 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 	nativeBeak;
 	calloutTriggerHandler;
 	elementIntialized = false;
+	@Input() isTooltip = false;
+	@Input() appendToBody = false;
 	@Input() showHeader = true;
 	@Input() showActions = true;
 	@Input() headerClasses = '';
@@ -44,8 +47,14 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 			this.calloutTriggerHandler = (elRef as HTMLElement).querySelector('[data-tag="call-out-trigger"]') as HTMLElement;
 		}
 		this.elementIntialized = true;
+		this.addListeners();
+		if (this.isOpen) {
+			this.openCallout();
+		} else {
+			this.closeCallout();
+		}
 	}
-	ngOnChanges() {
+	ngOnChanges(changes: SimpleChanges) {
 		this.showArrow = JSON.parse(this.showArrow.toString());
 		this.showClose = JSON.parse(this.showClose.toString());
 		this.gap = parseInt(this.gap.toString(), 10);
@@ -54,12 +63,20 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 			case 3: this.triggerHint = UifCalloutTriggerHint.HoverInBlurOut; this.disableClicks = true; this.tabIndex = null; break;
 			default: this.triggerHint = UifCalloutTriggerHint.ClickInClickOut; this.disableClicks = false; this.tabIndex = 0; break;
 		}
-		if (this.isOpen) {
-			this.openCallout();
-		} else {
-			this.closeCallout();
+		let isOpenPropChanged = false;
+		for (const prop in changes) {
+			if (changes[prop]) {
+				isOpenPropChanged = prop === 'isOpen';
+				if (!isOpenPropChanged) {
+					break;
+				}
+			}
 		}
-		this.addListeners();
+		setTimeout(() => {
+			if (!isOpenPropChanged && this.isOpen) {
+				this.closeCallout();
+			}
+		});
 	}
 	addListeners() {
 		const self = this;
@@ -72,6 +89,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 			};
 			this.listeners['toggleHandler'] = function () {
 				self.toggleCallout();
+			};
+			this.listeners['onScrollAndResize'] = function () {
+				if (self.isOpen) {
+					self.closeCallout();
+				}
 			};
 			this.listenersPopulated = true;
 		}
@@ -159,8 +181,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 30;
-						(this.nativeCalloutContainer as HTMLElement).style.left = '0px';
-						(this.nativeCalloutContainer as HTMLElement).style.bottom = (calloutTriggerProps.height + beakAdjust) + 'px';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustBottom = this.appendToBody ? calloutTriggerProps.top - calloutTriggerProps.height : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + 0 + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.bottom =
+							appendToBodyAdjustBottom + (calloutTriggerProps.height + beakAdjust) + 'px';
 						(this.nativeBeak as HTMLElement).style.left = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.bottom = '0';
 						(this.nativeBeak as HTMLElement).style.marginBottom = -beakPositionAdjust + 'px';
@@ -168,13 +193,19 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 					}
 				case UifCalloutDirectionalHint.TopCenter:
 					{
+						console.log(calloutTriggerProps);
 						const leftAdjust = (calloutProps.width - calloutTriggerProps.width) / 2;
 						const beakAdjustForCallout = 14;
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = (calloutProps.width - calloutBeakProps.width) / 2;
-						(this.nativeCalloutContainer as HTMLElement).style.left = -leftAdjust + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.bottom = (calloutTriggerProps.height + beakAdjust) + 'px';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustBottom = this.appendToBody ?
+							window.innerHeight - calloutTriggerProps.bottom + calloutTriggerProps.height + beakAdjust
+							: (calloutTriggerProps.height + beakAdjust);
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + (-leftAdjust) + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.bottom =
+							appendToBodyAdjustBottom + 'px';
 						(this.nativeBeak as HTMLElement).style.left = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.bottom = '0';
 						(this.nativeBeak as HTMLElement).style.marginBottom = -beakPositionAdjust + 'px';
@@ -186,8 +217,12 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 30;
-						(this.nativeCalloutContainer as HTMLElement).style.right = '0px';
-						(this.nativeCalloutContainer as HTMLElement).style.bottom = (calloutTriggerProps.height + beakAdjust) + 'px';
+						console.log(calloutTriggerProps);
+						const appendToBodyAdjustRight = this.appendToBody ? window.innerWidth - calloutTriggerProps.right : 0;
+						const appendToBodyAdjustBottom = this.appendToBody ? calloutTriggerProps.top - calloutTriggerProps.height : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.right = appendToBodyAdjustRight + 0 + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.bottom =
+							appendToBodyAdjustBottom + (calloutTriggerProps.height + beakAdjust) + 'px';
 						(this.nativeBeak as HTMLElement).style.right = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.bottom = '0';
 						(this.nativeBeak as HTMLElement).style.marginBottom = -beakPositionAdjust + 'px';
@@ -200,8 +235,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = (calloutProps.width - calloutBeakProps.width) / 2;
-						(this.nativeCalloutContainer as HTMLElement).style.left = -leftAdjust + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.top = (calloutTriggerProps.height + beakAdjust) + 'px';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustTop = this.appendToBody ? calloutTriggerProps.top : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + (-leftAdjust) + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.top =
+							appendToBodyAdjustTop + (calloutTriggerProps.height + beakAdjust) + 'px';
 						(this.nativeBeak as HTMLElement).style.left = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.top = '0';
 						(this.nativeBeak as HTMLElement).style.marginTop = -beakPositionAdjust + 'px';
@@ -213,8 +251,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 30;
-						(this.nativeCalloutContainer as HTMLElement).style.left = '0px';
-						(this.nativeCalloutContainer as HTMLElement).style.top = (calloutTriggerProps.height + beakAdjust) + 'px';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustTop = this.appendToBody ? calloutTriggerProps.top : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + 0 + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.top =
+							appendToBodyAdjustTop + (calloutTriggerProps.height + beakAdjust) + 'px';
 						(this.nativeBeak as HTMLElement).style.left = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.top = '0';
 						(this.nativeBeak as HTMLElement).style.marginTop = -beakPositionAdjust + 'px';
@@ -226,8 +267,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 30;
-						(this.nativeCalloutContainer as HTMLElement).style.right = '0px';
-						(this.nativeCalloutContainer as HTMLElement).style.top = (calloutTriggerProps.height + beakAdjust) + 'px';
+						const appendToBodyAdjustRight = this.appendToBody ? window.innerWidth - calloutTriggerProps.right : 0;
+						const appendToBodyAdjustTop = this.appendToBody ? calloutTriggerProps.top : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.right = appendToBodyAdjustRight + 0 + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.top =
+							appendToBodyAdjustTop + (calloutTriggerProps.height + beakAdjust) + 'px';
 						(this.nativeBeak as HTMLElement).style.right = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.top = '0';
 						(this.nativeBeak as HTMLElement).style.marginTop = -beakPositionAdjust + 'px';
@@ -239,8 +283,10 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = (calloutProps.height - calloutBeakProps.height) / 2;
-						(this.nativeCalloutContainer as HTMLElement).style.left = -(calloutProps.width + beakAdjust) + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.marginTop = '-50%';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustMarginTop = this.appendToBody ? -(calloutProps.height / 2) + (calloutTriggerProps.height / 2) + 'px' : '-50%';
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + (-(calloutProps.width + beakAdjust)) + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.marginTop = appendToBodyAdjustMarginTop;
 						(this.nativeBeak as HTMLElement).style.right = '0';
 						(this.nativeBeak as HTMLElement).style.top = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.marginRight = -beakPositionAdjust + 'px';
@@ -252,8 +298,10 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 12;
-						(this.nativeCalloutContainer as HTMLElement).style.left = -(calloutProps.width + beakAdjust) + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.top = '0px';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustTop = this.appendToBody ? calloutTriggerProps.top : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + (-(calloutProps.width + beakAdjust)) + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.top = appendToBodyAdjustTop + 0 + 'px';
 						(this.nativeBeak as HTMLElement).style.right = '0';
 						(this.nativeBeak as HTMLElement).style.top = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.marginRight = -beakPositionAdjust + 'px';
@@ -265,8 +313,10 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 12;
-						(this.nativeCalloutContainer as HTMLElement).style.left = -(calloutProps.width + beakAdjust) + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.bottom = '0px';
+						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustTop = this.appendToBody ? calloutTriggerProps.top - calloutTriggerProps.height : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + (-(calloutProps.width + beakAdjust)) + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.bottom = appendToBodyAdjustTop + 'px';
 						(this.nativeBeak as HTMLElement).style.right = '0';
 						(this.nativeBeak as HTMLElement).style.bottom = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.marginRight = -beakPositionAdjust + 'px';
@@ -278,8 +328,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = (calloutProps.height - calloutBeakProps.height) / 2;
-						(this.nativeCalloutContainer as HTMLElement).style.right = -(calloutProps.width + beakAdjust) + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.marginTop = '-50%';
+						const appendToBodyAdjustRight = this.appendToBody ?
+							window.innerWidth - calloutTriggerProps.right - calloutProps.width - beakAdjust : -(calloutProps.width + beakAdjust);
+						const appendToBodyAdjustMarginTop = this.appendToBody ? -(calloutProps.height / 2) + (calloutTriggerProps.height / 2) + 'px' : '-50%';
+						(this.nativeCalloutContainer as HTMLElement).style.right = appendToBodyAdjustRight + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.marginTop = appendToBodyAdjustMarginTop;
 						(this.nativeBeak as HTMLElement).style.left = '0';
 						(this.nativeBeak as HTMLElement).style.top = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.marginLeft = -beakPositionAdjust + 'px';
@@ -291,8 +344,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 12;
-						(this.nativeCalloutContainer as HTMLElement).style.right = -(calloutProps.width + beakAdjust) + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.top = '0px';
+						const appendToBodyAdjustRight = this.appendToBody ?
+							window.innerWidth - calloutTriggerProps.right - calloutProps.width - beakAdjust : -(calloutProps.width + beakAdjust);
+						const appendToBodyAdjustTop = this.appendToBody ? calloutTriggerProps.top : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.right = appendToBodyAdjustRight + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.top = appendToBodyAdjustTop + 'px';
 						(this.nativeBeak as HTMLElement).style.left = '0';
 						(this.nativeBeak as HTMLElement).style.top = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.marginLeft = -beakPositionAdjust + 'px';
@@ -304,8 +360,12 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 12;
-						(this.nativeCalloutContainer as HTMLElement).style.right = -(calloutProps.width + beakAdjust) + 'px';
-						(this.nativeCalloutContainer as HTMLElement).style.bottom = '0px';
+						const appendToBodyAdjustRight = this.appendToBody ?
+							window.innerWidth - calloutTriggerProps.right - calloutProps.width - beakAdjust : -(calloutProps.width + beakAdjust);
+						const appendToBodyAdjustTop = this.appendToBody ?
+							calloutTriggerProps.top - calloutTriggerProps.height : 0;
+						(this.nativeCalloutContainer as HTMLElement).style.right = appendToBodyAdjustRight + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.bottom = appendToBodyAdjustTop + 'px';
 						(this.nativeBeak as HTMLElement).style.left = '0';
 						(this.nativeBeak as HTMLElement).style.bottom = beakLeftAdjust + 'px';
 						(this.nativeBeak as HTMLElement).style.marginLeft = -beakPositionAdjust + 'px';
@@ -317,6 +377,20 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 				(this.nativeBeak as HTMLElement).style.opacity = '1';
 			}
 		});
+		if (this.appendToBody) {
+			const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
+			const scrollElm = GetScrollParent(this.elementRef.nativeElement);
+			if (scrollElm) {
+				scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
+				scrollElm.addEventListener('scroll', scrollAndResizeHandler);
+				scrollElm.removeEventListener('resize', scrollAndResizeHandler);
+				scrollElm.addEventListener('resize', scrollAndResizeHandler);
+			}
+			document.removeEventListener('scroll', scrollAndResizeHandler);
+			document.addEventListener('scroll', scrollAndResizeHandler);
+			window.removeEventListener('resize', scrollAndResizeHandler);
+			window.addEventListener('resize', scrollAndResizeHandler);
+		}
 	}
 	closeCallout() {
 		if (this.isOpen) {
@@ -326,6 +400,11 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 		this.initCallout();
 		if (this.nativeCalloutContainer) {
 			(this.nativeCalloutContainer as HTMLElement).classList.remove('is-open');
+		}
+		if (this.appendToBody) {
+			const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
+			document.removeEventListener('scroll', scrollAndResizeHandler);
+			window.removeEventListener('resize', scrollAndResizeHandler);
 		}
 	}
 	toggleCallout() {
