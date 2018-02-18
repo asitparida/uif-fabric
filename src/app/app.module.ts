@@ -35,6 +35,7 @@ import { TableDemoComponent } from './demo/app-table-demo/app-table-demo.compone
 import { TreeTableDemoComponent } from './demo/app-treetable-demo/app-treetable-demo.component';
 import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.component';
 import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
+import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
 
 const COMPONENTS = [
 	AppComponent,
@@ -65,7 +66,8 @@ const COMPONENTS = [
 	TableDemoComponent,
 	TreeTableDemoComponent,
 	RatingDemoComponent,
-	ColorPickerDemoComponent
+	ColorPickerDemoComponent,
+	ModalDemoComponent
 ];
 // import { DemoModule } from './demo/demo.module';
 

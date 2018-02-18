@@ -134,11 +134,46 @@ h4 {
     text-align: center;
     padding: 12px 0;
     float: left;
+    overflow: hidden;
+    cursor: pointer;
     label {
         font-size: x-small;
         display: block;
         margin: 0;
         text-align: center;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        background: rgba(0,0,0,0.03);
+    }
+    &.copied {
+        position: relative;
+        &:after {
+            position: absolute;
+            width: 100%;
+            content: 'copied !';
+            background: #000;
+            padding: 4px;
+            font-size: x-small;
+            color: #fff;
+            bottom: 2px;
+            left: 0;
+            box-sizing: border-box;
+            animation-name: show-text;
+            animation-duration: 1s;
+        }
+    }
+}
+@keyframes show-text {
+    0% {
+        transform: translateY(100%);
+    }
+    25%, 75% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100%);
     }
 }
 /deep/ .demo-icon-holder {

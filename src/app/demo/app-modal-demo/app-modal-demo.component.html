@@ -1,0 +1,88 @@
+<div style="display: block; padding: 0 0 24px 0;">
+    <form>
+        <div style="display:inline-block;">
+            <h5>Is Closeable</h5>
+            <select name="isCloseable" [(ngModel)]="isCloseable">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Is Blocking</h5>
+            <select name="isBlocking" [(ngModel)]="isBlocking">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Is Large Header</h5>
+            <select name="isLargeHeader" [(ngModel)]="isLargeHeader">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Size</h5>
+            <select name="sizeHints" [(ngModel)]="size">
+                <option *ngFor="let hint of sizeHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div style="display:block; margin: 30px auto;text-align:center">
+        <button class="ms-Button" (click)="isModalOpen = !isModalOpen">
+            <span class="ms-Button-label">
+                <span [hidden]="isModalOpen">Open</span>
+                <span [hidden]="!isModalOpen">Close</span> Modal</span>
+        </button>
+        <br />
+    </div>
+    <uif-modal [(isOpen)]="isModalOpen" [isBlocking]="getBoolean(isBlocking)" [isCloseable]="getBoolean(isCloseable)" [isLargeHeader]="getBoolean(isLargeHeader)" [size]="size">
+        <div uifModalHeader>Lipsum Text</div>
+        <uif-modal-content>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lorem nulla, malesuada ut sagittis sit amet, vulputate
+                in leo. Maecenas vulputate congue sapien eu tincidunt. Etiam eu sem turpis. Fusce tempor sagittis nunc, ut
+                interdum ipsum vestibulum non. Proin dolor elit, aliquam eget tincidunt non, vestibulum ut turpis. In hac
+                habitasse platea dictumst. In a odio eget enim porttitor maximus. Aliquam nulla nibh, ullamcorper aliquam
+                placerat eu, viverra et dui. Phasellus ex lectus, maximus in mollis ac, luctus vel eros. Vivamus ultrices,
+                turpis sed malesuada gravida, eros ipsum venenatis elit, et volutpat eros dui et ante. Quisque ultricies
+                mi nec leo ultricies mollis. Vivamus egestas volutpat lacinia. Quisque pharetra eleifend efficitur. Mauris
+                at nunc eget lectus lobortis facilisis et eget magna. Vestibulum venenatis augue sapien, rhoncus faucibus
+                magna semper eget. Proin rutrum libero sagittis sapien aliquet auctor. Suspendisse tristique a magna at facilisis.
+                Duis rhoncus feugiat magna in rutrum. Suspendisse semper, dolor et vestibulum lacinia, nunc felis malesuada
+                ex, nec hendrerit justo ex et massa. Quisque quis mollis nulla. Nam commodo est ornare, rhoncus odio eu,
+                pharetra tellus. Nunc sed velit mi. Sed condimentum ultricies turpis convallis pharetra. Sed sagittis quam
+                pharetra luctus porttitor. Cras vel consequat lectus. Sed nec fringilla urna, a aliquet libero. Aenean sed
+                nisl purus. Vivamus vulputate felis et odio efficitur suscipit. Ut volutpat dictum lectus, ac rutrum massa
+                accumsan at. Sed pharetra auctor finibus. In augue libero, commodo vitae nisi non, sagittis convallis ante.
+                Phasellus malesuada eleifend mollis. Curabitur ultricies leo ac metus venenatis elementum. Aenean egestas
+                quam ut erat commodo blandit. Mauris ante nisl, pellentesque sed venenatis nec, aliquet sit amet enim. Praesent
+                vitae diam non diam aliquet tristique non ut arcu. Pellentesque et ultrices eros. Fusce diam metus, mattis
+                eu luctus nec, facilisis vel erat. Nam a lacus quis tellus gravida euismod. Nulla sed sem eget tortor cursus
+                interdum. Sed vehicula tristique ultricies. Aenean libero purus, mollis quis massa quis, eleifend dictum
+                massa. Fusce eu sapien sit amet odio lacinia placerat. Mauris varius risus sed aliquet cursus. Aenean lectus
+                magna, tincidunt sit amet sodales a, volutpat ac leo. Morbi nisl sapien, tincidunt sit amet mauris quis,
+                sollicitudin auctor est. Nam id mi justo. Nam vehicula vulputate augue, ac pretium enim rutrum ultricies.
+                Sed aliquet accumsan varius. Quisque ac auctor ligula. Fusce fringilla, odio et dignissim iaculis, est lacus
+                ultrices risus, vitae condimentum enim urna eu nunc. In risus est, mattis non suscipit at, mattis ut ante.
+                Maecenas consectetur urna vel erat maximus, non molestie massa consequat. Duis a feugiat nibh. Sed a hendrerit
+                diam, a mattis est. In augue dolor, faucibus vel metus at, convallis rhoncus dui.
+            </p>
+        </uif-modal-content>
+        <uif-modal-footer>
+            <button class="ms-Button ms-Dialog-action ms-Button--primary" (click)="isModalOpen = false">
+                <span class="ms-Button-label">Save</span>
+            </button>
+            <button class="ms-Button ms-Dialog-action" (click)="isModalOpen = false">
+                <span class="ms-Button-label">Cancel</span>
+            </button>
+        </uif-modal-footer>
+    </uif-modal>
+</div>

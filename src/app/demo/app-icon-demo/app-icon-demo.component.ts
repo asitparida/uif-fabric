@@ -5,7 +5,7 @@ import { UifIconFlip, UifIconBadge, UifIconDir } from '../../uif-fabric/index';
 @Pipe({ name: 'search' })
 export class SearchPipe implements PipeTransform {
 	transform(value: Array<any>, token: string): Array<any> {
-		const result = value.filter( x => x.name.toLowerCase().indexOf(token.toLowerCase()) !== -1);
+		const result = value.filter(x => x.name.toLowerCase().indexOf(token.toLowerCase()) !== -1);
 		return result;
 	}
 }
@@ -76,6 +76,7 @@ export class IconDemoComponent implements OnInit {
 		const icons = [].concat(this._ORIGINAL_ICONS);
 		icons.forEach((icon: any) => {
 			icon.code = `&#x${icon.unicode};`;
+			icon.copied = false;
 		});
 	}
 	applyFilters() {
@@ -119,4 +120,37 @@ export class IconDemoComponent implements OnInit {
 		this.originalLength = this.icons.length;
 		this.checkForSize();
 	}
+	copyIcon($event: MouseEvent, icon, iconIndex: number) {
+		const target: EventTarget = event.target;
+		if ((target as HTMLElement)) {
+			const iconTarget = (target as HTMLElement).parentElement.querySelector('.demo-icon-code');
+			if (iconTarget) {
+				const result = selectElementContents(iconTarget);
+				if (result) {
+					this.icons[iconIndex].copied = true;
+					setTimeout(() => {
+						this.icons[iconIndex].copied = false;
+					}, 1000);
+				}
+			}
+		}
+	}
+}
+
+function selectElementContents(el) {
+	const range = document.createRange();
+	range.selectNodeContents(el);
+	const sel = window.getSelection();
+	sel.removeAllRanges();
+	sel.addRange(range);
+	let result;
+	try {
+		const successful = document.execCommand('copy');
+		result = true;
+		sel.empty();
+	} catch (err) {
+		result = false;
+		sel.empty();
+	}
+	return result;
 }

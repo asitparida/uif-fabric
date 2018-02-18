@@ -14,3 +14,4 @@ export * from './uif-persona/index';
 export * from './uif-persona-card/index';
 export * from './uif-pivot/index';
 export * from './uif-rating/index';
+export * from './uif-modal/index';
