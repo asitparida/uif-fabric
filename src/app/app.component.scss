@@ -60,6 +60,23 @@ h4 {
         margin-top: 0;
         padding-bottom: 30px;
         border-bottom: 1px dotted rgba($appColor, 0.33);
+        &.isCustom {
+            position: relative;
+            margin-bottom: 48px;
+            &:after {
+                position: absolute;
+                content: 'Not compliant with Office UI Fabric design language';
+                font-size: xx-small;
+                background: $appColor;
+                letter-spacing: 1px;
+                color: #fff;
+                height: 16px;
+                line-height: 14px;
+                padding: 0 4px;
+                left: 0px;
+                bottom: -16px;
+            }
+        }
     }
     /deep/ h4 {
         font-weight: 300;
@@ -84,6 +101,13 @@ h4 {
         }
         &.tabs {
             padding-right: 0;
+        }
+        h3 {
+            opacity: 0.50;
+            font-weight: 100;
+            width: 100%;
+            text-align: center;
+            margin: 30px 0 60px 0;
         }
     }
     .demo-tab {

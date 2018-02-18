@@ -1,0 +1,53 @@
+.ms-Accordion-Custom {
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    /deep/ uif-accordion-item  {
+        &:not(:last-child) .ms-Accordion-Item-Custom {
+            border-bottom: 1px solid #f0f0f0;
+        }
+    }
+}
+.ms-Accordion-Item-Custom {
+    &.is-opened {
+        .ms-Accordion-Item-Header-Custom {
+            .ms-Accodion-Caret {
+                i {
+                    transform: rotate(90deg);
+                    transform-origin: center;
+                }
+            }
+        }    
+    }
+    .ms-Accordion-Item-Header-Custom {
+        display: flex;
+        flex-flow: row;
+        .ms-Accodion-Caret {
+            box-sizing: border-box;
+            padding: 10px;
+            flex: initial;
+            width: 36px;
+            order: 1;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: rgb(144, 144, 144);
+            i {
+                transition: transform 0.25s linear 0s;
+            }
+        }
+        .ms-Accordion-Title {
+            padding: 10px 0;
+            flex: 1;
+            order: 2;
+        }
+        cursor: pointer;
+            &:hover,
+            &:active,
+            &:focus {
+                background: rgba(0,0,0,0.03);
+            }
+    }
+    .ms-Accordion-Item-Content-Custom {
+        padding: 0 36px;
+    }
+}
