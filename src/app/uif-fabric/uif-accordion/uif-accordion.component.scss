@@ -8,6 +8,13 @@
     }
 }
 .ms-Accordion-Item-Custom {
+    &.is-disabled {
+        cursor: default;
+        opacity: 0.50;
+        .ms-Accordion-Item-Header-Custom {
+            cursor: default;
+        }
+    }
     &.is-opened {
         .ms-Accordion-Item-Header-Custom {
             .ms-Accodion-Caret {
@@ -21,6 +28,7 @@
     .ms-Accordion-Item-Header-Custom {
         display: flex;
         flex-flow: row;
+        cursor: pointer;
         .ms-Accodion-Caret {
             box-sizing: border-box;
             padding: 10px;
@@ -40,10 +48,9 @@
             flex: 1;
             order: 2;
         }
-        cursor: pointer;
-            &:hover,
-            &:active,
-            &:focus {
+        &:not(.is-disabled):hover,
+        &:not(.is-disabled):active,
+        &:not(.is-disabled):focus {
                 background: rgba(0,0,0,0.03);
             }
     }

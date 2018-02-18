@@ -7,6 +7,7 @@ import { UifAccordionService } from './uif-accordion.service';
 	styleUrls: [ './uif-accordion.component.scss' ]
 })
 export class UifAccordionItemComponent {
+	@Input() disabled: boolean | Boolean = false;
 	@Input() isOpen: boolean | Boolean = false;
 	@Output() isOpenChange = new EventEmitter<boolean | Boolean>();
 	private _id;
@@ -14,6 +15,9 @@ export class UifAccordionItemComponent {
 		private accordionService: UifAccordionService
 	) {}
 	toggleItemOpen() {
+		if (this.disabled) {
+			return;
+		}
 		if (!this.isOpen) {
 			this.accordionService.openItem(this._id);
 		} else {

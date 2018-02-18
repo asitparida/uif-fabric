@@ -27,6 +27,7 @@ import { RatingDemoComponent } from './demo/app-rating-demo/app-rating-demo.comp
 import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorpicker-demo.component';
 import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
 import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
+import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
 
 // tslint:disable max-line-length
 
@@ -65,6 +66,7 @@ export class AppComponent {
 		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true },
 		{ componentId: ModalDemoComponent, active: false, id: 'app-modal-demo', title: 'Modal', dir: 'uif-modal', isNew: true, isCustom: true },
 		{ componentId: AccordionDemoComponent, active: false, id: 'app-accordion-demo', title: 'Accordion', dir: 'uif-accordion', isNew: true, isCustom: true },
+		{ componentId: TooltipDemoComponent, active: false, id: 'app-tooltip-demo', title: 'Tooltip', dir: 'uif-tooltip', isNew: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;

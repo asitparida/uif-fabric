@@ -15,6 +15,7 @@ export class CalloutDemoComponent implements OnInit {
 	triggerHints = [];
 	directionHint: UifCalloutDirectionalHint = UifCalloutDirectionalHint.TopCenter;
 	triggerHint: UifCalloutTriggerHint = UifCalloutTriggerHint.ClickInClickOut;
+	appendToBody = true;
 	gap: Number = 10;
 	ngOnInit() {
 		this.arrowOptions = [
@@ -43,5 +44,12 @@ export class CalloutDemoComponent implements OnInit {
 	}
 	onHintSelected(data) {
 		console.log('onHintSelected', data);
+	}
+	getBoolean(val): boolean {
+		if (typeof val === 'boolean') {
+			return val;
+		} else {
+			return val === 'false' ? false : true;
+		}
 	}
 }

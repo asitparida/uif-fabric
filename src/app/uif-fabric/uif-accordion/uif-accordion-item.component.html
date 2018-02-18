@@ -1,5 +1,5 @@
-<div class="ms-Accordion-Item-Custom" [class.is-opened]="isOpen">
-    <div class="ms-Accordion-Item-Header-Custom" (click)="toggleItemOpen()">
+<div class="ms-Accordion-Item-Custom" [class.is-opened]="isOpen" [class.is-disabled]="disabled">
+    <div class="ms-Accordion-Item-Header-Custom" (click)="toggleItemOpen()" [class.is-disabled]="disabled">
         <div class="ms-Accodion-Caret">
             <i class="ms-Icon ms-Icon--ChevronRight"></i>
         </div>

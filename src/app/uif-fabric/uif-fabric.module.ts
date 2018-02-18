@@ -64,6 +64,7 @@ import { UifModalHeaderComponent, UifModalContentComponent, UifModalFooterCompon
 import { UifAccordionComponent } from './uif-accordion/uif-accordion.component';
 import { UifAccordionItemTitleComponent } from './uif-accordion/uif-accordion-subcomponents.component';
 import { UifAccordionItemComponent } from './uif-accordion/uif-accordion-item.component';
+import { UifTooltipComponent } from './uif-tooltip/uif-tooltip.component';
 
 const COMPONENTS = [
 	UifBreadcrumbComponent,
@@ -143,7 +144,9 @@ const COMPONENTS = [
 
 	UifAccordionComponent,
 	UifAccordionItemComponent,
-	UifAccordionItemTitleComponent
+	UifAccordionItemTitleComponent,
+
+	UifTooltipComponent
 ];
 
 @NgModule({

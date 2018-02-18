@@ -9,13 +9,13 @@
         <div class="vertical-separator"></div>
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
-                <h5>Trigger Hint</h5>
-                <select name="triggerHint" [(ngModel)]="triggerHint">
-                    <option *ngFor="let hint of triggerHints" [value]="hint.key">{{hint.text}}</option>
-                </select>
-            </div>
-            <div class="vertical-separator"></div>
-            <div class="vertical-separator"></div>
+            <h5>Trigger Hint</h5>
+            <select name="triggerHint" [(ngModel)]="triggerHint">
+                <option *ngFor="let hint of triggerHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
         <div style="display:inline-block;">
             <h5>Show Arrow</h5>
             <select name="showArrow" [(ngModel)]="showArrow">
@@ -26,7 +26,15 @@
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
             <h5>Gap</h5>
-            <input name="gap" [(ngModel)]="gap" type="number" max="30" min="0" step="1"  >
+            <input name="gap" [(ngModel)]="gap" type="number" max="30" min="0" step="1">
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Append to body </h5>
+            <select name="appendToBody" [(ngModel)]="appendToBody">
+                <option *ngFor="let item of arrowOptions" [value]="item.key">{{item.text}}</option>
+            </select>
         </div>
     </form>
     <div class="horizontal-separator"></div>
@@ -36,16 +44,21 @@
     <div class="horizontal-separator"></div>
     <div class="horizontal-separator"></div>
     <div style="display:block; margin: 30px auto;">
-        <uif-callout showClose="true" [showArrow]="showArrow" [directionalHint]="directionHint" [gap]="gap" [triggerHint]="triggerHint" [(isOpen)]="isCalloutOpen"> 
+        <uif-callout showClose="true" [appendToBody]="getBoolean(appendToBody)" [showArrow]="getBoolean(showArrow)" [directionalHint]="directionHint" [gap]="gap"
+            [triggerHint]="triggerHint" [(isOpen)]="isCalloutOpen">
             <uif-callout-header>All of your favorite people</uif-callout-header>
             <uif-callout-content>Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.</uif-callout-content>
             <uif-callout-actions>
                 <a class="ms-Link">Learn more</a>
             </uif-callout-actions>
             <uif-open-callout>
-                <uif-button><span [hidden]="isCalloutOpen">Show</span><span [hidden]="!isCalloutOpen">Close</span> Callout with uifOpenCallout</uif-button>
+                <uif-button>
+                    <span [hidden]="isCalloutOpen">Show</span>
+                    <span [hidden]="!isCalloutOpen">Close</span> Callout with uifOpenCallout</uif-button>
             </uif-open-callout>
         </uif-callout>
-        <uif-button (click)="isCalloutOpen = !isCalloutOpen"><span [hidden]="isCalloutOpen">Open</span><span [hidden]="!isCalloutOpen">Close</span> Callout from outside component</uif-button>
+        <uif-button (click)="isCalloutOpen = !isCalloutOpen">
+            <span [hidden]="isCalloutOpen">Open</span>
+            <span [hidden]="!isCalloutOpen">Close</span> Callout from outside component</uif-button>
     </div>
 </div>

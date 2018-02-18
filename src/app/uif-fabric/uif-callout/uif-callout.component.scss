@@ -13,6 +13,9 @@
     &.is-open {
         display: inline-block !important;
     }
+    &.is-append-to-body {
+        position: fixed;
+    }
     .ms-ContextualHost-main {
         display: block;
     }
@@ -35,4 +38,15 @@
 }
 .disableClicks {
     pointer-events: none;
+}
+.ms-Callout {
+    &.is-tooltip {
+        width: auto;
+        max-width: calc(100vw - 60px);
+        .ms-Callout-main {
+            .ms-Callout-inner {
+                padding: 12px;
+            }
+        }
+    }
 }
