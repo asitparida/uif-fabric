@@ -1,8 +1,9 @@
 .ms-Accordion-Custom {
-    border: 1px solid darken(#eff6fc, 10);
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
     /deep/ uif-accordion-item  {
         &:not(:last-child) .ms-Accordion-Item-Custom {
-            border-bottom: 1px solid darken(#eff6fc, 5);
+            border-bottom: 1px solid #f0f0f0;
         }
     }
 }
@@ -18,18 +19,18 @@
         }    
     }
     .ms-Accordion-Item-Header-Custom {
-        background: #eff6fc;
         display: flex;
         flex-flow: row;
         .ms-Accodion-Caret {
-            padding: 10px 0;
+            box-sizing: border-box;
+            padding: 10px;
             flex: initial;
-            width: 48px;
+            width: 36px;
             order: 1;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: small;
+            font-size: 12px;
+            color: #666;
             i {
                 transition: transform 0.25s linear 0s;
             }
@@ -43,10 +44,10 @@
             &:hover,
             &:active,
             &:focus {
-                background: darken(#eff6fc, 5);
+                background: rgba(0,0,0,0.03);
             }
     }
     .ms-Accordion-Item-Content-Custom {
-        padding: 10px 48px;
+        padding: 0 36px;
     }
 }
