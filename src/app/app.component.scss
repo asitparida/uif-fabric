@@ -369,13 +369,14 @@ h4 {
                     }
                     &.copyright {
                         margin-top: 15px;
-                        font-size: x-small;
-                        text-transform: uppercase;
-                        span {
-                            margin-left: 17px !important;
+                        font-size: small;
+                        // text-transform: uppercase;
+                        span.symb {
+                            margin-left: 0;
+                            font-size: medium;
                         }
                         a {
-                            text-transform: uppercase;
+                            // text-transform: uppercase;
                             display: inline;
                         }
                     }

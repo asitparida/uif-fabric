@@ -3,7 +3,7 @@ import {
 	AfterViewInit, ElementRef, HostListener, ViewChild, OnInit
 } from '@angular/core';
 import { UIfColorPickerModel } from './uif-color-picker.models';
-import { GetRandomInt } from '../helpers';
+import { GetRandomInt, GetScrollParent } from '../helpers';
 import {
 	getColorFromString,
 	IColor, updateH, updateSV,
@@ -48,6 +48,23 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit {
 	ngAfterViewInit() {
 		this.addDOMEventListeners();
 		this.initFns();
+		const scrollAndResizeHandler = () => {
+			this.colorRectProps = this.colorRect.nativeElement.getBoundingClientRect();
+			this.colorHueSlideProps = this.colorHueSlide.nativeElement.getBoundingClientRect();
+			this.colorAlphaSlideProps = this.colorAlphaSlide.nativeElement.getBoundingClientRect();
+		};
+		const scrollElm = GetScrollParent(this.elRef.nativeElement);
+		if (scrollElm) {
+			scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
+			scrollElm.addEventListener('scroll', scrollAndResizeHandler);
+			scrollElm.removeEventListener('resize', scrollAndResizeHandler);
+			scrollElm.addEventListener('resize', scrollAndResizeHandler);
+		} else {
+			document.removeEventListener('scroll', scrollAndResizeHandler);
+			document.addEventListener('scroll', scrollAndResizeHandler);
+			window.removeEventListener('resize', scrollAndResizeHandler);
+			window.addEventListener('resize', scrollAndResizeHandler);
+		}
 	}
 	initFns() {
 		this.initiazlizeColorRect();
@@ -77,6 +94,7 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit {
 		const xPercentForAlphaSliderThumb = (this.color.a / 100) * 100; // HuePercent
 		this.assignColorAlphaSliderThumbPosition(xPercentForAlphaSliderThumb);
 	}
+	@HostListener('window:resize')
 	addDOMEventListeners() {
 		if (this.colorRect) {
 			this.colorRectProps = this.colorRect.nativeElement.getBoundingClientRect();

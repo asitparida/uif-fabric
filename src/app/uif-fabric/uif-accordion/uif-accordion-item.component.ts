@@ -48,7 +48,6 @@ export class UifAccordionItemComponent implements OnChanges {
 		this._id = val;
 	}
 	openItemDrawer() {
-		console.log(1111);
 		this.isItemOpen = true;
 		setTimeout(() => {
 			const contentElm = this.contentElement.nativeElement as HTMLElement;

@@ -1,10 +1,10 @@
 import {
 	Component, Input, ElementRef, AfterContentInit, ViewChild,
-	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild
+	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild, OnDestroy
 } from '@angular/core';
 import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from './uif-callout.models';
 import { GetScrollParent } from '../helpers';
-import {  } from '@angular/core/src/metadata/di';
+import { } from '@angular/core/src/metadata/di';
 
 @Component({
 	selector: 'uif-callout',
@@ -13,7 +13,7 @@ import {  } from '@angular/core/src/metadata/di';
 		'./uif-callout.component.scss'
 	]
 })
-export class UifCalloutComponent implements AfterContentInit, OnChanges {
+export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestroy {
 	@Input() isOpen = false;
 	@Output() isOpenChange: EventEmitter<boolean | Boolean> = new EventEmitter<boolean | Boolean>();
 	nativeCallout;
@@ -36,6 +36,8 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 	@Input() directionalHint: UifCalloutDirectionalHint = UifCalloutDirectionalHint.TopCenter;
 	@Input() triggerHint: UifCalloutTriggerHint = UifCalloutTriggerHint.ClickInClickOut;
 	@ViewChild('msCalloutHost') msCalloutHost: any;
+	@ViewChild('msCalloutContainer') msCalloutContainer: any;
+	scrollElm;
 	UifCalloutTriggerHints = UifCalloutTriggerHint;
 	listeners: any = {};
 	listenersPopulated = false;
@@ -84,6 +86,25 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 				this.closeCallout();
 			}
 		});
+	}
+	ngOnDestroy() {
+		const openHandler = this.listeners['openHandler'];
+		const closeHandler = this.listeners['closeHandler'];
+		const toggleHandler = this.listeners['toggleHandler'];
+		if (this.calloutTriggerHandler) {
+			(this.calloutTriggerHandler as HTMLElement).removeEventListener('click', toggleHandler);
+			(this.calloutTriggerHandler as HTMLElement).removeEventListener('focus', openHandler);
+			(this.calloutTriggerHandler as HTMLElement).removeEventListener('blur', closeHandler);
+			(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseover', openHandler);
+			(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseout', closeHandler);
+		}
+		const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
+		if (this.scrollElm) {
+			this.scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
+			this.scrollElm.removeEventListener('resize', scrollAndResizeHandler);
+		}
+		document.removeEventListener('scroll', scrollAndResizeHandler);
+		window.removeEventListener('resize', scrollAndResizeHandler);
 	}
 	addListeners() {
 		const self = this;
@@ -174,6 +195,9 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 		if (this.appendToBody) {
 			this.childInDOM = this.msCalloutHost.nativeElement;
 			document.body.appendChild(this.childInDOM);
+		} else {
+			this.childInDOM = this.msCalloutHost.nativeElement;
+			this.msCalloutContainer.nativeElement.appendChild(this.childInDOM);
 		}
 		if (!this.isOpen) {
 			this.isOpen = true;
@@ -228,7 +252,6 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = 30;
-						console.log(calloutTriggerProps);
 						const appendToBodyAdjustRight = this.appendToBody ? window.innerWidth - calloutTriggerProps.right : 0;
 						const appendToBodyAdjustBottom = this.appendToBody ? calloutTriggerProps.top - calloutTriggerProps.height : 0;
 						(this.nativeCalloutContainer as HTMLElement).style.right = appendToBodyAdjustRight + 0 + 'px';
@@ -390,12 +413,12 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 		});
 		if (this.appendToBody) {
 			const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
-			const scrollElm = GetScrollParent(this.elementRef.nativeElement);
-			if (scrollElm) {
-				scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
-				scrollElm.addEventListener('scroll', scrollAndResizeHandler);
-				scrollElm.removeEventListener('resize', scrollAndResizeHandler);
-				scrollElm.addEventListener('resize', scrollAndResizeHandler);
+			this.scrollElm = GetScrollParent(this.elementRef.nativeElement);
+			if (this.scrollElm) {
+				this.scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
+				this.scrollElm.addEventListener('scroll', scrollAndResizeHandler);
+				this.scrollElm.removeEventListener('resize', scrollAndResizeHandler);
+				this.scrollElm.addEventListener('resize', scrollAndResizeHandler);
 			}
 			document.removeEventListener('scroll', scrollAndResizeHandler);
 			document.addEventListener('scroll', scrollAndResizeHandler);
