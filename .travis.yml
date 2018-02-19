@@ -14,7 +14,7 @@ before_script:
 
 script:
   - npm run build
-  - node deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD
+  - npm run publish
 
 notifications:
   email:
