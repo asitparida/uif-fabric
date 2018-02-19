@@ -66,6 +66,10 @@ import { UifAccordionItemTitleComponent } from './uif-accordion/uif-accordion-su
 import { UifAccordionItemComponent } from './uif-accordion/uif-accordion-item.component';
 import { UifTooltipComponent } from './uif-tooltip/uif-tooltip.component';
 
+
+const DIRECTIVES = [
+	UifContextualMenuTriggerDirective
+];
 const COMPONENTS = [
 	UifBreadcrumbComponent,
 	UifButtonComponent,
@@ -82,7 +86,6 @@ const COMPONENTS = [
 	UifContextualMenuItemComponent,
 	UifContextualMenuItemDividerComponent,
 	UifContextualMenuItemHeaderComponent,
-	UifContextualMenuTriggerDirective,
 
 	UifDatepickerComponent,
 	UifOpenDatepickerComponent,
@@ -150,13 +153,14 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-	declarations: COMPONENTS,
+	declarations: [ ...COMPONENTS, ...DIRECTIVES],
 	imports: [
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule
 	],
-	exports: COMPONENTS,
+	entryComponents: COMPONENTS,
+	exports: [ ...COMPONENTS, ...DIRECTIVES],
 	providers: []
 })
 export class UiFabricModule { }

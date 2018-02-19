@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, ElementRef, HostListener } from '@angular/core';
 import { UifAccordionService } from './uif-accordion.service';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
@@ -19,6 +19,7 @@ export class UifAccordionItemComponent implements OnChanges {
 	constructor(
 		private accordionService: UifAccordionService
 	) { }
+	@HostListener('window:resize')
 	ngOnChanges() {
 		if (this.isOpen) {
 			this.openItemDrawer();
@@ -47,6 +48,7 @@ export class UifAccordionItemComponent implements OnChanges {
 		this._id = val;
 	}
 	openItemDrawer() {
+		console.log(1111);
 		this.isItemOpen = true;
 		setTimeout(() => {
 			const contentElm = this.contentElement.nativeElement as HTMLElement;

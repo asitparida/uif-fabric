@@ -1,6 +1,10 @@
-import { Component, Input, ElementRef, AfterContentInit, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import {
+	Component, Input, ElementRef, AfterContentInit, ViewChild,
+	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild
+} from '@angular/core';
 import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from './uif-callout.models';
 import { GetScrollParent } from '../helpers';
+import {  } from '@angular/core/src/metadata/di';
 
 @Component({
 	selector: 'uif-callout',
@@ -31,12 +35,15 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 	@Input() showClose: Boolean = false;
 	@Input() directionalHint: UifCalloutDirectionalHint = UifCalloutDirectionalHint.TopCenter;
 	@Input() triggerHint: UifCalloutTriggerHint = UifCalloutTriggerHint.ClickInClickOut;
+	@ViewChild('msCalloutHost') msCalloutHost: any;
 	UifCalloutTriggerHints = UifCalloutTriggerHint;
 	listeners: any = {};
 	listenersPopulated = false;
 	disableClicks = false;
 	tabIndex = null;
-	constructor(private elementRef: ElementRef) { }
+	private childInDOM;
+	constructor(
+		private elementRef: ElementRef) { }
 	ngAfterContentInit() {
 		const elRef = this.elementRef.nativeElement as HTMLElement;
 		if (elRef) {
@@ -164,6 +171,10 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 		}
 	}
 	openCallout() {
+		if (this.appendToBody) {
+			this.childInDOM = this.msCalloutHost.nativeElement;
+			document.body.appendChild(this.childInDOM);
+		}
 		if (!this.isOpen) {
 			this.isOpen = true;
 			this.isOpenChange.emit(this.isOpen);
@@ -193,17 +204,17 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 					}
 				case UifCalloutDirectionalHint.TopCenter:
 					{
-						console.log(calloutTriggerProps);
 						const leftAdjust = (calloutProps.width - calloutTriggerProps.width) / 2;
 						const beakAdjustForCallout = 14;
 						const beakPositionAdjust = 9;
 						const beakAdjust = this.showArrow ? this.gap + beakAdjustForCallout : this.gap;
 						const beakLeftAdjust = (calloutProps.width - calloutBeakProps.width) / 2;
-						const appendToBodyAdjustLeft = this.appendToBody ? calloutTriggerProps.left : 0;
+						const appendToBodyAdjustLeft = this.appendToBody ?
+							calloutTriggerProps.left - leftAdjust : -leftAdjust;
 						const appendToBodyAdjustBottom = this.appendToBody ?
 							window.innerHeight - calloutTriggerProps.bottom + calloutTriggerProps.height + beakAdjust
 							: (calloutTriggerProps.height + beakAdjust);
-						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + (-leftAdjust) + 'px';
+						(this.nativeCalloutContainer as HTMLElement).style.left = appendToBodyAdjustLeft + 'px';
 						(this.nativeCalloutContainer as HTMLElement).style.bottom =
 							appendToBodyAdjustBottom + 'px';
 						(this.nativeBeak as HTMLElement).style.left = beakLeftAdjust + 'px';
@@ -405,6 +416,10 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges {
 			const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
 			document.removeEventListener('scroll', scrollAndResizeHandler);
 			window.removeEventListener('resize', scrollAndResizeHandler);
+			if (this.childInDOM) {
+				document.body.removeChild(this.childInDOM);
+				this.childInDOM = null;
+			}
 		}
 	}
 	toggleCallout() {
