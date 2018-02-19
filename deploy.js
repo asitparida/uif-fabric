@@ -39,14 +39,21 @@ if (!password) {
     password = process.env.AZURE_WA_PASSWORD;
 }
 
+console.log(host);
+console.log(user);
+console.log(password);
 
 const jsftp = require("jsftp");
+
+console.log('jsftp required');
 
 const ftp = new jsftp({
     host: host,
     user: user,
     pass: password
 });
+
+console.log('ftp newed');
 
 const remoteDirectory = '/site/wwwroot/';
 
@@ -59,16 +66,20 @@ var config = {
     remoteRoot: remoteDirectory,
 }
 
+console.log('starting ftp auth');
+
 ftp.auth(
     ftp.user,
     ftp.pass,
     function (err, data) {
         if (err) {
             console.log("Error is: ", err);
+            process.exit();
             return;
         }
-
-        removeAllFilesInPublicFolder(ftp);
+        console.log('log in successful');
+        process.exit();
+        // removeAllFilesInPublicFolder(ftp);
     }
 );
 
