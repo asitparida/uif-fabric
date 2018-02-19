@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "publish": "node deploy.js"
+    "publish": "node deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD"
   },
   "private": true,
   "dependencies": {
