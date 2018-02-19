@@ -8,10 +8,13 @@ branches:
 
 before_script:
   - npm install -g @angular/cli
+  - npm install ftp-deploy
+  - npm install jsftp
   - npm install
 
 script:
   - npm run build
+  - node deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD
 
 notifications:
   email:
