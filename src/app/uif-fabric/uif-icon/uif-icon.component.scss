@@ -1,3 +1,6 @@
+:host {
+    display: inline-block;
+}
 i.ms-Icon {
     &:not(.flip-horizontal):not(.flip-vertical) {
         &.has-alert-badge,

@@ -1,10 +1,13 @@
 import {
 	Component, Input, ElementRef, AfterContentInit, ViewChild,
-	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild, OnDestroy
+	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild, OnDestroy, DoCheck, ChangeDetectorRef
 } from '@angular/core';
 import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from './uif-callout.models';
 import { GetScrollParent } from '../helpers';
 import { } from '@angular/core/src/metadata/di';
+import { UifOpenCalloutComponent } from './uif-callout-subcomponents.component';
+import { QueryList } from '@angular/core/src/render3/query';
+import { SimpleChange } from '@angular/core/src/change_detection/change_detection_util';
 
 @Component({
 	selector: 'uif-callout',
@@ -14,8 +17,10 @@ import { } from '@angular/core/src/metadata/di';
 	]
 })
 export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestroy {
+	openCalloutComponent = UifOpenCalloutComponent;
 	@Input() isOpen = false;
 	@Output() isOpenChange: EventEmitter<boolean | Boolean> = new EventEmitter<boolean | Boolean>();
+	nativeEl;
 	nativeCallout;
 	nativeCalloutTrigger;
 	nativeCalloutContainer;
@@ -35,8 +40,12 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 	@Input() showClose: Boolean = false;
 	@Input() directionalHint: UifCalloutDirectionalHint = UifCalloutDirectionalHint.TopCenter;
 	@Input() triggerHint: UifCalloutTriggerHint = UifCalloutTriggerHint.ClickInClickOut;
+	@Input() onTextEllipsis = false;
+	@Input() maxWidth;
+	@ViewChild('msCalloutMain') msCalloutMain: any;
 	@ViewChild('msCalloutHost') msCalloutHost: any;
 	@ViewChild('msCalloutContainer') msCalloutContainer: any;
+	@ContentChild(UifOpenCalloutComponent) msOpenCalloutTrigger: UifOpenCalloutComponent;
 	scrollElm;
 	UifCalloutTriggerHints = UifCalloutTriggerHint;
 	listeners: any = {};
@@ -47,13 +56,15 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 	constructor(
 		private elementRef: ElementRef) { }
 	ngAfterContentInit() {
-		const elRef = this.elementRef.nativeElement as HTMLElement;
-		if (elRef) {
-			this.nativeCalloutContainer = (elRef as HTMLElement).querySelector('.ms-ContextualHost') as HTMLElement;
-			this.nativeCallout = (elRef as HTMLElement).querySelector('.ms-ContextualHost-main') as HTMLElement;
-			this.nativeCalloutTrigger = (elRef as HTMLElement).querySelector('uif-open-callout') as HTMLElement;
-			this.nativeBeak = (elRef as HTMLElement).querySelector('.ms-Beak') as HTMLElement;
-			this.calloutTriggerHandler = (elRef as HTMLElement).querySelector('[data-tag="call-out-trigger"]') as HTMLElement;
+		this.nativeEl = this.elementRef.nativeElement as HTMLElement;
+		if (this.nativeEl) {
+			this.nativeCalloutContainer = (this.nativeEl as HTMLElement).querySelector('.ms-ContextualHost') as HTMLElement;
+			this.nativeCallout = (this.nativeEl as HTMLElement).querySelector('.ms-ContextualHost-main') as HTMLElement;
+			this.nativeBeak = (this.nativeEl as HTMLElement).querySelector('.ms-Beak') as HTMLElement;
+			this.calloutTriggerHandler = (this.nativeEl as HTMLElement).querySelector('uif-open-callout, [uifOpenCallout]') as HTMLElement;
+		}
+		if (this.msOpenCalloutTrigger.elementRef) {
+			this.nativeCalloutTrigger = (this.msOpenCalloutTrigger.elementRef.nativeElement as HTMLElement);
 		}
 		this.elementIntialized = true;
 		this.addListeners();
@@ -73,17 +84,29 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 			default: this.triggerHint = UifCalloutTriggerHint.ClickInClickOut; this.disableClicks = false; this.tabIndex = 0; break;
 		}
 		let isOpenPropChanged = false;
+		let change: SimpleChange;
 		for (const prop in changes) {
 			if (changes[prop]) {
+				change = changes[prop] as SimpleChange;
 				isOpenPropChanged = prop === 'isOpen';
-				if (!isOpenPropChanged) {
-					break;
+				if (prop === 'triggerHint' && this.elementIntialized) {
+					this.addListeners();
 				}
 			}
 		}
 		setTimeout(() => {
-			if (!isOpenPropChanged && this.isOpen) {
-				this.closeCallout();
+			if (isOpenPropChanged && !change.firstChange) {
+				if (change.currentValue) {
+					this.openCallout();
+				} else {
+					this.closeCallout();
+				}
+			}
+			if (isOpenPropChanged && !this.isOpen && this.appendToBody) {
+				if (this.childInDOM) {
+					document.body.removeChild(this.childInDOM);
+					this.childInDOM = null;
+				}
 			}
 		});
 	}
@@ -110,17 +133,17 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 		const self = this;
 		if (!this.listenersPopulated) {
 			this.listeners['openHandler'] = function () {
-				self.openCallout();
+				self.open();
 			};
 			this.listeners['closeHandler'] = function () {
-				self.closeCallout();
+				self.close();
 			};
 			this.listeners['toggleHandler'] = function () {
 				self.toggleCallout();
 			};
 			this.listeners['onScrollAndResize'] = function () {
 				if (self.isOpen) {
-					self.closeCallout();
+					self.close();
 				}
 			};
 			this.listenersPopulated = true;
@@ -190,6 +213,25 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 				(this.nativeBeak as HTMLElement).style.marginBottom = null;
 			}
 		}
+		if (this.msCalloutMain) {
+			(this.msCalloutMain.nativeElement as HTMLElement).style.maxWidth = null;
+		}
+	}
+	open() {
+		if (this.onTextEllipsis) {
+			const parent = (this.nativeEl as HTMLElement).parentElement;
+			if (parent) {
+				const parentProps: ClientRect = parent.getBoundingClientRect();
+				const calloutTriggerProps: ClientRect = (this.nativeCalloutTrigger as HTMLElement).getBoundingClientRect();
+				if (parentProps.width >= calloutTriggerProps.width) {
+					return;
+				}
+			}
+		}
+		if (!this.isOpen) {
+			this.isOpen = true;
+			this.isOpenChange.emit(this.isOpen);
+		}
 	}
 	openCallout() {
 		if (this.appendToBody) {
@@ -199,16 +241,20 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 			this.childInDOM = this.msCalloutHost.nativeElement;
 			this.msCalloutContainer.nativeElement.appendChild(this.childInDOM);
 		}
-		if (!this.isOpen) {
-			this.isOpen = true;
-			this.isOpenChange.emit(this.isOpen);
-		}
 		(this.nativeCalloutContainer as HTMLElement).classList.add('is-open');
 		setTimeout(() => {
-			const calloutProps = (this.nativeCallout as HTMLElement).getBoundingClientRect();
-			const calloutTriggerProps = (this.nativeCalloutTrigger as HTMLElement).getBoundingClientRect();
-			const calloutBeakProps = (this.nativeBeak as HTMLElement).getBoundingClientRect();
 			this.initCallout();
+			if (this.maxWidth) {
+				(this.msCalloutMain.nativeElement as HTMLElement).style.maxWidth = this.maxWidth;
+			}
+			const calloutProps = (this.nativeCallout as HTMLElement).getBoundingClientRect();
+			let calloutTriggerProps;
+			if (this.onTextEllipsis) {
+				calloutTriggerProps = (this.nativeEl as HTMLElement).parentElement.getBoundingClientRect();
+			} else {
+				calloutTriggerProps = (this.nativeCalloutTrigger as HTMLElement).getBoundingClientRect();
+			}
+			const calloutBeakProps = (this.nativeBeak as HTMLElement).getBoundingClientRect();
 			switch (parseInt(this.directionalHint.toString(), 10)) {
 				case UifCalloutDirectionalHint.TopLeftEdge:
 					{
@@ -426,11 +472,13 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 			window.addEventListener('resize', scrollAndResizeHandler);
 		}
 	}
-	closeCallout() {
+	close() {
 		if (this.isOpen) {
 			this.isOpen = false;
 			this.isOpenChange.emit(this.isOpen);
 		}
+	}
+	closeCallout() {
 		this.initCallout();
 		if (this.nativeCalloutContainer) {
 			(this.nativeCalloutContainer as HTMLElement).classList.remove('is-open');
@@ -447,9 +495,9 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 	}
 	toggleCallout() {
 		if (!this.isOpen) {
-			this.openCallout();
+			this.open();
 		} else {
-			this.closeCallout();
+			this.close();
 		}
 	}
 }

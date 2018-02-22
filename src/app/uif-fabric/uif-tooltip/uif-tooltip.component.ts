@@ -9,6 +9,9 @@ import { UifCalloutTriggerHint, UifCalloutDirectionalHint } from '../index';
 export class UifTooltipComponent {
 	// tslint:disable: no-input-rename
 	@Input('uifTooltip') tooltipMsg;
+	@Input() onTextEllipsis = false;
+	@Input() maxWidth = '';
+	isOpen;
 	showClose = false;
 	isTooltip = true;
 	calloutTriggerHint = UifCalloutTriggerHint.HoverInBlurOut;
