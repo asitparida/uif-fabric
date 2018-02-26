@@ -29,6 +29,7 @@ import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.compone
 import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
 import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
 import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
+import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
 
 // tslint:disable max-line-length
 
@@ -52,23 +53,24 @@ export class AppComponent {
 		{ componentId: OrgChartDemoComponent, active: false, id: 'app-orgchart-demo', title: 'Org Chart', dir: 'uif-orgchart' },
 		{ componentId: OverlayDemoComponent, active: false, id: 'app-overlay-demo', title: 'Overlay', dir: 'uif-overlay' },
 		{ componentId: PanelDemoComponent, active: false, id: 'app-panel-demo', title: 'Panel', dir: 'uif-panel' },
-		{ componentId: MessageBarDemoComponent, active: false, id: 'app-messagebar-demo', title: 'Message Bar', dir: 'uif-message-bar' },
+		{ componentId: MessageBarDemoComponent, active: false, id: 'app-messagebar-demo', title: 'Message Bar', dir: 'uif-message-bar', hideDocWarning: true },
 		{ componentId: MessageBannerDemoComponent, active: false, id: 'app-messagebanner-demo', title: 'Message Banner', dir: 'uif-message-banner' },
 		{ componentId: PeoplePickerDemoComponent, active: false, id: 'app-peoplepicker-demo', title: 'Peoplepicker', dir: 'uif-people-picker' },
 		{ componentId: PivotDemoComponent, active: false, id: 'app-pivot-demo', title: 'Pivot', dir: 'uif-pivot' },
-		{ componentId: ProgressIndicatorDemoComponent, active: false, id: 'app-progressindicator-demo', title: 'Progress Indicator', dir: 'uif-progress-indicator' },
+		{ componentId: ProgressIndicatorDemoComponent, active: false, id: 'app-progressindicator-demo', title: 'Progress Indicator', dir: 'uif-progress-indicator', hideDocWarning: true },
 		{ componentId: ToggleDemoComponent, active: false, id: 'app-toggle-demo', title: 'Toggle', dir: 'uif-toggle' },
 		{ componentId: CheckboxDemoComponent, active: false, id: 'app-checkbox-demo', title: 'Checkbox', dir: 'uif-checkbox' },
 		{ componentId: ChoicefieldDemoComponent, active: false, id: 'app-choicefield-demo', title: 'Choicefield', dir: 'uif-choicefield' },
-		{ componentId: TableDemoComponent, active: false, id: 'app-table-demo', title: 'Table', dir: 'uif-table' },
-		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table', isCustom: true, isNew: true },
-		{ componentId: IconDemoComponent, active: false, id: 'app-icon-demo', title: 'Icons', dir: 'uif-icon' },
-		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: true },
-		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true },
-		{ componentId: ModalDemoComponent, active: false, id: 'app-modal-demo', title: 'Modal', dir: 'uif-modal', isNew: true, isCustom: true },
-		{ componentId: AccordionDemoComponent, active: false, id: 'app-accordion-demo', title: 'Accordion', dir: 'uif-accordion', isNew: true, isCustom: true },
-		{ componentId: TooltipDemoComponent, active: false, id: 'app-tooltip-demo', title: 'Tooltip', dir: 'uif-tooltip', isNew: true },
-		{ componentId: WizardDemoComponent, active: false, id: 'app-wizard-demo', title: 'Wizard', dir: 'uif-wizard', isNew: true, isCustom: true },
+		{ componentId: TableDemoComponent, active: false, id: 'app-table-demo', title: 'Table', dir: 'uif-table', hideDocWarning: true },
+		{ componentId: TreeTableDemoComponent, active: false, id: 'app-treetable-demo', title: 'Tree Table', dir: 'uif-tree-table', isCustom: true, isNew: true, hideDocWarning: true },
+		{ componentId: IconDemoComponent, active: false, id: 'app-icon-demo', title: 'Icons', dir: 'uif-icon', hideDocWarning: true, isNew: true },
+		{ componentId: RatingDemoComponent, active: false, id: 'app-rating-demo', title: 'Rating', dir: 'uif-rating', isNew: false },
+		{ componentId: ColorPickerDemoComponent, active: false, id: 'app-colorpicker-demo', title: 'Color Picker', dir: 'uif-color-picker', isNew: true, hideDocWarning: true },
+		{ componentId: ModalDemoComponent, active: false, id: 'app-modal-demo', title: 'Modal', dir: 'uif-modal', isNew: false, isCustom: true },
+		{ componentId: AccordionDemoComponent, active: false, id: 'app-accordion-demo', title: 'Accordion', dir: 'uif-accordion', isNew: true, isCustom: true, hideDocWarning: true },
+		{ componentId: TooltipDemoComponent, active: false, id: 'app-tooltip-demo', title: 'Tooltip', dir: 'uif-tooltip', isNew: false },
+		{ componentId: WizardDemoComponent, active: false, id: 'app-wizard-demo', title: 'Wizard', dir: 'uif-wizard', isNew: true, isCustom: true, hideDocWarning: true },
+		{ componentId: CarouselDemoComponent, active: false, id: 'app-carousel-demo', title: 'Carousel', dir: 'uif-carousel', isNew: true, isCustom: true, hideDocWarning: true }
 	];
 	isSummaryActive = false;
 	activeComponent = null;

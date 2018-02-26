@@ -443,7 +443,7 @@ h4 {
 }
 
 .uif-wizard-holder {
-    max-width: 1000px;
+    // max-width: 1000px;
     // width: 80vw;
     // height: 75vh;
     // display: block;
@@ -533,4 +533,9 @@ h4 {
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
+  }
+
+  .carousel-holder {
+    height: 400px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   }

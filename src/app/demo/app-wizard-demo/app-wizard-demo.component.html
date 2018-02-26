@@ -31,8 +31,6 @@
             </select>
         </div>
     </form>
-    <div class="horizontal-separator"></div>
-    <div class="horizontal-separator"></div>
     <div class="uif-wizard-holder" [hidden]="!isWizardShown">
         <uif-wizard #wizard [showPageIndexInNav]="false" [showStepMarkers]="true" [wizardNavigation]="wizardNavigation" [showNavTitles]="getBoolean(showNavTitles)"
             (wizardOnCancel)="onWizardCancel()" (wizardOnNext)="onWizardNext($event)" (wizardOnFinish)="onWizardFinish()">

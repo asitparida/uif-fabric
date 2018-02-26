@@ -39,6 +39,7 @@ import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.compone
 import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
 import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
 import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
+import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
 
 const COMPONENTS = [
 	AppComponent,
@@ -73,7 +74,8 @@ const COMPONENTS = [
 	ModalDemoComponent,
 	AccordionDemoComponent,
 	TooltipDemoComponent,
-	WizardDemoComponent
+	WizardDemoComponent,
+	CarouselDemoComponent
 ];
 // import { DemoModule } from './demo/demo.module';
 
