@@ -1,7 +1,7 @@
-<div class="ms-callout-container">
-    <div class="ms-ContextualHost is-positioned" [class.is-open]="isOpen" [class.is-append-to-body]="appendToBody">
-        <div class="ms-ContextualHost-main">
-            <button class="ms-Callout-close" [hidden]="!showClose" (click)="closeCallout()">
+<span class="ms-callout-container" #msCalloutContainer>
+    <div class="ms-ContextualHost is-positioned" [class.is-open]="isOpen" [class.is-append-to-body]="appendToBody" #msCalloutHost>
+        <div class="ms-ContextualHost-main" #msCalloutMain>
+            <button class="ms-Callout-close" [hidden]="!showClose" (click)="close()">
                 <i class="ms-Icon ms-Icon--Clear"></i>
             </button>
             <div class="ms-Callout" [ngClass]="calloutClasses" [class.is-tooltip]="isTooltip">
@@ -26,9 +26,7 @@
         </div>
         <div class="ms-Beak" [hidden]="!showArrow"></div>
     </div>
-    <div class="ms-Callout-button" data-tag="call-out-trigger" [attr.tabIndex]="tabIndex">
-        <span [class.disableClicks]="disableClicks">
-            <ng-content select="uif-open-callout"></ng-content>
-        </span>
-    </div>
-</div>
+</span>
+<span class="ms-Callout-button" data-tag="call-out-trigger" [attr.tabIndex]="tabIndex">
+    <ng-content select="uif-open-callout, [uifOpenCallout]"></ng-content>
+</span>

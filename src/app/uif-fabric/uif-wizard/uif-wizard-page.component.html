@@ -1,0 +1,17 @@
+<div class="uif-wizard-page-content-container" [hidden]="!showPage">
+	<div class="uif-wizard-page-header-container">
+		<ng-content select="uif-wizard-page-title, [uifWizardPageTitle]"></ng-content>
+		<span hidden>
+				<ng-content select="uif-wizard-page-nav-title, [uifWizardPageNavTitle]"></ng-content>
+		</span>
+	</div>
+	<div class="uif-wizard-page-body-container">
+		<ng-content></ng-content>
+	</div>
+	<div class="uif-wizard-page-footer-container">
+		<uif-button [disabled]="disableCancelButtonOverride" [hidden]="!showCancelBtn || !showCancelButtonOverride" (click)="goWizardCancel()">Cancel</uif-button>
+		<uif-button [disabled]="disablePreviousButtonOverride" [hidden]="!showPreviousBtn || !showPreviousButtonOverride" (click)="goWizardPreviousPage()">Previous</uif-button>
+		<uif-button [disabled]="disableNextButtonOverride" [hidden]="!showNextBtn || !showNextButtonOverride" (click)="goWizardNextPage()">Next</uif-button>
+		<uif-button [primary]="true" [disabled]="disableFinishButtonOverride" [hidden]="!showFinishBtn || !showFinishButtonOverride" (click)="goWizardFinish()">Finish</uif-button>
+	</div>
+</div>

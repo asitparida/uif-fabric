@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbDemoComponent } from './demo/app-breadcrumb-demo/app-breadcrumb-demo.component';
 import { ButtonDemoComponent } from './demo/app-button-demo/app-button-demo.component';
 import { CalloutDemoComponent } from './demo/app-callout-demo/app-callout-demo.component';
@@ -28,6 +28,7 @@ import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorp
 import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
 import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
 import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
+import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
 
 // tslint:disable max-line-length
 
@@ -67,15 +68,17 @@ export class AppComponent {
 		{ componentId: ModalDemoComponent, active: false, id: 'app-modal-demo', title: 'Modal', dir: 'uif-modal', isNew: true, isCustom: true },
 		{ componentId: AccordionDemoComponent, active: false, id: 'app-accordion-demo', title: 'Accordion', dir: 'uif-accordion', isNew: true, isCustom: true },
 		{ componentId: TooltipDemoComponent, active: false, id: 'app-tooltip-demo', title: 'Tooltip', dir: 'uif-tooltip', isNew: true },
+		{ componentId: WizardDemoComponent, active: false, id: 'app-wizard-demo', title: 'Wizard', dir: 'uif-wizard', isNew: true, isCustom: true },
 	];
 	isSummaryActive = false;
 	activeComponent = null;
+	logs = [];
 	constructor() {
 		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 		this.isSummaryActive = true;
 
 		// this.activeComponent = this.components[this.components.length - 1];
-		// this.activeComponent = this.components.find( x => x.id === 'app-accordion-demo');
+		// // this.activeComponent = this.components.find( x => x.id === 'app-accordion-demo');
 		// this.isSummaryActive = false;
 		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}

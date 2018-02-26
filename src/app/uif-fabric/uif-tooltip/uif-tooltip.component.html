@@ -1,6 +1,6 @@
-<uif-callout [isTooltip]="isTooltip" [appendToBody]="isTooltip" [showHeader]="!isTooltip" [showActions]="!isTooltip" [showClose]="showClose" [showArrow]="showArrow" [directionalHint]="directionHint" [gap]="gap" [triggerHint]="calloutTriggerHint"> 
+<uif-callout [(isOpen)]="isOpen" [maxWidth]="maxWidth" [onTextEllipsis]="onTextEllipsis" [isTooltip]="isTooltip" [appendToBody]="isTooltip" [showHeader]="!isTooltip" [showActions]="!isTooltip" [showClose]="showClose" [showArrow]="showArrow" [directionalHint]="directionHint" [gap]="gap" [triggerHint]="calloutTriggerHint"> 
     <uif-callout-content>{{tooltipMsg}}</uif-callout-content>
-    <uif-open-callout>
+    <span uifOpenCallout>
         <ng-content></ng-content>
-    </uif-open-callout>
+    </span>
 </uif-callout>
