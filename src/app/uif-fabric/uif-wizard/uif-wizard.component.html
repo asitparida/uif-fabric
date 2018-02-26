@@ -1,0 +1,35 @@
+<ng-template #lightWizardNav>
+	<ul class="uif-wizard-nav" [class.stepMarkersAdded]="showStepMarkers" [class.navTitlesHidden]="!showNavTitles">
+		<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index"
+		 (click)="activatePage(i)">
+			<span [hidden]="!showPageIndexInNav"><strong>{{i + 1}} : </strong></span><span [hidden]="!showNavTitles" class="navTitles"
+			 [innerHTML]="page.getTitle()"></span>
+		</li>
+	</ul>
+</ng-template>
+<div class="uif-wizard-container" [hidden]="!showWizard">
+	<div class="uif-wizard-nav-container" [hidden]="wizardNavigation != UiFWizardNavigations.SideNavigation" [class.hideNavTitles]="!showNavTitles">
+		<div class="uif-wizard-title">
+			<span><ng-content select="uif-wizard-title, [uifWizardTitle]"></ng-content></span>
+		</div>
+		<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
+	</div>
+	<div class="uif-wizard-page-container">
+		<div class="uif-wizard-content-container">
+			<div class="uif-wizard-top-nav" [hidden]="wizardNavigation != UiFWizardNavigations.TopNavigation">
+				<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
+			</div>
+			<div class="uif-wizard-content-page ">
+				<ng-content></ng-content>
+				<div class="uif-wizard-loader-container" [hidden]="!showLoader">
+						<div class="uif-wizard-loader-overlay">
+							<ng-content select="uif-wizard-loader, [uifWizardLoader]"></ng-content>
+						</div>
+					</div>
+				<div class="uif-wizard-bottom-nav" [hidden]="wizardNavigation != UiFWizardNavigations.BottomNavigation">
+					<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

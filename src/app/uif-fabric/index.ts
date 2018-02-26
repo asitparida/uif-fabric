@@ -15,3 +15,4 @@ export * from './uif-persona-card/index';
 export * from './uif-pivot/index';
 export * from './uif-rating/index';
 export * from './uif-modal/index';
+export * from './uif-wizard/index';

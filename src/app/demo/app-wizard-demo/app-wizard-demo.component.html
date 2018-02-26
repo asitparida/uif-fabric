@@ -1,0 +1,76 @@
+<div style="padding: 0 0 24px 0;">
+    <form #sampleForm="ngForm">
+        <div style="display:inline-block;">
+            <h5>Navigation Type</h5>
+            <select name="navigationHints" [(ngModel)]="wizardNavigation">
+                <option *ngFor="let hint of navigationHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block">
+            <h5>Show Navigation Titles</h5>
+            <select name="showNavTitles" [(ngModel)]="showNavTitles">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block">
+            <h5>Show Cancel Button</h5>
+            <select name="showCancelButtons" [(ngModel)]="showCancelButtons">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block">
+            <h5>Show Wizard</h5>
+            <select name="isWizardShown" [(ngModel)]="isWizardShown" (change)="onWizardOpenChange()">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="uif-wizard-holder" [hidden]="!isWizardShown">
+        <uif-wizard #wizard [showPageIndexInNav]="false" [showStepMarkers]="true" [wizardNavigation]="wizardNavigation" [showNavTitles]="getBoolean(showNavTitles)"
+            (wizardOnCancel)="onWizardCancel()" (wizardOnNext)="onWizardNext($event)" (wizardOnFinish)="onWizardFinish()">
+            <span uifWizardTitle>Wizard</span>
+            <div uifWizardLoader>
+                <div class="spinner">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                </div>
+            </div>
+            <uif-wizard-page [showCancelButtonOverride]="getBoolean(showCancelButtons)">
+                <span uifWizardPageNavTitle>Drink #1</span>
+                <span uifWizardPageTitle>Drink Bottles</span>
+                <div class="content">
+                    <img src="assets/015dribbble.png" />
+                </div>
+                <div class="credits">
+                    <a href="https://dribbble.com/shots/3774496-DAY015-Liquor-Bottles" target="_blank">DAY015 @ https://dribbble.com/ahappyphase</a>
+                </div>
+            </uif-wizard-page>
+            <uif-wizard-page [showCancelButtonOverride]="getBoolean(showCancelButtons)" (onWizardPageLoad)="onLifePageLoaded()">
+                <uif-wizard-page-title>Life #2</uif-wizard-page-title>
+                <div class="content">
+                    <img src="assets/023dribbble.png" />
+                </div>
+                <div class="credits">
+                    <a href="https://dribbble.com/shots/3785920-DAY023-Life" target="_blank">DAY023 @ https://dribbble.com/ahappyphase</a>
+                </div>
+            </uif-wizard-page>
+            <uif-wizard-page [showCancelButtonOverride]="getBoolean(showCancelButtons)" [disablePreviousButtonOverride]="true">
+                <uif-wizard-page-title>#365daysofsomething</uif-wizard-page-title>
+                <div class="content">
+                    <img src="assets/026dribbble.png" />
+                </div>
+                <div class="credits">
+                    <a href="https://dribbble.com/shots/3785924-DAY026-365daysofsomething-Branding" target="_blank">DAY026 @ https://dribbble.com/ahappyphase</a>
+                </div>
+            </uif-wizard-page>
+        </uif-wizard>
+    </div>
+</div>

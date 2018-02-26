@@ -65,6 +65,10 @@ import { UifAccordionComponent } from './uif-accordion/uif-accordion.component';
 import { UifAccordionItemTitleComponent } from './uif-accordion/uif-accordion-subcomponents.component';
 import { UifAccordionItemComponent } from './uif-accordion/uif-accordion-item.component';
 import { UifTooltipComponent } from './uif-tooltip/uif-tooltip.component';
+import { UifWizardComponent } from './uif-wizard/uif-wizard.component';
+import { UifWizardPageComponent } from './uif-wizard/uif-wizard-page.component';
+import { UifWizardPageNavTitleComponent } from './uif-wizard/uif-wizard-page-nav-title.component';
+import { UifWizardPageTitleComponent } from './uif-wizard/uif-wizard-page-title.component';
 
 
 const DIRECTIVES = [
@@ -149,7 +153,12 @@ const COMPONENTS = [
 	UifAccordionItemComponent,
 	UifAccordionItemTitleComponent,
 
-	UifTooltipComponent
+	UifTooltipComponent,
+
+	UifWizardComponent,
+	UifWizardPageComponent,
+	UifWizardPageNavTitleComponent,
+	UifWizardPageTitleComponent
 ];
 
 @NgModule({

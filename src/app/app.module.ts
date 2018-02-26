@@ -38,6 +38,7 @@ import { ColorPickerDemoComponent } from './demo/app-colorpicker-demo/app-colorp
 import { ModalDemoComponent } from './demo/app-modal-demo/app-modal-demo.component';
 import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-demo.component';
 import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
+import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
 
 const COMPONENTS = [
 	AppComponent,
@@ -71,7 +72,8 @@ const COMPONENTS = [
 	ColorPickerDemoComponent,
 	ModalDemoComponent,
 	AccordionDemoComponent,
-	TooltipDemoComponent
+	TooltipDemoComponent,
+	WizardDemoComponent
 ];
 // import { DemoModule } from './demo/demo.module';
 
