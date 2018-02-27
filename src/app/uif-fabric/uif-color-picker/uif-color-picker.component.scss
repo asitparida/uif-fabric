@@ -48,6 +48,9 @@
                 -webkit-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
                 user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-user-select: none;
             }
         }
         .ms-ColorPicker-slider {
@@ -85,7 +88,9 @@
                 box-shadow: 0 0 15px -5px black;
                 -webkit-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
-                user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-user-select: none;
                 &.is-slider {
                     top: 50%;
                 }
