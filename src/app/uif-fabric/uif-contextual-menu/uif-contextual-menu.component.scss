@@ -1,3 +1,4 @@
+@import '../uif-fabric.shared';
 .ms-contextual-menu-container {
     display: inline-block;
     /deep/ [menuTrigger] {
@@ -8,12 +9,12 @@
         box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
         z-index: 1;
         &:not(.top).is-open {
-            animation: fadein-carousel-down;   
+            animation: fadein-item-down;   
             animation-duration: 0.367s;
         }
         &.top {
             &.is-open {
-                animation: fadein-carousel-up;   
+                animation: fadein-item-up;   
                 animation-duration: 0.367s;
             }
             bottom: 0;
@@ -34,26 +35,5 @@
                 display: inline;
             }
         }
-    }
-}
-@keyframes fadein-carousel-down {
-    0% {
-        transform: translateY(-10px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadein-carousel-up {
-    0% {
-        transform: translateY(10px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
     }
 }

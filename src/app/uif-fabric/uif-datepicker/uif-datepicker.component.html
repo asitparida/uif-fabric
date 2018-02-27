@@ -1,7 +1,7 @@
 <div class="ms-DatePicker" [class.is-pickingYears]="isPickingYears">
     <ng-content select="uif-open-datepicker, [uifOpenDatepicker]"></ng-content>
-    <div class="ms-DatePicker-picker ms-DatePicker-picker--focused" id="P242246400_root" aria-hidden="false" [class.ms-DatePicker-picker--opened]="isOpen">
-        <div class="ms-DatePicker-holder" *ngIf="isOpen">
+    <div class="ms-DatePicker-picker ms-DatePicker-picker--focused"  aria-hidden="false" [class.ms-DatePicker-picker--opened]="isOpen">
+        <div class="ms-DatePicker-holder" *ngIf="isOpen" [class.is-opened]="isOpen">
             <div class="ms-DatePicker-frame">
                 <div class="ms-DatePicker-wrap">
                     <div class="ms-DatePicker-dayPicker">

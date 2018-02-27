@@ -1,7 +1,16 @@
+@import '../uif-fabric.shared';
 .ms-DatePicker-day--disabled {
     color: #a6a6a6;
     pointer-events: none;
 }
 .ms-DatePicker-day--isToday {
     border: 1px solid #0078d7;
+}
+.ms-DatePicker-picker.ms-DatePicker-picker--opened {
+    .ms-DatePicker-holder {
+        &.is-opened{
+            animation: fadein-item-down;   
+            animation-duration: 0.367s;
+        }
+    }
 }

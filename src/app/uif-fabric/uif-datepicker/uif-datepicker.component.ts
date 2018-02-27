@@ -1,7 +1,10 @@
-import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import * as Models from './uif-datepicker.models';
 import { DateModel, WeekDayData, Month, MonthShortname } from './uif-datepicker.models';
 import { GetDatesInMonth, GetWeeksDayMap, GetWeekDayTitles, GetCurrentDayData } from './uif-datepicker.helper';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 	selector: 'uif-datepicker',
@@ -10,6 +13,7 @@ import { GetDatesInMonth, GetWeeksDayMap, GetWeekDayTitles, GetCurrentDayData } 
 })
 export class UifDatepickerComponent implements OnChanges {
 	@Input() isOpen: boolean | Boolean = false;
+	@Output() isOpenChange = new EventEmitter<boolean | Boolean>();
 	@Input() date: Date;
 	@Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
 	@Input() firstDayOfWeek: Models.WeekDay = Models.WeekDay.Monday;
@@ -31,10 +35,39 @@ export class UifDatepickerComponent implements OnChanges {
 		years: []
 	};
 	isPickingYears: boolean | Boolean = false;
-	ngOnChanges() {
+	private onDocumentKeyUpListener: Subscription = null;
+	ngOnChanges(changes: SimpleChanges) {
 		this.currentDtContext = new Date(this.date);
 		this.processForDt();
 		this.processSearchContext(this.currentDtContext);
+		for (const prop in changes) {
+			if (changes[prop]) {
+				const change = changes[prop];
+				if (prop === 'isOpen') {
+					if (change.currentValue) {
+						this.addDocumentListener();
+					} else {
+						this.clearDocumentListener();
+					}
+				}
+			}
+		}
+	}
+	clearDocumentListener() {
+		if (this.onDocumentKeyUpListener) {
+			this.onDocumentKeyUpListener.unsubscribe();
+			this.onDocumentKeyUpListener = null;
+		}
+	}
+	addDocumentListener() {
+		this.clearDocumentListener();
+		this.onDocumentKeyUpListener = Observable.fromEvent(document, 'keyup')
+			.subscribe(($event: KeyboardEvent) => {
+				if ($event.key === 'Escape') {
+					this.isOpen = false;
+					this.isOpenChange.emit(this.isOpen);
+				}
+			});
 	}
 	processForDt() {
 		this.currentDayData = GetCurrentDayData(this.currentDtContext);

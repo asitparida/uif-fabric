@@ -80,20 +80,20 @@ export class UifContextualMenuComponent implements OnChanges, AfterContentInit, 
 					if (change.currentValue) {
 						this.addDocumentListener();
 					} else {
-						if (this.onDocumnetKeyUpListener) {
-							this.onDocumnetKeyUpListener.unsubscribe();
-							this.onDocumnetKeyUpListener = null;
-						}
+						this.clearDocumentListener();
 					}
 				}
 			}
 		}
 	}
-	addDocumentListener() {
+	clearDocumentListener() {
 		if (this.onDocumnetKeyUpListener) {
 			this.onDocumnetKeyUpListener.unsubscribe();
 			this.onDocumnetKeyUpListener = null;
 		}
+	}
+	addDocumentListener() {
+		this.clearDocumentListener();
 		this.onDocumnetKeyUpListener = Observable.fromEvent(document, 'keyup')
 			.subscribe(($event: KeyboardEvent) => {
 				if ($event.key === 'Escape') {
