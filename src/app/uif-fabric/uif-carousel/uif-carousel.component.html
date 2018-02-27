@@ -1,0 +1,20 @@
+<div class="uif-carousel-container">
+    <div class="uif-carousel-flipper previous" (click)="activatePrevious()">
+        <i class="ms-Icon ms-Icon--ChevronLeft"></i>
+    </div>
+    <div class="uif-carousel-flipper next" (click)="activateNext()">
+        <i class="ms-Icon ms-Icon--ChevronRight"></i>
+    </div>
+    <div class="uif-carousel-sequence">
+        <ul>
+            <li class="uif-carousel-sequence-indicator" *ngFor="let item of carouselItems; let i = index" [class.active]="item.active" (click)="activateItem(i)"></li>
+        </ul>
+    </div>
+    <div class="uif-carousel-pauseplay" (click)="togglePlaying()">
+        <i class="ms-Icon ms-Icon--Pause" [hidden]="!isPlaying"></i>
+        <i class="ms-Icon ms-Icon--Play" [hidden]="isPlaying"></i>
+    </div>
+    <div class="uif-carousel-content">
+        <ng-content></ng-content>
+    </div>
+</div>

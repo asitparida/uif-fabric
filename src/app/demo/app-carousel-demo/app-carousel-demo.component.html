@@ -1,0 +1,22 @@
+<div style="padding: 0 0 24px 0;">
+    <h5> Currently active item :
+        <strong>{{activeIndex + 1}}</strong>
+    </h5>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="custom-carousel-holder">
+        <uif-carousel [(activeIndex)]="activeIndex" [autoPlay]="autoPlay" [delay]="delay">
+            <uif-carousel-item *ngFor="let item of items">
+                <div class="custom-carousel-item">
+                    <div class="promo" [style.backgroundImage]="item.img" [class.left-align]="item.alignLeft" [class.right-align]="!item.alignLeft"></div>
+                    <div class="promo-text" [class.left-align]="item.alignLeft" [class.right-align]="!item.alignLeft">
+                        <div style="display: table-cell; vertical-align: middle; width: 80%">
+                            <h2 style="border-bottom: none;font-size: xx-large; margin-bottom: 12px;">{{item.title}}</h2>
+                            <p style="font-size: medium;">{{item.content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </uif-carousel-item>
+        </uif-carousel>
+    </div>
+</div>

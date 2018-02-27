@@ -69,6 +69,9 @@ import { UifWizardComponent } from './uif-wizard/uif-wizard.component';
 import { UifWizardPageComponent } from './uif-wizard/uif-wizard-page.component';
 import { UifWizardPageNavTitleComponent } from './uif-wizard/uif-wizard-page-nav-title.component';
 import { UifWizardPageTitleComponent } from './uif-wizard/uif-wizard-page-title.component';
+import { UifCarouselComponent } from './uif-carousel/uif-carousel.component';
+import { UifCarouselItemComponent } from './uif-carousel/uif-carousel-item.component';
+import { UifSliderComponent } from './uif-slider/uif-slider.component';
 
 
 const DIRECTIVES = [
@@ -158,7 +161,12 @@ const COMPONENTS = [
 	UifWizardComponent,
 	UifWizardPageComponent,
 	UifWizardPageNavTitleComponent,
-	UifWizardPageTitleComponent
+	UifWizardPageTitleComponent,
+
+	UifCarouselComponent,
+	UifCarouselItemComponent,
+
+	UifSliderComponent
 ];
 
 @NgModule({

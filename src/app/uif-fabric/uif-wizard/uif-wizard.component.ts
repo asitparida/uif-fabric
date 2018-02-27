@@ -11,6 +11,7 @@ import { UiFWizardNavigation } from './uif-wizard.models';
 })
 export class UifWizardComponent implements AfterViewInit {
 	@ContentChildren(UifWizardPageComponent) pages: QueryList<UifWizardPageComponent> = null;
+	@Input() classes = '';
 	@Input() showPageIndexInNav: Boolean = false;
 	@Input() showStepMarkers: Boolean = false;
 	@Input() wizardNavigation: UiFWizardNavigation = UiFWizardNavigation.SideNavigation;

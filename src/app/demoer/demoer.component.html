@@ -1,14 +1,14 @@
 <div class="demo-container">
     <div class="demo-container-content">
         <h2 [class.isCustom]="component?.isCustom">
-            <span>{{component.dir}}</span>
+            <span>{{component?.dir}}</span>
             <uif-button style="float:right;" (click)="showCodesContent()" icon="FileCode">
                 <span [hidden]="showCodes">Show Source</span>
                 <span [hidden]="!showCodes">Show Demo</span>
             </uif-button>
         </h2>
         <div class="demo-content" [hidden]="showCodes" [class.flexed]="component?.isFlexed">
-            <h3 [hidden]="component?.isFlexed">* Documentation would be updated shortly.</h3>
+            <h3 [hidden]="component?.isFlexed || component?.hideDocWarning">* Documentation would be updated shortly.</h3>
             <div style="padding: 0; box-sizing: border-box;">
                 <template #componentHost></template>
             </div>

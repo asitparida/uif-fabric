@@ -1,0 +1,151 @@
+.ms-Slider-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    &.is-horizontal {
+        .ms-Slider-slideBox {
+            height: 28px; // HORIZONTAL
+            padding: 0 8px; // HORIZONTAL
+            &.ms-Slider-showTransitions {
+                .activeSection,
+                .inactiveSection {
+                    -webkit-transition: width .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                    transition: width .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                }
+                .ms-Slider-thumb {
+                    -webkit-transition: left .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                    transition: left .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                }
+            }
+            .ms-Slider-line {
+                width: 100%; // HORIZONTAL
+                .ms-Slider-thumb {
+                    transform: translateX(-50%); // HORIZONTAL
+                    top: -6px; // HORIZONTAL
+                }
+                .lineContainer {
+                    height: 4px; // HORIZONTAL
+                }
+            }
+        }
+    }
+    &.is-vertical {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 100%;
+        text-align: center;
+        margin: 8px 0;
+        .ms-Slider-slideBox {
+            height: 100%;
+            width: 28px;
+            padding: 8px 0;
+            &.ms-Slider-showTransitions {
+                .activeSection,
+                .inactiveSection {
+                    -webkit-transition: height .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                    transition: height .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                }
+                .ms-Slider-thumb {
+                    -webkit-transition: bottom .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                    transition: bottom .367s cubic-bezier(0.1, 0.9, 0.2, 1);
+                }
+            }
+            .ms-Slider-line {
+                height: 100%;
+                width: 4px;
+                margin: 0 auto;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: reverse;
+                -ms-flex-direction: column-reverse;
+                flex-direction: column-reverse;
+                .ms-Slider-thumb {
+                    left: -6px;
+                    margin: 0 auto;
+                    -webkit-transform: translateY(8px);
+                    transform: translateY(8px);
+                }
+                .lineContainer {
+                    width: 4px;
+                }
+            }
+        }
+    }
+    .ms-Slider-slideBox {
+        background: transparent;
+        border: none;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        line-height: 28px;
+        position: relative;
+        outline: transparent;
+        cursor: pointer;
+        .ms-Slider-active {
+            background: #666666;
+        }
+        .ms-Slider-inactive {
+            background: #c8c8c8;
+        }
+        .ms-Slider-line {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            position: relative;
+            .ms-Slider-thumb {
+                border: 2px solid #666666;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                background: #ffffff;
+                display: block;
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                border-radius: 10px;
+            }
+            .lineContainer {
+                border-radius: 4px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+        }
+        &:not([disabled]):hover,
+        &:not([disabled]):active,
+        &:not([disabled]):focus {
+            .ms-Slider-line {
+                .ms-Slider-thumb {
+                    border: 2px solid #627686;
+                }
+                .activeSection {
+                    background-color: #0078d7;
+                }
+                .inactiveSection {
+                    background-color: #c7e0f4;
+                }
+            }
+        }
+        &:not([disabled]):focus {
+            outline: 1px dotted #0073c6;
+        }
+        &[disabled] {
+            cursor: default;
+            .ms-Slider-line {
+                .ms-Slider-thumb {
+                    border-color: #c8c8c8;
+                }
+                .activeSection {
+                    background-color: #c8c8c8;
+                }
+                .inactiveSection {
+                    background-color: #eaeaea;
+                }
+            }
+        }
+    }
+}
