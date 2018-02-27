@@ -2,7 +2,7 @@
     <h5>Default Button</h5>
     <uif-button (click)="showAlert($event)">This is a sample button!</uif-button>
     <div class="vertical-separator"></div>
-    <uif-button (click)="showAlert($event)" disabled="true">This is a sample button!</uif-button>
+    <uif-button (click)="showAlert($event)" [disabled]="isTrue">This is a sample button!</uif-button>
     <div class="vertical-separator"></div>
     <uif-button (click)="showAlert($event)" [icon]="'Mail'">This is a sample button!</uif-button>
     <div class="horizontal-separator"></div>
