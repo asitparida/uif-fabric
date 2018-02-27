@@ -1,0 +1,36 @@
+<div style="padding: 0 0 24px 0;">
+    <form #sampleForm="ngForm">
+        <div style="display:inline-block;">
+            <h5>Disabled</h5>
+            <select name="disabled" [(ngModel)]="disabled">
+                <option *ngFor="let hint of booleanHints" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <div style="display:inline-block;">
+            <h5>Step</h5>
+            <select name="sliderStep" [(ngModel)]="sliderStep">
+                <option *ngFor="let hint of getStepHints()" [value]="hint.key">{{hint.text}}</option>
+            </select>
+        </div>
+        <div class="vertical-separator"></div>
+        <div class="vertical-separator"></div>
+        <uif-button (click)="setSliderValue()">Set Slider Value to 50</uif-button>
+    </form>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <h5> Currently slider value :
+        <strong>{{sliderValue}}</strong>
+    </h5>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="slider-horizontal" style="width: 400px;">
+        <uif-slider [(value)]="sliderValue" [step]="sliderStep" [disabled]="getBoolean(disabled)"></uif-slider>
+    </div>
+    <div class="horizontal-separator"></div>
+    <div class="horizontal-separator"></div>
+    <div class="slider-vertical" style="height: 400px; width: 28px;">
+        <uif-slider [vertical]="isVertical" [(value)]="sliderValue" [step]="sliderStep" [disabled]="getBoolean(disabled)"></uif-slider>
+    </div>
+</div>

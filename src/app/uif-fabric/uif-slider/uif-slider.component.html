@@ -1,0 +1,10 @@
+<div class="ms-Slider-container" [class.is-vertical]="vertical" [class.is-horizontal]="!vertical">
+    <button #slider aria-valuenow="2" aria-valuemin="1" aria-valuemax="3" class="ms-Slider-slideBox ms-Slider-showValue ms-Slider-showTransitions"
+        [disabled]="disabled" id="Slider5" type="button" role="slider">
+        <div class="ms-Slider-line">
+            <span class="ms-Slider-thumb" #sliderThumb></span>
+            <span class="ms-Slider-active activeSection lineContainer" #sliderActive></span>
+            <span class="ms-Slider-inactive inactiveSection lineContainer" #sliderInactive></span>
+        </div>
+    </button>
+</div>

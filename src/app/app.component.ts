@@ -30,6 +30,7 @@ import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-
 import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
 import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
 import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
+import { SliderDemoComponent } from './demo/app-slider-demo/app-slider-demo.component';
 
 // tslint:disable max-line-length
 
@@ -70,7 +71,8 @@ export class AppComponent {
 		{ componentId: AccordionDemoComponent, active: false, id: 'app-accordion-demo', title: 'Accordion', dir: 'uif-accordion', isNew: true, isCustom: true, hideDocWarning: true },
 		{ componentId: TooltipDemoComponent, active: false, id: 'app-tooltip-demo', title: 'Tooltip', dir: 'uif-tooltip', isNew: false },
 		{ componentId: WizardDemoComponent, active: false, id: 'app-wizard-demo', title: 'Wizard', dir: 'uif-wizard', isNew: true, isCustom: true, hideDocWarning: true },
-		{ componentId: CarouselDemoComponent, active: false, id: 'app-carousel-demo', title: 'Carousel', dir: 'uif-carousel', isNew: true, isCustom: true, hideDocWarning: true }
+		{ componentId: CarouselDemoComponent, active: false, id: 'app-carousel-demo', title: 'Carousel', dir: 'uif-carousel', isNew: true, isCustom: true, hideDocWarning: true },
+		{ componentId: SliderDemoComponent, active: false, id: 'app-slider-demo', title: 'Slider', dir: 'uif-slider', isNew: true, isCustom: false, hideDocWarning: true }
 	];
 	isSummaryActive = false;
 	activeComponent = null;
@@ -80,7 +82,7 @@ export class AppComponent {
 		this.isSummaryActive = true;
 
 		// // this.activeComponent = this.components[this.components.length - 1];
-		// this.activeComponent = this.components.find( x => x.id === 'app-carousel-demo');
+		// this.activeComponent = this.components.find( x => x.id === 'app-colorpicker-demo');
 		// this.isSummaryActive = false;
 		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}

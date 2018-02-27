@@ -40,6 +40,7 @@ import { AccordionDemoComponent } from './demo/app-accordion-demo/app-accordion-
 import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.component';
 import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
 import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
+import { SliderDemoComponent } from './demo/app-slider-demo/app-slider-demo.component';
 
 const COMPONENTS = [
 	AppComponent,
@@ -75,7 +76,8 @@ const COMPONENTS = [
 	AccordionDemoComponent,
 	TooltipDemoComponent,
 	WizardDemoComponent,
-	CarouselDemoComponent
+	CarouselDemoComponent,
+	SliderDemoComponent
 ];
 // import { DemoModule } from './demo/demo.module';
 
