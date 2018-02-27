@@ -41,11 +41,10 @@ import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.c
 import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
 import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
 import { SliderDemoComponent } from './demo/app-slider-demo/app-slider-demo.component';
+import { AppRoutingModule } from './app.routing';
 
-const COMPONENTS = [
-	AppComponent,
-	AppSummaryComponent,
-	DemoerComponent,
+// tslint:disable max-line-length
+export const COMPONENTS = [
 	BreadcrumbDemoComponent,
 	ButtonDemoComponent,
 	CalloutDemoComponent,
@@ -65,11 +64,11 @@ const COMPONENTS = [
 	PivotDemoComponent,
 	ProgressIndicatorDemoComponent,
 	ToggleDemoComponent,
-	IconDemoComponent,
 	CheckboxDemoComponent,
 	ChoicefieldDemoComponent,
 	TableDemoComponent,
 	TreeTableDemoComponent,
+	IconDemoComponent,
 	RatingDemoComponent,
 	ColorPickerDemoComponent,
 	ModalDemoComponent,
@@ -77,20 +76,25 @@ const COMPONENTS = [
 	TooltipDemoComponent,
 	WizardDemoComponent,
 	CarouselDemoComponent,
-	SliderDemoComponent
+	SliderDemoComponent,
 ];
-// import { DemoModule } from './demo/demo.module';
-
+const APP_COMPONENTS = [
+	AppComponent,
+	AppSummaryComponent,
+	DemoerComponent,
+	...COMPONENTS
+];
 
 @NgModule({
-	declarations: [ ...COMPONENTS, SearchPipe],
-	entryComponents: COMPONENTS,
+	declarations: [ ...APP_COMPONENTS, SearchPipe],
+	entryComponents: APP_COMPONENTS,
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		CommonModule,
 		FormsModule,
 		UiFabricModule,
+		AppRoutingModule
 	],
 	providers: [
 		DemoerService

@@ -6,6 +6,10 @@
         .ms-ColorPicker-colorRect {
             position: relative;
             margin-bottom: 10px;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
             .ms-ColorPicker-light {
                 position: absolute;
                 left: 0;
@@ -14,6 +18,10 @@
                 bottom: 0;
                 background: -webkit-gradient(linear, left top, right top, from(white), to(transparent));
                 background: linear-gradient(to right, white 0%, transparent 100%);
+                user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-user-select: none;
             }
             .ms-ColorPicker-dark {
                 position: absolute;
@@ -23,6 +31,10 @@
                 bottom: 0;
                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), to(#000));
                 background: linear-gradient(to bottom, transparent 0, #000 100%);
+                user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -webkit-user-select: none;
             }
             .ms-ColorPicker-thumb {
                 position: absolute;
@@ -45,6 +57,9 @@
             border: 1px solid #eaeaea;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
             &.is-hue {
                 background: linear-gradient(to left, red 0, #f09 10%, #cd00ff 20%, #3200ff 30%, #06f 40%, #00fffd 50%, #0f6 60%, #35ff00 70%, #cdff00 80%, #f90 90%, red 100%);
             }

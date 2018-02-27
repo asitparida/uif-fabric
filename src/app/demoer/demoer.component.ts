@@ -1,8 +1,12 @@
-import { Component, Input, OnInit,
-	Injectable, ViewChild, ComponentFactoryResolver, AfterViewInit, ViewContainerRef, ComponentRef } from '@angular/core';
+import {
+	Component, Input, OnInit,
+	Injectable, ViewChild, ComponentFactoryResolver,
+	AfterViewInit, ViewContainerRef, ComponentRef, OnChanges
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { ActivatedRoute } from '@angular/router';
+import { COMPONENTS } from '../app.declarations';
 
 @Injectable()
 export class DemoerService {
@@ -22,7 +26,7 @@ export class DemoerService {
 	templateUrl: './demoer.component.html',
 	styleUrls: ['../app.component.scss']
 })
-export class DemoerComponent implements OnInit, AfterViewInit, OnChanges {
+export class DemoerComponent implements AfterViewInit {
 	@Input() component: any;
 	tsTokenizedInfo;
 	markupTokenizedInfo;
@@ -34,21 +38,21 @@ export class DemoerComponent implements OnInit, AfterViewInit, OnChanges {
 	_initialized = false;
 	constructor(
 		private demoerService: DemoerService,
+		private activatedRoute: ActivatedRoute,
 		private componentFactoryResolver: ComponentFactoryResolver) { }
-	ngOnInit() {
-	}
-	ngOnChanges() {
-		if (this._initialized) {
-			if (this.component && this.component.componentId) {
+	ngAfterViewInit() {
+		this.activatedRoute.params.subscribe((params: any) => {
+
+			if (params['id']) {
 				setTimeout(() => {
-					this.loadComponent();
+					this.component = COMPONENTS.find(x => x.dir === params['id']);
+					if (this.component) {
+						setTimeout(() => {
+							this.loadComponent();
+						});
+					}
 				});
 			}
-		}
-	}
-	ngAfterViewInit() {
-		setTimeout(() => {
-			this.loadComponent();
 		});
 	}
 	loadComponent() {
