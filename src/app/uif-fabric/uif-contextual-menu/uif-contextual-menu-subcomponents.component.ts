@@ -18,6 +18,7 @@ export class UifContextMenuService {
 	selector: '[menuTrigger]'
 })
 export class UifContextualMenuTriggerDirective {
+	constructor(public elRef: ElementRef) {}
 }
 
 @Component({

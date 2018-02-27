@@ -1,6 +1,7 @@
 import {
 	Component, Input, Output, EventEmitter,
-	OnChanges, ElementRef, AfterContentInit, ContentChildren, QueryList, OnInit
+	OnChanges, ElementRef, AfterContentInit, ContentChildren, QueryList,
+	OnInit, ViewChild, ContentChild
 } from '@angular/core';
 import { UifContextualMenuDirectionHint } from './uif-contextual-menu.models';
 import {
@@ -8,6 +9,10 @@ import {
 	UifContextualMenuItemComponent,
 	UifContextMenuService
 } from './uif-contextual-menu-subcomponents.component';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import { Subscription } from 'rxjs/Subscription';
+import { SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
 	selector: 'uif-contextualmenu',
@@ -19,7 +24,7 @@ import {
 		UifContextMenuService
 	]
 })
-export class UifContextualMenuComponent implements OnChanges, AfterContentInit, OnInit {
+export class UifContextualMenuComponent implements OnChanges, AfterContentInit, OnInit, OnDestroy {
 	@Input() isOpen: boolean | Boolean = false;
 	@Output() isOpenChange: EventEmitter<boolean | Boolean> = new EventEmitter<boolean | Boolean>();
 	@Input() isMultiSelect: boolean | Boolean = false;
@@ -29,6 +34,7 @@ export class UifContextualMenuComponent implements OnChanges, AfterContentInit, 
 	isSubMenu = false;
 	nativeMenuTrigger;
 	nativeMenu;
+	private onDocumnetKeyUpListener: Subscription = null;
 	constructor(
 		private elementRef: ElementRef,
 		private contextMenuService: UifContextMenuService
@@ -53,7 +59,13 @@ export class UifContextualMenuComponent implements OnChanges, AfterContentInit, 
 			this.nativeMenu = (elRef as HTMLLIElement).querySelector('ul.ms-ContextualMenu');
 		}
 	}
-	ngOnChanges() {
+	ngOnDestroy() {
+		if (this.onDocumnetKeyUpListener) {
+			this.onDocumnetKeyUpListener.unsubscribe();
+			this.onDocumnetKeyUpListener = null;
+		}
+	}
+	ngOnChanges(changes: SimpleChanges) {
 		setTimeout(() => {
 			if (this.nativeMenuTrigger) {
 				const props = (this.nativeMenuTrigger as HTMLElement).getBoundingClientRect();
@@ -62,6 +74,34 @@ export class UifContextualMenuComponent implements OnChanges, AfterContentInit, 
 				}
 			}
 		});
+		for (const prop in changes) {
+			if (changes[prop]) {
+				const change = changes[prop];
+				if (prop === 'isOpen') {
+					if (change.currentValue) {
+						this.addDocumentListener();
+					} else {
+						if (this.onDocumnetKeyUpListener) {
+							this.onDocumnetKeyUpListener.unsubscribe();
+							this.onDocumnetKeyUpListener = null;
+						}
+					}
+				}
+			}
+		}
+	}
+	addDocumentListener() {
+		if (this.onDocumnetKeyUpListener) {
+			this.onDocumnetKeyUpListener.unsubscribe();
+			this.onDocumnetKeyUpListener = null;
+		}
+		this.onDocumnetKeyUpListener = Observable.fromEvent(document, 'keyup')
+			.subscribe(($event: KeyboardEvent) => {
+				if ($event.key === 'Escape') {
+					this.isOpen = false;
+					this.isOpenChange.emit(this.isOpen);
+				}
+			});
 	}
 }
 
