@@ -1,7 +1,7 @@
 import {
 	Component, Input, Output, EventEmitter,
 	OnChanges, ElementRef, AfterContentInit, ContentChildren, QueryList,
-	OnInit, ViewChild, ContentChild
+	OnInit, ViewChild, ContentChild, SimpleChanges, OnDestroy
 } from '@angular/core';
 import { UifContextualMenuDirectionHint } from './uif-contextual-menu.models';
 import {
@@ -12,7 +12,6 @@ import {
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import { Subscription } from 'rxjs/Subscription';
-import { SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
 	selector: 'uif-contextualmenu',
