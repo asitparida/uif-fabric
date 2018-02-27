@@ -9,6 +9,7 @@
     opacity: 0;
     text-align: left;
     transition:  opacity 0.367s ease-in 0s;
+    
     &.is-open {
         display: inline-block !important;
     }
@@ -42,15 +43,15 @@
     .ms-Callout-header {
         padding: 36px 28px 12px;
     }
+    .ms-Callout-subText {
+        font-weight: 400;
+    }
     &.is-tooltip {
         width: auto;
         max-width: calc(100vw - 60px);
         .ms-Callout-main {
             .ms-Callout-inner {
                 padding: 12px;
-            }
-            .ms-Callout-subText {
-                font-weight: 400;
             }
         }
     }

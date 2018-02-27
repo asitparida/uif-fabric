@@ -32,7 +32,7 @@
         </div>
     </form>
     <div class="uif-wizard-holder" [hidden]="!isWizardShown">
-        <uif-wizard #wizard [showPageIndexInNav]="false" [showStepMarkers]="true" [wizardNavigation]="wizardNavigation" [showNavTitles]="getBoolean(showNavTitles)"
+        <uif-wizard #wizard classes="custom-wizard" [showPageIndexInNav]="false" [showStepMarkers]="true" [wizardNavigation]="wizardNavigation" [showNavTitles]="getBoolean(showNavTitles)"
             (wizardOnCancel)="onWizardCancel()" (wizardOnNext)="onWizardNext($event)" (wizardOnFinish)="onWizardFinish()">
             <span uifWizardTitle>Wizard</span>
             <div uifWizardLoader>

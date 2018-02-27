@@ -1,5 +1,5 @@
 <ng-template #lightWizardNav>
-	<ul class="uif-wizard-nav" [class.stepMarkersAdded]="showStepMarkers" [class.navTitlesHidden]="!showNavTitles">
+	<ul class="uif-wizard-nav" [class.stepMarkersAdded]="showStepMarkers" [class.vert-line]="wizardNavigation == UiFWizardNavigations.SideNavigation" [class.navTitlesHidden]="!showNavTitles">
 		<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index"
 		 (click)="activatePage(i)">
 			<span [hidden]="!showPageIndexInNav"><strong>{{i + 1}} : </strong></span><span [hidden]="!showNavTitles" class="navTitles"
@@ -7,9 +7,9 @@
 		</li>
 	</ul>
 </ng-template>
-<div class="uif-wizard-container" [hidden]="!showWizard">
+<div class="uif-wizard-container" [hidden]="!showWizard" [ngClass]="classes">
 	<div class="uif-wizard-nav-container" [hidden]="wizardNavigation != UiFWizardNavigations.SideNavigation" [class.hideNavTitles]="!showNavTitles">
-		<div class="uif-wizard-title">
+		<div class="uif-wizard-title" [hidden]=" !showNavTitles">
 			<span><ng-content select="uif-wizard-title, [uifWizardTitle]"></ng-content></span>
 		</div>
 		<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>

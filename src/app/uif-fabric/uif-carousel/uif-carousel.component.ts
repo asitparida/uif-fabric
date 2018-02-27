@@ -33,6 +33,9 @@ export class UifCarouselComponent implements AfterViewInit, OnChanges {
 			this.activeIndex = index;
 			this.activeIndexChange.emit(this.activeIndex);
 		});
+		this.carouselService.isPlayingAsObservable.subscribe((isPlaying: boolean) => {
+			this.isPlaying = isPlaying;
+		});
 		this.carouselItems.changes.subscribe((items) => {
 			this.carouselService.loadItems(this.carouselItems, this.delay, this.autoPlay);
 		});
@@ -60,12 +63,7 @@ export class UifCarouselComponent implements AfterViewInit, OnChanges {
 		this.initialized = true;
 	}
 	togglePlaying() {
-		this.isPlaying = !this.isPlaying;
-		if (this.isPlaying) {
-			this.carouselService.setIntervalTimer();
-		} else {
-			this.carouselService.resetIntervalTimer();
-		}
+		this.carouselService.togglePlaying();
 	}
 	activateItem(i) {
 		this.carouselService.activateItem(i);

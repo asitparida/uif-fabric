@@ -35,3 +35,10 @@ body, html {
 .w50 {
     width: 50%;
 }
+
+.custom-wizard /deep/ .uif-wizard-nav li {
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: small !important;
+    text-transform: uppercase;
+}

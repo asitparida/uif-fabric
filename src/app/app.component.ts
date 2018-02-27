@@ -79,8 +79,8 @@ export class AppComponent {
 		this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 		this.isSummaryActive = true;
 
-		// this.activeComponent = this.components[this.components.length - 1];
-		// // this.activeComponent = this.components.find( x => x.id === 'app-accordion-demo');
+		// // this.activeComponent = this.components[this.components.length - 1];
+		// this.activeComponent = this.components.find( x => x.id === 'app-carousel-demo');
 		// this.isSummaryActive = false;
 		// this.components = this.components.sort((x, y) => x.id.localeCompare(y.id));
 	}
