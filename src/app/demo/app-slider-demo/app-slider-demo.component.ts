@@ -10,19 +10,17 @@ export class SliderDemoComponent {
 	sliderMaxValue = 100;
 	disabled = false;
 	booleanHints = [
-		{ key: true, text: 'Yes'},
-		{ key: false, text: 'No'}
+		{ key: true, text: 'Yes' },
+		{ key: false, text: 'No' }
 	];
 	isVertical = true;
-	getStepHints () {
-		return [
-			{ key: 1, text: '1'},
-			{ key: 5, text: '5'},
-			{ key: 10, text: '10'},
-			{ key: 20, text: '20'},
-			{ key: 25, text: '25'}
-		];
-	}
+	stepHints = [
+		{ key: 1, text: '1' },
+		{ key: 5, text: '5' },
+		{ key: 10, text: '10' },
+		{ key: 20, text: '20' },
+		{ key: 25, text: '25' }
+	];
 	setSliderValue() {
 		this.sliderValue = 50;
 	}

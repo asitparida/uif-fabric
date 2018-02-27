@@ -10,8 +10,8 @@
         <div class="vertical-separator"></div>
         <div style="display:inline-block;">
             <h5>Step</h5>
-            <select name="sliderStep" [(ngModel)]="sliderStep">
-                <option *ngFor="let hint of getStepHints()" [value]="hint.key">{{hint.text}}</option>
+            <select name="stepHints" [(ngModel)]="sliderStep">
+                <option *ngFor="let hint of stepHints" [value]="hint.key">{{hint.text}}</option>
             </select>
         </div>
         <div class="vertical-separator"></div>
