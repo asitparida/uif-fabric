@@ -3,6 +3,10 @@ import {
 	EventEmitter, ElementRef, HostListener, OnChanges
 } from '@angular/core';
 import { SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/throttleTime';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 	selector: 'uif-slider',
@@ -31,6 +35,7 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 	private sliderIsActive = false;
 	private sliderElProps: ClientRect;
 	private initialized = false;
+	private onKeyDownStream$: Subscription = null;
 	constructor(private elRef: ElementRef) { }
 	ngAfterViewInit() {
 		this.sliderEl = this.slider.nativeElement;
@@ -58,6 +63,10 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 		}
 	}
 	ngOnDestroy() {
+		if (this.onKeyDownStream$) {
+			this.onKeyDownStream$.unsubscribe();
+			this.onKeyDownStream$ = null;
+		}
 		this.clearListeners();
 	}
 	createListeners() {
@@ -82,6 +91,22 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 			});
 		};
 		this.eventListeners['onMouseUpListener'] = onMouseUpListener;
+		const onKeyDownStream = new Subject<KeyboardEvent>();
+		const onKeyDownListener = ($event: KeyboardEvent) => {
+			onKeyDownStream.next($event);
+		};
+		if (this.onKeyDownStream$) {
+			this.onKeyDownStream$.unsubscribe();
+			this.onKeyDownStream$ = null;
+		}
+		this.onKeyDownStream$ = onKeyDownStream.asObservable().throttleTime(100).subscribe(($event: KeyboardEvent) => {
+			if ($event.key === 'ArrowRight' || $event.key === 'ArrowUp') {
+				self.onSliderThumbMouseIncrementalMove(true);
+			} else if ($event.key === 'ArrowLeft' || $event.key === 'ArrowDown') {
+				self.onSliderThumbMouseIncrementalMove(false);
+			}
+		});
+		this.eventListeners['onKeyDownListener'] = onKeyDownListener;
 	}
 	clearListeners() {
 		if (this.sliderEl) {
@@ -89,6 +114,8 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 			(this.sliderEl as HTMLElement).removeEventListener('mousedown', onMouseDownListener);
 			const onMouseClickListener = this.eventListeners['onMouseClickListener'];
 			(this.sliderEl as HTMLElement).removeEventListener('click', onMouseClickListener);
+			const onKeyDownListener = this.eventListeners['onKeyDownListener'];
+			(this.sliderEl as HTMLElement).removeEventListener('keydown', onKeyDownListener);
 			const onMouseMoveListener = this.eventListeners['onMouseMoveListener'];
 			document.removeEventListener('mousemove', onMouseMoveListener);
 			const onMouseUpListener = this.eventListeners['onMouseUpListener'];
@@ -104,11 +131,21 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 			(this.sliderEl as HTMLElement).addEventListener('mousedown', onMouseDownListener, false);
 			const onMouseClickListener = this.eventListeners['onMouseClickListener'];
 			(this.sliderEl as HTMLElement).addEventListener('click', onMouseClickListener, false);
+			const onKeyDownListener = this.eventListeners['onKeyDownListener'];
+			(this.sliderEl as HTMLElement).addEventListener('keydown', onKeyDownListener);
 			const onMouseMoveListener = this.eventListeners['onMouseMoveListener'];
 			document.addEventListener('mousemove', onMouseMoveListener, false);
 			const onMouseUpListener = this.eventListeners['onMouseUpListener'];
 			document.addEventListener('mouseup', onMouseUpListener, false);
 		}
+	}
+	onSliderThumbMouseIncrementalMove(isPositiveIncrement = false) {
+		let newValue = isPositiveIncrement ? this.value + this.step : this.value - this.step;
+		newValue = newValue < 0 ? 0 : newValue;
+		newValue = newValue > 100 ? 100 : newValue;
+		this.value = newValue;
+		this.updateProgress();
+		this.valueChange.emit(this.value);
 	}
 	onSliderThumbMouseMove($event: MouseEvent, forceFalse = false) {
 		if (this.sliderIsActive) {

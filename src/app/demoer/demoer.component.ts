@@ -7,9 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute } from '@angular/router';
 import { COMPONENTS } from '../app.declarations';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class DemoerService {
+	currentDir = new Subject<string>();
+	currentDirAsObservable = this.currentDir.asObservable();
 	constructor(private http: HttpClient) { }
 	getTsFile(id) {
 		const file = 'assets/definitions/' + id + '.component.ts.json';
@@ -51,6 +54,7 @@ export class DemoerComponent implements AfterViewInit {
 							this.loadComponent();
 						});
 					}
+					this.demoerService.currentDir.next(this.component.dir);
 				});
 			}
 		});
