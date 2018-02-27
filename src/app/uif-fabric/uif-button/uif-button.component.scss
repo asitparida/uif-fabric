@@ -1,5 +1,8 @@
 :host {
     display: inline-block;
+    &[disabled] {
+        pointer-events: none;
+    }
 }
 .ms-Button {
     &.has-icon {

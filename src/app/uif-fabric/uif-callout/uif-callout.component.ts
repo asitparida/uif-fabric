@@ -1,13 +1,14 @@
 import {
-	Component, Input, ElementRef, AfterContentInit, ViewChild,
+	Component, Input, ElementRef, AfterContentInit, ViewChild, QueryList, SimpleChange,
 	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild, OnDestroy, DoCheck, ChangeDetectorRef
 } from '@angular/core';
 import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from './uif-callout.models';
 import { GetScrollParent } from '../helpers';
 import { } from '@angular/core/src/metadata/di';
 import { UifOpenCalloutComponent } from './uif-callout-subcomponents.component';
-import { QueryList } from '@angular/core/src/render3/query';
-import { SimpleChange } from '@angular/core/src/change_detection/change_detection_util';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 	selector: 'uif-callout',
@@ -53,6 +54,7 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 	disableClicks = false;
 	tabIndex = null;
 	private childInDOM;
+	private onDocumnetKeyUpListener: Subscription = null;
 	constructor(
 		private elementRef: ElementRef) { }
 	ngAfterContentInit() {
@@ -92,6 +94,13 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 				if (prop === 'triggerHint' && this.elementIntialized) {
 					this.addListeners();
 				}
+				if (prop === 'isOpen') {
+					if (change.currentValue) {
+						this.addDocumentListener();
+					} else {
+						this.clearDocumentListener();
+					}
+				}
 			}
 		}
 		setTimeout(() => {
@@ -128,6 +137,22 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 		}
 		document.removeEventListener('scroll', scrollAndResizeHandler);
 		window.removeEventListener('resize', scrollAndResizeHandler);
+	}
+	clearDocumentListener() {
+		if (this.onDocumnetKeyUpListener) {
+			this.onDocumnetKeyUpListener.unsubscribe();
+			this.onDocumnetKeyUpListener = null;
+		}
+	}
+	addDocumentListener() {
+		this.clearDocumentListener();
+		this.onDocumnetKeyUpListener = Observable.fromEvent(document, 'keyup')
+			.subscribe(($event: KeyboardEvent) => {
+				if ($event.key === 'Escape') {
+					this.isOpen = false;
+					this.isOpenChange.emit(this.isOpen);
+				}
+			});
 	}
 	addListeners() {
 		const self = this;

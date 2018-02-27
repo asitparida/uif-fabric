@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class ButtonDemoComponent {
 	description = 'This is a sample button description';
+	isTrue = true;
 	showAlert($event) {
 		window.alert('Button clicked');
 	}
