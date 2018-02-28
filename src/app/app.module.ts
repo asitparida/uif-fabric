@@ -42,6 +42,7 @@ import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.comp
 import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
 import { SliderDemoComponent } from './demo/app-slider-demo/app-slider-demo.component';
 import { AppRoutingModule } from './app.routing';
+import { ChipsDemoComponent } from './demo/app-chips-demo/app-chips-demo.component';
 
 // tslint:disable max-line-length
 export const COMPONENTS = [
@@ -77,6 +78,7 @@ export const COMPONENTS = [
 	WizardDemoComponent,
 	CarouselDemoComponent,
 	SliderDemoComponent,
+	ChipsDemoComponent
 ];
 const APP_COMPONENTS = [
 	AppComponent,

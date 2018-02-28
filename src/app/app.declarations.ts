@@ -30,6 +30,7 @@ import { TooltipDemoComponent } from './demo/app-tooltip-demo/app-tooltip-demo.c
 import { WizardDemoComponent } from './demo/app-wizard-demo/app-wizard-demo.component';
 import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-demo.component';
 import { SliderDemoComponent } from './demo/app-slider-demo/app-slider-demo.component';
+import { ChipsDemoComponent } from './demo/app-chips-demo/app-chips-demo.component';
 
 // tslint:disable max-line-length
 export const COMPONENTS = [
@@ -64,7 +65,8 @@ export const COMPONENTS = [
 	{ componentId: TooltipDemoComponent, active: false, id: 'app-tooltip-demo', title: 'Tooltip', dir: 'uif-tooltip', isNew: false },
 	{ componentId: WizardDemoComponent, active: false, id: 'app-wizard-demo', title: 'Wizard', dir: 'uif-wizard', isNew: true, isCustom: true, hideDocWarning: true },
 	{ componentId: CarouselDemoComponent, active: false, id: 'app-carousel-demo', title: 'Carousel', dir: 'uif-carousel', isNew: true, isCustom: true, hideDocWarning: true },
-	{ componentId: SliderDemoComponent, active: false, id: 'app-slider-demo', title: 'Slider', dir: 'uif-slider', isNew: true, isCustom: false, hideDocWarning: true }
+	{ componentId: SliderDemoComponent, active: false, id: 'app-slider-demo', title: 'Slider', dir: 'uif-slider', isNew: true, isCustom: false, hideDocWarning: true },
+	{ componentId: ChipsDemoComponent, active: false, id: 'app-chips-demo', title: 'Chips', dir: 'uif-chips', isNew: true, isCustom: false, hideDocWarning: true }
 ];
 
 // tslint:enable max-line-length

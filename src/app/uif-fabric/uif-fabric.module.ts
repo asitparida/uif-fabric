@@ -72,6 +72,7 @@ import { UifWizardPageTitleComponent } from './uif-wizard/uif-wizard-page-title.
 import { UifCarouselComponent } from './uif-carousel/uif-carousel.component';
 import { UifCarouselItemComponent } from './uif-carousel/uif-carousel-item.component';
 import { UifSliderComponent } from './uif-slider/uif-slider.component';
+import { UifChipsComponent } from './uif-chips/uif-chips.component';
 
 
 const DIRECTIVES = [
@@ -166,7 +167,8 @@ const COMPONENTS = [
 	UifCarouselComponent,
 	UifCarouselItemComponent,
 
-	UifSliderComponent
+	UifSliderComponent,
+	UifChipsComponent
 ];
 
 @NgModule({
