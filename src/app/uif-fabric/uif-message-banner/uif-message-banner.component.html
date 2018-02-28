@@ -1,6 +1,6 @@
 <div class="ms-PanelHost" [hidden]="!isOpen">
     <uif-overlay [isOpen]="hasOverlay"></uif-overlay>
-    <div class="ms-MessageBanner">
+    <div class="ms-MessageBanner" [class.is-open]="isOpen">
         <div class="ms-MessageBanner-content">
             <div class="ms-MessageBanner-text">
                 <ng-content></ng-content>
