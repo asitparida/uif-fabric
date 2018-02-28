@@ -12,6 +12,19 @@
             margin-right: 5px;
         }
     }
+    &.is-outline {
+        background: none;
+        color: #106ebe;
+        border-color: #106ebe;
+        .ms-Button-label {
+            color: #106ebe;
+        }
+        &:focus,
+        &:hover,
+        &:active {
+            background: rgba(0,0,0,0.05);
+        }
+    }
     &.ms-Button--primary{
         &:not([disabled]) {
             background: #0078d7;

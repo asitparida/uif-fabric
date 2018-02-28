@@ -42,21 +42,16 @@ h4 {
 
 .demo-container {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
     float: left;
     padding: 6px 24px;
-    margin-bottom: 12px;
-    padding: 15px;
+    padding: 30px;
     box-sizing: border-box;
+    background: #fff;
     .demo-container-content {
         box-sizing: border-box;
-        background: #fff;
-        padding: 30px 45px;
+        padding: 0;
         height: 100%;
-        overflow-y: auto;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        -webkit-overflow-scrolling: touch;
     }
     /deep/ h2 {
         font-weight: 400;
@@ -147,14 +142,17 @@ h4 {
         }
     }
 }
+
 /deep/ .form-control {
     line-height: 24px;
     min-width: 300px;
     padding: 0 5px;
 }
+
 /deep/ .w33 {
     width: 33%;
 }
+
 /deep/ .demo-icon {
     min-width: 100px;
     display: inline-block;
@@ -173,7 +171,7 @@ h4 {
     &:hover,
     &:active,
     &:focus {
-        background: rgba(0,0,0,0.03);
+        background: rgba(0, 0, 0, 0.03);
     }
     &.copied {
         position: relative;
@@ -193,17 +191,20 @@ h4 {
         }
     }
 }
+
 @keyframes show-text {
     0% {
         transform: translateY(100%);
     }
-    25%, 75% {
+    25%,
+    75% {
         transform: translateY(0);
     }
     100% {
         transform: translateY(100%);
     }
 }
+
 /deep/ .demo-icon-holder {
     position: relative;
     display: block;
@@ -216,12 +217,14 @@ h4 {
         font-family: FabricMDL2Icons;
     }
 }
+
 /deep/ .demo-cb-filter {
     font-weight: 100;
     font-size: small;
     margin-right: 30px;
     display: inline-block;
 }
+
 .beta-marker {
     height: 20px;
     line-height: 18px;
@@ -258,7 +261,7 @@ h4 {
     }
 }
 
-@media (min-width: 640px) and (max-width: 1023px){
+@media (min-width: 640px) and (max-width: 1023px) {
     /deep/ .demo-icon {
         width: 25%;
     }
@@ -269,16 +272,18 @@ h4 {
         width: 33%;
     }
 }
+
 @media (max-width: 479px) {
     /deep/ .demo-icon {
         width: 50%;
     }
 }
+
 .fabric-demo {
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-flow: row; 
+    flex-flow: row;
     &-sidebar {
         padding: 15px 0;
         flex: initial;
@@ -286,7 +291,7 @@ h4 {
         order: 1;
         background: #fff;
         overflow: hidden;
-        box-shadow: 0 0 15px 0 rgba($appColor,.1);
+        box-shadow: 0 0 15px 0 rgba($appColor, .1);
         .components-list {
             padding: 0 15px 15px 15px;
             label {
@@ -353,7 +358,7 @@ h4 {
                 margin: 0;
                 li {
                     font-size: medium;
-                    uif-icon  {
+                    uif-icon {
                         vertical-align: middle;
                     }
                     span {
@@ -373,8 +378,7 @@ h4 {
                     }
                     &.copyright {
                         margin-top: 15px;
-                        font-size: small;
-                        // text-transform: uppercase;
+                        font-size: small; // text-transform: uppercase;
                         span.symb {
                             margin-left: 0;
                             font-size: medium;
@@ -407,25 +411,55 @@ h4 {
                 transition: background linear 0s;
                 &.active {
                     border-left: 3px solid $appColor;
-                    background: rgba($appColor,0.05);
+                    background: rgba($appColor, 0.05);
                 }
                 &:not(.active):hover,
                 &:not(.active):active,
                 &:not(.active):focus {
-                    background: rgba($appColor,0.05);
+                    background: rgba($appColor, 0.05);
                     border-left-color: rgba($appColor, 0.50);
                 }
                 &:not(.active):focus {
-                    outline: 1px dashed rgba(0,0,0,0.50);
+                    outline: 1px dashed rgba(0, 0, 0, 0.50);
                     border-left-color: rgba($appColor, 0.30);
                 }
             }
         }
-    }&-content {
+    }
+    &-content {
         flex: 1;
         order: 2;
         height: 100%;
         overflow: hidden;
+        .fabric-main-content {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            width: 100%;
+            .fabric-content-container {
+                flex: 1;
+                order: 2;
+                overflow-y: auto;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                -webkit-overflow-scrolling: touch;
+                padding: 5px 30px 10px 30px;
+            }
+            .fabric-github-actions {
+                flex: initial;
+                height: 60px;
+                display: flex;
+                justify-content: flex-end;
+                order: 1;
+                padding: 16px 30px 0 30px;
+                box-sizing: border-box;
+                uif-button {
+                    margin-right: 15px;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -443,7 +477,7 @@ h4 {
     margin: 0 15px;
     cursor: pointer;
     &.marginFix {
-      margin-bottom: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -452,7 +486,7 @@ h4 {
     // width: 80vw;
     // height: 75vh;
     // display: block;
-    margin: 5vh auto 0 auto; 
+    margin: 5vh auto 0 auto;
     border: 1px solid #d0d0d0;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
@@ -490,12 +524,12 @@ h4 {
     height: 40px;
     position: relative;
     text-align: center;
-    
     -webkit-animation: sk-rotate 2.0s infinite linear;
     animation: sk-rotate 2.0s infinite linear;
-  }
-  
-  .dot1, .dot2 {
+}
+
+.dot1,
+.dot2 {
     width: 60%;
     height: 60%;
     display: inline-block;
@@ -503,51 +537,67 @@ h4 {
     top: 0;
     background-color: #0078d7;
     border-radius: 100%;
-    
     -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
     animation: sk-bounce 2.0s infinite ease-in-out;
-  }
-  
-  .dot2 {
+}
+
+.dot2 {
     top: auto;
     bottom: 0;
     -webkit-animation-delay: -1.0s;
     animation-delay: -1.0s;
-  }
-  
-  @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
-  @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
-  
-  @-webkit-keyframes sk-bounce {
-    0%, 100% { -webkit-transform: scale(0.0) }
-    50% { -webkit-transform: scale(1.0) }
-  }
-  
-  @keyframes sk-bounce {
-    0%, 100% { 
-      transform: scale(0.0);
-      -webkit-transform: scale(0.0);
-    } 50% { 
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-    }
-  }
+}
 
-  .sample-actions {
+@-webkit-keyframes sk-rotate {
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@keyframes sk-rotate {
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bounce {
+    0%,
+    100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+.sample-actions {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
-  }
+}
 
-  .custom-carousel-holder {
+.custom-carousel-holder {
     height: calc(100vh - 280px);
     max-height: 600px;
     min-height: 300px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-  }
+}
 
-  .custom-carousel-item {
+.custom-carousel-item {
     width: 100%;
     height: 100%;
     position: relative;
@@ -584,4 +634,4 @@ h4 {
             right: 0;
         }
     }
-  }
+}

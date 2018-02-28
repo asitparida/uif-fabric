@@ -6,7 +6,8 @@
                 <span>Components</span>
             </label>
             <ul>
-                <li tabindex="0" [class.is-new]="component?.isNew" [class.is-custom]="component?.isCustom" [class.active]="component?.id === activeComponent?.id" (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
+                <li tabindex="0" [class.is-new]="component?.isNew" [class.is-custom]="component?.isCustom" [class.active]="component?.id === activeComponent?.id"
+                    (click)="activateComponent(component)" *ngFor="let component of components">{{component.title}}</li>
             </ul>
         </div>
         <div class="home-list" style="margin: 15px 0 0 0;">
@@ -37,14 +38,24 @@
                     </a>
                 </li>
                 <li class="copyright">
-                    <span class="symb">&#169;</span> <a href="http://www.asitparida.com/" target="_blank"><span style="margin-left: 14px;">Asit Kumar Parida</span></a>, 2018
+                    <span class="symb">&#169;</span>
+                    <a href="http://www.asitparida.com/" target="_blank">
+                        <span style="margin-left: 14px;">Asit Kumar Parida</span>
+                    </a>, 2018
                 </li>
             </ul>
         </div>
     </div>
     <div class="fabric-demo-content">
-        <router-outlet></router-outlet>
-        <!-- <app-summary *ngIf="isSummaryActive"></app-summary>
-        <app-demoer *ngIf="!isSummaryActive" [component]="activeComponent" ></app-demoer> -->
+        <div class="fabric-main-content">
+            <div class="fabric-github-actions">
+                    <uif-button outline="true" (click)="goLink('https://github.com/asitparida/uif-fabric/subscription')" icon="RedEye">Watch Repo </uif-button>
+                <uif-button outline="true" (click)="goLink('https://github.com/asitparida/uif-fabric')" icon="FavoriteStar">Star the Repo </uif-button>
+                <uif-button outline="true" (click)="goLink('https://github.com/asitparida/uif-fabric/issues')" icon="Info">Log Issue</uif-button>
+            </div>
+            <div class="fabric-content-container">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
 </div>
