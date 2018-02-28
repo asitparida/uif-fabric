@@ -1,6 +1,12 @@
-import { Component, Input, AfterContentInit, ContentChildren, OnInit } from '@angular/core';
+import {
+	Component, Input, AfterContentInit, ContentChildren,
+	OnInit, OnDestroy, OnChanges,
+	SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { UifDropdownOptionComponent, UifDropdownItemService } from './uif-dropdown-subcomponents.component';
 import { IUifDropdownItem } from './uif-dropdown.models';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 	selector: 'uif-dropdown',
@@ -8,8 +14,9 @@ import { IUifDropdownItem } from './uif-dropdown.models';
 	styleUrls: [ './uif-dropdown.component.scss' ],
 	providers: [ UifDropdownItemService ]
 })
-export class UifDropdownComponent implements AfterContentInit, OnInit {
+export class UifDropdownComponent implements AfterContentInit, OnInit, OnDestroy {
 	@Input() isOpen: boolean | Boolean = false;
+	@Output() isOpenChange: EventEmitter<boolean | Boolean> = new EventEmitter<boolean | Boolean>();
 	@Input() title: string | String = 'Choose sounds';
 	@Input() isMultiSelectable: boolean | Boolean = false;
 	@Input() options: IUifDropdownItem[] = [];
@@ -18,6 +25,7 @@ export class UifDropdownComponent implements AfterContentInit, OnInit {
 	@ContentChildren(UifDropdownOptionComponent) customOptions: UifDropdownOptionComponent[];
 	showNative = false;
 	showCustomOptions = false;
+	private onDocumnetKeyUpListener: Subscription = null;
 	constructor(private dropdownItemService: UifDropdownItemService) {}
 	ngOnInit() {
 		this.dropdownItemService.onDropdownItemToggled.subscribe((id: any) => {
@@ -36,6 +44,12 @@ export class UifDropdownComponent implements AfterContentInit, OnInit {
 			}
 		});
 	}
+	ngOnDestroy() {
+		if (this.onDocumnetKeyUpListener) {
+			this.onDocumnetKeyUpListener.unsubscribe();
+			this.onDocumnetKeyUpListener = null;
+		}
+	}
 	ngAfterContentInit() {
 		if (this.customOptions && this.customOptions.length > 0) {
 			this.showNative = false;
@@ -48,6 +62,11 @@ export class UifDropdownComponent implements AfterContentInit, OnInit {
 	toggleDropdown() {
 		if (!this.isDisabled) {
 			this.isOpen = !this.isOpen;
+		}
+		if (this.isOpen) {
+			this.addDocumentListener();
+		} else {
+			this.clearDocumentListener();
 		}
 	}
 	toggleItemSelection(item: IUifDropdownItem) {
@@ -77,5 +96,21 @@ export class UifDropdownComponent implements AfterContentInit, OnInit {
 			}
 		}
 		return result;
+	}
+	clearDocumentListener() {
+		if (this.onDocumnetKeyUpListener) {
+			this.onDocumnetKeyUpListener.unsubscribe();
+			this.onDocumnetKeyUpListener = null;
+		}
+	}
+	addDocumentListener() {
+		this.clearDocumentListener();
+		this.onDocumnetKeyUpListener = Observable.fromEvent(document, 'keyup')
+			.subscribe(($event: KeyboardEvent) => {
+				if ($event.key === 'Escape' && this.isOpen) {
+					this.isOpen = false;
+					this.isOpenChange.emit(this.isOpen);
+				}
+			});
 	}
 }

@@ -2,7 +2,7 @@
     <label class="ms-Label">{{title}}</label>
     <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
     <span class="ms-Dropdown-title" (click)="toggleDropdown()">{{getCurrentSelected()}}</span>
-    <ul class="ms-Dropdown-items" [hidden]="!showNative">
+    <ul class="ms-Dropdown-items" [hidden]="!showNative" [class.is-open]="isOpen">
         <li class="ms-Dropdown-item" *ngFor="let item of options; let i = index;">
             <button [attr.checked]="item.selected" [attr.id]="'checkbox_' + i" role="checkbox" type="button" class="ms-Checkbox is-checked is-enabled" [attr.aria-checked]="item.selected"
                 tabindex="0" (click)="toggleItemSelection(item)">

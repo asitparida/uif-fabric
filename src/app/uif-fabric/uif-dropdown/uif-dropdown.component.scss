@@ -1,3 +1,4 @@
+@import '../uif-fabric.shared';
 .ms-Dropdown-item,
 /deep/ .ms-Dropdown-item {
     padding: 0;
@@ -48,5 +49,12 @@
                 vertical-align: middle;
             }
         }
+    }
+}
+
+.ms-Dropdown-items {
+    &.is-open {
+        animation: fadein-item-down;   
+        animation-duration: 0.367s;
     }
 }
