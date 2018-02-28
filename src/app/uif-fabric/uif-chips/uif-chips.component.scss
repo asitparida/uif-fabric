@@ -1,0 +1,80 @@
+.ms-BasePicker-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #a6a6a6;
+    min-width: 180px;
+    min-height: 30px;
+    .ms-TagItem {
+        position: relative;
+        outline: transparent;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        -ms-flex-negative: 1;
+        flex-shrink: 1;
+        background: #f4f4f4;
+        margin: 2px;
+        height: 26px;
+        line-height: 26px;
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        max-width: 300px;
+        &.active {
+            background: #dadada;
+            &:hover {
+                background: #d0d0d0;
+            }
+        }
+        &:hover {
+            background: #eaeaea;
+        }
+        .ms-TagItem-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            min-width: 30px;
+            margin: 0 8px;
+        }
+        .ms-TagItem-close {
+            cursor: pointer;
+            color: #666666;
+            font-size: 12px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            width: 30px;
+            height: 100%;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            &:focus,
+            &:hover,
+            &:active {
+                background: rgba(0, 0, 0, 0.10);
+            }
+        }
+    }
+    .ms-BasePicker-input {
+        height: 34px;
+        border: none;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        outline: none;
+        padding: 0 6px 0px;
+    }
+}

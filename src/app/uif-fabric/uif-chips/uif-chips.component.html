@@ -1,0 +1,16 @@
+
+<form>
+    <div class="ms-BasePicker-text" role="list">
+        <div class="ms-TagItem" data-selection-index="0" data-is-focusable="true" *ngFor="let tag of tags; let i = index;" [class.active]="i === activeIndex" (click)="activeIndex = i">
+            <span class="ms-TagItem-text" aria-label="red">{{tag}}</span>
+            <span class="ms-TagItem-close" (click)="removeTag(i)" [hidden]="removeItem">
+                <i role="presentation" class="ms-Icon ms-Icon--Cancel" aria-hidden="true"></i>
+            </span>
+        </div>
+        <input aria-label="Tag Picker" class="ms-BasePicker-input" name="newTag" #tagInput [(ngModel)]="newTag" aria-owns="suggestion-list" (focus)="activeIndex = null"
+            aria-activedescendant="sug--1" 
+            aria-expanded="false" aria-haspopup="true" autocomplete="off" role="combobox" aria-controls="selected-suggestion-alert"
+            value="" autocapitalize="off" data-lpignore="true" tabindex="0">
+    </div>
+</form>
+
