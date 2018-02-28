@@ -1,17 +1,22 @@
 import {
 	Component, AfterViewInit, ContentChildren, QueryList,
-	OnChanges, Input, ElementRef, EventEmitter, Output
+	OnChanges, Input, ElementRef, EventEmitter, Output, OnDestroy
 } from '@angular/core';
 import { UifCarouselService } from './uif-carousel.service';
 import { UifCarouselItemComponent } from './uif-carousel-item.component';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+import { EventSubscribers } from '../helpers';
 
 @Component({
 	selector: 'uif-carousel',
 	templateUrl: './uif-carousel.component.html',
 	styleUrls: ['./uif-carousel.component.scss'],
-	providers: [ UifCarouselService ]
+	providers: [UifCarouselService]
 })
-export class UifCarouselComponent implements AfterViewInit, OnChanges {
+export class UifCarouselComponent implements AfterViewInit, OnChanges, OnDestroy {
 	isPlaying = true;
 	@Input() activeIndex = null;
 	@Output() activeIndexChange = new EventEmitter<number>();
@@ -19,14 +24,18 @@ export class UifCarouselComponent implements AfterViewInit, OnChanges {
 	@Input() delay = 2500;
 	@ContentChildren(UifCarouselItemComponent) carouselItems: QueryList<UifCarouselItemComponent>;
 	private initialized = false;
+	private eventSubscribers: EventSubscribers = new EventSubscribers();
 	constructor(
 		private carouselService: UifCarouselService,
 		private elRef: ElementRef
-	) {}
+	) { }
 	ngOnChanges() {
 		if (this.initialized) {
 			this.carouselService.loadItems(this.carouselItems, this.delay, this.autoPlay);
 		}
+	}
+	ngOnDestroy() {
+		this.eventSubscribers.clearSubscribers();
 	}
 	ngAfterViewInit() {
 		this.carouselService.activeIndexAsObservable.subscribe((index: number) => {
@@ -42,23 +51,29 @@ export class UifCarouselComponent implements AfterViewInit, OnChanges {
 		setTimeout(() => {
 			this.carouselService.loadItems(this.carouselItems, this.delay, this.autoPlay);
 		});
-		const elem = this.elRef.nativeElement;
-		if (elem) {
+		if (this.elRef) {
 			const self = this;
-			const onMouseOverListener = () => {
-				if (self.isPlaying) {
-					self.carouselService.resetIntervalTimer();
-				}
-			};
-			const onMouseLeaveListener = () => {
-				if (self.isPlaying) {
-					self.carouselService.setIntervalTimer();
-				}
-			};
-			(elem as HTMLElement).removeEventListener('mouseover', onMouseOverListener);
-			(elem as HTMLElement).addEventListener('mouseover', onMouseOverListener, false);
-			(elem as HTMLElement).removeEventListener('mouseleave', onMouseLeaveListener);
-			(elem as HTMLElement).addEventListener('mouseleave', onMouseLeaveListener, false);
+			this.eventSubscribers.clearSubscribers();
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseOverListener',
+				subscripiton: Observable.fromEvent(this.elRef.nativeElement, 'mouseover')
+					.subscribe(($event: MouseEvent) => {
+						if (this.isPlaying) {
+							this.carouselService.resetIntervalTimer();
+						}
+					}),
+				meta: 'carousel'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseLeaveListener',
+				subscripiton: Observable.fromEvent(this.elRef.nativeElement, 'mouseleave')
+					.subscribe(($event: MouseEvent) => {
+						if (this.isPlaying) {
+							this.carouselService.setIntervalTimer();
+						}
+					}),
+				meta: 'carousel'
+			});
 		}
 		this.initialized = true;
 	}

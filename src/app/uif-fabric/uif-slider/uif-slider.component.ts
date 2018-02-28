@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/throttleTime';
 import { Subscription } from 'rxjs/Subscription';
+import { EventSubscribers } from '../helpers';
 
 @Component({
 	selector: 'uif-slider',
@@ -27,7 +28,6 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 	@ViewChild('sliderActive') sliderActive;
 	@ViewChild('sliderInactive') sliderInactive;
 	private _progress = 0;
-	private eventListeners: any = {};
 	private sliderEl;
 	private sliderThumbEl;
 	private sliderActiveEl;
@@ -36,6 +36,7 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 	private sliderElProps: ClientRect;
 	private initialized = false;
 	private onKeyDownStream$: Subscription = null;
+	private eventSubscribers: EventSubscribers = new EventSubscribers();
 	constructor(private elRef: ElementRef) { }
 	ngAfterViewInit() {
 		this.sliderEl = this.slider.nativeElement;
@@ -43,7 +44,6 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 		this.sliderActiveEl = this.sliderActive.nativeElement;
 		this.sliderInactiveEl = this.sliderInactive.nativeElement;
 		this.createListeners();
-		this.addListeners();
 		this.updateProgress();
 		this.initialized = true;
 	}
@@ -55,88 +55,82 @@ export class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
 					if (prop === 'value') {
 						this.updateProgress();
 					} else if (prop === 'disabled') {
-						this.clearListeners();
-						this.addListeners();
+						this.createListeners();
 					}
 				}
 			}
 		}
 	}
 	ngOnDestroy() {
-		if (this.onKeyDownStream$) {
-			this.onKeyDownStream$.unsubscribe();
-			this.onKeyDownStream$ = null;
-		}
-		this.clearListeners();
+		this.eventSubscribers.clearSubscribers();
 	}
 	createListeners() {
+		this.eventSubscribers.clearSubscribers();
 		const self = this;
-		const onMouseDownListener = ($event: MouseEvent) => {
-			self.sliderIsActive = true;
-		};
-		this.eventListeners['onMouseDownListener'] = onMouseDownListener;
-		const onMouseClickListener = ($event: MouseEvent) => {
-			self.onSliderThumbMouseMove($event, true);
-		};
-		this.eventListeners['onMouseClickListener'] = onMouseClickListener;
-		const onMouseMoveListener = ($event: MouseEvent) => {
-			self.onSliderThumbMouseMove($event);
-		};
-		this.eventListeners['onMouseMoveListener'] = onMouseMoveListener;
-		const onMouseUpListener = ($event: MouseEvent) => {
-			setTimeout(() => {
-				if (self.sliderIsActive) {
-					self.sliderIsActive = false;
-				}
-			});
-		};
-		this.eventListeners['onMouseUpListener'] = onMouseUpListener;
-		const onKeyDownStream = new Subject<KeyboardEvent>();
-		const onKeyDownListener = ($event: KeyboardEvent) => {
-			onKeyDownStream.next($event);
-		};
-		if (this.onKeyDownStream$) {
-			this.onKeyDownStream$.unsubscribe();
-			this.onKeyDownStream$ = null;
-		}
-		this.onKeyDownStream$ = onKeyDownStream.asObservable().throttleTime(100).subscribe(($event: KeyboardEvent) => {
-			if ($event.key === 'ArrowRight' || $event.key === 'ArrowUp') {
-				self.onSliderThumbMouseIncrementalMove(true);
-			} else if ($event.key === 'ArrowLeft' || $event.key === 'ArrowDown') {
-				self.onSliderThumbMouseIncrementalMove(false);
-			}
-		});
-		this.eventListeners['onKeyDownListener'] = onKeyDownListener;
-	}
-	clearListeners() {
-		if (this.sliderEl) {
-			const onMouseDownListener = this.eventListeners['onMouseDownListener'];
-			(this.sliderEl as HTMLElement).removeEventListener('mousedown', onMouseDownListener);
-			const onMouseClickListener = this.eventListeners['onMouseClickListener'];
-			(this.sliderEl as HTMLElement).removeEventListener('click', onMouseClickListener);
-			const onKeyDownListener = this.eventListeners['onKeyDownListener'];
-			(this.sliderEl as HTMLElement).removeEventListener('keydown', onKeyDownListener);
-			const onMouseMoveListener = this.eventListeners['onMouseMoveListener'];
-			document.removeEventListener('mousemove', onMouseMoveListener);
-			const onMouseUpListener = this.eventListeners['onMouseUpListener'];
-			document.removeEventListener('mouseup', onMouseUpListener);
-		}
-	}
-	@HostListener('window:resize')
-	addListeners() {
-		this.clearListeners();
-		if (this.sliderEl && !this.disabled) {
+		if (this.slider && this.slider.nativeElement && !this.disabled) {
 			this.sliderElProps = this.sliderEl.getBoundingClientRect();
-			const onMouseDownListener = this.eventListeners['onMouseDownListener'];
-			(this.sliderEl as HTMLElement).addEventListener('mousedown', onMouseDownListener, false);
-			const onMouseClickListener = this.eventListeners['onMouseClickListener'];
-			(this.sliderEl as HTMLElement).addEventListener('click', onMouseClickListener, false);
-			const onKeyDownListener = this.eventListeners['onKeyDownListener'];
-			(this.sliderEl as HTMLElement).addEventListener('keydown', onKeyDownListener);
-			const onMouseMoveListener = this.eventListeners['onMouseMoveListener'];
-			document.addEventListener('mousemove', onMouseMoveListener, false);
-			const onMouseUpListener = this.eventListeners['onMouseUpListener'];
-			document.addEventListener('mouseup', onMouseUpListener, false);
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseDownListener',
+				subscripiton: Observable.fromEvent(this.slider.nativeElement, 'mousedown')
+					.subscribe(($event: MouseEvent) => {
+						this.sliderIsActive = true;
+					}),
+				meta: 'slider'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseClickListener',
+				subscripiton: Observable.fromEvent(this.slider.nativeElement, 'click')
+					.subscribe(($event: MouseEvent) => {
+						this.onSliderThumbMouseMove($event, true);
+					}),
+				meta: 'slider'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onKeyDownListener',
+				subscripiton: Observable.fromEvent(this.slider.nativeElement, 'keydown')
+					.throttleTime(100)
+					.subscribe(($event: KeyboardEvent) => {
+						if ($event.key === 'ArrowRight' || $event.key === 'ArrowUp') {
+							self.onSliderThumbMouseIncrementalMove(true);
+						} else if ($event.key === 'ArrowLeft' || $event.key === 'ArrowDown') {
+							self.onSliderThumbMouseIncrementalMove(false);
+						}
+					}),
+				meta: 'slider'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseMoveListener',
+				subscripiton: Observable.fromEvent(document, 'mousemove')
+					.subscribe(($event: MouseEvent) => {
+						this.onSliderThumbMouseMove($event);
+					}),
+				meta: 'document'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseUpListener',
+				subscripiton: Observable.fromEvent(document, 'mouseup')
+					.subscribe(($event: MouseEvent) => {
+						setTimeout(() => {
+							if (this.sliderIsActive) {
+								this.sliderIsActive = false;
+							}
+						});
+					}),
+				meta: 'document'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onResizeListener',
+				subscripiton: Observable.fromEvent(window, 'resize')
+					.debounceTime(100)
+					.subscribe(($event: any) => {
+						setTimeout(() => {
+							if (this.sliderEl && !this.disabled) {
+								this.sliderElProps = this.sliderEl.getBoundingClientRect();
+							}
+						});
+					}),
+				meta: 'document'
+			});
 		}
 	}
 	onSliderThumbMouseIncrementalMove(isPositiveIncrement = false) {

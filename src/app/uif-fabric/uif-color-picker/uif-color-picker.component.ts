@@ -3,7 +3,7 @@ import {
 	AfterViewInit, ElementRef, HostListener, ViewChild, OnInit, OnDestroy
 } from '@angular/core';
 import { UIfColorPickerModel } from './uif-color-picker.models';
-import { GetRandomInt, GetScrollParent } from '../helpers';
+import { GetRandomInt, GetScrollParent, EventSubscribers } from '../helpers';
 import {
 	getColorFromString,
 	IColor, updateH, updateSV,
@@ -11,6 +11,10 @@ import {
 	updateA,
 	getColorFromRGBA
 } from './uif-color.helpers';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
 	selector: 'uif-color-picker',
@@ -33,10 +37,10 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 	private colorRectProps: ClientRect;
 	private colorHueSlideProps: ClientRect;
 	private colorAlphaSlideProps: ClientRect;
-	private _colorRectThumbActive = false;
-	private _colorHueSlideThumbActive = false;
-	private _colorAlphaSlideThumbActive = false;
-	private eventListeners: any = {};
+	private colorRectThumbActive = false;
+	private colorHueSlideThumbActive = false;
+	private colorAlphaSlideThumbActive = false;
+	private eventSubscribers: EventSubscribers = new EventSubscribers();
 	constructor(
 		private elRef: ElementRef
 	) { }
@@ -47,29 +51,11 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 		this.color = getColorFromString(this.hex as string);
 	}
 	ngOnDestroy() {
-		this.clearListeners();
+		this.eventSubscribers.clearSubscribers();
 	}
 	ngAfterViewInit() {
 		this.createListeners();
-		this.addDOMEventListeners();
 		this.initFns();
-		const scrollAndResizeHandler = () => {
-			this.colorRectProps = this.colorRect.nativeElement.getBoundingClientRect();
-			this.colorHueSlideProps = this.colorHueSlide.nativeElement.getBoundingClientRect();
-			this.colorAlphaSlideProps = this.colorAlphaSlide.nativeElement.getBoundingClientRect();
-		};
-		const scrollElm = GetScrollParent(this.elRef.nativeElement);
-		if (scrollElm) {
-			scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
-			scrollElm.addEventListener('scroll', scrollAndResizeHandler);
-			scrollElm.removeEventListener('resize', scrollAndResizeHandler);
-			scrollElm.addEventListener('resize', scrollAndResizeHandler);
-		} else {
-			document.removeEventListener('scroll', scrollAndResizeHandler);
-			document.addEventListener('scroll', scrollAndResizeHandler);
-			window.removeEventListener('resize', scrollAndResizeHandler);
-			window.addEventListener('resize', scrollAndResizeHandler);
-		}
 	}
 	initFns() {
 		this.initiazlizeColorRect();
@@ -100,108 +86,147 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 		this.assignColorAlphaSliderThumbPosition(xPercentForAlphaSliderThumb);
 	}
 	createListeners() {
-		const onMouseDownListenerForColorRect = ($event: MouseEvent) => {
-			this._colorRectThumbActive = true;
-		};
-		this.eventListeners['onMouseDownListenerForColorRect'] = onMouseDownListenerForColorRect;
-		const onClickListenerForColorRect = ($event: MouseEvent) => {
-			this.onColorRectMouseMove($event, true);
-		};
-		this.eventListeners['onClickListenerForColorRect'] = onClickListenerForColorRect;
-		const onMouseDownListenerForColorHueSlide = ($event: MouseEvent) => {
-			this._colorHueSlideThumbActive = true;
-		};
-		this.eventListeners['onMouseDownListenerForColorHueSlide'] = onMouseDownListenerForColorHueSlide;
-		const onClickListenerForColorHueSlider = ($event: MouseEvent) => {
-			this.onColorHueSlideMouseMove($event, true);
-		};
-		this.eventListeners['onClickListenerForColorHueSlider'] = onClickListenerForColorHueSlider;
-		const onMouseDownListenerForColorAlphaSlider = ($event: MouseEvent) => {
-			this._colorAlphaSlideThumbActive = true;
-		};
-		this.eventListeners['onMouseDownListenerForColorAlphaSlider'] = onMouseDownListenerForColorAlphaSlider;
-		const onClickListenerForColorAlphaSlider = ($event: MouseEvent) => {
-			this.onColorAlphaSlideMouseMove($event, true);
-		};
-		this.eventListeners['onClickListenerForColorAlphaSlider'] = onClickListenerForColorAlphaSlider;
-		const onMouseMoveListener = ($event: MouseEvent) => {
-			this.onColorRectMouseMove($event);
-			this.onColorHueSlideMouseMove($event);
-			this.onColorAlphaSlideMouseMove($event);
-		};
-		this.eventListeners['onMouseMoveListener'] = onMouseMoveListener;
-		const onMouseUpListener = ($event: MouseEvent) => {
-			setTimeout(() => {
-				if (this._colorRectThumbActive) {
-					this._colorRectThumbActive = false;
-				}
-				if (this._colorHueSlideThumbActive) {
-					this._colorHueSlideThumbActive = false;
-				}
-				if (this._colorAlphaSlideThumbActive) {
-					this._colorAlphaSlideThumbActive = false;
-				}
-			});
-		};
-		this.eventListeners['onMouseUpListener'] = onMouseUpListener;
-	}
-	clearListeners() {
-		if (this.colorRect) {
-			const onMouseDownListenerForColorRect = this.eventListeners['onMouseDownListenerForColorRect'];
-			(this.colorRect.nativeElement as HTMLElement).removeEventListener('mousedown', onMouseDownListenerForColorRect);
-			const onClickListenerForColorRect = this.eventListeners['onClickListenerForColorRect'];
-			(this.colorRect.nativeElement as HTMLElement).removeEventListener('click', onClickListenerForColorRect);
-		}
-		if (this.colorHueSlide) {
-			this.colorHueSlideProps = this.colorHueSlide.nativeElement.getBoundingClientRect();
-			const onMouseDownListenerForColorHueSlide = this.eventListeners['onMouseDownListenerForColorHueSlide'];
-			(this.colorHueSlide.nativeElement as HTMLElement).removeEventListener('mousedown', onMouseDownListenerForColorHueSlide);
-			const onClickListenerForColorHueSlider = this.eventListeners['onClickListenerForColorHueSlider'];
-			(this.colorHueSlide.nativeElement as HTMLElement).removeEventListener('click', onClickListenerForColorHueSlider);
-		}
-		if (this.colorAlphaSlide) {
-			this.colorAlphaSlideProps = this.colorAlphaSlide.nativeElement.getBoundingClientRect();
-			const onMouseDownListenerForColorAlphaSlider = this.eventListeners['onMouseDownListenerForColorAlphaSlider'];
-			(this.colorAlphaSlide.nativeElement as HTMLElement).removeEventListener('mousedown', onMouseDownListenerForColorAlphaSlider);
-			const onClickListenerForColorAlphaSlider = this.eventListeners['onClickListenerForColorAlphaSlider'];
-			(this.colorAlphaSlide.nativeElement as HTMLElement).removeEventListener('click', onClickListenerForColorAlphaSlider);
-		}
-		const onMouseMoveListener = this.eventListeners['onMouseMoveListener'];
-		document.removeEventListener('mousemove', onMouseMoveListener);
-		const onMouseUpListener = this.eventListeners['onMouseUpListener'];
-		document.removeEventListener('mouseup', onMouseUpListener);
-	}
-	@HostListener('window:resize')
-	addDOMEventListeners() {
-		this.clearListeners();
+		this.eventSubscribers.clearSubscribers();
 		if (this.colorRect) {
 			this.colorRectProps = this.colorRect.nativeElement.getBoundingClientRect();
-			const onMouseDownListenerForColorRect = this.eventListeners['onMouseDownListenerForColorRect'];
-			(this.colorRect.nativeElement as HTMLElement).addEventListener('mousedown', onMouseDownListenerForColorRect, false);
-			const onClickListenerForColorRect = this.eventListeners['onClickListenerForColorRect'];
-			(this.colorRect.nativeElement as HTMLElement).addEventListener('click', onClickListenerForColorRect, false);
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseDownListenerForColorRect',
+				subscripiton: Observable.fromEvent(this.colorRect.nativeElement, 'mousedown')
+					.subscribe(($event: MouseEvent) => {
+						this.colorRectThumbActive = true;
+					}),
+				meta: 'colorRect'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onClickListenerForColorRect',
+				subscripiton: Observable.fromEvent(this.colorRect.nativeElement, 'click')
+					.subscribe(($event: MouseEvent) => {
+						this.onColorRectMouseMove($event, true);
+					}),
+				meta: 'colorRect'
+			});
 		}
 		if (this.colorHueSlide) {
 			this.colorHueSlideProps = this.colorHueSlide.nativeElement.getBoundingClientRect();
-			const onMouseDownListenerForColorHueSlide = this.eventListeners['onMouseDownListenerForColorHueSlide'];
-			(this.colorHueSlide.nativeElement as HTMLElement).addEventListener('mousedown', onMouseDownListenerForColorHueSlide, false);
-			const onClickListenerForColorHueSlider = this.eventListeners['onClickListenerForColorHueSlider'];
-			(this.colorHueSlide.nativeElement as HTMLElement).addEventListener('click', onClickListenerForColorHueSlider, false);
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseDownListenerForColorHueSlide',
+				subscripiton: Observable.fromEvent(this.colorHueSlide.nativeElement, 'mousedown')
+					.subscribe(($event: MouseEvent) => {
+						this.colorHueSlideThumbActive = true;
+					}),
+				meta: 'colorHueSlide'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onClickListenerForColorRect',
+				subscripiton: Observable.fromEvent(this.colorHueSlide.nativeElement, 'click')
+					.subscribe(($event: MouseEvent) => {
+						this.onColorHueSlideMouseMove($event, true);
+					}),
+				meta: 'colorHueSlide'
+			});
 		}
 		if (this.colorAlphaSlide) {
 			this.colorAlphaSlideProps = this.colorAlphaSlide.nativeElement.getBoundingClientRect();
-			const onMouseDownListenerForColorAlphaSlider = this.eventListeners['onMouseDownListenerForColorAlphaSlider'];
-			(this.colorAlphaSlide.nativeElement as HTMLElement).addEventListener('mousedown', onMouseDownListenerForColorAlphaSlider, false);
-			const onClickListenerForColorAlphaSlider = this.eventListeners['onClickListenerForColorAlphaSlider'];
-			(this.colorAlphaSlide.nativeElement as HTMLElement).addEventListener('click', onClickListenerForColorAlphaSlider, false);
+			this.eventSubscribers.pushSubscriber({
+				name: 'onMouseDownListenerForColorAlphaSlider',
+				subscripiton: Observable.fromEvent(this.colorAlphaSlide.nativeElement, 'mousedown')
+					.subscribe(($event: MouseEvent) => {
+						this.colorAlphaSlideThumbActive = true;
+					}),
+				meta: 'colorAlphaSlide'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onClickListenerForColorAlphaSlider',
+				subscripiton: Observable.fromEvent(this.colorAlphaSlide.nativeElement, 'click')
+					.subscribe(($event: MouseEvent) => {
+						this.onColorAlphaSlideMouseMove($event, true);
+					}),
+				meta: 'colorAlphaSlide'
+			});
 		}
-		const onMouseMoveListener = this.eventListeners['onMouseMoveListener'];
-		document.addEventListener('mousemove', onMouseMoveListener, false);
-		const onMouseUpListener = this.eventListeners['onMouseUpListener'];
-		document.addEventListener('mouseup', onMouseUpListener, false);
+		this.eventSubscribers.pushSubscriber({
+			name: 'onMouseMoveListener',
+			subscripiton: Observable.fromEvent(document, 'mousemove')
+				.subscribe(($event: MouseEvent) => {
+					this.onColorRectMouseMove($event);
+				this.onColorHueSlideMouseMove($event);
+				this.onColorAlphaSlideMouseMove($event);
+				}),
+			meta: 'document'
+		});
+		this.eventSubscribers.pushSubscriber({
+			name: 'onMouseUpListener',
+			subscripiton: Observable.fromEvent(document, 'mouseup')
+				.subscribe(($event: MouseEvent) => {
+					setTimeout(() => {
+						if (this.colorRectThumbActive) {
+							this.colorRectThumbActive = false;
+						}
+						if (this.colorHueSlideThumbActive) {
+							this.colorHueSlideThumbActive = false;
+						}
+						if (this.colorAlphaSlideThumbActive) {
+							this.colorAlphaSlideThumbActive = false;
+						}
+					});
+				}),
+			meta: 'document'
+		});
+		this.eventSubscribers.pushSubscriber({
+			name: 'onScrollListener',
+			subscripiton: Observable.fromEvent(document, 'scroll')
+				.debounceTime(100)
+				.subscribe(($event: MouseEvent) => {
+					this.collectProps();
+				}),
+			meta: 'document'
+		});
+		this.eventSubscribers.pushSubscriber({
+			name: 'onResizeListener',
+			subscripiton: Observable.fromEvent(window, 'resize')
+				.debounceTime(100)
+				.subscribe(($event: MouseEvent) => {
+					this.collectProps();
+				}),
+			meta: 'window'
+		});
+		const scrollElm = GetScrollParent(this.elRef.nativeElement);
+		if (scrollElm) {
+			this.eventSubscribers.pushSubscriber({
+				name: 'onScrollListener',
+				subscripiton: Observable.fromEvent(scrollElm, 'scroll')
+					.debounceTime(100)
+					.subscribe(($event: MouseEvent) => {
+						this.collectProps();
+					}),
+				meta: 'scrollElm'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onResizeListener',
+				subscripiton: Observable.fromEvent(scrollElm, 'resize')
+					.debounceTime(100)
+					.subscribe(($event: MouseEvent) => {
+						this.collectProps();
+					}),
+				meta: 'scrollElm'
+			});
+		}
+	}
+	collectProps() {
+		setTimeout(() => {
+			if (this.colorRect) {
+				this.colorRectProps = this.colorRect.nativeElement.getBoundingClientRect();
+			}
+			if (this.colorHueSlide) {
+				this.colorHueSlideProps = this.colorHueSlide.nativeElement.getBoundingClientRect();
+			}
+			if (this.colorAlphaSlide) {
+				this.colorAlphaSlideProps = this.colorAlphaSlide.nativeElement.getBoundingClientRect();
+			}
+		});
 	}
 	onColorRectMouseMove($event: MouseEvent, forceFalse = false) {
-		if (this._colorRectThumbActive) {
+		if (this.colorRectThumbActive) {
 			if (this.colorRectProps) {
 				let x = $event.clientX - this.colorRectProps.left;
 				x = x;
@@ -220,7 +245,7 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 			}
 		}
 		if (forceFalse) {
-			this._colorRectThumbActive = false;
+			this.colorRectThumbActive = false;
 		}
 	}
 	assignColorRectThumbPosition(xPercent, yPercent) {
@@ -230,7 +255,7 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 		});
 	}
 	onColorHueSlideMouseMove($event: MouseEvent, forceFalse = false) {
-		if (this._colorHueSlideThumbActive) {
+		if (this.colorHueSlideThumbActive) {
 			if (this.colorHueSlideProps) {
 				let x = $event.clientX - this.colorHueSlideProps.left;
 				x = x;
@@ -243,7 +268,7 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 			}
 		}
 		if (forceFalse) {
-			this._colorHueSlideThumbActive = false;
+			this.colorHueSlideThumbActive = false;
 		}
 	}
 	assignColorHueSliderThumbPosition(xPercent) {
@@ -252,7 +277,7 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 		});
 	}
 	onColorAlphaSlideMouseMove($event: MouseEvent, forceFalse = false) {
-		if (this._colorAlphaSlideThumbActive) {
+		if (this.colorAlphaSlideThumbActive) {
 			if (this.colorAlphaSlideProps) {
 				let x = $event.clientX - this.colorAlphaSlideProps.left;
 				x = x;
@@ -265,7 +290,7 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 			}
 		}
 		if (forceFalse) {
-			this._colorAlphaSlideThumbActive = false;
+			this.colorAlphaSlideThumbActive = false;
 		}
 	}
 	assignColorAlphaSliderThumbPosition(xPercent) {

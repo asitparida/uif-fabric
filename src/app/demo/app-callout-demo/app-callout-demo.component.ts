@@ -38,7 +38,7 @@ export class CalloutDemoComponent implements OnInit {
 		];
 		this.triggerHints = [
 			{ key: UifCalloutTriggerHint.ClickInClickOut, text: 'ClickInClickOut' },
-			{ key: UifCalloutTriggerHint.FocusInBlurOut, text: 'FocusInBlurOut' },
+			// { key: UifCalloutTriggerHint.FocusInBlurOut, text: 'FocusInBlurOut' },
 			{ key: UifCalloutTriggerHint.HoverInBlurOut, text: 'HoverInBlurOut' }
 		];
 	}

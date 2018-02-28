@@ -3,7 +3,7 @@ import {
 	OnChanges, Output, EventEmitter, SimpleChanges, ContentChild, OnDestroy, DoCheck, ChangeDetectorRef
 } from '@angular/core';
 import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from './uif-callout.models';
-import { GetScrollParent } from '../helpers';
+import { GetScrollParent, EventSubscribers } from '../helpers';
 import { } from '@angular/core/src/metadata/di';
 import { UifOpenCalloutComponent } from './uif-callout-subcomponents.component';
 import { Observable } from 'rxjs/Observable';
@@ -55,6 +55,7 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 	tabIndex = null;
 	private childInDOM;
 	private onDocumnetKeyUpListener: Subscription = null;
+	private eventSubscribers: EventSubscribers = new EventSubscribers();
 	constructor(
 		private elementRef: ElementRef) { }
 	ngAfterContentInit() {
@@ -98,7 +99,7 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 					if (change.currentValue) {
 						this.addDocumentListener();
 					} else {
-						this.clearDocumentListener();
+						this.eventSubscribers.clearSubscribers('onKeyUpListener');
 					}
 				}
 			}
@@ -120,94 +121,93 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 		});
 	}
 	ngOnDestroy() {
-		const openHandler = this.listeners['openHandler'];
-		const closeHandler = this.listeners['closeHandler'];
-		const toggleHandler = this.listeners['toggleHandler'];
-		if (this.calloutTriggerHandler) {
-			(this.calloutTriggerHandler as HTMLElement).removeEventListener('click', toggleHandler);
-			(this.calloutTriggerHandler as HTMLElement).removeEventListener('focus', openHandler);
-			(this.calloutTriggerHandler as HTMLElement).removeEventListener('blur', closeHandler);
-			(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseover', openHandler);
-			(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseout', closeHandler);
-		}
-		const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
-		if (this.scrollElm) {
-			this.scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
-			this.scrollElm.removeEventListener('resize', scrollAndResizeHandler);
-		}
-		document.removeEventListener('scroll', scrollAndResizeHandler);
-		window.removeEventListener('resize', scrollAndResizeHandler);
+		this.eventSubscribers.clearSubscribers();
 	}
 	clearDocumentListener() {
-		if (this.onDocumnetKeyUpListener) {
-			this.onDocumnetKeyUpListener.unsubscribe();
-			this.onDocumnetKeyUpListener = null;
-		}
+		this.eventSubscribers.clearSubscribers();
 	}
 	addDocumentListener() {
-		this.clearDocumentListener();
-		this.onDocumnetKeyUpListener = Observable.fromEvent(document, 'keyup')
-			.subscribe(($event: KeyboardEvent) => {
-				if ($event.key === 'Escape') {
-					this.isOpen = false;
-					this.isOpenChange.emit(this.isOpen);
-				}
-			});
+		this.eventSubscribers.pushSubscriber({
+			name: 'onKeyUpListener',
+			subscripiton: Observable.fromEvent(document, 'keyup')
+				.subscribe(($event: KeyboardEvent) => {
+					if ($event.key === 'Escape') {
+						this.isOpen = false;
+						this.isOpenChange.emit(this.isOpen);
+					}
+				}),
+			meta: 'document'
+		});
+	}
+	openHandler() {
+		this.open();
+	}
+	closeHandler() {
+		this.close();
+	}
+	toggleHandler() {
+		this.toggleCallout();
+	}
+	onScrollAndResize() {
+		if (this.isOpen) {
+			this.close();
+		}
 	}
 	addListeners() {
+		this.eventSubscribers.emptySubscribers();
 		const self = this;
-		if (!this.listenersPopulated) {
-			this.listeners['openHandler'] = function () {
-				self.open();
-			};
-			this.listeners['closeHandler'] = function () {
-				self.close();
-			};
-			this.listeners['toggleHandler'] = function () {
-				self.toggleCallout();
-			};
-			this.listeners['onScrollAndResize'] = function () {
-				if (self.isOpen) {
-					self.close();
-				}
-			};
-			this.listenersPopulated = true;
-		}
-		const openHandler = this.listeners['openHandler'];
-		const closeHandler = this.listeners['closeHandler'];
-		const toggleHandler = this.listeners['toggleHandler'];
 		setTimeout(() => {
 			switch (this.triggerHint) {
 				case UifCalloutTriggerHint.FocusInBlurOut:
 					{
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('click', toggleHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('focus', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('blur', closeHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseover', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseout', closeHandler);
-						(this.calloutTriggerHandler as HTMLElement).addEventListener('focus', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).addEventListener('blur', closeHandler);
+						this.eventSubscribers.pushSubscriber({
+							name: 'onFocusListener',
+							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'focus')
+								.subscribe(() => {
+									this.openHandler();
+								}),
+							meta: 'calloutTriggerHandler'
+						});
+						this.eventSubscribers.pushSubscriber({
+							name: 'onBlurListener',
+							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'blur')
+								.subscribe(() => {
+									this.closeHandler();
+								}),
+							meta: 'calloutTriggerHandler'
+						});
 						break;
 					}
 				case UifCalloutTriggerHint.HoverInBlurOut:
 					{
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('click', toggleHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('focus', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('blur', closeHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseover', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseout', closeHandler);
-						(this.calloutTriggerHandler as HTMLElement).addEventListener('mouseover', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).addEventListener('mouseout', closeHandler);
+						this.eventSubscribers.pushSubscriber({
+							name: 'onMouseOverListener',
+							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'mouseover')
+								.subscribe(() => {
+									this.openHandler();
+								}),
+							meta: 'calloutTriggerHandler'
+						});
+						this.eventSubscribers.pushSubscriber({
+							name: 'onMouseOutListener',
+							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'mouseout')
+								.subscribe(() => {
+									this.closeHandler();
+								}),
+							meta: 'calloutTriggerHandler'
+						});
 						break;
 					}
 				default:
 					{
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('click', toggleHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('focus', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('blur', closeHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseover', openHandler);
-						(this.calloutTriggerHandler as HTMLElement).removeEventListener('mouseout', closeHandler);
-						(this.calloutTriggerHandler as HTMLElement).addEventListener('click', toggleHandler);
+						this.eventSubscribers.pushSubscriber({
+							name: 'onClickListener',
+							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'click')
+								.subscribe(() => {
+									this.toggleHandler();
+								}),
+							meta: 'calloutTriggerHandler'
+						});
 						break;
 					}
 			}
@@ -483,18 +483,45 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 			}
 		});
 		if (this.appendToBody) {
-			const scrollAndResizeHandler = this.listeners['onScrollAndResize'];
 			this.scrollElm = GetScrollParent(this.elementRef.nativeElement);
 			if (this.scrollElm) {
-				this.scrollElm.removeEventListener('scroll', scrollAndResizeHandler);
-				this.scrollElm.addEventListener('scroll', scrollAndResizeHandler);
-				this.scrollElm.removeEventListener('resize', scrollAndResizeHandler);
-				this.scrollElm.addEventListener('resize', scrollAndResizeHandler);
+				this.eventSubscribers.pushSubscriber({
+					name: 'onScrollListener',
+					subscripiton: Observable.fromEvent(document, 'scroll')
+						.debounceTime(100)
+						.subscribe(($event: MouseEvent) => {
+							this.onScrollAndResize();
+						}),
+					meta: 'scrollElm'
+				});
+				this.eventSubscribers.pushSubscriber({
+					name: 'onResizeListener',
+					subscripiton: Observable.fromEvent(document, 'resize')
+						.debounceTime(100)
+						.subscribe(($event: MouseEvent) => {
+							this.onScrollAndResize();
+						}),
+					meta: 'scrollElm'
+				});
 			}
-			document.removeEventListener('scroll', scrollAndResizeHandler);
-			document.addEventListener('scroll', scrollAndResizeHandler);
-			window.removeEventListener('resize', scrollAndResizeHandler);
-			window.addEventListener('resize', scrollAndResizeHandler);
+			this.eventSubscribers.pushSubscriber({
+				name: 'onScrollListener',
+				subscripiton: Observable.fromEvent(document, 'scroll')
+					.debounceTime(100)
+					.subscribe(($event: MouseEvent) => {
+						this.onScrollAndResize();
+					}),
+				meta: 'document'
+			});
+			this.eventSubscribers.pushSubscriber({
+				name: 'onResizeListener',
+				subscripiton: Observable.fromEvent(window, 'resize')
+					.debounceTime(100)
+					.subscribe(($event: MouseEvent) => {
+						this.onScrollAndResize();
+					}),
+				meta: 'window'
+			});
 		}
 	}
 	close() {
