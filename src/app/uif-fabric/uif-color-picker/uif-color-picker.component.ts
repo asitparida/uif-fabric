@@ -304,6 +304,9 @@ export class UifColorPickerComponent implements AfterViewInit, OnInit, OnDestroy
 		this.color = updateA(this.color, alpha);
 		this.hex = this.color.str;
 		this.hexChange.emit(this.hex);
+		this.initiazlizeColorRect();
+		this.initializeColorRectThumb();
+		this.updateColorRectThumbColor();
 		this.updateAlphaSlideOverlay();
 	}
 	onHexInputChange() {
