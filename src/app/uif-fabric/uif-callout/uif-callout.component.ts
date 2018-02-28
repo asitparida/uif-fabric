@@ -162,7 +162,7 @@ export class UifCalloutComponent implements AfterContentInit, OnChanges, OnDestr
 					{
 						this.eventSubscribers.pushSubscriber({
 							name: 'onFocusListener',
-							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'focus')
+							subscripiton: Observable.fromEvent(this.calloutTriggerHandler, 'focus', true)
 								.subscribe(() => {
 									this.openHandler();
 								}),
