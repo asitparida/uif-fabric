@@ -2,7 +2,7 @@
     <div class="demo-container-content">
         <h2 [class.isCustom]="component?.isCustom">
             <span>{{component?.dir}}</span>
-            <uif-button style="float:right;" (click)="showCodesContent()" icon="FileCode">
+            <uif-button style="float:right;" (click)="showCodesContent()" icon="FileCode" outline="true">
                 <span [hidden]="showCodes">Show Source</span>
                 <span [hidden]="!showCodes">Show Demo</span>
             </uif-button>

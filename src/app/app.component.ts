@@ -33,5 +33,8 @@ export class AppComponent implements OnInit {
 	activateSummary() {
 		this.router.navigate(['/home']);
 	}
+	goLink(link) {
+		window.open(link, '_blank');
+	}
 }
 
