@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
 	selector: 'uif-button',
@@ -14,11 +14,28 @@ import { Component, Input } from '@angular/core';
 		'./uif-button.component.scss'
 	]
 })
-export class UifButtonComponent {
+export class UifButtonComponent implements OnChanges {
 	@Input() primary = false;
 	@Input() icon = null;
 	@Input() disabled = false;
 	@Input() outline = false;
+	constructor(private elRef: ElementRef) {}
+	ngOnChanges(changes: SimpleChanges) {
+		for (const prop in changes) {
+			if (prop === 'disabled') {
+				if (changes[prop]) {
+					const change = changes[prop];
+					if (change.currentValue) {
+						if (this.elRef && this.elRef.nativeElement) {
+							(this.elRef.nativeElement as HTMLElement).setAttribute('disabled', 'disabled');
+						} else {
+							(this.elRef.nativeElement as HTMLElement).removeAttribute('disabled');
+						}
+					}
+				}
+			}
+		}
+	}
 	get iconName() {
 		return this.icon ? 'ms-Icon--' + this.icon : '';
 	}
