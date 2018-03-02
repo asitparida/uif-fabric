@@ -26,7 +26,7 @@ export * from './uif-button/uif-button.component';
 export * from './uif-button/uif-hero-button.component';
 export * from './uif-button/uif-compound-button.component';
 export * from './uif-callout/uif-callout.component';
-export *  from './uif-callout/uif-callout-subcomponents.component';
+export * from './uif-callout/uif-callout-subcomponents.component';
 export * from './uif-contextual-menu/uif-contextual-menu.component';
 export * from './uif-contextual-menu/uif-contextual-menu-subcomponents.component';
 export * from './uif-datepicker/uif-datepicker.component';

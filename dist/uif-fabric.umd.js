@@ -2732,7 +2732,7 @@ var UifContextualMenuTriggerDirective = /** @class */ (function () {
     }
     UifContextualMenuTriggerDirective = __decorate([
         core.Directive({
-            selector: '[menuTrigger]'
+            selector: '[menuTrigger]',
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof core.ElementRef !== "undefined" && core.ElementRef) === "function" && _a || Object])
     ], UifContextualMenuTriggerDirective);
@@ -10740,6 +10740,39 @@ var UifAccordionItemTitleComponent = /** @class */ (function () {
     return UifAccordionItemTitleComponent;
 }());
 
+var UifTooltipComponent = /** @class */ (function () {
+    function UifTooltipComponent() {
+        this.onTextEllipsis = false;
+        this.maxWidth = '';
+        this.showClose = false;
+        this.isTooltip = true;
+        this.calloutTriggerHint = exports.UifCalloutTriggerHint.HoverInBlurOut;
+        this.directionHint = exports.UifCalloutDirectionalHint.TopCenter;
+        this.gap = 5;
+        this.showArrow = true;
+    }
+    __decorate([
+        core.Input('uifTooltip'),
+        __metadata("design:type", Object)
+    ], UifTooltipComponent.prototype, "tooltipMsg", void 0);
+    __decorate([
+        core.Input(),
+        __metadata("design:type", Object)
+    ], UifTooltipComponent.prototype, "onTextEllipsis", void 0);
+    __decorate([
+        core.Input(),
+        __metadata("design:type", Object)
+    ], UifTooltipComponent.prototype, "maxWidth", void 0);
+    UifTooltipComponent = __decorate([
+        core.Component({
+            selector: '[uifTooltip]',
+            template: "<uif-callout [(isOpen)]=\"isOpen\" [maxWidth]=\"maxWidth\" [onTextEllipsis]=\"onTextEllipsis\" [isTooltip]=\"isTooltip\" [appendToBody]=\"isTooltip\" [showHeader]=\"!isTooltip\" [showActions]=\"!isTooltip\" [showClose]=\"showClose\" [showArrow]=\"showArrow\" [directionalHint]=\"directionHint\" [gap]=\"gap\" [triggerHint]=\"calloutTriggerHint\"> \n    <uif-callout-content>{{tooltipMsg}}</uif-callout-content>\n    <span uifOpenCallout>\n        <ng-content></ng-content>\n    </span>\n</uif-callout>",
+            styles: [""]
+        })
+    ], UifTooltipComponent);
+    return UifTooltipComponent;
+}());
+
 var UifWizardService = /** @class */ (function () {
     function UifWizardService(cdr) {
         this.cdr = cdr;
@@ -12259,7 +12292,7 @@ var COMPONENTS = [
     UifAccordionComponent,
     UifAccordionItemComponent,
     UifAccordionItemTitleComponent,
-    UifTooltipComponent$$1,
+    UifTooltipComponent,
     UifWizardComponent,
     UifWizardPageComponent,
     UifWizardPageNavTitleComponent,
@@ -12280,47 +12313,11 @@ var UiFabricModule = /** @class */ (function () {
                 forms.FormsModule,
                 forms.ReactiveFormsModule
             ],
-            entryComponents: COMPONENTS,
             exports: COMPONENTS.concat(DIRECTIVES),
             providers: []
         })
     ], UiFabricModule);
     return UiFabricModule;
-}());
-
-/*  EXPORT MODELS & ENUMS */
-
-var UifTooltipComponent$$1 = /** @class */ (function () {
-    function UifTooltipComponent$$1() {
-        this.onTextEllipsis = false;
-        this.maxWidth = '';
-        this.showClose = false;
-        this.isTooltip = true;
-        this.calloutTriggerHint = exports.UifCalloutTriggerHint.HoverInBlurOut;
-        this.directionHint = exports.UifCalloutDirectionalHint.TopCenter;
-        this.gap = 5;
-        this.showArrow = true;
-    }
-    __decorate([
-        core.Input('uifTooltip'),
-        __metadata("design:type", Object)
-    ], UifTooltipComponent$$1.prototype, "tooltipMsg", void 0);
-    __decorate([
-        core.Input(),
-        __metadata("design:type", Object)
-    ], UifTooltipComponent$$1.prototype, "onTextEllipsis", void 0);
-    __decorate([
-        core.Input(),
-        __metadata("design:type", Object)
-    ], UifTooltipComponent$$1.prototype, "maxWidth", void 0);
-    UifTooltipComponent$$1 = __decorate([
-        core.Component({
-            selector: '[uifTooltip]',
-            template: "<uif-callout [(isOpen)]=\"isOpen\" [maxWidth]=\"maxWidth\" [onTextEllipsis]=\"onTextEllipsis\" [isTooltip]=\"isTooltip\" [appendToBody]=\"isTooltip\" [showHeader]=\"!isTooltip\" [showActions]=\"!isTooltip\" [showClose]=\"showClose\" [showArrow]=\"showArrow\" [directionalHint]=\"directionHint\" [gap]=\"gap\" [triggerHint]=\"calloutTriggerHint\"> \n    <uif-callout-content>{{tooltipMsg}}</uif-callout-content>\n    <span uifOpenCallout>\n        <ng-content></ng-content>\n    </span>\n</uif-callout>",
-            styles: [""]
-        })
-    ], UifTooltipComponent$$1);
-    return UifTooltipComponent$$1;
 }());
 
 /*  EXPORT MODELS & ENUMS */
@@ -12397,7 +12394,7 @@ exports.UifModalFooterComponent = UifModalFooterComponent;
 exports.UifAccordionComponent = UifAccordionComponent;
 exports.UifAccordionItemTitleComponent = UifAccordionItemTitleComponent;
 exports.UifAccordionItemComponent = UifAccordionItemComponent;
-exports.UifTooltipComponent = UifTooltipComponent$$1;
+exports.UifTooltipComponent = UifTooltipComponent;
 exports.UifWizardComponent = UifWizardComponent;
 exports.UifWizardPageComponent = UifWizardPageComponent;
 exports.UifWizardPageNavTitleComponent = UifWizardPageNavTitleComponent;

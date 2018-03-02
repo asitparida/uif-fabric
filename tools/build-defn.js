@@ -1,6 +1,5 @@
 let fs = require('fs');
 let prism = require('../src/prism');
-const path = __dirname + "\\src\\app\\demo\\app-breadcrumb-demo\\app-breadcrumb-demo.component.ts";
 var walk = function (dir, done) {
     var results = [];
     fs.readdir(dir, function (err, list) {

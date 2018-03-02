@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UifBreadcrumbComponent } from './uif-breadcrumb/uif-breadcrumb.component';
 import { UifButtonComponent } from './uif-button/uif-button.component';
 import { UifHeroButtonComponent } from './uif-button/uif-hero-button.component';
@@ -12,7 +12,6 @@ import {
 import { UifContextualMenuComponent } from './uif-contextual-menu/uif-contextual-menu.component';
 import {
 	UifContextualMenuItemComponent,
-	UifContextualMenuTriggerDirective,
 	UifContextualMenuItemDividerComponent,
 	UifContextualMenuItemHeaderComponent,
 	UifContextMenuService
@@ -64,7 +63,6 @@ import { UifModalHeaderComponent, UifModalContentComponent, UifModalFooterCompon
 import { UifAccordionComponent } from './uif-accordion/uif-accordion.component';
 import { UifAccordionItemTitleComponent } from './uif-accordion/uif-accordion-subcomponents.component';
 import { UifAccordionItemComponent } from './uif-accordion/uif-accordion-item.component';
-import { UifTooltipComponent } from './uif-tooltip/uif-tooltip.component';
 import { UifWizardComponent } from './uif-wizard/uif-wizard.component';
 import { UifWizardPageComponent } from './uif-wizard/uif-wizard-page.component';
 import { UifWizardPageNavTitleComponent } from './uif-wizard/uif-wizard-page-nav-title.component';
@@ -73,11 +71,13 @@ import { UifCarouselComponent } from './uif-carousel/uif-carousel.component';
 import { UifCarouselItemComponent } from './uif-carousel/uif-carousel-item.component';
 import { UifSliderComponent } from './uif-slider/uif-slider.component';
 import { UifChipsComponent } from './uif-chips/uif-chips.component';
-
+import { UifTooltipComponent } from './uif-tooltip/uif-tooltip.component';
+import { UifContextualMenuTriggerDirective } from './uif-contextual-menu/uif-contextual-menu-subcomponents.component';
 
 const DIRECTIVES = [
 	UifContextualMenuTriggerDirective
 ];
+
 const COMPONENTS = [
 	UifBreadcrumbComponent,
 	UifButtonComponent,
@@ -172,14 +172,13 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-	declarations: [ ...COMPONENTS, ...DIRECTIVES],
+	declarations: [...COMPONENTS, ...DIRECTIVES],
 	imports: [
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule
 	],
-	entryComponents: COMPONENTS,
-	exports: [ ...COMPONENTS, ...DIRECTIVES],
+	exports: [...COMPONENTS, ...DIRECTIVES],
 	providers: []
 })
 export class UiFabricModule { }

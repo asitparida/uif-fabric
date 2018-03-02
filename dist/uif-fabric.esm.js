@@ -2750,7 +2750,7 @@ var UifContextualMenuTriggerDirective = /** @class */ (function () {
     }
     UifContextualMenuTriggerDirective = __decorate([
         Directive({
-            selector: '[menuTrigger]'
+            selector: '[menuTrigger]',
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof ElementRef !== "undefined" && ElementRef) === "function" && _a || Object])
     ], UifContextualMenuTriggerDirective);
@@ -10758,6 +10758,39 @@ var UifAccordionItemTitleComponent = /** @class */ (function () {
     return UifAccordionItemTitleComponent;
 }());
 
+var UifTooltipComponent = /** @class */ (function () {
+    function UifTooltipComponent() {
+        this.onTextEllipsis = false;
+        this.maxWidth = '';
+        this.showClose = false;
+        this.isTooltip = true;
+        this.calloutTriggerHint = UifCalloutTriggerHint.HoverInBlurOut;
+        this.directionHint = UifCalloutDirectionalHint.TopCenter;
+        this.gap = 5;
+        this.showArrow = true;
+    }
+    __decorate([
+        Input('uifTooltip'),
+        __metadata("design:type", Object)
+    ], UifTooltipComponent.prototype, "tooltipMsg", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], UifTooltipComponent.prototype, "onTextEllipsis", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], UifTooltipComponent.prototype, "maxWidth", void 0);
+    UifTooltipComponent = __decorate([
+        Component({
+            selector: '[uifTooltip]',
+            template: "<uif-callout [(isOpen)]=\"isOpen\" [maxWidth]=\"maxWidth\" [onTextEllipsis]=\"onTextEllipsis\" [isTooltip]=\"isTooltip\" [appendToBody]=\"isTooltip\" [showHeader]=\"!isTooltip\" [showActions]=\"!isTooltip\" [showClose]=\"showClose\" [showArrow]=\"showArrow\" [directionalHint]=\"directionHint\" [gap]=\"gap\" [triggerHint]=\"calloutTriggerHint\"> \n    <uif-callout-content>{{tooltipMsg}}</uif-callout-content>\n    <span uifOpenCallout>\n        <ng-content></ng-content>\n    </span>\n</uif-callout>",
+            styles: [""]
+        })
+    ], UifTooltipComponent);
+    return UifTooltipComponent;
+}());
+
 var UifWizardService = /** @class */ (function () {
     function UifWizardService(cdr) {
         this.cdr = cdr;
@@ -12277,7 +12310,7 @@ var COMPONENTS = [
     UifAccordionComponent,
     UifAccordionItemComponent,
     UifAccordionItemTitleComponent,
-    UifTooltipComponent$$1,
+    UifTooltipComponent,
     UifWizardComponent,
     UifWizardPageComponent,
     UifWizardPageNavTitleComponent,
@@ -12298,7 +12331,6 @@ var UiFabricModule = /** @class */ (function () {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            entryComponents: COMPONENTS,
             exports: COMPONENTS.concat(DIRECTIVES),
             providers: []
         })
@@ -12308,40 +12340,5 @@ var UiFabricModule = /** @class */ (function () {
 
 /*  EXPORT MODELS & ENUMS */
 
-var UifTooltipComponent$$1 = /** @class */ (function () {
-    function UifTooltipComponent$$1() {
-        this.onTextEllipsis = false;
-        this.maxWidth = '';
-        this.showClose = false;
-        this.isTooltip = true;
-        this.calloutTriggerHint = UifCalloutTriggerHint.HoverInBlurOut;
-        this.directionHint = UifCalloutDirectionalHint.TopCenter;
-        this.gap = 5;
-        this.showArrow = true;
-    }
-    __decorate([
-        Input('uifTooltip'),
-        __metadata("design:type", Object)
-    ], UifTooltipComponent$$1.prototype, "tooltipMsg", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], UifTooltipComponent$$1.prototype, "onTextEllipsis", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], UifTooltipComponent$$1.prototype, "maxWidth", void 0);
-    UifTooltipComponent$$1 = __decorate([
-        Component({
-            selector: '[uifTooltip]',
-            template: "<uif-callout [(isOpen)]=\"isOpen\" [maxWidth]=\"maxWidth\" [onTextEllipsis]=\"onTextEllipsis\" [isTooltip]=\"isTooltip\" [appendToBody]=\"isTooltip\" [showHeader]=\"!isTooltip\" [showActions]=\"!isTooltip\" [showClose]=\"showClose\" [showArrow]=\"showArrow\" [directionalHint]=\"directionHint\" [gap]=\"gap\" [triggerHint]=\"calloutTriggerHint\"> \n    <uif-callout-content>{{tooltipMsg}}</uif-callout-content>\n    <span uifOpenCallout>\n        <ng-content></ng-content>\n    </span>\n</uif-callout>",
-            styles: [""]
-        })
-    ], UifTooltipComponent$$1);
-    return UifTooltipComponent$$1;
-}());
-
-/*  EXPORT MODELS & ENUMS */
-
-export { UifButtonType, UifCalloutDirectionalHint, UifCalloutTriggerHint, UIfColorPickerModel, UifContextualMenuDirectionHint, WeekDay, MonthFullname, Month, MonthShortname, DateModel, WeekDayData, UifFacepileCard, UifIconFlip, UifIconBadge, UifIconDir, UifMessageType, UifPanelSizeHint, UifPanelDirectionHint, PeoplePickerGroup, UifPersonaViewType, UifPersonaAvailabilityType, PersonaItem, PersonMailItem, PersonChatItem, PersonPhoneItem, OrgChartGroup, PersonaCard, UifPivotType, UifPivotSize, UifRatingModel, UifModalSize, UiFWizardNavigation, UifBreadcrumbComponent, UifButtonComponent, UifHeroButtonComponent, UifCompoundButtonComponent, UifCalloutComponent, UifOpenCalloutComponent, UifCalloutHeaderComponent, UifCalloutContentComponent, UifCalloutActionComponent, UifContextualMenuComponent, UifContextMenuService, UifContextualMenuTriggerDirective, UifContextualMenuItemComponent, UifContextualMenuItemDividerComponent, UifContextualMenuItemHeaderComponent, UifDatepickerComponent, UifOpenDatepickerComponent, UifDialogComponent, UifDialogHeaderComponent, UifDialogContentComponent, UifDialogFooterComponent, UifDropdownComponent, UifDropdownItemService, UifDropdownOptionComponent, UifFacepileComponent, UifPersonaComponent, UifPersonaCardComponent, UifOrgChartComponent, UifOverlayComponent, UifPanelComponent, UifMessageBarComponent, UifMessageBannerComponent, UifPeoplePickerComponent, UifContextHostHeaderComponent, UifContextHostContentComponent, UifContextHostComponent, UifPivotComponent, UifPivotTitleComponent, UifPivotContentComponent, UifPivotItemComponent, UifProgressIndicatorComponent, UifToggleComponent, UifIconComponent, UifCheckboxComponent, UifChoicefieldComponent, UifChoicefieldItemComponent, UifTableComponent, UifTableTrComponent, UifTreeTableComponent, UifTreeTableColumnComponent, UifTreeTableContentComponent, UifRatingComponent, UifColorPickerComponent, UifModalComponent, UifModalHeaderComponent, UifModalContentComponent, UifModalFooterComponent, UifAccordionComponent, UifAccordionItemTitleComponent, UifAccordionItemComponent, UifTooltipComponent$$1 as UifTooltipComponent, UifWizardComponent, UifWizardPageComponent, UifWizardPageNavTitleComponent, UifWizardPageTitleComponent, UifCarouselComponent, UifCarouselItemComponent, UifSliderComponent, UifChipsComponent, UiFabricModule };
+export { UifButtonType, UifCalloutDirectionalHint, UifCalloutTriggerHint, UIfColorPickerModel, UifContextualMenuDirectionHint, WeekDay, MonthFullname, Month, MonthShortname, DateModel, WeekDayData, UifFacepileCard, UifIconFlip, UifIconBadge, UifIconDir, UifMessageType, UifPanelSizeHint, UifPanelDirectionHint, PeoplePickerGroup, UifPersonaViewType, UifPersonaAvailabilityType, PersonaItem, PersonMailItem, PersonChatItem, PersonPhoneItem, OrgChartGroup, PersonaCard, UifPivotType, UifPivotSize, UifRatingModel, UifModalSize, UiFWizardNavigation, UifBreadcrumbComponent, UifButtonComponent, UifHeroButtonComponent, UifCompoundButtonComponent, UifCalloutComponent, UifOpenCalloutComponent, UifCalloutHeaderComponent, UifCalloutContentComponent, UifCalloutActionComponent, UifContextualMenuComponent, UifContextMenuService, UifContextualMenuTriggerDirective, UifContextualMenuItemComponent, UifContextualMenuItemDividerComponent, UifContextualMenuItemHeaderComponent, UifDatepickerComponent, UifOpenDatepickerComponent, UifDialogComponent, UifDialogHeaderComponent, UifDialogContentComponent, UifDialogFooterComponent, UifDropdownComponent, UifDropdownItemService, UifDropdownOptionComponent, UifFacepileComponent, UifPersonaComponent, UifPersonaCardComponent, UifOrgChartComponent, UifOverlayComponent, UifPanelComponent, UifMessageBarComponent, UifMessageBannerComponent, UifPeoplePickerComponent, UifContextHostHeaderComponent, UifContextHostContentComponent, UifContextHostComponent, UifPivotComponent, UifPivotTitleComponent, UifPivotContentComponent, UifPivotItemComponent, UifProgressIndicatorComponent, UifToggleComponent, UifIconComponent, UifCheckboxComponent, UifChoicefieldComponent, UifChoicefieldItemComponent, UifTableComponent, UifTableTrComponent, UifTreeTableComponent, UifTreeTableColumnComponent, UifTreeTableContentComponent, UifRatingComponent, UifColorPickerComponent, UifModalComponent, UifModalHeaderComponent, UifModalContentComponent, UifModalFooterComponent, UifAccordionComponent, UifAccordionItemTitleComponent, UifAccordionItemComponent, UifTooltipComponent, UifWizardComponent, UifWizardPageComponent, UifWizardPageNavTitleComponent, UifWizardPageTitleComponent, UifCarouselComponent, UifCarouselItemComponent, UifSliderComponent, UifChipsComponent, UiFabricModule };
 //# sourceMappingURL=uif-fabric.esm.js.map

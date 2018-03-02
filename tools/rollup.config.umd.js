@@ -5,7 +5,7 @@ import typescript from 'rollup-plugin-typescript';
 var sass = require('node-sass');
 import { nameLibrary, PATH_SRC, PATH_DIST } from './config-library.js';
 export default {
-    input: PATH_SRC + 'index.ts',
+    input: PATH_SRC + 'uif-fabric.ts',
     output: {
         name: nameLibrary,
         sourcemap: true,

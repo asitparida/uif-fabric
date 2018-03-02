@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from '../../../../lib/uif-fabric';
+import { UifCalloutDirectionalHint, UifCalloutTriggerHint } from '../../../../lib/uif-fabric/uif-fabric';
 
 @Component({
 	selector: 'app-callout-demo',

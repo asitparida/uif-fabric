@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UifModalSize } from '../../../../lib/uif-fabric/index';
+import { UifModalSize } from '../../../../lib/uif-fabric/uif-fabric';
 
 @Component({
 	selector: 'app-modal-demo',

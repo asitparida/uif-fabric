@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UifPivotType, UifPivotSize } from '../../../../lib/uif-fabric/index';
+import { UifPivotType, UifPivotSize } from '../../../../lib/uif-fabric/uif-fabric';
 
 @Component({
 	selector: 'app-pivot-demo',

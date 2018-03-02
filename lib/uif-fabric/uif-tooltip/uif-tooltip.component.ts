@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UifCalloutTriggerHint, UifCalloutDirectionalHint } from '../index';
+import { UifCalloutTriggerHint, UifCalloutDirectionalHint } from '../uif-callout/index';
 
 @Component({
 	selector: '[uifTooltip]',

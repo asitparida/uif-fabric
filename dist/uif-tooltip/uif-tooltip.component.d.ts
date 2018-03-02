@@ -1,4 +1,4 @@
-import { UifCalloutTriggerHint, UifCalloutDirectionalHint } from '../index';
+import { UifCalloutTriggerHint, UifCalloutDirectionalHint } from '../uif-callout/index';
 export declare class UifTooltipComponent {
     tooltipMsg: any;
     onTextEllipsis: boolean;

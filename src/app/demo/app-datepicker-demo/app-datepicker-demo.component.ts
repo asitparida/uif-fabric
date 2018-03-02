@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WeekDay } from '../../../../lib/uif-fabric';
+import { WeekDay } from '../../../../lib/uif-fabric/uif-fabric';
 
 @Component({
 	selector: 'app-datepicker-demo',
