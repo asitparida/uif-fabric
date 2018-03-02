@@ -21,7 +21,8 @@ const read = (dir) =>
 
 let filePaths = read('./dist');
 filePaths = filePaths.filter((fpath =>
-    !fpath.endsWith('.d.ts')
+    !fpath.endsWith('package.json')
+    && !fpath.endsWith('.d.ts')
     && !fpath.endsWith('.esm.js')
     && !fpath.endsWith('.esm.js.map')
     && !fpath.endsWith('.umd.js')

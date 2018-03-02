@@ -1,0 +1,26 @@
+{
+  "name": "uif-fabric",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "uif-fabric.umd.js",
+  "jsnext:main": "uif-fabric.esm.js",
+  "module": "uif-fabric.esm.js",
+  "types": "uif-fabric.d.ts",
+  "dependencies": {
+    "@angular/animations": "^5.1.0",
+    "@angular/common": "^5.1.0",
+    "@angular/compiler": "^5.1.0",
+    "@angular/core": "^5.1.0",
+    "@angular/forms": "^5.1.0",
+    "@angular/http": "^5.1.0",
+    "@angular/platform-browser": "^5.1.0",
+    "@angular/platform-browser-dynamic": "^5.1.0",
+    "@angular/router": "^5.1.0",
+    "core-js": "^2.4.1",
+    "office-ui-fabric-core": "9.3.1",
+    "office-ui-fabric-js": "1.5.0",
+    "prismjs": "1.10.0",
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.19"
+  }
+}

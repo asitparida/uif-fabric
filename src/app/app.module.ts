@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http';
-import { UiFabricModule } from '../../lib/uif-fabric/index';
+import { UiFabricModule } from '../../lib/uif-fabric/uif-fabric';
 
 import { AppComponent } from './app.component';
 import { DemoerComponent, DemoerService } from './demoer/demoer.component';

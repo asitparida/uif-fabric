@@ -18,8 +18,9 @@
     "bundle-tsc": "tsc -p tools/tsconfig-build.json",
     "bundle-ngc": "ngc -p tools/tsconfig-build.json",
     "bundle-rollup": "rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js",
-    "bundle": "npm run prebundle & rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js && tsc -p tools/tsconfig-build.json && ngc -p tools/tsconfig-build.json & npm run postbundle",
-    "build-web": "npm run build & node tools/deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD"
+    "bundle": "npm run prebundle & rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js && tsc -p tools/tsconfig-build.json && ngc -p tools/tsconfig-aot.json & npm run postbundle",
+    "build-web": "npm run build & node tools/deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD",
+    "publish": "npm pulish dist"
   },
   "dependencies": {
     "@angular/animations": "^5.1.0",

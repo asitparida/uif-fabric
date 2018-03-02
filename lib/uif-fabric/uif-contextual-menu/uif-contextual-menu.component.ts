@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { UifContextualMenuDirectionHint } from './uif-contextual-menu.models';
 import {
-	UifContextualMenuTriggerDirective,
 	UifContextualMenuItemComponent,
 	UifContextMenuService
 } from './uif-contextual-menu-subcomponents.component';

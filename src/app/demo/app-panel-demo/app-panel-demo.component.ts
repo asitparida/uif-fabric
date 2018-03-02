@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UifPanelDirectionHint, UifPanelSizeHint } from '../../../../lib/uif-fabric/index';
+import { UifPanelDirectionHint, UifPanelSizeHint } from '../../../../lib/uif-fabric/uif-fabric';
 
 @Component({
 	selector: 'app-panel-demo',
