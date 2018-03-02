@@ -3,7 +3,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http';
-import { UiFabricModule } from '../../lib/uif-fabric/uif-fabric';
+import {
+	UifAccordionModule, UifBreadcrumbModule, UifButtonModule,
+	UifCalloutModule, UifCarouselModule, UifCheckboxModule, UifChipsModule, UifChoicefieldModule,
+	UifColorPickerModule, UifContextHostModule, UifContextualMenuModule, UifDialogModule,
+	UifDatepickerModule, UifDropdownModule, UifFacepileModule, UifPersonaModule, UifOrgChartModule,
+	UifPanelModule, UifModalModule, UifSliderModule, UifTooltipModule
+} from '../../lib/uif-fabric/uif-fabric';
 
 import { AppComponent } from './app.component';
 import { DemoerComponent, DemoerService } from './demoer/demoer.component';
@@ -43,6 +49,19 @@ import { CarouselDemoComponent } from './demo/app-carousel-demo/app-carousel-dem
 import { SliderDemoComponent } from './demo/app-slider-demo/app-slider-demo.component';
 import { AppRoutingModule } from './app.routing';
 import { ChipsDemoComponent } from './demo/app-chips-demo/app-chips-demo.component';
+import { UifPeoplePickerModule } from '../../lib/uif-fabric/uif-people-picker/uif-people-picker.module';
+import { UifPersonaCardModule } from '../../lib/uif-fabric/uif-persona-card/uif-persona-card.module';
+import { UifIconModule } from '../../lib/uif-fabric/uif-icon/uif-icon.module';
+import { UifTreeTableModule } from '../../lib/uif-fabric/uif-tree-table/uif-tree-table.module';
+import { UifMessageBannerModule } from '../../lib/uif-fabric/uif-message-banner/uif-message-banner.module';
+import { UifOverlayModule } from '../../lib/uif-fabric/uif-overlay/uif-overlay.module';
+import { UifMessageBarModule } from '../../lib/uif-fabric/uif-message-bar/uif-message-bar.module';
+import { UifPivotModule } from '../../lib/uif-fabric/uif-pivot/uif-pivot.module';
+import { UifProgressIndicatorModule } from '../../lib/uif-fabric/uif-progress-indicator/uif-progress-indicator.module';
+import { UifRatingModule } from '../../lib/uif-fabric/uif-rating/uif-rating.module';
+import { UifTableModule } from '../../lib/uif-fabric/uif-table/uif-table.module';
+import { UifToggleModule } from '../../lib/uif-fabric/uif-toggle/uif-toggle.module';
+import { UifWizardModule } from '../../lib/uif-fabric/uif-wizard/uif-wizard.module';
 
 // tslint:disable max-line-length
 export const COMPONENTS = [
@@ -95,8 +114,42 @@ const APP_COMPONENTS = [
 		HttpClientModule,
 		CommonModule,
 		FormsModule,
-		UiFabricModule,
-		AppRoutingModule
+		AppRoutingModule,
+
+		UifAccordionModule,
+		UifBreadcrumbModule,
+		UifButtonModule,
+		UifCalloutModule,
+		UifCarouselModule,
+		UifCheckboxModule,
+		UifChipsModule,
+		UifChoicefieldModule,
+		UifColorPickerModule,
+		UifContextHostModule,
+		UifContextualMenuModule,
+		UifDatepickerModule,
+		UifDialogModule,
+		UifDropdownModule,
+		UifFacepileModule,
+		UifPersonaModule,
+		UifPersonaCardModule,
+		UifOrgChartModule,
+		UifPeoplePickerModule,
+		UifIconModule,
+		UifTableModule,
+		UifTreeTableModule,
+		UifMessageBannerModule,
+		UifMessageBarModule,
+		UifModalModule,
+		UifOverlayModule,
+		UifPanelModule,
+		UifPivotModule,
+		UifProgressIndicatorModule,
+		UifRatingModule,
+		UifSliderModule,
+		UifToggleModule,
+		UifTooltipModule,
+		UifWizardModule
 	],
 	providers: [
 		DemoerService

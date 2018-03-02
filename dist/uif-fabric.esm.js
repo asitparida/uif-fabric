@@ -1,6 +1,6 @@
-import { Component, Input, ElementRef, ViewChild, Output, EventEmitter, ContentChild, Directive, forwardRef, Injectable, ContentChildren, QueryList, APP_INITIALIZER, ApplicationRef, Inject, InjectionToken, NgModule, NgProbeToken, NgZone, Optional, PLATFORM_ID, PLATFORM_INITIALIZER, RendererStyleFlags2, SecurityContext, Version, createPlatformFactory, getDebugNode, isDevMode, platformCore, setTestabilityGetter, ɵglobal, TemplateRef, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Output, EventEmitter, ContentChild, Directive, forwardRef, Injectable, ContentChildren, QueryList, APP_INITIALIZER, ApplicationRef, Inject, InjectionToken, NgModule, NgProbeToken, NgZone, Optional, PLATFORM_ID, PLATFORM_INITIALIZER, RendererStyleFlags2, SecurityContext, Version, createPlatformFactory, getDebugNode, isDevMode, platformCore, setTestabilityGetter, ɵglobal, TemplateRef, ChangeDetectorRef, HostListener } from '@angular/core';
 import { CommonModule, DOCUMENT, PlatformLocation, ɵPLATFORM_BROWSER_ID, ɵparseCookieValue } from '@angular/common';
-import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 function __decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10560,204 +10560,6 @@ var UifModalComponent = /** @class */ (function () {
     var _a;
 }());
 
-var UifAccordionService = /** @class */ (function () {
-    function UifAccordionService() {
-        this.oneItemOpenOnly = false;
-    }
-    UifAccordionService.prototype.loadItems = function (items, oneItemOpenOnly) {
-        var _this = this;
-        this.accordionItems = items;
-        this.oneItemOpenOnly = oneItemOpenOnly;
-        this.accordionItems.forEach(function (item, index) {
-            item.setId('acc_item_' + GetRandomInt());
-        });
-        var activeItem = this.accordionItems.find(function (x) { return x.isOpen; });
-        this.accordionItems.forEach(function (item, index) {
-            if (_this.oneItemOpenOnly) {
-                if (!item.disabled) {
-                    item.isOpen = item.getId() === activeItem.getId();
-                }
-            }
-            item.emitOpenChange();
-        });
-    };
-    UifAccordionService.prototype.openItem = function (id) {
-        var _this = this;
-        this.accordionItems.forEach(function (item, index) {
-            if (!item.disabled) {
-                if (item.getId() === id) {
-                    item.isOpen = true;
-                }
-                else {
-                    if (_this.oneItemOpenOnly) {
-                        item.isOpen = false;
-                    }
-                }
-            }
-            item.emitOpenChange();
-        });
-    };
-    UifAccordionService = __decorate([
-        Injectable()
-    ], UifAccordionService);
-    return UifAccordionService;
-}());
-
-var UifAccordionItemComponent = /** @class */ (function () {
-    function UifAccordionItemComponent(accordionService) {
-        this.accordionService = accordionService;
-        this.disabled = false;
-        this.isOpen = false;
-        this.isOpenChange = new EventEmitter();
-        this.isItemOpen = false;
-        this.initialized = false;
-    }
-    UifAccordionItemComponent.prototype.ngOnChanges = function () {
-        if (this.isOpen) {
-            this.openItemDrawer();
-        }
-        else {
-            this.closeItemDrawer();
-        }
-    };
-    UifAccordionItemComponent.prototype.toggleItemOpen = function () {
-        if (this.disabled) {
-            return;
-        }
-        if (!this.isOpen) {
-            this.accordionService.openItem(this._id);
-        }
-        else {
-            this.isOpen = false;
-            this.emitOpenChange();
-        }
-    };
-    UifAccordionItemComponent.prototype.emitOpenChange = function () {
-        this.isOpenChange.emit(this.isOpen);
-    };
-    UifAccordionItemComponent.prototype.getId = function () {
-        return this._id;
-    };
-    UifAccordionItemComponent.prototype.setId = function (val) {
-        this._id = val;
-    };
-    UifAccordionItemComponent.prototype.openItemDrawer = function () {
-        var _this = this;
-        this.isItemOpen = true;
-        setTimeout(function () {
-            var contentElm = _this.contentElement.nativeElement;
-            var contentHolderElm = _this.contentHolderElement.nativeElement;
-            if (contentElm) {
-                var contentElmRect = contentElm.getBoundingClientRect();
-                if (contentElmRect) {
-                    contentHolderElm.style.height = contentElmRect.height + 'px';
-                }
-            }
-        });
-    };
-    UifAccordionItemComponent.prototype.closeItemDrawer = function () {
-        var _this = this;
-        setTimeout(function () {
-            var contentHolderElm = _this.contentHolderElement.nativeElement;
-            contentHolderElm.style.height = '0px';
-            setTimeout(function () {
-                _this.isItemOpen = false;
-            }, 250);
-        });
-    };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], UifAccordionItemComponent.prototype, "disabled", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], UifAccordionItemComponent.prototype, "isOpen", void 0);
-    __decorate([
-        Output(),
-        __metadata("design:type", Object)
-    ], UifAccordionItemComponent.prototype, "isOpenChange", void 0);
-    __decorate([
-        ViewChild('contentElement'),
-        __metadata("design:type", typeof (_a = typeof ElementRef !== "undefined" && ElementRef) === "function" && _a || Object)
-    ], UifAccordionItemComponent.prototype, "contentElement", void 0);
-    __decorate([
-        ViewChild('contentHolderElement'),
-        __metadata("design:type", typeof (_b = typeof ElementRef !== "undefined" && ElementRef) === "function" && _b || Object)
-    ], UifAccordionItemComponent.prototype, "contentHolderElement", void 0);
-    __decorate([
-        HostListener('window:resize'),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
-    ], UifAccordionItemComponent.prototype, "ngOnChanges", null);
-    UifAccordionItemComponent = __decorate([
-        Component({
-            selector: 'uif-accordion-item, [uifAccordionItem]',
-            template: "<div class=\"ms-Accordion-Item-Custom\" [class.is-opened]=\"isItemOpen\" [class.is-disabled]=\"disabled\">\n    <div class=\"ms-Accordion-Item-Header-Custom\" (click)=\"toggleItemOpen()\" [class.is-disabled]=\"disabled\">\n        <div class=\"ms-Accodion-Caret\">\n            <i class=\"ms-Icon ms-Icon--ChevronRight\"></i>\n        </div>\n        <div class=\"ms-Accordion-Title\">\n            <ng-content select=\"uif-accordion-item-title, [uifAccordionItemTitle]\"></ng-content>\n        </div>\n    </div>\n    <div class=\"ms-Accordion-Item-Content-Custom\" [hidden]=\"!isItemOpen\" #contentHolderElement>\n        <div #contentElement>\n            <ng-content></ng-content>\n        </div>\n    </div>\n</div>",
-            styles: [".ms-Accordion-Custom {\n  border-top: 1px solid #f0f0f0;\n  border-bottom: 1px solid #f0f0f0; }\n  .ms-Accordion-Custom /deep/ uif-accordion-item:not(:last-child) .ms-Accordion-Item-Custom {\n    border-bottom: 1px solid #f0f0f0; }\n\n.ms-Accordion-Item-Custom.is-disabled {\n  cursor: default;\n  opacity: 0.50; }\n  .ms-Accordion-Item-Custom.is-disabled .ms-Accordion-Item-Header-Custom {\n    cursor: default; }\n\n.ms-Accordion-Item-Custom.is-opened .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n  transform: rotate(90deg);\n  transform-origin: center; }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom {\n  display: flex;\n  flex-flow: row;\n  cursor: pointer; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret {\n    box-sizing: border-box;\n    padding: 10px;\n    flex: initial;\n    width: 36px;\n    order: 1;\n    display: flex;\n    align-items: center;\n    font-size: 12px;\n    color: #909090; }\n    .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n      transition: transform 0.25s linear 0s; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accordion-Title {\n    padding: 10px 0;\n    flex: 1;\n    order: 2; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):hover, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):active, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):focus {\n    background: rgba(0, 0, 0, 0.03); }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Content-Custom {\n  padding: 0 36px;\n  transition: height 0.25s ease-out 0s;\n  height: 0;\n  overflow-y: hidden; }\n"]
-        }),
-        __metadata("design:paramtypes", [typeof (_c = typeof UifAccordionService !== "undefined" && UifAccordionService) === "function" && _c || Object])
-    ], UifAccordionItemComponent);
-    return UifAccordionItemComponent;
-    var _a, _b, _c;
-}());
-
-var UifAccordionComponent = /** @class */ (function () {
-    function UifAccordionComponent(accordionService) {
-        this.accordionService = accordionService;
-        this.oneItemOpenOnly = true;
-        this.initialized = false;
-    }
-    UifAccordionComponent.prototype.ngOnChanges = function () {
-        if (this.initialized) {
-            this.accordionService.loadItems(this.accordionItems, this.oneItemOpenOnly);
-        }
-    };
-    UifAccordionComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        this.accordionItems.changes.subscribe(function (items) {
-            _this.accordionService.loadItems(_this.accordionItems, _this.oneItemOpenOnly);
-        });
-        setTimeout(function () {
-            _this.accordionService.loadItems(_this.accordionItems, _this.oneItemOpenOnly);
-        });
-        this.initialized = true;
-    };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], UifAccordionComponent.prototype, "oneItemOpenOnly", void 0);
-    __decorate([
-        ContentChildren(UifAccordionItemComponent),
-        __metadata("design:type", typeof (_a = typeof QueryList !== "undefined" && QueryList) === "function" && _a || Object)
-    ], UifAccordionComponent.prototype, "accordionItems", void 0);
-    UifAccordionComponent = __decorate([
-        Component({
-            selector: 'uif-accordion',
-            template: "<div class=\"ms-Accordion-Custom\">\n    <ng-content></ng-content>\n</div>",
-            styles: [".ms-Accordion-Custom {\n  border-top: 1px solid #f0f0f0;\n  border-bottom: 1px solid #f0f0f0; }\n  .ms-Accordion-Custom /deep/ uif-accordion-item:not(:last-child) .ms-Accordion-Item-Custom {\n    border-bottom: 1px solid #f0f0f0; }\n\n.ms-Accordion-Item-Custom.is-disabled {\n  cursor: default;\n  opacity: 0.50; }\n  .ms-Accordion-Item-Custom.is-disabled .ms-Accordion-Item-Header-Custom {\n    cursor: default; }\n\n.ms-Accordion-Item-Custom.is-opened .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n  transform: rotate(90deg);\n  transform-origin: center; }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom {\n  display: flex;\n  flex-flow: row;\n  cursor: pointer; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret {\n    box-sizing: border-box;\n    padding: 10px;\n    flex: initial;\n    width: 36px;\n    order: 1;\n    display: flex;\n    align-items: center;\n    font-size: 12px;\n    color: #909090; }\n    .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n      transition: transform 0.25s linear 0s; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accordion-Title {\n    padding: 10px 0;\n    flex: 1;\n    order: 2; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):hover, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):active, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):focus {\n    background: rgba(0, 0, 0, 0.03); }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Content-Custom {\n  padding: 0 36px;\n  transition: height 0.25s ease-out 0s;\n  height: 0;\n  overflow-y: hidden; }\n"],
-            providers: [UifAccordionService]
-        }),
-        __metadata("design:paramtypes", [typeof (_b = typeof UifAccordionService !== "undefined" && UifAccordionService) === "function" && _b || Object])
-    ], UifAccordionComponent);
-    return UifAccordionComponent;
-    var _a, _b;
-}());
-
-var UifAccordionItemTitleComponent = /** @class */ (function () {
-    function UifAccordionItemTitleComponent() {
-    }
-    UifAccordionItemTitleComponent = __decorate([
-        Component({
-            selector: 'uif-accordion-item-title, [uifAccordionItemTitle]',
-            template: '<ng-content></ng-content>',
-            styles: [".ms-Accordion-Custom {\n  border-top: 1px solid #f0f0f0;\n  border-bottom: 1px solid #f0f0f0; }\n  .ms-Accordion-Custom /deep/ uif-accordion-item:not(:last-child) .ms-Accordion-Item-Custom {\n    border-bottom: 1px solid #f0f0f0; }\n\n.ms-Accordion-Item-Custom.is-disabled {\n  cursor: default;\n  opacity: 0.50; }\n  .ms-Accordion-Item-Custom.is-disabled .ms-Accordion-Item-Header-Custom {\n    cursor: default; }\n\n.ms-Accordion-Item-Custom.is-opened .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n  transform: rotate(90deg);\n  transform-origin: center; }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom {\n  display: flex;\n  flex-flow: row;\n  cursor: pointer; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret {\n    box-sizing: border-box;\n    padding: 10px;\n    flex: initial;\n    width: 36px;\n    order: 1;\n    display: flex;\n    align-items: center;\n    font-size: 12px;\n    color: #909090; }\n    .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n      transition: transform 0.25s linear 0s; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accordion-Title {\n    padding: 10px 0;\n    flex: 1;\n    order: 2; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):hover, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):active, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):focus {\n    background: rgba(0, 0, 0, 0.03); }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Content-Custom {\n  padding: 0 36px;\n  transition: height 0.25s ease-out 0s;\n  height: 0;\n  overflow-y: hidden; }\n"]
-        })
-    ], UifAccordionItemTitleComponent);
-    return UifAccordionItemTitleComponent;
-}());
-
 var UifTooltipComponent = /** @class */ (function () {
     function UifTooltipComponent() {
         this.onTextEllipsis = false;
@@ -12249,96 +12051,910 @@ var UifChipsComponent = /** @class */ (function () {
     return UifChipsComponent;
 }());
 
-var DIRECTIVES = [
-    UifContextualMenuTriggerDirective
-];
+var UifAccordionService = /** @class */ (function () {
+    function UifAccordionService() {
+        this.oneItemOpenOnly = false;
+    }
+    UifAccordionService.prototype.loadItems = function (items, oneItemOpenOnly) {
+        var _this = this;
+        this.accordionItems = items;
+        this.oneItemOpenOnly = oneItemOpenOnly;
+        this.accordionItems.forEach(function (item, index) {
+            item.setId('acc_item_' + GetRandomInt());
+        });
+        var activeItem = this.accordionItems.find(function (x) { return x.isOpen; });
+        this.accordionItems.forEach(function (item, index) {
+            if (_this.oneItemOpenOnly) {
+                if (!item.disabled) {
+                    item.isOpen = item.getId() === activeItem.getId();
+                }
+            }
+            item.emitOpenChange();
+        });
+    };
+    UifAccordionService.prototype.openItem = function (id) {
+        var _this = this;
+        this.accordionItems.forEach(function (item, index) {
+            if (!item.disabled) {
+                if (item.getId() === id) {
+                    item.isOpen = true;
+                }
+                else {
+                    if (_this.oneItemOpenOnly) {
+                        item.isOpen = false;
+                    }
+                }
+            }
+            item.emitOpenChange();
+        });
+    };
+    UifAccordionService = __decorate([
+        Injectable()
+    ], UifAccordionService);
+    return UifAccordionService;
+}());
+
+var UifAccordionItemComponent = /** @class */ (function () {
+    function UifAccordionItemComponent(accordionService) {
+        this.accordionService = accordionService;
+        this.disabled = false;
+        this.isOpen = false;
+        this.isOpenChange = new EventEmitter();
+        this.isItemOpen = false;
+        this.initialized = false;
+    }
+    UifAccordionItemComponent.prototype.ngOnChanges = function () {
+        if (this.isOpen) {
+            this.openItemDrawer();
+        }
+        else {
+            this.closeItemDrawer();
+        }
+    };
+    UifAccordionItemComponent.prototype.toggleItemOpen = function () {
+        if (this.disabled) {
+            return;
+        }
+        if (!this.isOpen) {
+            this.accordionService.openItem(this._id);
+        }
+        else {
+            this.isOpen = false;
+            this.emitOpenChange();
+        }
+    };
+    UifAccordionItemComponent.prototype.emitOpenChange = function () {
+        this.isOpenChange.emit(this.isOpen);
+    };
+    UifAccordionItemComponent.prototype.getId = function () {
+        return this._id;
+    };
+    UifAccordionItemComponent.prototype.setId = function (val) {
+        this._id = val;
+    };
+    UifAccordionItemComponent.prototype.openItemDrawer = function () {
+        var _this = this;
+        this.isItemOpen = true;
+        setTimeout(function () {
+            var contentElm = _this.contentElement.nativeElement;
+            var contentHolderElm = _this.contentHolderElement.nativeElement;
+            if (contentElm) {
+                var contentElmRect = contentElm.getBoundingClientRect();
+                if (contentElmRect) {
+                    contentHolderElm.style.height = contentElmRect.height + 'px';
+                }
+            }
+        });
+    };
+    UifAccordionItemComponent.prototype.closeItemDrawer = function () {
+        var _this = this;
+        setTimeout(function () {
+            var contentHolderElm = _this.contentHolderElement.nativeElement;
+            contentHolderElm.style.height = '0px';
+            setTimeout(function () {
+                _this.isItemOpen = false;
+            }, 250);
+        });
+    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], UifAccordionItemComponent.prototype, "disabled", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], UifAccordionItemComponent.prototype, "isOpen", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], UifAccordionItemComponent.prototype, "isOpenChange", void 0);
+    __decorate([
+        ViewChild('contentElement'),
+        __metadata("design:type", typeof (_a = typeof ElementRef !== "undefined" && ElementRef) === "function" && _a || Object)
+    ], UifAccordionItemComponent.prototype, "contentElement", void 0);
+    __decorate([
+        ViewChild('contentHolderElement'),
+        __metadata("design:type", typeof (_b = typeof ElementRef !== "undefined" && ElementRef) === "function" && _b || Object)
+    ], UifAccordionItemComponent.prototype, "contentHolderElement", void 0);
+    __decorate([
+        HostListener('window:resize'),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], UifAccordionItemComponent.prototype, "ngOnChanges", null);
+    UifAccordionItemComponent = __decorate([
+        Component({
+            selector: 'uif-accordion-item, [uifAccordionItem]',
+            template: "<div class=\"ms-Accordion-Item-Custom\" [class.is-opened]=\"isItemOpen\" [class.is-disabled]=\"disabled\">\n    <div class=\"ms-Accordion-Item-Header-Custom\" (click)=\"toggleItemOpen()\" [class.is-disabled]=\"disabled\">\n        <div class=\"ms-Accodion-Caret\">\n            <i class=\"ms-Icon ms-Icon--ChevronRight\"></i>\n        </div>\n        <div class=\"ms-Accordion-Title\">\n            <ng-content select=\"uif-accordion-item-title, [uifAccordionItemTitle]\"></ng-content>\n        </div>\n    </div>\n    <div class=\"ms-Accordion-Item-Content-Custom\" [hidden]=\"!isItemOpen\" #contentHolderElement>\n        <div #contentElement>\n            <ng-content></ng-content>\n        </div>\n    </div>\n</div>",
+            styles: [".ms-Accordion-Custom {\n  border-top: 1px solid #f0f0f0;\n  border-bottom: 1px solid #f0f0f0; }\n  .ms-Accordion-Custom /deep/ uif-accordion-item:not(:last-child) .ms-Accordion-Item-Custom {\n    border-bottom: 1px solid #f0f0f0; }\n\n.ms-Accordion-Item-Custom.is-disabled {\n  cursor: default;\n  opacity: 0.50; }\n  .ms-Accordion-Item-Custom.is-disabled .ms-Accordion-Item-Header-Custom {\n    cursor: default; }\n\n.ms-Accordion-Item-Custom.is-opened .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n  transform: rotate(90deg);\n  transform-origin: center; }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom {\n  display: flex;\n  flex-flow: row;\n  cursor: pointer; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret {\n    box-sizing: border-box;\n    padding: 10px;\n    flex: initial;\n    width: 36px;\n    order: 1;\n    display: flex;\n    align-items: center;\n    font-size: 12px;\n    color: #909090; }\n    .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n      transition: transform 0.25s linear 0s; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accordion-Title {\n    padding: 10px 0;\n    flex: 1;\n    order: 2; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):hover, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):active, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):focus {\n    background: rgba(0, 0, 0, 0.03); }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Content-Custom {\n  padding: 0 36px;\n  transition: height 0.25s ease-out 0s;\n  height: 0;\n  overflow-y: hidden; }\n"]
+        }),
+        __metadata("design:paramtypes", [typeof (_c = typeof UifAccordionService !== "undefined" && UifAccordionService) === "function" && _c || Object])
+    ], UifAccordionItemComponent);
+    return UifAccordionItemComponent;
+    var _a, _b, _c;
+}());
+
+var UifAccordionComponent = /** @class */ (function () {
+    function UifAccordionComponent(accordionService) {
+        this.accordionService = accordionService;
+        this.oneItemOpenOnly = true;
+        this.initialized = false;
+    }
+    UifAccordionComponent.prototype.ngOnChanges = function () {
+        if (this.initialized) {
+            this.accordionService.loadItems(this.accordionItems, this.oneItemOpenOnly);
+        }
+    };
+    UifAccordionComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.accordionItems.changes.subscribe(function (items) {
+            _this.accordionService.loadItems(_this.accordionItems, _this.oneItemOpenOnly);
+        });
+        setTimeout(function () {
+            _this.accordionService.loadItems(_this.accordionItems, _this.oneItemOpenOnly);
+        });
+        this.initialized = true;
+    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], UifAccordionComponent.prototype, "oneItemOpenOnly", void 0);
+    __decorate([
+        ContentChildren(UifAccordionItemComponent),
+        __metadata("design:type", typeof (_a = typeof QueryList !== "undefined" && QueryList) === "function" && _a || Object)
+    ], UifAccordionComponent.prototype, "accordionItems", void 0);
+    UifAccordionComponent = __decorate([
+        Component({
+            selector: 'uif-accordion',
+            template: "<div class=\"ms-Accordion-Custom\">\n    <ng-content></ng-content>\n</div>",
+            styles: [".ms-Accordion-Custom {\n  border-top: 1px solid #f0f0f0;\n  border-bottom: 1px solid #f0f0f0; }\n  .ms-Accordion-Custom /deep/ uif-accordion-item:not(:last-child) .ms-Accordion-Item-Custom {\n    border-bottom: 1px solid #f0f0f0; }\n\n.ms-Accordion-Item-Custom.is-disabled {\n  cursor: default;\n  opacity: 0.50; }\n  .ms-Accordion-Item-Custom.is-disabled .ms-Accordion-Item-Header-Custom {\n    cursor: default; }\n\n.ms-Accordion-Item-Custom.is-opened .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n  transform: rotate(90deg);\n  transform-origin: center; }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom {\n  display: flex;\n  flex-flow: row;\n  cursor: pointer; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret {\n    box-sizing: border-box;\n    padding: 10px;\n    flex: initial;\n    width: 36px;\n    order: 1;\n    display: flex;\n    align-items: center;\n    font-size: 12px;\n    color: #909090; }\n    .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n      transition: transform 0.25s linear 0s; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accordion-Title {\n    padding: 10px 0;\n    flex: 1;\n    order: 2; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):hover, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):active, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):focus {\n    background: rgba(0, 0, 0, 0.03); }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Content-Custom {\n  padding: 0 36px;\n  transition: height 0.25s ease-out 0s;\n  height: 0;\n  overflow-y: hidden; }\n"],
+            providers: [UifAccordionService]
+        }),
+        __metadata("design:paramtypes", [typeof (_b = typeof UifAccordionService !== "undefined" && UifAccordionService) === "function" && _b || Object])
+    ], UifAccordionComponent);
+    return UifAccordionComponent;
+    var _a, _b;
+}());
+
+var UifAccordionItemTitleComponent = /** @class */ (function () {
+    function UifAccordionItemTitleComponent() {
+    }
+    UifAccordionItemTitleComponent = __decorate([
+        Component({
+            selector: 'uif-accordion-item-title, [uifAccordionItemTitle]',
+            template: '<ng-content></ng-content>',
+            styles: [".ms-Accordion-Custom {\n  border-top: 1px solid #f0f0f0;\n  border-bottom: 1px solid #f0f0f0; }\n  .ms-Accordion-Custom /deep/ uif-accordion-item:not(:last-child) .ms-Accordion-Item-Custom {\n    border-bottom: 1px solid #f0f0f0; }\n\n.ms-Accordion-Item-Custom.is-disabled {\n  cursor: default;\n  opacity: 0.50; }\n  .ms-Accordion-Item-Custom.is-disabled .ms-Accordion-Item-Header-Custom {\n    cursor: default; }\n\n.ms-Accordion-Item-Custom.is-opened .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n  transform: rotate(90deg);\n  transform-origin: center; }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom {\n  display: flex;\n  flex-flow: row;\n  cursor: pointer; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret {\n    box-sizing: border-box;\n    padding: 10px;\n    flex: initial;\n    width: 36px;\n    order: 1;\n    display: flex;\n    align-items: center;\n    font-size: 12px;\n    color: #909090; }\n    .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accodion-Caret i {\n      transition: transform 0.25s linear 0s; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom .ms-Accordion-Title {\n    padding: 10px 0;\n    flex: 1;\n    order: 2; }\n  .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):hover, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):active, .ms-Accordion-Item-Custom .ms-Accordion-Item-Header-Custom:not(.is-disabled):focus {\n    background: rgba(0, 0, 0, 0.03); }\n\n.ms-Accordion-Item-Custom .ms-Accordion-Item-Content-Custom {\n  padding: 0 36px;\n  transition: height 0.25s ease-out 0s;\n  height: 0;\n  overflow-y: hidden; }\n"]
+        })
+    ], UifAccordionItemTitleComponent);
+    return UifAccordionItemTitleComponent;
+}());
+
 var COMPONENTS = [
-    UifBreadcrumbComponent,
+    UifAccordionComponent,
+    UifAccordionItemComponent,
+    UifAccordionItemTitleComponent
+];
+var UifAccordionModule = /** @class */ (function () {
+    function UifAccordionModule() {
+    }
+    UifAccordionModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS,
+            providers: []
+        })
+    ], UifAccordionModule);
+    return UifAccordionModule;
+}());
+
+var COMPONENTS$1 = [
+    UifBreadcrumbComponent
+];
+var UifBreadcrumbModule = /** @class */ (function () {
+    function UifBreadcrumbModule() {
+    }
+    UifBreadcrumbModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$1,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$1,
+            providers: []
+        })
+    ], UifBreadcrumbModule);
+    return UifBreadcrumbModule;
+}());
+
+var COMPONENTS$2 = [
     UifButtonComponent,
-    UifCompoundButtonComponent,
     UifHeroButtonComponent,
+    UifCompoundButtonComponent
+];
+var UifButtonModule = /** @class */ (function () {
+    function UifButtonModule() {
+    }
+    UifButtonModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$2,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$2,
+            providers: []
+        })
+    ], UifButtonModule);
+    return UifButtonModule;
+}());
+
+var COMPONENTS$3 = [
     UifCalloutComponent,
     UifOpenCalloutComponent,
     UifCalloutContentComponent,
     UifCalloutHeaderComponent,
     UifCalloutActionComponent,
-    UifContextualMenuComponent,
-    UifContextualMenuItemComponent,
-    UifContextualMenuItemDividerComponent,
-    UifContextualMenuItemHeaderComponent,
-    UifDatepickerComponent,
-    UifOpenDatepickerComponent,
-    UifDialogComponent,
-    UifDialogContentComponent,
-    UifDialogFooterComponent,
-    UifDialogHeaderComponent,
-    UifDropdownComponent,
-    UifDropdownOptionComponent,
-    UifFacepileComponent,
-    UifPersonaComponent,
-    UifPersonaCardComponent,
-    UifOrgChartComponent,
-    UifOverlayComponent,
-    UifPanelComponent,
-    UifMessageBarComponent,
-    UifMessageBannerComponent,
-    UifPeoplePickerComponent,
-    UifContextHostComponent,
-    UifContextHostContentComponent,
-    UifContextHostHeaderComponent,
-    UifPivotComponent,
-    UifPivotItemComponent,
-    UifPivotContentComponent,
-    UifPivotTitleComponent,
-    UifProgressIndicatorComponent,
-    UifToggleComponent,
-    UifIconComponent,
-    UifCheckboxComponent,
-    UifChoicefieldComponent,
-    UifChoicefieldItemComponent,
-    UifTableComponent,
-    UifTableTrComponent,
-    UifTreeTableComponent,
-    UifTreeTableColumnComponent,
-    UifTreeTableContentComponent,
-    UifRatingComponent,
-    UifColorPickerComponent,
-    UifModalComponent,
-    UifModalHeaderComponent,
-    UifModalContentComponent,
-    UifModalFooterComponent,
-    UifAccordionComponent,
-    UifAccordionItemComponent,
-    UifAccordionItemTitleComponent,
-    UifTooltipComponent,
-    UifWizardComponent,
-    UifWizardPageComponent,
-    UifWizardPageNavTitleComponent,
-    UifWizardPageTitleComponent,
-    UifCarouselComponent,
-    UifCarouselItemComponent,
-    UifSliderComponent,
-    UifChipsComponent
 ];
-var UiFabricModule = /** @class */ (function () {
-    function UiFabricModule() {
+var UifCalloutModule = /** @class */ (function () {
+    function UifCalloutModule() {
     }
-    UiFabricModule = __decorate([
+    UifCalloutModule = __decorate([
         NgModule({
-            declarations: COMPONENTS.concat(DIRECTIVES),
+            declarations: COMPONENTS$3,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$3,
+            providers: []
+        })
+    ], UifCalloutModule);
+    return UifCalloutModule;
+}());
+
+var COMPONENTS$4 = [
+    UifCarouselComponent,
+    UifCarouselItemComponent
+];
+var UifCarouselModule = /** @class */ (function () {
+    function UifCarouselModule() {
+    }
+    UifCarouselModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$4,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$4,
+            providers: []
+        })
+    ], UifCarouselModule);
+    return UifCarouselModule;
+}());
+
+var COMPONENTS$5 = [
+    UifCheckboxComponent
+];
+var UifCheckboxModule = /** @class */ (function () {
+    function UifCheckboxModule() {
+    }
+    UifCheckboxModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$5,
             imports: [
                 CommonModule,
                 FormsModule,
                 ReactiveFormsModule
             ],
-            exports: COMPONENTS.concat(DIRECTIVES),
+            exports: COMPONENTS$5,
             providers: []
         })
-    ], UiFabricModule);
-    return UiFabricModule;
+    ], UifCheckboxModule);
+    return UifCheckboxModule;
+}());
+
+var COMPONENTS$6 = [
+    UifChipsComponent
+];
+var UifChipsModule = /** @class */ (function () {
+    function UifChipsModule() {
+    }
+    UifChipsModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$6,
+            imports: [
+                CommonModule,
+                FormsModule,
+                ReactiveFormsModule
+            ],
+            exports: COMPONENTS$6,
+            providers: []
+        })
+    ], UifChipsModule);
+    return UifChipsModule;
+}());
+
+var COMPONENTS$7 = [
+    UifChoicefieldComponent,
+    UifChoicefieldItemComponent
+];
+var UifChoicefieldModule = /** @class */ (function () {
+    function UifChoicefieldModule() {
+    }
+    UifChoicefieldModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$7,
+            imports: [
+                CommonModule,
+                FormsModule,
+                ReactiveFormsModule
+            ],
+            exports: COMPONENTS$7,
+            providers: []
+        })
+    ], UifChoicefieldModule);
+    return UifChoicefieldModule;
+}());
+
+var COMPONENTS$8 = [
+    UifColorPickerComponent
+];
+var UifColorPickerModule = /** @class */ (function () {
+    function UifColorPickerModule() {
+    }
+    UifColorPickerModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$8,
+            imports: [
+                CommonModule,
+                FormsModule,
+                ReactiveFormsModule
+            ],
+            exports: COMPONENTS$8,
+            providers: []
+        })
+    ], UifColorPickerModule);
+    return UifColorPickerModule;
+}());
+
+var COMPONENTS$9 = [
+    UifContextHostComponent, UifContextHostContentComponent, UifContextHostHeaderComponent
+];
+var UifContextHostModule = /** @class */ (function () {
+    function UifContextHostModule() {
+    }
+    UifContextHostModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$9,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$9,
+            providers: []
+        })
+    ], UifContextHostModule);
+    return UifContextHostModule;
+}());
+
+var DIRECTIVES = [
+    UifContextualMenuTriggerDirective
+];
+var COMPONENTS$10 = [
+    UifContextualMenuComponent,
+    UifContextualMenuItemComponent,
+    UifContextualMenuItemDividerComponent,
+    UifContextualMenuItemHeaderComponent,
+];
+var UifContextualMenuModule = /** @class */ (function () {
+    function UifContextualMenuModule() {
+    }
+    UifContextualMenuModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$10.concat(DIRECTIVES),
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$10.concat(DIRECTIVES),
+            providers: []
+        })
+    ], UifContextualMenuModule);
+    return UifContextualMenuModule;
+}());
+
+var COMPONENTS$11 = [
+    UifDatepickerComponent,
+    UifOpenDatepickerComponent
+];
+var UifDatepickerModule = /** @class */ (function () {
+    function UifDatepickerModule() {
+    }
+    UifDatepickerModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$11,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$11,
+            providers: []
+        })
+    ], UifDatepickerModule);
+    return UifDatepickerModule;
+}());
+
+var COMPONENTS$12 = [
+    UifDialogComponent,
+    UifDialogContentComponent,
+    UifDialogFooterComponent,
+    UifDialogHeaderComponent
+];
+var UifDialogModule = /** @class */ (function () {
+    function UifDialogModule() {
+    }
+    UifDialogModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$12,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$12,
+            providers: []
+        })
+    ], UifDialogModule);
+    return UifDialogModule;
+}());
+
+var COMPONENTS$13 = [
+    UifDropdownComponent,
+    UifDropdownOptionComponent
+];
+var UifDropdownModule = /** @class */ (function () {
+    function UifDropdownModule() {
+    }
+    UifDropdownModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$13,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$13,
+            providers: []
+        })
+    ], UifDropdownModule);
+    return UifDropdownModule;
+}());
+
+var COMPONENTS$14 = [
+    UifPersonaComponent
+];
+var UifPersonaModule = /** @class */ (function () {
+    function UifPersonaModule() {
+    }
+    UifPersonaModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$14,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$14,
+            providers: []
+        })
+    ], UifPersonaModule);
+    return UifPersonaModule;
+}());
+
+var COMPONENTS$15 = [
+    UifOrgChartComponent
+];
+var UifOrgChartModule = /** @class */ (function () {
+    function UifOrgChartModule() {
+    }
+    UifOrgChartModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$15,
+            imports: [
+                CommonModule,
+                UifPersonaModule
+            ],
+            exports: COMPONENTS$15,
+            providers: []
+        })
+    ], UifOrgChartModule);
+    return UifOrgChartModule;
+}());
+
+var COMPONENTS$16 = [
+    UifPersonaCardComponent
+];
+var UifPersonaCardModule = /** @class */ (function () {
+    function UifPersonaCardModule() {
+    }
+    UifPersonaCardModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$16,
+            imports: [
+                CommonModule,
+                UifPersonaModule,
+                UifOrgChartModule
+            ],
+            exports: COMPONENTS$16,
+            providers: []
+        })
+    ], UifPersonaCardModule);
+    return UifPersonaCardModule;
+}());
+
+var COMPONENTS$17 = [
+    UifFacepileComponent
+];
+var UifFacepileModule = /** @class */ (function () {
+    function UifFacepileModule() {
+    }
+    UifFacepileModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$17,
+            imports: [
+                CommonModule,
+                UifCalloutModule,
+                UifPersonaModule,
+                UifPersonaCardModule
+            ],
+            exports: COMPONENTS$17,
+            providers: []
+        })
+    ], UifFacepileModule);
+    return UifFacepileModule;
+}());
+
+var COMPONENTS$18 = [
+    UifPeoplePickerComponent
+];
+var UifPeoplePickerModule = /** @class */ (function () {
+    function UifPeoplePickerModule() {
+    }
+    UifPeoplePickerModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$18,
+            imports: [
+                CommonModule,
+                UifContextHostModule,
+                UifPersonaModule,
+                FormsModule,
+                ReactiveFormsModule
+            ],
+            exports: COMPONENTS$18,
+            providers: []
+        })
+    ], UifPeoplePickerModule);
+    return UifPeoplePickerModule;
+}());
+
+var COMPONENTS$19 = [
+    UifIconComponent
+];
+var UifIconModule = /** @class */ (function () {
+    function UifIconModule() {
+    }
+    UifIconModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$19,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$19,
+            providers: []
+        })
+    ], UifIconModule);
+    return UifIconModule;
+}());
+
+var COMPONENTS$20 = [
+    UifTableComponent,
+    UifTableTrComponent,
+];
+var UifTableModule = /** @class */ (function () {
+    function UifTableModule() {
+    }
+    UifTableModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$20,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$20,
+            providers: []
+        })
+    ], UifTableModule);
+    return UifTableModule;
+}());
+
+var COMPONENTS$21 = [
+    UifTreeTableComponent,
+    UifTreeTableColumnComponent,
+    UifTreeTableContentComponent
+];
+var UifTreeTableModule = /** @class */ (function () {
+    function UifTreeTableModule() {
+    }
+    UifTreeTableModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$21,
+            imports: [
+                CommonModule,
+                UifIconModule
+            ],
+            exports: COMPONENTS$21,
+            providers: []
+        })
+    ], UifTreeTableModule);
+    return UifTreeTableModule;
+}());
+
+var COMPONENTS$22 = [
+    UifOverlayComponent
+];
+var UifOverlayModule = /** @class */ (function () {
+    function UifOverlayModule() {
+    }
+    UifOverlayModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$22,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$22,
+            providers: []
+        })
+    ], UifOverlayModule);
+    return UifOverlayModule;
+}());
+
+var COMPONENTS$23 = [
+    UifMessageBannerComponent
+];
+var UifMessageBannerModule = /** @class */ (function () {
+    function UifMessageBannerModule() {
+    }
+    UifMessageBannerModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$23,
+            imports: [
+                CommonModule,
+                UifOverlayModule
+            ],
+            exports: COMPONENTS$23,
+            providers: []
+        })
+    ], UifMessageBannerModule);
+    return UifMessageBannerModule;
+}());
+
+var COMPONENTS$24 = [
+    UifMessageBarComponent
+];
+var UifMessageBarModule = /** @class */ (function () {
+    function UifMessageBarModule() {
+    }
+    UifMessageBarModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$24,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$24,
+            providers: []
+        })
+    ], UifMessageBarModule);
+    return UifMessageBarModule;
+}());
+
+var COMPONENTS$25 = [
+    UifPanelComponent
+];
+var UifPanelModule = /** @class */ (function () {
+    function UifPanelModule() {
+    }
+    UifPanelModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$25,
+            imports: [
+                CommonModule,
+                UifOverlayModule
+            ],
+            exports: COMPONENTS$25,
+            providers: []
+        })
+    ], UifPanelModule);
+    return UifPanelModule;
+}());
+
+var COMPONENTS$26 = [
+    UifModalComponent,
+    UifModalHeaderComponent,
+    UifModalContentComponent,
+    UifModalFooterComponent,
+];
+var UifModalModule = /** @class */ (function () {
+    function UifModalModule() {
+    }
+    UifModalModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$26,
+            imports: [
+                CommonModule,
+                UifDialogModule
+            ],
+            exports: COMPONENTS$26,
+            providers: []
+        })
+    ], UifModalModule);
+    return UifModalModule;
+}());
+
+var COMPONENTS$27 = [
+    UifPivotComponent,
+    UifPivotItemComponent,
+    UifPivotContentComponent,
+    UifPivotTitleComponent,
+];
+var UifPivotModule = /** @class */ (function () {
+    function UifPivotModule() {
+    }
+    UifPivotModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$27,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$27,
+            providers: []
+        })
+    ], UifPivotModule);
+    return UifPivotModule;
+}());
+
+var COMPONENTS$28 = [
+    UifProgressIndicatorComponent
+];
+var UifProgressIndicatorModule = /** @class */ (function () {
+    function UifProgressIndicatorModule() {
+    }
+    UifProgressIndicatorModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$28,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$28,
+            providers: []
+        })
+    ], UifProgressIndicatorModule);
+    return UifProgressIndicatorModule;
+}());
+
+var COMPONENTS$29 = [
+    UifRatingComponent
+];
+var UifRatingModule = /** @class */ (function () {
+    function UifRatingModule() {
+    }
+    UifRatingModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$29,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$29,
+            providers: []
+        })
+    ], UifRatingModule);
+    return UifRatingModule;
+}());
+
+var COMPONENTS$30 = [
+    UifSliderComponent
+];
+var UifSliderModule = /** @class */ (function () {
+    function UifSliderModule() {
+    }
+    UifSliderModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$30,
+            imports: [
+                CommonModule
+            ],
+            exports: COMPONENTS$30,
+            providers: []
+        })
+    ], UifSliderModule);
+    return UifSliderModule;
+}());
+
+var COMPONENTS$31 = [
+    UifToggleComponent
+];
+var UifToggleModule = /** @class */ (function () {
+    function UifToggleModule() {
+    }
+    UifToggleModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$31,
+            imports: [
+                CommonModule,
+                FormsModule,
+                ReactiveFormsModule
+            ],
+            exports: COMPONENTS$31,
+            providers: []
+        })
+    ], UifToggleModule);
+    return UifToggleModule;
+}());
+
+var COMPONENTS$32 = [
+    UifTooltipComponent
+];
+var UifTooltipModule = /** @class */ (function () {
+    function UifTooltipModule() {
+    }
+    UifTooltipModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$32,
+            imports: [
+                CommonModule,
+                UifCalloutModule
+            ],
+            exports: COMPONENTS$32,
+            providers: []
+        })
+    ], UifTooltipModule);
+    return UifTooltipModule;
+}());
+
+var COMPONENTS$33 = [
+    UifWizardComponent,
+    UifWizardPageComponent,
+    UifWizardPageNavTitleComponent,
+    UifWizardPageTitleComponent
+];
+var UifWizardModule = /** @class */ (function () {
+    function UifWizardModule() {
+    }
+    UifWizardModule = __decorate([
+        NgModule({
+            declarations: COMPONENTS$33,
+            imports: [
+                CommonModule,
+                UifButtonModule
+            ],
+            exports: COMPONENTS$33,
+            providers: []
+        })
+    ], UifWizardModule);
+    return UifWizardModule;
 }());
 
 /*  EXPORT MODELS & ENUMS */
 
-export { UifButtonType, UifCalloutDirectionalHint, UifCalloutTriggerHint, UIfColorPickerModel, UifContextualMenuDirectionHint, WeekDay, MonthFullname, Month, MonthShortname, DateModel, WeekDayData, UifFacepileCard, UifIconFlip, UifIconBadge, UifIconDir, UifMessageType, UifPanelSizeHint, UifPanelDirectionHint, PeoplePickerGroup, UifPersonaViewType, UifPersonaAvailabilityType, PersonaItem, PersonMailItem, PersonChatItem, PersonPhoneItem, OrgChartGroup, PersonaCard, UifPivotType, UifPivotSize, UifRatingModel, UifModalSize, UiFWizardNavigation, UifBreadcrumbComponent, UifButtonComponent, UifHeroButtonComponent, UifCompoundButtonComponent, UifCalloutComponent, UifOpenCalloutComponent, UifCalloutHeaderComponent, UifCalloutContentComponent, UifCalloutActionComponent, UifContextualMenuComponent, UifContextMenuService, UifContextualMenuTriggerDirective, UifContextualMenuItemComponent, UifContextualMenuItemDividerComponent, UifContextualMenuItemHeaderComponent, UifDatepickerComponent, UifOpenDatepickerComponent, UifDialogComponent, UifDialogHeaderComponent, UifDialogContentComponent, UifDialogFooterComponent, UifDropdownComponent, UifDropdownItemService, UifDropdownOptionComponent, UifFacepileComponent, UifPersonaComponent, UifPersonaCardComponent, UifOrgChartComponent, UifOverlayComponent, UifPanelComponent, UifMessageBarComponent, UifMessageBannerComponent, UifPeoplePickerComponent, UifContextHostHeaderComponent, UifContextHostContentComponent, UifContextHostComponent, UifPivotComponent, UifPivotTitleComponent, UifPivotContentComponent, UifPivotItemComponent, UifProgressIndicatorComponent, UifToggleComponent, UifIconComponent, UifCheckboxComponent, UifChoicefieldComponent, UifChoicefieldItemComponent, UifTableComponent, UifTableTrComponent, UifTreeTableComponent, UifTreeTableColumnComponent, UifTreeTableContentComponent, UifRatingComponent, UifColorPickerComponent, UifModalComponent, UifModalHeaderComponent, UifModalContentComponent, UifModalFooterComponent, UifAccordionComponent, UifAccordionItemTitleComponent, UifAccordionItemComponent, UifTooltipComponent, UifWizardComponent, UifWizardPageComponent, UifWizardPageNavTitleComponent, UifWizardPageTitleComponent, UifCarouselComponent, UifCarouselItemComponent, UifSliderComponent, UifChipsComponent, UiFabricModule };
+export { UifButtonType, UifCalloutDirectionalHint, UifCalloutTriggerHint, UIfColorPickerModel, UifContextualMenuDirectionHint, WeekDay, MonthFullname, Month, MonthShortname, DateModel, WeekDayData, UifFacepileCard, UifIconFlip, UifIconBadge, UifIconDir, UifMessageType, UifPanelSizeHint, UifPanelDirectionHint, PeoplePickerGroup, UifPersonaViewType, UifPersonaAvailabilityType, PersonaItem, PersonMailItem, PersonChatItem, PersonPhoneItem, OrgChartGroup, PersonaCard, UifPivotType, UifPivotSize, UifRatingModel, UifModalSize, UiFWizardNavigation, UifBreadcrumbComponent, UifButtonComponent, UifHeroButtonComponent, UifCompoundButtonComponent, UifCalloutComponent, UifOpenCalloutComponent, UifCalloutHeaderComponent, UifCalloutContentComponent, UifCalloutActionComponent, UifContextualMenuComponent, UifContextMenuService, UifContextualMenuTriggerDirective, UifContextualMenuItemComponent, UifContextualMenuItemDividerComponent, UifContextualMenuItemHeaderComponent, UifDatepickerComponent, UifOpenDatepickerComponent, UifDialogComponent, UifDialogHeaderComponent, UifDialogContentComponent, UifDialogFooterComponent, UifDropdownComponent, UifDropdownItemService, UifDropdownOptionComponent, UifFacepileComponent, UifPersonaComponent, UifPersonaCardComponent, UifOrgChartComponent, UifOverlayComponent, UifPanelComponent, UifMessageBarComponent, UifMessageBannerComponent, UifPeoplePickerComponent, UifContextHostHeaderComponent, UifContextHostContentComponent, UifContextHostComponent, UifPivotComponent, UifPivotTitleComponent, UifPivotContentComponent, UifPivotItemComponent, UifProgressIndicatorComponent, UifToggleComponent, UifIconComponent, UifCheckboxComponent, UifChoicefieldComponent, UifChoicefieldItemComponent, UifTableComponent, UifTableTrComponent, UifTreeTableComponent, UifTreeTableColumnComponent, UifTreeTableContentComponent, UifRatingComponent, UifColorPickerComponent, UifModalComponent, UifModalHeaderComponent, UifModalContentComponent, UifModalFooterComponent, UifTooltipComponent, UifWizardComponent, UifWizardPageComponent, UifWizardPageNavTitleComponent, UifWizardPageTitleComponent, UifCarouselComponent, UifCarouselItemComponent, UifSliderComponent, UifChipsComponent, UifAccordionModule, UifBreadcrumbModule, UifButtonModule, UifCalloutModule, UifCarouselModule, UifCheckboxModule, UifChipsModule, UifChoicefieldModule, UifColorPickerModule, UifContextHostModule, UifContextualMenuModule, UifDatepickerModule, UifDialogModule, UifDropdownModule, UifFacepileModule, UifPersonaModule, UifOrgChartModule, UifPeoplePickerModule, UifIconModule, UifTableModule, UifTreeTableModule, UifMessageBannerModule, UifMessageBarModule, UifOverlayModule, UifPanelModule, UifModalModule, UifPivotModule, UifProgressIndicatorModule, UifRatingModule, UifSliderModule, UifToggleModule, UifTooltipModule, UifWizardModule };
 //# sourceMappingURL=uif-fabric.esm.js.map

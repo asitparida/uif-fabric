@@ -1,5 +1,4 @@
-import { AfterViewInit, EventEmitter, ElementRef, OnChanges } from '@angular/core';
-import { SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AfterViewInit, EventEmitter, ElementRef, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import 'rxjs/add/operator/throttleTime';
 export declare class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
     private elRef;

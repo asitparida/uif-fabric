@@ -1,7 +1,6 @@
-import { Component, QueryList, ContentChildren, AfterViewInit, Input } from '@angular/core';
+import { Component, QueryList, ContentChildren, AfterViewInit, Input, OnChanges } from '@angular/core';
 import { UifAccordionService } from './uif-accordion.service';
 import { UifAccordionItemComponent } from './uif-accordion-item.component';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
 	selector: 'uif-accordion',
