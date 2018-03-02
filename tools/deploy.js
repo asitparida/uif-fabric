@@ -54,7 +54,7 @@ var config = {
     password: password,
     host: host,
     port: 21,
-    localRoot: __dirname + "/web-demo-build",
+    localRoot: __dirname + "/../demo-build",
     remoteRoot: remoteDirectory,
 }
 
