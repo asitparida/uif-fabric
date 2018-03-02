@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, ElementRef, HostListener } from '@angular/core';
+import {
+	Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, ElementRef, HostListener,
+	OnChanges
+} from '@angular/core';
 import { UifAccordionService } from './uif-accordion.service';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
 	selector: 'uif-accordion-item, [uifAccordionItem]',

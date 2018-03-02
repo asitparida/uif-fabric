@@ -1,8 +1,8 @@
 import {
 	Component, ViewChild, AfterViewInit, Input, Output,
-	EventEmitter, ElementRef, HostListener, OnChanges
+	EventEmitter, ElementRef, HostListener, OnChanges,
+	SimpleChanges, OnDestroy
 } from '@angular/core';
-import { SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/throttleTime';

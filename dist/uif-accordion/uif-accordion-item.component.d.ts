@@ -1,6 +1,5 @@
-import { EventEmitter, ElementRef } from '@angular/core';
+import { EventEmitter, ElementRef, OnChanges } from '@angular/core';
 import { UifAccordionService } from './uif-accordion.service';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 export declare class UifAccordionItemComponent implements OnChanges {
     private accordionService;
     disabled: boolean | Boolean;

@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'uif-progress-indicator',
