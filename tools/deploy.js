@@ -41,11 +41,15 @@ if (!password) {
 
 const jsftp = require("jsftp");
 
+console.log('jsftp required');
+
 const ftp = new jsftp({
     host: host,
     user: user,
     pass: password
 });
+
+console.log('ftp newed');
 
 const remoteDirectory = '/site/wwwroot/';
 
@@ -57,6 +61,8 @@ var config = {
     localRoot: __dirname + "/web-demo-build",
     remoteRoot: remoteDirectory,
 }
+
+console.log('starting ftp auth');
 
 ftp.auth(
     ftp.user,
