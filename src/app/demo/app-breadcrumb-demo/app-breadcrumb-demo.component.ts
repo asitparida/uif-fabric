@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IBreadcrumbItem } from '../../uif-fabric/index';
+import { IBreadcrumbItem } from '../../../../lib/uif-fabric';
 
 @Component({
 	selector: 'app-breadcrumb-demo',

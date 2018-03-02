@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PeoplePickerGroup, UifPersonaViewType, UifPersonaAvailabilityType, PersonaItem } from '../../uif-fabric/index';
+import { PeoplePickerGroup, UifPersonaViewType, UifPersonaAvailabilityType, PersonaItem } from '../../../../lib/uif-fabric/index';
 
 @Component({
 	selector: 'app-peoplepicker-demo',

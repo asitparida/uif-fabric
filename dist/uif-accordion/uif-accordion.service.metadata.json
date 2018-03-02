@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{"UifAccordionService":{"__symbolic":"class","decorators":[{"__symbolic":"call","expression":{"__symbolic":"reference","module":"@angular/core","name":"Injectable","line":4,"character":1}}],"members":{"loadItems":[{"__symbolic":"method"}],"openItem":[{"__symbolic":"method"}]}}}}]

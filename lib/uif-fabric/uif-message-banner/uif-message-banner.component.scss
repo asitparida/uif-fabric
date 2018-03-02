@@ -1,0 +1,12 @@
+// @import '../uif-fabric.shared.scss';
+.ms-MessageBanner {
+    min-height: 52px;
+    height: auto;
+    &.is-open {
+        animation: fadein-item-down;   
+        animation-duration: 0.367s;
+    }
+}
+.ms-PanelHost {
+    z-index: 999;
+}

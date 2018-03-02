@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UifPersonaAvailabilityType, UifPersonaViewType, PersonaItem } from '../../uif-fabric/index';
+import { UifPersonaAvailabilityType, UifPersonaViewType, PersonaItem } from '../../../../lib/uif-fabric/index';
 
 @Component({
 	selector: 'app-persona-demo',

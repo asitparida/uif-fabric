@@ -1,0 +1,32 @@
+import { ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+export declare class UifWizardService {
+    private cdr;
+    private pagesCollection;
+    private activePageIndexSubject;
+    private activePageIndex;
+    private isFinished;
+    private isCancelled;
+    private nextPageInvoke;
+    private previousPageInvoke;
+    private cancelWizardInvoke;
+    private activePageId;
+    activePageId$: Observable<string>;
+    isFinished$: Observable<Boolean>;
+    isCancelled$: Observable<Boolean>;
+    nextPageInvoked$: Observable<number>;
+    previousPageInvoked$: Observable<number>;
+    cancelWizardInvoked$: Observable<{}>;
+    activePageIndex$: Observable<number>;
+    constructor(cdr: ChangeDetectorRef);
+    loadPages(pages: any): void;
+    init(): void;
+    initialize(): void;
+    activatePage(pageIndex: number): number;
+    activatePreviousPage(): void;
+    activateNextPage(): void;
+    finishWizard(): void;
+    resetWizard(): void;
+    dismissWizard(): void;
+    getRandomInt(): number;
+}

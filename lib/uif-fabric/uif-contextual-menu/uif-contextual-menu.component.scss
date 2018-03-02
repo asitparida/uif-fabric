@@ -1,0 +1,39 @@
+// @import '../uif-fabric.shared.scss';
+.ms-contextual-menu-container {
+    display: inline-block;
+    /deep/ [menuTrigger] {
+        display: inline-block;
+    }
+    .ms-ContextualMenu {
+        position: absolute;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
+        z-index: 1;
+        &:not(.top).is-open {
+            animation: fadein-item-down;   
+            animation-duration: 0.367s;
+        }
+        &.top {
+            &.is-open {
+                animation: fadein-item-up;   
+                animation-duration: 0.367s;
+            }
+            bottom: 0;
+            &.is-sub-menu {
+                margin-bottom: -50%;
+            }
+        }
+        &:not(.top).is-sub-menu {
+            margin-top: -50%;
+        }
+    }
+    .ms-contextual-menu-holder {
+        position: relative;
+    }
+    /deep/ .ms-ContextualMenu-item {
+        &.ms-ContextualMenu-item--hasMenu {
+           /deep/ .ms-contextual-menu-container {
+                display: inline;
+            }
+        }
+    }
+}

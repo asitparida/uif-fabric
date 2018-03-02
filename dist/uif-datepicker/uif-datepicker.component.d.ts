@@ -1,0 +1,44 @@
+import { OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
+import * as Models from './uif-datepicker.models';
+import { DateModel, WeekDayData } from './uif-datepicker.models';
+import 'rxjs/add/observable/fromEvent';
+export declare class UifDatepickerComponent implements OnChanges {
+    isOpen: boolean | Boolean;
+    isOpenChange: EventEmitter<boolean | Boolean>;
+    date: Date;
+    dateChange: EventEmitter<Date>;
+    firstDayOfWeek: Models.WeekDay;
+    minDate: Date;
+    maxDate: Date;
+    weekDayMap: WeekDayData[];
+    weekDays: WeekDayData[];
+    weekCollection: Array<Array<DateModel>>;
+    currentDayData: DateModel;
+    currentDtContext: Date;
+    currentDtContextData: DateModel;
+    searchContext: {
+        dt: Date;
+        year: number;
+        month: number;
+        decadeStart: number;
+        decadeEnd: number;
+        months: any[];
+        years: any[];
+    };
+    isPickingYears: boolean | Boolean;
+    private onDocumentKeyUpListener;
+    ngOnChanges(changes: SimpleChanges): void;
+    clearDocumentListener(): void;
+    addDocumentListener(): void;
+    processForDt(): void;
+    processSearchContext(dt: Date): void;
+    loadMonthByIncrement(increment: number): void;
+    loadDecadeInSearch(increment: number): void;
+    loadYearInSearch(increment: number): void;
+    goToToday(): void;
+    switchOnYearPicking(): void;
+    switchOnMonthPicking(): void;
+    loadYear(year: any): void;
+    loadMonth(index: any): void;
+    selectDate(dt: Date, disabled: any): void;
+}
