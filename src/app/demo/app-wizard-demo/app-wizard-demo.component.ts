@@ -1,6 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { UifWizardComponent } from '../../uif-fabric/uif-wizard/uif-wizard.component';
-import { UiFWizardNavigation } from '../../uif-fabric/index';
+import { UiFWizardNavigation, UifWizardComponent } from '../../../../lib/uif-fabric/index';
 
 @Component({
 	selector: 'app-wizard-demo',

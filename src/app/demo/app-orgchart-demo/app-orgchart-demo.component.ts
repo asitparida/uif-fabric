@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UifPersonaAvailabilityType } from '../../uif-fabric/index';
+import { UifPersonaAvailabilityType } from '../../../../lib/uif-fabric/index';
 
 @Component({
 	selector: 'app-orgchart-demo',

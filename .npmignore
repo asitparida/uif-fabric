@@ -1,0 +1,24 @@
+yarn.lock
+
+#build tools
+tools
+e2e
+.travis.yml
+
+#src
+src
+lib
+demo-build
+node_modules
+.angular-cli.json
+.editorconfig
+.gitignore
+.npmignore
+karma.conf.js
+package.json
+protractor.conf.js
+tsconfig.json
+tslint.json
+web.config
+yarn-error.log
+yarn.lock

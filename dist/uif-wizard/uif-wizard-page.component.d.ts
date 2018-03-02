@@ -1,0 +1,33 @@
+import { ElementRef, AfterViewInit, EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { UifWizardService } from './uif-wizard.service';
+export declare class UifWizardPageComponent implements AfterViewInit {
+    private sanitizer;
+    private wizardService;
+    title: ElementRef;
+    navTitle: ElementRef;
+    showCancelButtonOverride: Boolean;
+    showPreviousButtonOverride: Boolean;
+    showNextButtonOverride: Boolean;
+    showFinishButtonOverride: Boolean;
+    disableCancelButtonOverride: Boolean;
+    disablePreviousButtonOverride: Boolean;
+    disableNextButtonOverride: Boolean;
+    disableFinishButtonOverride: Boolean;
+    wizardPageLoaded: EventEmitter<{}>;
+    showPage: Boolean;
+    showPreviousBtn: Boolean;
+    showNextBtn: Boolean;
+    showFinishBtn: Boolean;
+    showCancelBtn: Boolean;
+    private id;
+    constructor(sanitizer: DomSanitizer, wizardService: UifWizardService);
+    ngAfterViewInit(): void;
+    getTitle(): SafeHtml;
+    getId(): string;
+    setId(id: string): void;
+    goWizardPreviousPage(): void;
+    goWizardNextPage(): void;
+    goWizardFinish(): void;
+    goWizardCancel(): void;
+}

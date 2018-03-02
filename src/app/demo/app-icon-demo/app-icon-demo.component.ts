@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import * as Icons from '../../../../node_modules/office-ui-fabric-core/src/data/icons.json';
-import { UifIconFlip, UifIconBadge, UifIconDir } from '../../uif-fabric/index';
+import { UifIconFlip, UifIconBadge, UifIconDir } from '../../../../lib/uif-fabric/index';
 
 @Pipe({ name: 'search' })
 export class SearchPipe implements PipeTransform {

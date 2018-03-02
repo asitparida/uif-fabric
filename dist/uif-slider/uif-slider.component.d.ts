@@ -1,0 +1,36 @@
+import { AfterViewInit, EventEmitter, ElementRef, OnChanges } from '@angular/core';
+import { SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import 'rxjs/add/operator/throttleTime';
+export declare class UifSliderComponent implements AfterViewInit, OnChanges, OnDestroy {
+    private elRef;
+    value: number;
+    valueChange: EventEmitter<number>;
+    step: number;
+    disabled: boolean;
+    vertical: boolean;
+    maxValue: number;
+    activeProgress: number;
+    inactiveProgress: number;
+    slider: any;
+    sliderThumb: any;
+    sliderActive: any;
+    sliderInactive: any;
+    private _progress;
+    private sliderEl;
+    private sliderThumbEl;
+    private sliderActiveEl;
+    private sliderInactiveEl;
+    private sliderIsActive;
+    private sliderElProps;
+    private initialized;
+    private onKeyDownStream$;
+    private eventSubscribers;
+    constructor(elRef: ElementRef);
+    ngAfterViewInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngOnDestroy(): void;
+    createListeners(): void;
+    onSliderThumbMouseIncrementalMove(isPositiveIncrement?: boolean): void;
+    onSliderThumbMouseMove($event: MouseEvent, forceFalse?: boolean): void;
+    updateProgress(): void;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UifFacepileCard, PersonaCard, UifPersonaAvailabilityType, UifCalloutDirectionalHint } from '../../uif-fabric/index';
+import { UifFacepileCard, PersonaCard, UifPersonaAvailabilityType, UifCalloutDirectionalHint } from '../../../../lib/uif-fabric/index';
 
 @Component({
 	selector: 'app-facepile-demo',
