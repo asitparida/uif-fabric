@@ -21,7 +21,6 @@
     "bundle": "npm run prebundle & rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js && tsc -p tools/tsconfig-build.json && ngc -p tools/tsconfig-build.json & npm run postbundle",
     "publish": "npm run build & node tools/deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^5.1.0",
     "@angular/common": "^5.1.0",
