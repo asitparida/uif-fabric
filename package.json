@@ -1,6 +1,6 @@
 {
   "name": "uif-fabric",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "uif-fabric.umd.js",
   "jsnext:main": "uif-fabric.esm.js",
@@ -17,7 +17,7 @@
     "postbundle": "node tools/package-copy.js & node tools/package-cleanup.js & node tools/package-removecode.js",
     "bundle-tsc": "tsc -p tools/tsconfig-build.json",
     "bundle-ngc": "ngc -p tools/tsconfig-build.json",
-    "bundle-rollup":"rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js",
+    "bundle-rollup": "rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js",
     "bundle": "npm run prebundle & rollup -c tools/rollup.config.umd.js & rollup -c tools/rollup.config.esm.js && tsc -p tools/tsconfig-build.json && ngc -p tools/tsconfig-build.json & npm run postbundle",
     "build-web": "npm run build & node tools/deploy.js --host=$AZURE_WA_SITE --user=$AZURE_WA_USERNAME --password=$AZURE_WA_PASSWORD"
   },
