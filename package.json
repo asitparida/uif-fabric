@@ -1,6 +1,6 @@
 {
   "name": "uif-fabric",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "uif-fabric.umd.js",
   "jsnext:main": "uif-fabric.esm.js",
