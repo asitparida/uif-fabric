@@ -20,7 +20,10 @@ export class UifTreeTableColumnComponent {
 @Component({
 	selector: 'uif-tree-table-content',
 	templateUrl: './uif-tree-table-content.component.html',
-	styleUrls: [ './uif-tree-table-content.component.scss' ]
+	styleUrls: [
+		'./uif-tree-table-content.component.scss',
+		'../uif-fabric.shared.scss'
+	]
 })
 export class UifTreeTableContentComponent  {
 	@Input() rows: any[];

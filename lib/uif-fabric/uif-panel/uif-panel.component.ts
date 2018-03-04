@@ -4,7 +4,10 @@ import { UifPanelDirectionHint, UifPanelSizeHint } from './uif-panel.models';
 @Component({
 	selector: 'uif-panel',
 	templateUrl: './uif-panel.component.html',
-	styleUrls: ['./uif-panel.component.scss']
+	styleUrls: [
+		'./uif-panel.component.scss',
+		'../uif-fabric.shared.scss'
+	]
 })
 export class UifPanelComponent implements OnChanges {
 	@Input() isOpen: boolean | Boolean = false;

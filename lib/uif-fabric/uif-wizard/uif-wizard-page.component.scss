@@ -1,6 +1,14 @@
 .uif-wizard-page-content-container {
     width: 100%;
     height: 100%;
+    &.down-animation {
+        animation: fadein-item-down;
+        animation-duration: 0.367s;
+    }
+    &.left-animation {
+        animation: fadein-item-left;
+        animation-duration: 0.367s;
+    }
     .uif-wizard-page-header-container {
         width:100%;
         height: 60px;

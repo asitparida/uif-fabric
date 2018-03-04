@@ -2,5 +2,9 @@
     position: relative;
     .ms-ContextualHost {
         width: 100%;
+        &.is-open {
+            animation: fadein-item-down;
+            animation-duration: 0.367s;
+        }
     }
 }

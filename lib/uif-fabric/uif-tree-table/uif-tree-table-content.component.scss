@@ -2,6 +2,10 @@
     width: 100%;
     display: block;
 }
+tr.child-row {
+    animation: fadein-item-down;
+    animation-duration: 0.367s;
+}
 td.uif-td-innercell {
     padding: 0;
 }

@@ -1,17 +1,20 @@
 <div class="ms-Dialog-Container" [hidden]="!isOpen">
     <div class="ms-Dialog-overlay" [class.is-blocking]="isBlocking">
-        <div class="ms-Dialog" [ngClass]="modalSize" [class.ms-Modal-custom]="isModal" [class.is-open]="isOpen" [class.ms-Dialog--lgHeader]="isLargeHeader" [class.ms-Dialog--close]="isCloseable">
-            <button class="ms-Dialog-button ms-Dialog-buttonClose" (click)="closeDialog()" [hidden]="!isCloseable">
-                <i class="ms-Icon ms-Icon--Cancel"></i>
-            </button>
-            <div class="ms-Dialog-title" [class.ms-Modal-title-custom]="isModal" [hidden]="!uifDialogHeader">
-                <ng-content select="uif-dialog-header, [uifDialogHeader]"></ng-content>
-            </div>
-            <div class="ms-Dialog-content" [class.ms-Modal-content-custom]="isModal" [hidden]="!uifDialogContent">
-                <ng-content select="uif-dialog-content, [uifDialogContent]"></ng-content>
-            </div>
-            <div class="ms-Dialog-actions" [class.ms-Modal-actions-custom]="isModal" [hidden]="!uifDialogFooter">
-                <ng-content select="uif-dialog-footer, [uifDialogFooter]"></ng-content>
+        <div class="ms-Dialog" [ngClass]="modalSize" [class.ms-Modal-custom]="isModal" [class.is-open]="isOpen" [class.ms-Dialog--lgHeader]="isLargeHeader"
+            [class.ms-Dialog--close]="isCloseable">
+            <div class="ms-Dialog-innerContent" [class.is-open]="isOpen">
+                <button class="ms-Dialog-button ms-Dialog-buttonClose" (click)="closeDialog()" [hidden]="!isCloseable">
+                    <i class="ms-Icon ms-Icon--Cancel"></i>
+                </button>
+                <div class="ms-Dialog-title" [class.ms-Modal-title-custom]="isModal" [hidden]="!uifDialogHeader">
+                    <ng-content select="uif-dialog-header, [uifDialogHeader]"></ng-content>
+                </div>
+                <div class="ms-Dialog-content" [class.ms-Modal-content-custom]="isModal" [hidden]="!uifDialogContent">
+                    <ng-content select="uif-dialog-content, [uifDialogContent]"></ng-content>
+                </div>
+                <div class="ms-Dialog-actions" [class.ms-Modal-actions-custom]="isModal" [hidden]="!uifDialogFooter">
+                    <ng-content select="uif-dialog-footer, [uifDialogFooter]"></ng-content>
+                </div>
             </div>
         </div>
     </div>

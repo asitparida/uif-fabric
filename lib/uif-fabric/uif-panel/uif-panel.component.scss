@@ -1,0 +1,14 @@
+.ms-Panel {
+    &.ms-Panel--left {
+        &.is-open {
+            animation: fadein-item-right;
+            animation-duration: 0.367s;
+        }
+    }
+    &.ms-Panel--right {
+        &.is-open {
+            animation: fadein-item-left;
+            animation-duration: 0.367s;
+        }
+    }
+}

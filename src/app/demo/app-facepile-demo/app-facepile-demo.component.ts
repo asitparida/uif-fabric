@@ -34,7 +34,7 @@ function GetSampleFacePileItem(): PersonaCard {
 		optional: 'Available at 4.00 p.m.',
 		availability: UifPersonaAvailabilityType.Available
 	};
-	card.directionalHint = UifCalloutDirectionalHint.TopLeftEdge;
+	card.directionalHint = UifCalloutDirectionalHint.BottomCenter;
 	card.mailDetails = [
 		{
 			email: 'alton.lafferty@outlook.com',

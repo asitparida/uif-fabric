@@ -5,7 +5,10 @@ import { UifDialogContentComponent, UifDialogFooterComponent, UifDialogHeaderCom
 @Component({
 	selector: 'uif-dialog',
 	templateUrl: './uif-dialog.component.html',
-	styleUrls: ['./uif-dialog.component.scss']
+	styleUrls: [
+		'./uif-dialog.component.scss',
+		'../uif-fabric.shared.scss'
+	]
 })
 export class UifDialogComponent implements OnChanges {
 	@Input() isModal: boolean | Boolean = false;

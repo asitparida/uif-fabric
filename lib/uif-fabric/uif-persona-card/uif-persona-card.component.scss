@@ -1,0 +1,6 @@
+.ms-PersonaCard-details {
+    &.is-active {
+        animation: fadein-item-down;
+        animation-duration: 0.367s;
+    }
+}

@@ -6,7 +6,10 @@ import { UiFWizardNavigation } from './uif-wizard.models';
 @Component({
 	selector: 'uif-wizard',
 	templateUrl: './uif-wizard.component.html',
-	styleUrls: ['./uif-wizard.component.scss'],
+	styleUrls: [
+		'./uif-wizard.component.scss',
+		'../uif-fabric.shared.scss'
+	],
 	providers: [ UifWizardService ]
 })
 export class UifWizardComponent implements AfterViewInit {

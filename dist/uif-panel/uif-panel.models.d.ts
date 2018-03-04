@@ -6,6 +6,6 @@ export declare enum UifPanelSizeHint {
     ExtraExtraLarge = "ms-Panel--xxl",
 }
 export declare enum UifPanelDirectionHint {
-    Right = "",
+    Right = "ms-Panel--right",
     Left = "ms-Panel--left",
 }

@@ -4,11 +4,12 @@ import { UifWizardPageNavTitleComponent } from './uif-wizard-page-nav-title.comp
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { UifWizardService } from './uif-wizard.service';
 import { Observable } from 'rxjs/Observable';
+import { UiFWizardNavigation } from '.';
 
 @Component({
 	selector: 'uif-wizard-page',
 	templateUrl: './uif-wizard-page.component.html',
-	styleUrls: ['./uif-wizard-page.component.scss']
+	styleUrls: [ './uif-wizard-page.component.scss' ]
 })
 export class UifWizardPageComponent implements AfterViewInit {
 	@ContentChild(UifWizardPageTitleComponent, { read: ElementRef }) title: ElementRef;
