@@ -36,12 +36,12 @@ export class WizardDemoComponent implements AfterViewInit {
 	}
 	onWizardNext(i) {
 		console.log('onWizardNext : index ' + i);
-		setTimeout(() => {
-			this.wizard.showLoader = true;
-			setTimeout(() => {
-				this.wizard.showLoader = false;
-			}, 2000);
-		});
+		// setTimeout(() => {
+		// 	this.wizard.showLoader = true;
+		// 	setTimeout(() => {
+		// 		this.wizard.showLoader = false;
+		// 	}, 2000);
+		// });
 	}
 	onWizardFinish() {
 		this.isWizardShown = false;

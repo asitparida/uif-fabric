@@ -12,6 +12,18 @@
         }
     }
     .ms-Dialog {
+        padding: 0;
+        background: none;
+        box-shadow: none;
+        .ms-Dialog-innerContent {
+            padding: 28px 24px;
+            background: #fff;
+            box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
+            &.is-open {
+                animation: fadein-item-in;   
+                animation-duration: 0.367s;
+            }
+        }
         &.ms-Dialog--lgHeader {
             .ms-Dialog-buttonClose .ms-Icon.ms-Icon--Cancel {
                 color: #fff;
@@ -25,6 +37,9 @@
             flex-flow: column;
             min-width: 33vw;
             min-height: 33vh;
+            .ms-Dialog-innerContent {
+                padding: 0;
+            }
             &.ms-Modal-custom-md {
                 min-width: 50vw;
                 max-height: 50vh;

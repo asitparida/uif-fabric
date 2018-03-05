@@ -72,6 +72,18 @@
             order: 2;
             overflow: hidden;
             position: relative;
+            &.page-anim-down {
+                /deep/ .uif-wizard-page-content-container.shown {
+                    animation: fadein-item-down;
+                    animation-duration: 0.367s;
+                }
+            }
+            &.page-anim-left {
+                /deep/ .uif-wizard-page-content-container.shown {
+                    animation: fadein-item-left;
+                    animation-duration: 0.367s;
+                }
+            }
         }
         .uif-wizard-bottom-nav {
             position: absolute;

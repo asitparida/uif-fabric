@@ -41,3 +41,14 @@
         opacity: 1;
     }
 }
+
+@keyframes fadein-item-in {
+    0% {
+        transform: scale3d(0.98, 0.98, 0.98);
+        opacity: 0;
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+    }
+}

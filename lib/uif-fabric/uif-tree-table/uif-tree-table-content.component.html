@@ -21,7 +21,7 @@
                     </ng-container>
                 </td>
             </tr>
-            <tr *ngIf="row.children && row.children.length > 0 && row.opened">
+            <tr *ngIf="row.children && row.children.length > 0 && row.opened" class="child-row">
                 <td class="uif-td-toggler" *ngIf="hasChildren"></td>
                 <td class="uif-td-innercell extraPadLeft" [attr.colspan]="columns.length">
                     <uif-tree-table-content [rows]="row.children" [columns]="columns">

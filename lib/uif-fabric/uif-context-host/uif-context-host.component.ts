@@ -17,7 +17,10 @@ export class UifContextHostContentComponent {
 @Component({
 	selector: 'uif-context-host',
 	templateUrl: './uif-context-host.component.html',
-	styleUrls: [ './uif-context-host.component.scss' ]
+	styleUrls: [
+		'./uif-context-host.component.scss' ,
+		'../uif-fabric.shared.scss'
+	]
 })
 export class UifContextHostComponent {
 	@Input() isOpen:  boolean | Boolean = false;

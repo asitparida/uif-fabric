@@ -5,5 +5,5 @@ export class UifFacepileCard {
 	isOpen?: boolean | Boolean = false;
 	personaCard: PersonaCard;
 	_uid?: string = Math.floor(Math.random() * 10000) + '_' + Math.floor(Math.random() * 10000);
-	directionalHint?: UifCalloutDirectionalHint = UifCalloutDirectionalHint.TopLeftEdge;
+	directionalHint?: UifCalloutDirectionalHint = UifCalloutDirectionalHint.BottomCenter;
 }

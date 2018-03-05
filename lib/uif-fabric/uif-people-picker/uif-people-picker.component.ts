@@ -6,7 +6,10 @@ import { UifPersonaComponent } from '../uif-persona/uif-persona.component';
 @Component({
 	selector: 'uif-people-picker',
 	templateUrl: './uif-people-picker.component.html',
-	styleUrls: ['./uif-people-picker.component.scss']
+	styleUrls: [
+		'./uif-people-picker.component.scss',
+		'../uif-fabric.shared.scss'
+	]
 })
 export class UifPeoplePickerComponent implements OnChanges {
 	@Input() pickerGroups: PeoplePickerGroup[] = [

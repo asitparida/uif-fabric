@@ -19,7 +19,9 @@
 			<div class="uif-wizard-top-nav" [hidden]="wizardNavigation != UiFWizardNavigations.TopNavigation">
 				<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
 			</div>
-			<div class="uif-wizard-content-page ">
+			<div class="uif-wizard-content-page " 
+			[class.page-anim-down]="wizardNavigation === UiFWizardNavigations.SideNavigation"
+			[class.page-anim-left]="wizardNavigation !== UiFWizardNavigations.SideNavigation">
 				<ng-content></ng-content>
 				<div class="uif-wizard-loader-container" [hidden]="!showLoader">
 						<div class="uif-wizard-loader-overlay">

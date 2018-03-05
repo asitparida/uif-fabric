@@ -27,6 +27,7 @@ export class UifFacepileComponent {
 		});
 	}
 	onFacepileAddClick($event: MouseEvent) {
+		console.log(this.facepileCards);
 		this.facepileAddClick.emit($event);
 	}
 	onFacepileOverflowClick($event: MouseEvent) {
